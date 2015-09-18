@@ -1,6 +1,7 @@
 #ifndef __SCENE_HPP__
 #define __SCENE_HPP__
-#include <SFML/Graphics.hpp>
+
+#include "utils.hpp"
 
 class Scene {
 public:
@@ -10,7 +11,7 @@ public:
 	virtual void init();
 	void run();
 protected:
-	sf::RenderWindow* window;
+	sf::RenderWindow* _window;
 
 	virtual void processInput();
 	virtual void update(float deltaTime);

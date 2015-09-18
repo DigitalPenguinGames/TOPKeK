@@ -1,22 +1,21 @@
 #include "Scene.hpp"
 
-Scene::Scene(sf::RenderWindow* w) : window(w) {
+Scene::Scene(sf::RenderWindow* w) : _window(w) {
 
 }
 
 Scene::~Scene(){}
 
 void Scene::init() {
-	
+
 }
 
 void Scene::run() {
-	int framerate = 60;
 	sf::Clock clock;
 	sf::Time timeSinceLastUpdate;
-	sf::Time timePerFrame = sf::seconds(1.f/framerate);
+	sf::Time timePerFrame = sf::seconds(1.f/FRAMERATE);
 
-	while (window->isOpen()) {
+	while (_window->isOpen()) {
 		processInput();
 		timeSinceLastUpdate = clock.restart();
 		while (timeSinceLastUpdate > timePerFrame) {
@@ -30,8 +29,8 @@ void Scene::run() {
 
 void Scene::processInput() {
 	sf::Event event;
-	while (window->pollEvent(event)) {
-		if (event.type == sf::Event::Closed) {window->close(); exit(0);}
+	while (_window->pollEvent(event)) {
+		if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
 	}
 }
 
@@ -40,7 +39,7 @@ void Scene::update(float deltaTime) {
 }
 
 void Scene::render() {
-	window->clear();
+	_window->clear();
 
-	window->display();
+	_window->display();
 }
