@@ -6,6 +6,7 @@
 #define SCENEEXTENSION ".scene"
 #define TEXTURETPATH "Resources/Textures/"
 
+#include <map>
 #include <string>
 #include <dirent.h> // read directory
 #include <iostream>

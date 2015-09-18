@@ -3,12 +3,36 @@
 Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Close) {
 	_window.setFramerateLimit(FRAMERATE);
 	Resources::load();
+	_currentScene = nullptr;
+}
+
+Game::~Game() {
+	for (auto it = _scenes.begin(); it != _scenes.end(); ++it) {
+		delete it->second;
+	}
 }
 
 void Game::start() {
-	loadScenes();	
+	loadScenes();
+	changeScene("test1.scene");
+
+	while (_currentScene != nullptr) {
+		_currentScene->run();
+	}
 
 	exit(0);
+}
+
+
+void Game::changeScene(std::string sceneName) { // This will be called by any scene when something trigers to change to anothe scene
+	if (_currentScene != nullptr) _currentScene->killScene();
+	Scene* aux = _scenes.find(sceneName)->second;
+	if (aux == nullptr) {
+		perror("The selected scene does not exist");
+		exit(EXIT_FAILURE);
+	}
+	_currentScene = aux;
+	_currentScene->init();
 }
 
 
@@ -31,4 +55,6 @@ void Game::loadScenes() {
 
 void Game::loadScene(std::string path) {
 	std::cout << path << std::endl;
+	Scene* aux = new Scene(&_window);
+	_scenes.insert(std::make_pair(path,aux));
 }

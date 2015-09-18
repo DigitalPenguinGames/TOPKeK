@@ -1,6 +1,8 @@
 #include "Scene.hpp"
 
-Scene::Scene(sf::RenderWindow* w) : _window(w) {
+Scene::Scene(sf::RenderWindow* w) : 
+	_window(w),
+	_killed(false) {
 
 }
 
@@ -16,6 +18,7 @@ void Scene::run() {
 	sf::Time timePerFrame = sf::seconds(1.f/FRAMERATE);
 
 	while (_window->isOpen()) {
+		if (_killed) return;
 		processInput();
 		timeSinceLastUpdate = clock.restart();
 		while (timeSinceLastUpdate > timePerFrame) {
@@ -25,6 +28,10 @@ void Scene::run() {
 		update(timePerFrame.asSeconds());
 		render();
 	}
+}
+
+void Scene::killScene() {
+	_killed = true;
 }
 
 void Scene::processInput() {

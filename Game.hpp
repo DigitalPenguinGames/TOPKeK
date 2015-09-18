@@ -3,15 +3,21 @@
 
 #include "Resources.hpp"
 #include "Scene.hpp"
+#include "utils.hpp"
 
 class Game {
 public:
 	Game();
+	~Game();
 
 	void start();
+
+	void changeScene(std::string sceneName);
+
 private:
 	sf::RenderWindow _window;
-	std::map<int, Scene*> _scenes;
+	std::map<std::string, Scene*> _scenes;
+	Scene* _currentScene;
 
 	void loadScenes();
 	void loadScene(std::string path);

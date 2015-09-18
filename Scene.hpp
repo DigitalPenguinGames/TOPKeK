@@ -10,8 +10,10 @@ public:
 
 	virtual void init();
 	void run();
+	void killScene();
 protected:
 	sf::RenderWindow* _window;
+	bool _killed;
 
 	virtual void processInput();
 	virtual void update(float deltaTime);
