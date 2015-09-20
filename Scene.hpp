@@ -6,7 +6,7 @@
 class Scene {
 public:
 	Scene(sf::RenderWindow* w);
-	~Scene();
+	virtual ~Scene();
 
 	virtual void init();
 	void run();

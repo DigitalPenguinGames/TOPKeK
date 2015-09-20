@@ -20,7 +20,7 @@ private:
 	Scene* _currentScene;
 
 	void loadScenes();
-	void loadScene(std::string path);
+	void loadScene(std::string sceneName);
 };
 
 #endif

@@ -7,6 +7,10 @@ class Resources {
 public:
 	static void load();
 	//static sf::Texture ...
+	static std::vector<SpriteSheetDescription> descriptions;
+
+private:
+	static SpriteSheetDescription loadDescription(std::string fileName);
 
 };
 

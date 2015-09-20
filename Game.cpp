@@ -53,8 +53,8 @@ void Game::loadScenes() {
 	}
 }
 
-void Game::loadScene(std::string path) {
-	std::cout << path << std::endl;
+void Game::loadScene(std::string sceneName) {
+	std::cout << sceneName << std::endl;
 	Scene* aux = new Scene(&_window);
-	_scenes.insert(std::make_pair(path,aux));
+	_scenes.insert(std::make_pair(sceneName,aux));
 }

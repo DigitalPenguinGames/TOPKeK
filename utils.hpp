@@ -5,6 +5,8 @@
 #define SCENEPATH "Resources/Scenes/"
 #define SCENEEXTENSION ".scene"
 #define TEXTURETPATH "Resources/Textures/"
+#define TEXTUREDESCRIPTIONEXTENSION ".description"
+
 
 #include <map>
 #include <string>
@@ -14,5 +16,22 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+
+typedef std::vector< std::vector < sf::IntRect> > SpriteSheetDescription;
+
+enum spriteSheetsDescriptions {
+	linkSpritesDescriptions,
+	spriteDescriptionsQtt
+};
+
+enum linkActions {
+	moveUp			,
+	moveDown		,
+	moveSide		,
+	attackUp		,
+	attackDown		,
+	attackSide		, 
+	linkActionsQtt
+};
 
 #endif
