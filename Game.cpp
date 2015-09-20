@@ -20,6 +20,7 @@ void Game::start() {
 		_currentScene->run();
 	}
 
+
 	exit(0);
 }
 

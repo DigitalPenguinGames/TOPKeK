@@ -12,6 +12,8 @@
 #include <string>
 #include <dirent.h> // read directory
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
@@ -33,5 +35,9 @@ enum linkActions {
 	attackSide		, 
 	linkActionsQtt
 };
+
+bool isInt(std::string s);
+
+int myStoi(std::string s);
 
 #endif
