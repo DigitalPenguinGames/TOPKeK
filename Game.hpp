@@ -4,6 +4,7 @@
 #include "Resources.hpp"
 #include "Scene.hpp"
 #include "utils.hpp"
+#include "testing/test1Scene.hpp"
 
 class Game {
 public:

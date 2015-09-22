@@ -1,15 +1,18 @@
 #include "Resources.hpp"
 
 // sf::Texture		Resources::....
+sf::Texture			Resources::textureTest;
 
 std::vector<SpriteSheetDescription> Resources::descriptions;
 
 void Resources::load() {
 	//...loadFromFile();
-
+	textureTest.loadFromFile(TEXTURETPATH+std::string("textureTest.png"));
 	descriptions = std::vector<SpriteSheetDescription>(spriteDescriptionsQtt);
 	descriptions[0] = (loadDescription("linkSheet"));
 }
+
+
 
 SpriteSheetDescription Resources::loadDescription(std::string fileName) {
 	std::string filePath = TEXTURETPATH + fileName + TEXTUREDESCRIPTIONEXTENSION;

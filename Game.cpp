@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Close) {
+Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Close | sf::Style::Resize) {
 	_window.setFramerateLimit(FRAMERATE);
 	Resources::load();
 	_currentScene = nullptr;
@@ -20,7 +20,6 @@ void Game::start() {
 	while (_currentScene != nullptr) {
 		_currentScene->run();
 	}
-
 
 	exit(0);
 }
@@ -62,6 +61,6 @@ void Game::loadScenes() {
 
 void Game::loadScene(std::string sceneName) {
 	std::cout << sceneName << std::endl;
-	Scene* aux = new Scene(&_window);
+	Scene* aux = new test1Scene(this,&_window);
 	_scenes.insert(std::make_pair(sceneName,aux));
 }

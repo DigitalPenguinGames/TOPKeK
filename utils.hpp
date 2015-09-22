@@ -6,6 +6,8 @@
 #define SCENEEXTENSION ".scene"
 #define TEXTURETPATH "Resources/Textures/"
 #define TEXTUREDESCRIPTIONEXTENSION ".description"
+#define WINDOWRATIOX 1920
+#define WINDOWRATIOY 1080
 
 
 #include <map>

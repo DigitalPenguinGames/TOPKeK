@@ -10,9 +10,11 @@ SOURCES += main.cpp \
 		utils.cpp \
 		Resources.cpp \
 		Game.cpp \
-		Scene.cpp
+		Scene.cpp \
+		testing/test1Scene.cpp
 
 HEADERS += utils.hpp \
 		Resources.cpp \
 		Game.cpp \
-		Scene.hpp 
+		Scene.hpp \
+		testing/test1Scene.hpp

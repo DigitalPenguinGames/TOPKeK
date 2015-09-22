@@ -2,11 +2,13 @@
 #define __TESTSCENE_HPP__
 
 #include "../Scene.hpp"
+#include "../Resources.hpp"
 
 class Game;
+
 class test1Scene : public Scene {
 public:
-	test1Scene(sf::RenderWindow* w);
+	test1Scene(Game* g, sf::RenderWindow* w);
 	~test1Scene();
 
 	void processInput();
@@ -16,4 +18,7 @@ public:
 private:
 	Game* game;
 	sf::RectangleShape rectangle;
+	sf::Sprite sprite;
 };
+
+#endif

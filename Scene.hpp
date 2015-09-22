@@ -13,12 +13,19 @@ public:
 	void killScene();
 protected:
 	sf::RenderWindow* _window;
-	bool _killed;
+	sf::View _view;
 
 	virtual void processInput();
 	virtual void update(float deltaTime);
 	virtual void render();
 
+private: 
+	//sf::RenderWindow* _window;
+	bool _killed;
+
+	void display();
+
+	void initView();
 };
 
 #endif
