@@ -4,6 +4,7 @@ Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Clos
 	_window.setFramerateLimit(FRAMERATE);
 	Resources::load();
 	_currentScene = nullptr;
+	_lastScene = nullptr;
 }
 
 Game::~Game() {
@@ -26,13 +27,18 @@ void Game::start() {
 
 
 void Game::changeScene(std::string sceneName) { // This will be called by any scene when something trigers to change to anothe scene
-	if (_currentScene != nullptr) _currentScene->killScene();
+	if (_currentScene != nullptr) {
+		_lastScene = _currentScene;
+		_currentScene->killScene();
+	}
 	Scene* aux = _scenes.find(sceneName)->second;
 	if (aux == nullptr) {
 		perror("The selected scene does not exist");
 		exit(EXIT_FAILURE);
 	}
 	_currentScene = aux;
+
+	
 	_currentScene->init();
 }
 

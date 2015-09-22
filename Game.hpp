@@ -18,6 +18,7 @@ private:
 	sf::RenderWindow _window;
 	std::map<std::string, Scene*> _scenes;
 	Scene* _currentScene;
+	Scene* _lastScene;
 
 	void loadScenes();
 	void loadScene(std::string sceneName);
