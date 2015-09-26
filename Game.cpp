@@ -15,7 +15,7 @@ Game::~Game() {
 
 void Game::start() {
 	loadScenes();
-	changeScene("test1");
+	changeScene("ini");
 
 	while (_currentScene != nullptr) {
 		_currentScene->run();
@@ -35,9 +35,7 @@ void Game::changeScene(std::string sceneName) { // This will be called by any sc
 		std::cout << "The selected scene does not exist: " << sceneName << std::endl;
 		exit(EXIT_FAILURE);
 	}
-	_currentScene = aux;
-
-	
+	_currentScene = aux;	
 	_currentScene->init();
 }
 
@@ -61,6 +59,20 @@ void Game::loadScenes() {
 
 void Game::loadScene(std::string sceneName) {
 	std::cout << sceneName.substr(0,sceneName.length()-sizeof(SCENEEXTENSION)+1) << std::endl;
-	Scene* aux = new test1Scene(this,&_window);
+
+	std::ifstream t(SCENEPATH + sceneName);
+	std::string str((std::istreambuf_iterator<char>(t)),
+                 std::istreambuf_iterator<char>());
+
+	std::istringstream description(str);
+
+	std::string sceneType;
+	description >> sceneType;
+	Scene* aux;
+	switch(myStoi(sceneType)) {
+		case sceneTypes::outside:
+			aux = new OutsideScene(this,&_window,str);
+	}
+	
 	_scenes.insert(std::make_pair(sceneName.substr(0,sceneName.length()-sizeof(SCENEEXTENSION)+1),aux));
 }

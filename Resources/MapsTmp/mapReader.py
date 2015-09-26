@@ -62,7 +62,11 @@ def main():
 			output += scene + " " + str(sceneX) + " " + str(sceneY) + " "
 
 
-		
+		name = c
+		extension = "scene"
+		filename = name[:-4] + '.' + extension
+		f = open("../Scenes/"+filename,'w+')
+		f.write(output)
 
 
 

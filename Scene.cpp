@@ -1,6 +1,7 @@
 #include "Scene.hpp"
 
-Scene::Scene(sf::RenderWindow* w) : 
+Scene::Scene(Game *g, sf::RenderWindow* w) :
+	_game(g), 
 	_window(w),
 	_killed(false) {
 

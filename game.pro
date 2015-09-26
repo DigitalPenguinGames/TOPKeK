@@ -11,10 +11,12 @@ SOURCES += main.cpp \
 		Resources.cpp \
 		Game.cpp \
 		Scene.cpp \
-		testing/test1Scene.cpp
+		OutsideScene.cpp \
+		Map.cpp
 
 HEADERS += utils.hpp \
 		Resources.cpp \
 		Game.cpp \
 		Scene.hpp \
-		testing/test1Scene.hpp
+		OutsideScene.hpp \
+		Map.hpp
