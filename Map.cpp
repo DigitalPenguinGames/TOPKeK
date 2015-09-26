@@ -5,17 +5,17 @@ Map::Map(std::string description) {
 	int typeOfMap, width, height;
 	des >> typeOfMap >> width >> height;
 	std::cout << typeOfMap << " " << width << " " << height << std::endl;
-	premap = std::vector < std::vector < int > >(width,std::vector<int>(height));
-	for (int i = 0; i < width; ++i) {
-		for (int j = 0; j < height; ++j) {
-			des >> premap[i][j];
+	_premap = std::vector < std::vector < int > >(width,std::vector<int>(height));
+	for (int j = 0; j < int(_premap[0].size()); ++j) {
+		for (int i = 0; i < int(_premap.size()); ++i) {
+			des >> _premap[i][j];
 		}
 	}
 
 
-	for (int i = 0; i < width; ++i) {
-		for (int j = 0; j < height; ++j) {
-			std::cout << premap[i][j] << " ";
+	for (int j = 0; j < int(_premap[0].size()); ++j) {
+		for (int i = 0; i < int(_premap.size()); ++i) {
+			std::cout << _premap[i][j] << " ";
 		}
 		std::cout << std::endl;
 	}
@@ -35,9 +35,23 @@ Map::Map(std::string description) {
 }
 
 Map::~Map() {
-
+	// for (int i = 0; i < int(_map.size()); ++i) 
+	// 	for (int j = 0; j < int(_map[i].size()); ++j) 
+	// 		delete &_map[i][j];
 }
 
 void Map::init() {
+	_map = std::vector<std::vector<Tile> >(_premap.size(), std::vector<Tile>(_premap[0].size()));
+	for (int j = 0; j < int(_premap[0].size()); ++j) 
+		for (int i = 0; i < int(_premap.size()); ++i) {
+			sf::Vector2f pos(i*TILESIZE,j*TILESIZE);
+			_map[i][j] = (Tile(_premap[i][j],pos));
+		}
 	
+}
+
+void Map::draw(sf::RenderWindow* w) {
+	for (int j = 0; j < int(_map[0].size()); ++j) 
+		for (int i = 0; i < int(_map.size()); ++i)
+	 		_map[i][j].draw(w);
 }

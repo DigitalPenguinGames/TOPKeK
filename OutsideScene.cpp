@@ -2,7 +2,7 @@
 
 OutsideScene::OutsideScene(Game* g, sf::RenderWindow* w, std::string description) :
 	Scene(g,w),
-	map(description)
+	_map(description)
 {
 
 }
@@ -13,7 +13,7 @@ OutsideScene::~OutsideScene() {
 
 void OutsideScene::init() {
 	initView();
-	map.init();
+	_map.init();
 }
 
 void OutsideScene::processInput() {
@@ -33,5 +33,5 @@ void OutsideScene::update(float deltaTime) {
 }
 
 void OutsideScene::render() {
-
+	_map.draw(_window);
 }

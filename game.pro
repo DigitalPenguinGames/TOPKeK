@@ -12,11 +12,13 @@ SOURCES += main.cpp \
 		Game.cpp \
 		Scene.cpp \
 		OutsideScene.cpp \
-		Map.cpp
+		Map.cpp \
+		Tile.cpp
 
 HEADERS += utils.hpp \
 		Resources.cpp \
 		Game.cpp \
 		Scene.hpp \
 		OutsideScene.hpp \
-		Map.hpp
+		Map.hpp \
+		Tile.hpp

@@ -32,7 +32,7 @@ def main():
 		#
 
 		for x in csv:
-			output += x + " "
+			output += str(int(x)-1) + " "
 
 		#
 

@@ -15,7 +15,7 @@ public:
 	void update(float deltaTime);
 	void render();
 private:
-	Map map;
+	Map _map;
 };
 
 

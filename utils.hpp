@@ -14,8 +14,8 @@
 #define TILESETWIDTH 18
 #define TILESETHEIGH 8
 
-#define WINDOWRATIOX 1920
-#define WINDOWRATIOY 1080
+#define WINDOWRATIOX 256
+#define WINDOWRATIOY 176
 
 
 #include <map>
