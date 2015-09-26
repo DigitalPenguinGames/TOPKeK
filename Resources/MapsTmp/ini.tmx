@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="11" tilewidth="16" tileheight="16" nextobjectid="23">
+ <tileset firstgid="1" name="OverWorld" tilewidth="16" tileheight="16" spacing="1" margin="1" tilecount="144">
+  <image source="../Textures/OverworldTiles.png" width="307" height="137"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="16" height="11">
+  <properties>
+   <property name="type" value="outside"/>
+  </properties>
+  <data encoding="csv">
+62,62,62,62,62,62,62,9,9,62,62,62,62,62,62,62,
+62,62,62,62,29,62,63,9,9,62,62,62,62,62,62,62,
+62,62,62,63,9,9,9,9,9,62,62,62,62,62,62,62,
+62,62,63,9,9,9,9,9,9,62,62,62,62,62,62,62,
+62,63,9,9,9,9,9,9,9,61,62,62,62,62,62,62,
+9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
+44,45,9,9,9,9,9,9,9,9,9,9,9,9,44,44,
+62,62,9,9,9,9,9,9,9,9,9,9,9,9,62,62,
+62,62,9,9,9,9,9,9,9,9,9,9,9,9,62,62,
+62,62,44,44,44,44,44,44,44,44,44,44,44,44,62,62,
+62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62
+</data>
+ </layer>
+ <objectgroup name="Exits">
+  <object id="19" gid="9" x="64" y="32" width="16" height="16" visible="0">
+   <properties>
+    <property name="scene" value="inside0"/>
+    <property name="x" value="0"/>
+    <property name="y" value="0"/>
+   </properties>
+  </object>
+  <object id="21" gid="23" x="0" y="96" width="16" height="16">
+   <properties>
+    <property name="scene" value="ini2"/>
+    <property name="x" value="0"/>
+    <property name="y" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

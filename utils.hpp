@@ -2,10 +2,18 @@
 #define __UTILS_HPP__
 
 #define FRAMERATE 60
+
 #define SCENEPATH "Resources/Scenes/"
 #define SCENEEXTENSION ".scene"
+#define SCENEEXTENSIONSIZE 6
 #define TEXTURETPATH "Resources/Textures/"
 #define TEXTUREDESCRIPTIONEXTENSION ".description"
+
+#define TILESIZE 16
+#define TILEOFFSET 1
+#define TILESETWIDTH 18
+#define TILESETHEIGH 8
+
 #define WINDOWRATIOX 1920
 #define WINDOWRATIOY 1080
 
@@ -21,6 +29,13 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
+//Scenes
+enum sceneTypes {
+	outside = 0,
+	inside = 1
+};
+
+// SpriteSheets
 typedef std::vector< std::vector < sf::IntRect> > SpriteSheetDescription;
 
 enum spriteSheetsDescriptions {
@@ -28,6 +43,7 @@ enum spriteSheetsDescriptions {
 	spriteDescriptionsQtt
 };
 
+// Animations
 enum linkActions {
 	moveUp			,
 	moveDown		,

@@ -15,7 +15,7 @@ Game::~Game() {
 
 void Game::start() {
 	loadScenes();
-	changeScene("test1.scene");
+	changeScene("test1");
 
 	while (_currentScene != nullptr) {
 		_currentScene->run();
@@ -32,7 +32,7 @@ void Game::changeScene(std::string sceneName) { // This will be called by any sc
 	}
 	Scene* aux = _scenes.find(sceneName)->second;
 	if (aux == nullptr) {
-		perror("The selected scene does not exist");
+		std::cout << "The selected scene does not exist: " << sceneName << std::endl;
 		exit(EXIT_FAILURE);
 	}
 	_currentScene = aux;
@@ -60,7 +60,7 @@ void Game::loadScenes() {
 }
 
 void Game::loadScene(std::string sceneName) {
-	std::cout << sceneName << std::endl;
+	std::cout << sceneName.substr(0,sceneName.length()-sizeof(SCENEEXTENSION)+1) << std::endl;
 	Scene* aux = new test1Scene(this,&_window);
-	_scenes.insert(std::make_pair(sceneName,aux));
+	_scenes.insert(std::make_pair(sceneName.substr(0,sceneName.length()-sizeof(SCENEEXTENSION)+1),aux));
 }
