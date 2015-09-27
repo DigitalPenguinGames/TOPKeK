@@ -54,6 +54,14 @@ enum linkActions {
 	linkActionsQtt
 };
 
+// Directions
+enum directions {
+	up				,
+	down			,
+	left 			,
+	right
+};
+
 bool isInt(std::string s);
 
 int myStoi(std::string s);

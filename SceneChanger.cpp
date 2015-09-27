@@ -15,6 +15,13 @@ std::string SceneChanger::getNextSceneName() {
 	return _nextScene;
 }
 
-sf::FloatRect SceneChanger::getRect() {
-	return sf::FloatRect(_pos.x*16,_pos.y*16,16,16);
+sf::FloatRect SceneChanger::getRect(sf::Vector2f offset) {
+	return sf::FloatRect(_pos.x*16+offset.x,_pos.y*16+offset.y,16,16);
+}
+
+directions SceneChanger::getChangeDirection() {
+	if (_pos.x == 0) return directions::left;
+	else if (_pos.y == 0) return directions::up;
+	else if (_nextScenePos.x==0) return directions::right;
+	else return directions::down;
 }

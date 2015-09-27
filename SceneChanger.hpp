@@ -10,8 +10,9 @@ public:
 	~SceneChanger();
 
 	std::string getNextSceneName();
-	sf::FloatRect getRect();
-private:
+	sf::FloatRect getRect(sf::Vector2f offset);
+	directions getChangeDirection();
+
 	sf::Vector2f _pos;
 	std::string _nextScene;
 	sf::Vector2f _nextScenePos;

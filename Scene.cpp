@@ -40,6 +40,10 @@ sceneTypes Scene::getType() {
 	return _sceneType;
 }
 
+sf::View* Scene::getPtrView() {
+	return &_view;
+}
+
 void Scene::processInput() {
 	sf::Event event;
 	while (_window->pollEvent(event)) {

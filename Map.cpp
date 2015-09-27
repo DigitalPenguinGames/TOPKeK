@@ -48,7 +48,7 @@ void Map::init(sf::Vector2f sceneIniCoord) {
 			sf::Vector2f pos(i*TILESIZE+sceneIniCoord.x,j*TILESIZE+sceneIniCoord.y);
 			_map[i][j] = (Tile(_premap[i][j],pos));
 		}
-	
+	_mapIniCoord = sceneIniCoord;
 }
 
 void Map::draw(sf::RenderWindow* w) {
@@ -59,9 +59,17 @@ void Map::draw(sf::RenderWindow* w) {
 
 std::pair<bool,SceneChanger*> Map::playerInsideExit(sf::Vector2f pos) {
 	for (int i = 0; i < int(_sceneChangers.size());++i) {
-		if (_sceneChangers[i].getRect().contains(pos)) {
+		if (_sceneChangers[i].getRect(_mapIniCoord).contains(pos)) {
 			return std::pair<bool,SceneChanger*>(true,&_sceneChangers[i]);
 		}
 	}
 	return std::pair<bool,SceneChanger*>(false,nullptr);
+}
+
+Tile* Map::getPtrTile(sf::Vector2i pos) {
+	return &_map[pos.x][pos.y];
+}
+
+sf::Vector2i Map::getSize() {
+	return sf::Vector2i(_premap.size(),_premap[0].size());
 }

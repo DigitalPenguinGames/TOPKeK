@@ -7,16 +7,21 @@
 #include "SceneChanger.hpp"
 
 class OutsideScene : public Scene {
+friend class Game;
 public:
 	OutsideScene(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string description);
 	~OutsideScene();
 
 	void init(sf::Vector2f sceneIniCoord);
+
+	sf::Vector2f getSceneCoord();
+	sf::Vector2i getMapSize();
+private:
 	void processInput();
 	void update(float deltaTime);
 	void render();
-private:
 	Map _map;
+
 };
 
 

@@ -42,3 +42,11 @@ void OutsideScene::update(float deltaTime) {
 void OutsideScene::render() {
 	_map.draw(_window);
 }
+
+sf::Vector2f OutsideScene::getSceneCoord() {
+	return _map.getPtrTile(sf::Vector2i(0,0))->getPosition();
+}
+
+sf::Vector2i OutsideScene::getMapSize() {
+	return _map.getSize();
+}

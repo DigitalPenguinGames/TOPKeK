@@ -16,3 +16,7 @@ Tile::~Tile() {}
 void Tile::draw(sf::RenderWindow* w) {
 	w->draw(sprite);
 }
+
+sf::Vector2f Tile::getPosition() {
+	return sprite.getPosition();
+}

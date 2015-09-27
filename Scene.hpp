@@ -6,6 +6,7 @@
 class Game;
 
 class Scene {
+friend class Game;
 public:
 	Scene(Game* g, sf::RenderWindow* w, sceneTypes sT);
 	virtual ~Scene();
@@ -15,6 +16,7 @@ public:
 	void killScene();
 
 	sceneTypes getType();
+	sf::View* getPtrView();
 protected:
 	Game* _game;
 	sf::RenderWindow* _window;
