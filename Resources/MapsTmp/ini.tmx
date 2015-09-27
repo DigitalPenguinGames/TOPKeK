@@ -21,7 +21,7 @@
 62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62
 </data>
  </layer>
- <objectgroup name="Exits">
+ <objectgroup name="Exits" opacity="0.46">
   <object id="19" name="cave" gid="9" x="64" y="32" width="16" height="16">
    <properties>
     <property name="scene" value="inside0"/>
@@ -38,9 +38,9 @@
   </object>
   <object id="24" name="rigthExit" gid="23" x="240" y="96" width="16" height="16">
    <properties>
-    <property name="scene" value="ini2"/>
+    <property name="scene" value="ini3"/>
     <property name="x" value="0"/>
-    <property name="y" value="5"/>
+    <property name="y" value="6"/>
    </properties>
   </object>
  </objectgroup>

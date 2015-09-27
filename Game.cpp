@@ -45,6 +45,7 @@ void Game::changeScene(std::string sceneName,SceneChanger* sC = nullptr) { // Th
 		if (_currentScene->getType() == sceneTypes::outside) {
 			if (sC == nullptr) {std::cout << "ERROR: Changing between two outisde scenes without SceneChanger"<< std::endl;exit(EXIT_FAILURE);}
 			
+			_currentScene = aux;	
 			OutsideScene* lastScene = dynamic_cast<OutsideScene*>(_lastScene);
 			OutsideScene* currentScene = dynamic_cast<OutsideScene*>(_currentScene);
 
@@ -52,11 +53,11 @@ void Game::changeScene(std::string sceneName,SceneChanger* sC = nullptr) { // Th
 			int dir = sC->getChangeDirection();
 			switch (dir) {
 				case directions::left:
-					offset.y = TILESIZE * (sC->_nextScenePos.y - sC->_pos.y);
+					offset.y = TILESIZE * (sC->_pos.y-sC->_nextScenePos.y);
 					offset.x = -currentScene->getMapSize().x*TILESIZE;
 					break;
 				case directions::right:
-					offset.y = TILESIZE * (sC->_nextScenePos.y - sC->_pos.y);
+					offset.y = TILESIZE * (sC->_pos.y-sC->_nextScenePos.y);
 					offset.x = lastScene->getMapSize().x*TILESIZE;
 					break;
 			}
@@ -66,19 +67,19 @@ void Game::changeScene(std::string sceneName,SceneChanger* sC = nullptr) { // Th
 			std::cout << "offset: " << offset.x << " " << offset.y << " sceneIniCoord " << sceneIniCoord.x << " " << sceneIniCoord.y << std::endl;
 			std::cout << lastScene->getSceneCoord().x << " " << lastScene->getSceneCoord().y << std::endl;
 
-			_currentScene = aux;	
 			_currentScene->init(sceneIniCoord);
 
 			// Transition animation:
 			sf::View* view = lastScene->getPtrView();
 			sf::Clock clock;
 			sf::Time deltaTime;
-			float count=0.f, timer = 1.f;
+			float count=0.f, timer = 1.5f;
 			sf::Vector2f speed(offset.x/timer,offset.y/timer);
 
 			std::cout << "speed: " << speed.x << " " << speed.y << std::endl;
 
 			while (count < timer) {
+				std::cout << "drawing animation" << std::endl;
 				deltaTime = clock.restart();
 				count += deltaTime.asSeconds();
 				view->move(speed*deltaTime.asSeconds());

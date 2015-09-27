@@ -21,7 +21,7 @@
 62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62
 </data>
  </layer>
- <objectgroup name="Exits">
+ <objectgroup name="Exits" opacity="0.46">
   <object id="19" name="cave" gid="9" x="64" y="32" width="16" height="16">
    <properties>
     <property name="scene" value="inside0"/>
