@@ -5,6 +5,7 @@
 #include "Scene.hpp"
 #include "utils.hpp"
 #include "OutsideScene.hpp"
+#include "SceneChanger.hpp"
 
 class Game {
 public:
@@ -13,7 +14,7 @@ public:
 
 	void start();
 
-	void changeScene(std::string sceneName);
+	void changeScene(std::string sceneName, SceneChanger* sC);
 
 private:
 	sf::RenderWindow _window;

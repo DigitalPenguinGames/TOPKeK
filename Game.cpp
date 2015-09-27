@@ -15,7 +15,7 @@ Game::~Game() {
 
 void Game::start() {
 	loadScenes();
-	changeScene("ini");
+	changeScene("ini",nullptr);
 
 	while (_currentScene != nullptr) {
 		_currentScene->run();
@@ -25,18 +25,31 @@ void Game::start() {
 }
 
 
-void Game::changeScene(std::string sceneName) { // This will be called by any scene when something trigers to change to anothe scene
+void Game::changeScene(std::string sceneName,SceneChanger* sC = nullptr) { // This will be called by any scene when something trigers to change to anothe scene
+	sf::Vector2f sceneIniCoord(0,0);
 	if (_currentScene != nullptr) {
 		_lastScene = _currentScene;
 		_currentScene->killScene();
 	}
-	Scene* aux = _scenes.find(sceneName)->second;
-	if (aux == nullptr) {
+	auto it = _scenes.find(sceneName);
+	if (it == _scenes.end()) {
 		std::cout << "The selected scene does not exist: " << sceneName << std::endl;
 		exit(EXIT_FAILURE);
 	}
+	Scene* aux = (*it).second;
+	
+	std::cout << "Changing to scene " << sceneName << std::endl;
+
+	// Animations
+	if (_lastScene != nullptr && _lastScene->getType() == _currentScene->getType()) {
+		if (_currentScene->getType() == sceneTypes::outside) {
+			OutsideScene* lastScene = dynamic_cast<OutsideScene*>(_lastScene);
+			OutsideScene* currentScene = dynamic_cast<OutsideScene*>(_currentScene);
+		}
+		// 
+	}
 	_currentScene = aux;	
-	_currentScene->init();
+	_currentScene->init(sceneIniCoord);
 }
 
 
@@ -71,7 +84,7 @@ void Game::loadScene(std::string sceneName) {
 	Scene* aux;
 	switch(myStoi(sceneType)) {
 		case sceneTypes::outside:
-			aux = new OutsideScene(this,&_window,str);
+			aux = new OutsideScene(this,&_window,sceneTypes::outside, str);
 	}
 	
 	_scenes.insert(std::make_pair(sceneName.substr(0,sceneName.length()-sizeof(SCENEEXTENSION)+1),aux));

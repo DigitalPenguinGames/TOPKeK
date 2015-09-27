@@ -42,7 +42,7 @@ def main():
 
 		for obj in shit.findall('object'):
 			objX = int(obj.get('x')) / int(obj.get('width'))
-			objY = int(obj.get('y')) / int(obj.get('height'))
+			objY = (int(obj.get('y'))-1) / int(obj.get('height'))
 
 			# 
 

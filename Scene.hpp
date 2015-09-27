@@ -7,12 +7,14 @@ class Game;
 
 class Scene {
 public:
-	Scene(Game* g, sf::RenderWindow* w);
+	Scene(Game* g, sf::RenderWindow* w, sceneTypes sT);
 	virtual ~Scene();
 
-	virtual void init();
+	virtual void init(sf::Vector2f sceneIniCoord);
 	void run();
 	void killScene();
+
+	sceneTypes getType();
 protected:
 	Game* _game;
 	sf::RenderWindow* _window;
@@ -26,6 +28,7 @@ protected:
 private: 
 	//sf::RenderWindow* _window;
 	bool _killed;
+	sceneTypes _sceneType;
 
 	void display();
 

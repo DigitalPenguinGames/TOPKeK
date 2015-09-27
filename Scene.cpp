@@ -1,15 +1,16 @@
 #include "Scene.hpp"
 
-Scene::Scene(Game *g, sf::RenderWindow* w) :
+Scene::Scene(Game *g, sf::RenderWindow* w, sceneTypes sT) :
 	_game(g), 
 	_window(w),
-	_killed(false) {
+	_killed(false),
+	_sceneType(sT) {
 
 }
 
 Scene::~Scene(){}
 
-void Scene::init() {
+void Scene::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
 	initView();
 }
 
@@ -19,7 +20,7 @@ void Scene::run() {
 	sf::Time timePerFrame = sf::seconds(1.f/FRAMERATE);
 
 	while (_window->isOpen()) {
-		if (_killed) return;
+		if (_killed) {_killed = false;return;}
 		processInput();
 		timeSinceLastUpdate = clock.restart();
 		while (timeSinceLastUpdate > timePerFrame) {
@@ -33,6 +34,10 @@ void Scene::run() {
 
 void Scene::killScene() {
 	_killed = true;
+}
+
+sceneTypes Scene::getType() {
+	return _sceneType;
 }
 
 void Scene::processInput() {

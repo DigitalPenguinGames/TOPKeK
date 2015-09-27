@@ -13,7 +13,8 @@ SOURCES += main.cpp \
 		Scene.cpp \
 		OutsideScene.cpp \
 		Map.cpp \
-		Tile.cpp
+		Tile.cpp \
+		SceneChanger.cpp
 
 HEADERS += utils.hpp \
 		Resources.cpp \
@@ -21,4 +22,5 @@ HEADERS += utils.hpp \
 		Scene.hpp \
 		OutsideScene.hpp \
 		Map.hpp \
-		Tile.hpp
+		Tile.hpp \
+		SceneChanger.hpp

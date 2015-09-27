@@ -1,7 +1,8 @@
 #include "OutsideScene.hpp"
+#include "Game.hpp"
 
-OutsideScene::OutsideScene(Game* g, sf::RenderWindow* w, std::string description) :
-	Scene(g,w),
+OutsideScene::OutsideScene(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string description) :
+	Scene(g,w,sT),
 	_map(description)
 {
 
@@ -11,9 +12,9 @@ OutsideScene::~OutsideScene() {
 
 }
 
-void OutsideScene::init() {
+void OutsideScene::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
+	_map.init(sceneIniCoord);
 	initView();
-	_map.init();
 }
 
 void OutsideScene::processInput() {
@@ -25,6 +26,12 @@ void OutsideScene::processInput() {
 		}
 
 		//else if (event.type == sf::Event::Resized) initView();
+	}
+	sf::Vector2f mousePos = _window->mapPixelToCoords(sf::Mouse::getPosition(*_window),_view);
+	//std::cout << "mouse position " << mousePos.x << " " << mousePos.y << std::endl;
+	std::pair<bool,SceneChanger*> aux = _map.playerInsideExit(mousePos);
+	if (aux.first) {
+		_game->changeScene(aux.second->getNextSceneName(),aux.second);
 	}
 }
 
