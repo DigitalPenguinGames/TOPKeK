@@ -84,7 +84,7 @@ void Game::changeScene(std::string sceneName,SceneChanger* sC = nullptr) { // Th
 				count += deltaTime.asSeconds();
 				view->move(speed*deltaTime.asSeconds());
 
-				_window.clear();
+                _window.clear();
 				_window.setView(*view);
 				lastScene->render();
 				currentScene->render();

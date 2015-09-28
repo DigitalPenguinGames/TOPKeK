@@ -63,7 +63,7 @@ void Scene::render() {
 }
 
 void Scene::display() {
-	_window->clear();
+    //_window->clear();
 	_window->setView(_view);
 	render();
 	_window->setView(_window->getDefaultView());
