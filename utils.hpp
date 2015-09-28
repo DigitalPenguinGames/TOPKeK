@@ -24,6 +24,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <cfloat>
 
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>

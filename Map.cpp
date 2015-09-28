@@ -1,6 +1,7 @@
 #include "Map.hpp"
 
 Map::Map(std::string description) {
+	_mapIniCoord = sf::Vector2f(FLT_MAX,FLT_MAX);
 	std::istringstream des(description);
 	int typeOfMap, width, height;
 	des >> typeOfMap >> width >> height;
@@ -56,7 +57,7 @@ void Map::draw(sf::RenderWindow* w) {
 		for (int i = 0; i < int(_map.size()); ++i)
 	 		_map[i][j].draw(w);
 
-	std::cout << "Drawing map from " << _mapIniCoord.x << std::endl;
+	//std::cout << "Drawing map from " << _mapIniCoord.x << std::endl;
 }
 
 std::pair<bool,SceneChanger*> Map::playerInsideExit(sf::Vector2f pos) {

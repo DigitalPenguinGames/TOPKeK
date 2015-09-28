@@ -5,7 +5,7 @@ OutsideScene::OutsideScene(Game* g, sf::RenderWindow* w, sceneTypes sT, std::str
 	Scene(g,w,sT),
 	_map(description)
 {
-
+	_sceneIniCoord = sf::Vector2f(FLT_MAX,FLT_MAX);
 }
 
 OutsideScene::~OutsideScene() {
@@ -13,7 +13,9 @@ OutsideScene::~OutsideScene() {
 }
 
 void OutsideScene::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
-	_map.init(sceneIniCoord);
+	if (sceneIniCoord == _sceneIniCoord) return;
+	_sceneIniCoord = sceneIniCoord;
+	_map.init(_sceneIniCoord);
 	initView();
 }
 

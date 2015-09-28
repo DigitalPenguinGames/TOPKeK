@@ -21,6 +21,7 @@ private:
 	void update(float deltaTime);
 	void render();
 	Map _map;
+	sf::Vector2f _sceneIniCoord;
 
 };
 
