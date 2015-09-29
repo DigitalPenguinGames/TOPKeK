@@ -1,10 +1,12 @@
 #include "Scene.hpp"
+#include "Game.hpp"
 
-Scene::Scene(Game *g, sf::RenderWindow* w, sceneTypes sT) :
+Scene::Scene(Game *g, sf::RenderWindow* w, sceneTypes sT, std::string name) :
 	_game(g), 
 	_window(w),
 	_killed(false),
-	_sceneType(sT) {
+	_sceneType(sT),
+	_sceneName(name) {
     _status = status::running;
 }
 
@@ -20,7 +22,6 @@ void Scene::run() {
 	sf::Time timePerFrame = sf::seconds(1.f/FRAMERATE);
 
 	while (_window->isOpen()) {
-		if (_killed) {_killed = false;return;}
 		processInput();
 		timeSinceLastUpdate = clock.restart();
 		while (timeSinceLastUpdate > timePerFrame) {
@@ -29,6 +30,11 @@ void Scene::run() {
 		}
 		update(timePerFrame.asSeconds());
 		display();
+		if (_killed) {
+			_game->changeScene(_nextSceneChanger);
+			_killed = false;
+			return;
+		}
 	}
 }
 
@@ -87,7 +93,7 @@ void Scene::render() {
 void Scene::display() {
     switch(_status){
         case status::running:
-            //_window->clear();
+            _window->clear();
             _window->setView(_view);
             render();
             _window->setView(_window->getDefaultView());
@@ -123,4 +129,9 @@ void Scene::initView() {
 
 	_view.reset(sf::FloatRect(0,0,WINDOWRATIOX,WINDOWRATIOY));
 	_view.setViewport(sf::FloatRect(min.x,min.y,max.x,max.y));
+}
+
+void Scene::changeScene(SceneChanger *sC) {
+	_killed = true;
+	_nextSceneChanger = sC;
 }

@@ -57,7 +57,7 @@ void Map::draw(sf::RenderWindow* w) {
 		for (int i = 0; i < int(_map.size()); ++i)
 	 		_map[i][j].draw(w);
 
-	//std::cout << "Drawing map from " << _mapIniCoord.x << std::endl;
+	//std::cout << "Drawing map from " << _mapIniCoord.x << " " << int(_map[0].size()) << " " << int(_map.size()) << std::endl;
 }
 
 std::pair<bool,SceneChanger*> Map::playerInsideExit(sf::Vector2f pos) {

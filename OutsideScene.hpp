@@ -9,7 +9,7 @@
 class OutsideScene : public Scene {
 friend class Game;
 public:
-	OutsideScene(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string description);
+	OutsideScene(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string description, std::string name);
 	~OutsideScene();
 
 	void init(sf::Vector2f sceneIniCoord);

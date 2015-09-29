@@ -14,7 +14,7 @@ public:
 
 	void start();
 
-	void changeScene(std::string sceneName, SceneChanger* sC);
+	void changeScene(SceneChanger* sC);
 
 private:
 	sf::RenderWindow _window;

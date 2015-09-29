@@ -1,7 +1,7 @@
 #include "Game.hpp"
 
 Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Close | sf::Style::Resize) {
-	_window.setFramerateLimit(FRAMERATE);
+	//_window.setFramerateLimit(FRAMERATE);
 	Resources::load();
 	_currentScene = nullptr;
 	_lastScene = nullptr;
@@ -15,7 +15,7 @@ Game::~Game() {
 
 void Game::start() {
 	loadScenes();
-	changeScene("ini",nullptr);
+	changeScene(new SceneChanger(sf::Vector2f(0,0),"ini",sf::Vector2f(0,0)));
 
 	while (_currentScene != nullptr) {
 		_currentScene->run();
@@ -25,7 +25,8 @@ void Game::start() {
 }
 
 
-void Game::changeScene(std::string sceneName,SceneChanger* sC = nullptr) { // This will be called by any scene when something trigers to change to anothe scene
+void Game::changeScene(SceneChanger* sC) { // This will be called by any scene when something trigers to change to anothe scene
+	std::string sceneName = sC->_nextScene;
 	sf::Vector2f sceneIniCoord(0,0);
 	if (_currentScene != nullptr) {
 		_lastScene = _currentScene;
@@ -64,8 +65,8 @@ void Game::changeScene(std::string sceneName,SceneChanger* sC = nullptr) { // Th
 
 			sceneIniCoord = lastScene->getSceneCoord()+offset;
 
-			std::cout << "offset: " << offset.x << " " << offset.y << " sceneIniCoord " << sceneIniCoord.x << " " << sceneIniCoord.y << std::endl;
-			std::cout << lastScene->getSceneCoord().x << " " << lastScene->getSceneCoord().y << std::endl;
+			// std::cout << "offset: " << offset.x << " " << offset.y << " sceneIniCoord " << sceneIniCoord.x << " " << sceneIniCoord.y << std::endl;
+			// std::cout << lastScene->getSceneCoord().x << " " << lastScene->getSceneCoord().y << std::endl;
 
 			_currentScene->init(sceneIniCoord);
 
@@ -75,20 +76,20 @@ void Game::changeScene(std::string sceneName,SceneChanger* sC = nullptr) { // Th
 			sf::Time deltaTime;
 			float count=0.f, timer = 1.5f;
 			sf::Vector2f speed(offset.x/timer,offset.y/timer);
-			float maxzoom = 2, originalZoom = 1, speedZoom = (maxzoom - originalZoom)/(timer*2); // cambiar el speed
+			float maxzoom = 1.2, originalZoom = 1, speedZoom = (maxzoom - originalZoom)/(timer*2); // cambiar el speed
 
 			std::cout << "speed: " << speed.x << " " << speed.y << std::endl;
 
 			while (count < timer) {
-				std::cout << "drawing animation" << std::endl;
+				//std::cout << "drawing animation" << std::endl;
 				deltaTime = clock.restart();
 				count += deltaTime.asSeconds();
 				view->move(speed*deltaTime.asSeconds());
-				//if (count < timer/2.f) view->zoom(1-speedZoom);
-				//else view->zoom(1.f/(1-speedZoom));
+				if (count < timer/2.f) view->zoom(1-speedZoom);
+				else view->zoom(1.f/(1-speedZoom));
 
-                _window.clear();
 				_window.setView(*view);
+                _window.clear();
 				lastScene->render();
 				currentScene->render();
 				_window.setView(_window.getDefaultView());
@@ -97,7 +98,6 @@ void Game::changeScene(std::string sceneName,SceneChanger* sC = nullptr) { // Th
 			}
 
 			_currentScene->_view = *view;
-
 
 			return;
 		}
@@ -139,7 +139,7 @@ void Game::loadScene(std::string sceneName) {
 	Scene* aux;
 	switch(myStoi(sceneType)) {
 		case sceneTypes::outside:
-			aux = new OutsideScene(this,&_window,sceneTypes::outside, str);
+			aux = new OutsideScene(this,&_window,sceneTypes::outside, str, sceneName);
 	}
 	
 	_scenes.insert(std::make_pair(sceneName.substr(0,sceneName.length()-sizeof(SCENEEXTENSION)+1),aux));
