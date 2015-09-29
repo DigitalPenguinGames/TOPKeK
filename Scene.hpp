@@ -3,6 +3,10 @@
 
 #include "utils.hpp"
 
+namespace status{
+    enum gameStatus {running, onMenu};
+}
+
 class Game;
 
 class Scene {
@@ -31,7 +35,7 @@ private:
 	//sf::RenderWindow* _window;
 	bool _killed;
 	sceneTypes _sceneType;
-
+    status::gameStatus _status;
 	void display();
 
 };
