@@ -75,6 +75,7 @@ void Game::changeScene(std::string sceneName,SceneChanger* sC = nullptr) { // Th
 			sf::Time deltaTime;
 			float count=0.f, timer = 1.5f;
 			sf::Vector2f speed(offset.x/timer,offset.y/timer);
+			float maxzoom = 2, originalZoom = 1, speedZoom = (maxzoom - originalZoom)/(timer*2); // cambiar el speed
 
 			std::cout << "speed: " << speed.x << " " << speed.y << std::endl;
 
@@ -83,6 +84,8 @@ void Game::changeScene(std::string sceneName,SceneChanger* sC = nullptr) { // Th
 				deltaTime = clock.restart();
 				count += deltaTime.asSeconds();
 				view->move(speed*deltaTime.asSeconds());
+				//if (count < timer/2.f) view->zoom(1-speedZoom);
+				//else view->zoom(1.f/(1-speedZoom));
 
                 _window.clear();
 				_window.setView(*view);
