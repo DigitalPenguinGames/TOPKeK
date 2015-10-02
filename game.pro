@@ -11,16 +11,22 @@ SOURCES += main.cpp \
 		Resources.cpp \
 		Game.cpp \
 		Scene.cpp \
+		ScenePlayable.cpp \
 		OutsideScene.cpp \
 		Map.cpp \
 		Tile.cpp \
-		SceneChanger.cpp
+		SceneChanger.cpp \
+		#Player.cpp \
+		Projectile.cpp
 
 HEADERS += utils.hpp \
 		Resources.cpp \
 		Game.cpp \
 		Scene.hpp \
+		ScenePlayable.hpp \
 		OutsideScene.hpp \
 		Map.hpp \
 		Tile.hpp \
-		SceneChanger.hpp
+		SceneChanger.hpp \
+		#Player.hpp \
+		Projectile.hpp

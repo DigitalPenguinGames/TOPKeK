@@ -4,10 +4,6 @@
 #include "utils.hpp"
 #include "SceneChanger.hpp"
 
-namespace status{
-    enum gameStatus {running, onMenu};
-}
-
 class Game;
 
 class Scene {
@@ -34,13 +30,11 @@ protected:
 	void initView();
 	void changeScene(SceneChanger *sC);
 
+	virtual void display();
 private: 
-	//sf::RenderWindow* _window;
 	bool _killed;
 	sceneTypes _sceneType;
-    status::gameStatus _status;
     SceneChanger* _nextSceneChanger;
-	void display();
 
 };
 

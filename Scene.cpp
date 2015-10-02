@@ -1,13 +1,12 @@
 #include "Scene.hpp"
 #include "Game.hpp"
 
-Scene::Scene(Game *g, sf::RenderWindow* w, sceneTypes sT, std::string name) :
+Scene::Scene(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string name) :
 	_game(g), 
 	_window(w),
 	_killed(false),
 	_sceneType(sT),
 	_sceneName(name) {
-    _status = status::running;
 }
 
 Scene::~Scene(){}
@@ -56,56 +55,25 @@ void Scene::processInput() {
 		if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
         else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
             _window->close(); exit(0);
-        } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::P) {
-            if(_status == status::running) _status = status::onMenu;
-            else _status = status::running;
         }
 	}
 }
 
 void Scene::update(float deltaTime) {
     (void)deltaTime;
-    switch(_status){
-        case status::running:
-            break;
 
-        case status::onMenu:
-            break;
-
-        default:
-            break;
-    }
 }
 
 void Scene::render() {
-    switch(_status){
-        case status::running:
-            break;
 
-        case status::onMenu:
-            break;
-
-        default:
-            break;
-    }
 }
 
 void Scene::display() {
-    switch(_status){
-        case status::running:
-            _window->clear();
-            _window->setView(_view);
-            render();
-            _window->setView(_window->getDefaultView());
-            _window->display();
-            break;
-
-        case status::onMenu:
-            break;
-
-        default:
-            break;
-    }
+    _window->clear();
+    _window->setView(_view);
+    render();
+    _window->setView(_window->getDefaultView());
+    _window->display();
 }
 
 void Scene::initView() {

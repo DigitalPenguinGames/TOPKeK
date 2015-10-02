@@ -74,7 +74,7 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 			// Transition animation:
 			sf::View* view = lastScene->getPtrView();
 			sf::Vector2f lastViewCenter = view->getCenter();
-			std::cout << view->getCenter().x << " " << view->getCenter().y << std::endl;
+			//std::cout << view->getCenter().x << " " << view->getCenter().y << std::endl;
 
 			sf::Clock clock;
 			sf::Time deltaTime;
@@ -82,9 +82,9 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 			// speed
 			sf::Vector2f speed(offset.x/timer,offset.y/timer);
 			// zoom
-			float maxzoom = 1, originalZoom = 1, speedZoom = (maxzoom - originalZoom)/(timer*2); // cambiar el speed
+			float maxzoom = 1.01, originalZoom = 1, speedZoom = (maxzoom - originalZoom)/(timer*2); // cambiar el speed
 
-			std::cout << "speed: " << speed.x << " " << speed.y << std::endl;
+			//std::cout << "speed: " << speed.x << " " << speed.y << std::endl;
 
 			while (count < timer) {
 				deltaTime = clock.restart();
@@ -147,7 +147,7 @@ void Game::loadScene(std::string sceneName) {
 	Scene* aux;
 	switch(myStoi(sceneType)) {
 		case sceneTypes::outside:
-			aux = new OutsideScene(this,&_window,sceneTypes::outside, str, sceneName);
+			aux = new OutsideScene(this,&_window,sceneTypes::outside, sceneName, str);
 	}
 	
 	_scenes.insert(std::make_pair(sceneName.substr(0,sceneName.length()-sizeof(SCENEEXTENSION)+1),aux));

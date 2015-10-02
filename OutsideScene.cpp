@@ -1,9 +1,8 @@
 #include "OutsideScene.hpp"
 #include "Game.hpp"
 
-OutsideScene::OutsideScene(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string description, std::string name) :
-	Scene(g,w,sT,name),
-	_map(description)
+OutsideScene::OutsideScene(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string name, std::string description) :
+	ScenePlayable(g,w,sT,name,description)
 {
 	_sceneIniCoord = sf::Vector2f(FLT_MAX,FLT_MAX);
 }
@@ -26,7 +25,10 @@ void OutsideScene::processInput() {
 		else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
 			_window->close(); exit(0);
 		}
-
+		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::P) {
+            if(_status == status::running) _status = status::onMenu;
+            else _status = status::running;
+        }
 		//else if (event.type == sf::Event::Resized) initView();
 	}
 	sf::Vector2f mousePos = _window->mapPixelToCoords(sf::Mouse::getPosition(*_window),_view);
@@ -43,12 +45,4 @@ void OutsideScene::update(float deltaTime) {
 
 void OutsideScene::render() {
 	_map.draw(_window);
-}
-
-sf::Vector2f OutsideScene::getSceneCoord() {
-	return _map.getPtrTile(sf::Vector2i(0,0))->getPosition();
-}
-
-sf::Vector2i OutsideScene::getMapSize() {
-	return _map.getSize();
 }

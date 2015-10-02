@@ -30,6 +30,11 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
+// Scene Status
+namespace status{
+    enum gameStatus {running, onMenu};
+}
+
 //Scenes
 enum sceneTypes {
 	outside = 0,
