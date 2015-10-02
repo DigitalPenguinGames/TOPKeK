@@ -41,6 +41,7 @@ typedef std::vector< std::vector < sf::IntRect> > SpriteSheetDescription;
 
 enum spriteSheetsDescriptions {
 	linkSpritesDescriptions,
+	swordDescriptions,
 	spriteDescriptionsQtt
 };
 
@@ -53,6 +54,15 @@ enum linkActions {
 	attackDown		,
 	attackSide		, 
 	linkActionsQtt
+};
+
+// Sword Types
+enum swordtypes {
+	first,
+	second,
+	third,
+	fourth,
+	qttSwordTypes
 };
 
 // Directions

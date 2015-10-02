@@ -11,7 +11,8 @@ void Resources::load() {
 	tileSet.loadFromFile(TEXTURETPATH+std::string("OverworldTiles.png"));
 	textureTest.loadFromFile(TEXTURETPATH+std::string("textureTest.png"));
 	descriptions = std::vector<SpriteSheetDescription>(spriteDescriptionsQtt);
-	descriptions[0] = (loadDescription("linkSheet"));
+	descriptions[linkSpritesDescriptions] = loadDescription("linkSheet");
+	descriptions[swordDescriptions] = loadDescription("swordSheet");
 }
 
 

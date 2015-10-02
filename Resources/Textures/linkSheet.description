@@ -1,7 +1,13 @@
-hola 0 0 1 2
-que 2 3 1 2
-lo 0 9 0 9
-asd 1 2 3 4
-hola 3 4 5 5
-hola 23 5 456 2
-asd 1 33 2 3
+walkDown	 0  0 16 16
+walkDown	 0 30 16 16
+walkLeft	30  0 16 16
+walkLeft	30 30 16 16
+walkUp		60  0 16 16
+walkUp 		60 30 16 16
+walkRight	90  0 16 16
+walkRight  	90 30 16 16
+
+attackDown	 0 60 16 16
+attackLeft	30 60 16 16
+attackUp	60 60 16 16
+attackRight	90 60 16 16
