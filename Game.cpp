@@ -65,26 +65,32 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 
 			sceneIniCoord = lastScene->getSceneCoord()+offset;
 
-			// std::cout << "offset: " << offset.x << " " << offset.y << " sceneIniCoord " << sceneIniCoord.x << " " << sceneIniCoord.y << std::endl;
+			//std::cout << "offset: " << offset.x << " " << offset.y << " sceneIniCoord " << sceneIniCoord.x << " " << sceneIniCoord.y << std::endl;
 			// std::cout << lastScene->getSceneCoord().x << " " << lastScene->getSceneCoord().y << std::endl;
 
 			_currentScene->init(sceneIniCoord);
+			
 
 			// Transition animation:
 			sf::View* view = lastScene->getPtrView();
+			sf::Vector2f lastViewCenter = view->getCenter();
+			std::cout << view->getCenter().x << " " << view->getCenter().y << std::endl;
+
 			sf::Clock clock;
 			sf::Time deltaTime;
 			float count=0.f, timer = 1.5f;
+			// speed
 			sf::Vector2f speed(offset.x/timer,offset.y/timer);
-			float maxzoom = 1.2, originalZoom = 1, speedZoom = (maxzoom - originalZoom)/(timer*2); // cambiar el speed
+			// zoom
+			float maxzoom = 1, originalZoom = 1, speedZoom = (maxzoom - originalZoom)/(timer*2); // cambiar el speed
 
 			std::cout << "speed: " << speed.x << " " << speed.y << std::endl;
 
 			while (count < timer) {
-				//std::cout << "drawing animation" << std::endl;
 				deltaTime = clock.restart();
 				count += deltaTime.asSeconds();
 				view->move(speed*deltaTime.asSeconds());
+
 				if (count < timer/2.f) view->zoom(1-speedZoom);
 				else view->zoom(1.f/(1-speedZoom));
 
@@ -96,6 +102,8 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 				_window.display();
 
 			}
+			
+			view->setCenter(lastViewCenter+offset); // Put the center of the camera in his position (like move(speed*(timer-count)))
 
 			_currentScene->_view = *view;
 
