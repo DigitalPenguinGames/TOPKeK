@@ -1,6 +1,6 @@
 #include "Collisionable.hpp"
 
-Collisionable::Collisionable(sf::Vector2f speed = sf::Vector2f(0,0)) : _speed(speed) {
+Collisionable::Collisionable(sf::Vector2f speed) : _speed(speed) {
 
 }
 

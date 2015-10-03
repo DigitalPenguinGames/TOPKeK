@@ -12,7 +12,7 @@ public:
 	Scene(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string name);
 	virtual ~Scene();
 
-	virtual void init(sf::Vector2f sceneIniCoord);
+	virtual void init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0));
 	void run();
 	void killScene();
 

@@ -11,7 +11,7 @@ Scene::Scene(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string name) :
 
 Scene::~Scene(){}
 
-void Scene::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
+void Scene::init(sf::Vector2f sceneIniCoord) {
 	initView();
 }
 

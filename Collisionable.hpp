@@ -5,7 +5,7 @@
 
 class Collisionable {
  public:
- 	Collisionable(sf::Vector2f speed);
+ 	Collisionable(sf::Vector2f speed = sf::Vector2f(0,0));
  	~Collisionable();
  	virtual void update(float deltaTime);
  	virtual void draw(sf::RenderWindow* window);
