@@ -10,26 +10,26 @@
 
 class Player : public Collisionable {
 public:
-	Player();
-	~Player();
-	void update(float deltaTime);
-	void draw(sf::RenderWindow* w);
+    Player();
+    ~Player();
+    void update(float deltaTime);
+    void draw(sf::RenderWindow* w);
 
-	void move(directions dir);
-	void attack();
+    void move(directions dir);
+    void attack();
 
 private:
-	directions _dir;
-	linkActions _action;
-	SpriteSheetDescription _description;
+    directions _dir;
+    linkActions _action;
+    SpriteSheetDescription _description;
 
-	float _elapsedAnimation;
-	int _currentAnimation;
+    float _elapsedAnimation;
+    int _currentAnimation;
 
-	bool _attacking;
-	float _elapsedAttack;
+    bool _attacking;
+    float _elapsedAttack;
 
-	bool _moving;
+    bool _moving;
 
 
 };
