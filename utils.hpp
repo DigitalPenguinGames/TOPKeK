@@ -30,6 +30,11 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
+//movement dir { down, left, right, up , none };
+const int mx[5] = {0,  -1,	 1,	   0,   0   };
+const int my[5] = {1,	0,	 0,   -1,   0   };
+
+
 // Scene Status
 namespace status{
     enum gameStatus {running, onMenu};
@@ -81,5 +86,15 @@ enum directions {
 bool isInt(std::string s);
 
 int myStoi(std::string s);
+
+float radToAngle(float rad);
+
+float floatangleToRad(float angle);
+
+float getAngle(const sf::Vector2f &orig,const sf::Vector2f &des);
+
+float getModule(const sf::Vector2f &orig, const sf::Vector2f &des);
+
+bool isCollisioning(sf::Vector2f point1, float radius1, sf::Vector2f point2, float radius2);
 
 #endif
