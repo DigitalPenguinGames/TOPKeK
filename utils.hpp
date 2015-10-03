@@ -25,6 +25,8 @@
 #include <fstream>
 #include <sstream>
 #include <cfloat>
+#include <queue> // priority queue
+#include <functional> // priority queue stuff
 
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
@@ -52,12 +54,8 @@ enum spriteSheetsDescriptions {
 
 // Animations
 enum linkActions {
-	moveUp			,
-	moveDown		,
-	moveSide		,
-	attackUp		,
-	attackDown		,
-	attackSide		, 
+	move			,
+	attack			,
 	linkActionsQtt
 };
 
@@ -72,10 +70,11 @@ enum swordtypes {
 
 // Directions
 enum directions {
-	up				,
 	down			,
 	left 			,
-	right
+	up				,
+	right 			,
+	directionsQtty
 };
 
 bool isInt(std::string s);

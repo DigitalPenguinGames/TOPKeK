@@ -1,11 +1,11 @@
-walkDown	 0  0 16 16
-walkDown	 0 30 16 16
-walkLeft	30  0 16 16
-walkLeft	30 30 16 16
-walkUp		60  0 16 16
-walkUp 		60 30 16 16
-walkRight	90  0 16 16
-walkRight  	90 30 16 16
+moveDown	 0  0 16 16
+moveDown	 0 30 16 16
+moveLeft	30  0 16 16
+moveLeft	30 30 16 16
+moveUp		60  0 16 16
+moveUp 		60 30 16 16
+moveRight	90  0 16 16
+moveRight  	90 30 16 16
 
 attackDown	 0 60 16 16
 attackLeft	30 60 16 16

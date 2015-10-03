@@ -2,8 +2,9 @@
 #define __PROJECTILE_HPP__
 
 #include "utils.hpp"
+#include "Collisionable.hpp"
 
-class Projectile {
+class Projectile : public Collisionable {
 public:
 	Projectile();
 	~Projectile();
@@ -11,10 +12,8 @@ public:
 	void update(float deltaTime); 
 
 private:
-	sf::Vector2f speed;
 	bool willDie; // When collision, the proyectile will disapear?
 	float timeToDespawn;
-
 };
 
 #endif

@@ -4,6 +4,7 @@
 #include "Scene.hpp"
 #include "utils.hpp"
 #include "Map.hpp"
+#include "Player.hpp"
 
 class Game;
 class ScenePlayable : public Scene {
@@ -15,10 +16,19 @@ public:
 
 	sf::Vector2f getSceneCoord();
 	sf::Vector2i getMapSize();
+	Player* getPlayer();
+
+	void setPlayer(Player* p);
+
 protected:
 	Map _map;
 	sf::Vector2f _sceneIniCoord;
     status::gameStatus _status;
+    Player* _player;
+
+    Player* _player2;
+
+    void renderSorted(std::vector<Collisionable*>& cols);
 
 private:
 	void display();

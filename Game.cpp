@@ -17,6 +17,9 @@ void Game::start() {
 	loadScenes();
 	changeScene(new SceneChanger(sf::Vector2f(0,0),"ini",sf::Vector2f(0,0)));
 
+	OutsideScene* aux = dynamic_cast<OutsideScene*>((*_scenes.find("ini")).second);
+	aux->setPlayer(new Player());
+
 	while (_currentScene != nullptr) {
 		_currentScene->run();
 	}
@@ -61,6 +64,14 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 					offset.y = TILESIZE * (sC->_pos.y-sC->_nextScenePos.y);
 					offset.x = lastScene->getMapSize().x*TILESIZE;
 					break;
+				case directions::up:
+					offset.x = TILESIZE * (sC->_pos.x-sC->_nextScenePos.x);
+					offset.y = -currentScene->getMapSize().y*TILESIZE;
+					break;
+				case directions::down:
+					offset.x = TILESIZE * (sC->_pos.x-sC->_nextScenePos.x);
+					offset.y = lastScene->getMapSize().y*TILESIZE;
+					break;
 			}
 
 			sceneIniCoord = lastScene->getSceneCoord()+offset;
@@ -69,6 +80,7 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 			// std::cout << lastScene->getSceneCoord().x << " " << lastScene->getSceneCoord().y << std::endl;
 
 			_currentScene->init(sceneIniCoord);
+			currentScene->setPlayer(lastScene->getPlayer());
 			
 
 			// Transition animation:
@@ -91,8 +103,8 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 				count += deltaTime.asSeconds();
 				view->move(speed*deltaTime.asSeconds());
 
-				if (count < timer/2.f) view->zoom(1-speedZoom);
-				else view->zoom(1.f/(1-speedZoom));
+				// if (count < timer/2.f) view->zoom(1-speedZoom);
+				// else view->zoom(1.f/(1-speedZoom));
 
 				_window.setView(*view);
                 _window.clear();

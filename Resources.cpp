@@ -2,6 +2,7 @@
 
 // sf::Texture		Resources::....
 sf::Texture			Resources::tileSet;
+sf::Texture			Resources::linkSet;
 sf::Texture			Resources::textureTest;
 
 std::vector<SpriteSheetDescription> Resources::descriptions;
@@ -9,6 +10,7 @@ std::vector<SpriteSheetDescription> Resources::descriptions;
 void Resources::load() {
 	//...loadFromFile();
 	tileSet.loadFromFile(TEXTURETPATH+std::string("OverworldTiles.png"));
+	if (!linkSet.loadFromFile(TEXTURETPATH+std::string("link2.png"))) std::cout << "Broken" << std::endl;
 	textureTest.loadFromFile(TEXTURETPATH+std::string("textureTest.png"));
 	descriptions = std::vector<SpriteSheetDescription>(spriteDescriptionsQtt);
 	descriptions[linkSpritesDescriptions] = loadDescription("linkSheet");
