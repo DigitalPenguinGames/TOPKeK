@@ -16,8 +16,8 @@ SOURCES += main.cpp \
 		Map.cpp \
 		Tile.cpp \
 		SceneChanger.cpp \
-		#Player.cpp \
-		#Projectile.cpp \
+		Player.cpp \
+		Projectile.cpp \
 		Collisionable.cpp
 
 HEADERS += utils.hpp \
@@ -29,6 +29,6 @@ HEADERS += utils.hpp \
 		Map.hpp \
 		Tile.hpp \
 		SceneChanger.hpp \
-		#Player.hpp \
-		#Projectile.hpp \
+		Player.hpp \
+		Projectile.hpp \
 		Collisionable.hpp

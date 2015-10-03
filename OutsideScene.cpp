@@ -40,7 +40,7 @@ void OutsideScene::processInput() {
 }
 
 void OutsideScene::update(float deltaTime) {
-
+	(void)deltaTime;
 }
 
 void OutsideScene::render() {
