@@ -34,7 +34,8 @@
 const int mx[5] = {0,  -1,	 1,	   0,   0   };
 const int my[5] = {1,	0,	 0,   -1,   0   };
 
-
+const float TO_RADIANS = (1 / 180.0f) * (float ) M_PI;
+const float TO_DEGREES = (1 / (float ) M_PI) * 180;
 // Scene Status
 namespace status{
     enum gameStatus {running, onMenu};
