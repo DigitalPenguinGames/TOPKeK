@@ -16,7 +16,7 @@ SOURCES += main.cpp \
 		Map.cpp \
 		Tile.cpp \
 		SceneChanger.cpp \
-		#Player.cpp \
+		Player.cpp \
 		Projectile.cpp
 
 HEADERS += utils.hpp \
@@ -28,5 +28,5 @@ HEADERS += utils.hpp \
 		Map.hpp \
 		Tile.hpp \
 		SceneChanger.hpp \
-		#Player.hpp \
+		Player.hpp \
 		Projectile.hpp

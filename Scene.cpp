@@ -4,14 +4,15 @@
 Scene::Scene(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string name) :
 	_game(g), 
 	_window(w),
+	_sceneName(name), 
 	_killed(false),
-	_sceneType(sT),
-	_sceneName(name) {
+	_sceneType(sT) {
 }
 
 Scene::~Scene(){}
 
 void Scene::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
+	(void)sceneIniCoord;
 	initView();
 }
 
