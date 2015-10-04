@@ -23,8 +23,6 @@ Player* ScenePlayable::getPlayer() {
 
 void ScenePlayable::setPlayer(Player* p) {
     _player = p;
-
-    _player2 = new Player();
 }
 
 

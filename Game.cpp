@@ -50,8 +50,8 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 			if (sC == nullptr) {std::cout << "ERROR: Changing between two outisde scenes without SceneChanger"<< std::endl;exit(EXIT_FAILURE);}
 			
 			_currentScene = aux;	
-			OutsideScene* lastScene = dynamic_cast<OutsideScene*>(_lastScene);
-			OutsideScene* currentScene = dynamic_cast<OutsideScene*>(_currentScene);
+			ScenePlayable* lastScene = dynamic_cast<ScenePlayable*>(_lastScene);
+			ScenePlayable* currentScene = dynamic_cast<ScenePlayable*>(_currentScene);
 
 			sf::Vector2f offset;
 			int dir = sC->getChangeDirection();

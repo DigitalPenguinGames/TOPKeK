@@ -26,8 +26,6 @@ protected:
     status::gameStatus _status;
     Player* _player;
 
-    Player* _player2;
-
     void renderSorted(std::vector<Collisionable*>& cols);
 
 private:

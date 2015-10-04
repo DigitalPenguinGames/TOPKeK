@@ -14,7 +14,7 @@ Scene::~Scene(){}
 
 void Scene::init(sf::Vector2f sceneIniCoord) {
 	(void)sceneIniCoord;
-	initView();
+	//initView();
 }
 
 void Scene::run() {
@@ -78,11 +78,11 @@ void Scene::display() {
     _window->display();
 }
 
-void Scene::initView() {
+void Scene::initView(sf::Vector2i windowSize) {
 	int windowX = _window->getSize().x, windowY = _window->getSize().y;
 	
-	float xr = windowX / float(WINDOWRATIOX);
-	float yr = windowY / float(WINDOWRATIOY);
+	float xr = windowX / float(windowSize.x);
+	float yr = windowY / float(windowSize.y);
 
 	float aux;
 	if (xr < yr) aux = 1/yr;
@@ -97,7 +97,7 @@ void Scene::initView() {
 	max.x = 1.f - min.x*2;
 	max.y = 1.f - min.y*2;
 
-	_view.reset(sf::FloatRect(0,0,WINDOWRATIOX,WINDOWRATIOY));
+	_view.reset(sf::FloatRect(0,0,windowSize.x,windowSize.y));
 	_view.setViewport(sf::FloatRect(min.x,min.y,max.x,max.y));
 }
 

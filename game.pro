@@ -13,6 +13,7 @@ SOURCES += main.cpp \
 		Scene.cpp \
 		ScenePlayable.cpp \
 		OutsideScene.cpp \
+		DungeonScene.cpp \
 		Map.cpp \
 		Tile.cpp \
 		SceneChanger.cpp \
@@ -26,6 +27,7 @@ HEADERS += utils.hpp \
 		Scene.hpp \
 		ScenePlayable.hpp \
 		OutsideScene.hpp \
+		DungeonScene.hpp \
 		Map.hpp \
 		Tile.hpp \
 		SceneChanger.hpp \

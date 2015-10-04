@@ -15,7 +15,7 @@ void OutsideScene::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
 	if (sceneIniCoord == _sceneIniCoord) return;
 	_sceneIniCoord = sceneIniCoord;
 	_map.init(_sceneIniCoord);
-	initView();
+	initView(sf::Vector2i(WINDOWRATIOX,WINDOWRATIOY));
 }
 
 void OutsideScene::processInput() {
@@ -47,11 +47,11 @@ void OutsideScene::processInput() {
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) _player->move(directions::right);
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) _player->move(directions::left);
 
-	if      (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) _player2->attack();
-	if      (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) _player2->move(directions::up);
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) _player2->move(directions::down);
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) _player2->move(directions::right);
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) _player2->move(directions::left);
+	// if      (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) _player2->attack();
+	// if      (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) _player2->move(directions::up);
+	// else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) _player2->move(directions::down);
+	// else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) _player2->move(directions::right);
+	// else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) _player2->move(directions::left);
 	
 
 }
@@ -59,7 +59,6 @@ void OutsideScene::processInput() {
 void OutsideScene::update(float deltaTime) {
 	//(void)deltaTime;
 	_player->update(deltaTime);
-	_player2->update(deltaTime);
 }
 
 void OutsideScene::render() {
@@ -67,7 +66,6 @@ void OutsideScene::render() {
 	// Drawing the dinamic things
 	std::vector<Collisionable*> collisionables;
 	collisionables.push_back(_player);
-	collisionables.push_back(_player2);
 
 	renderSorted(collisionables);
 

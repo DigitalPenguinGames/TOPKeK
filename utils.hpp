@@ -17,6 +17,9 @@
 #define WINDOWRATIOX 256
 #define WINDOWRATIOY 176
 
+#define DUNGEONSIZEX 256
+#define DUNGEONSIZEY 176
+
 
 #include <map>
 #include <string>
