@@ -92,6 +92,8 @@ int myStoi(std::string s);
 
 float radToAngle(float rad);
 
+float difference(float a, float b);
+
 float floatangleToRad(float angle);
 
 float getAngle(const sf::Vector2f &orig,const sf::Vector2f &des);

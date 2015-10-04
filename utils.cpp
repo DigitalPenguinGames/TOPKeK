@@ -14,6 +14,12 @@ int myStoi(std::string s) {
     return x;
 }
 
+float difference(float a, float b){
+    float c = a-b;
+    if(c > 0) return c;
+    else return c*-1;
+}
+
 float getAngle(const sf::Vector2f &orig,const sf::Vector2f &des) {
     return std::atan2(des.y - orig.y, des.x - orig.x)*180/(M_PI);
 }

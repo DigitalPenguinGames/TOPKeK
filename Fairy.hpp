@@ -13,7 +13,7 @@ public:
     Fairy();
     ~Fairy();
 
-    void draw(sf::RenderWindow window);
+    void draw(sf::RenderWindow *window);
 
     void update(float deltatime, sf::Vector2f mousePos);
 
@@ -23,10 +23,13 @@ public:
     sf::Vector2f getCenterPosition() const;
     void setCenterPosition(const sf::Vector2f &value);
 
+    float getCenterAngle() const;
+
 private:
 
     int lifes;
     int maxLifes;
+    float _angle;
     sf::Vector2f velocity;
     sf::Vector2f centerPosition;
 

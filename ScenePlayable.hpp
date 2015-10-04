@@ -1,30 +1,33 @@
 #ifndef __SCENEPLAYABLE_HPP__
 #define __SCENEPLAYABLE_HPP__
 
-#include "Scene.hpp"
-#include "utils.hpp"
 #include "Map.hpp"
+#include "utils.hpp"
+#include "Fairy.hpp"
+#include "Scene.hpp"
 #include "Player.hpp"
 
 class Game;
 class ScenePlayable : public Scene {
 public:
-	ScenePlayable(Game *g, sf::RenderWindow* w, sceneTypes sT, std::string name, std::string description);
+
+    ScenePlayable(Game *g, sf::RenderWindow* w, sceneTypes sT, std::string name, std::string description);
 	~ScenePlayable();
 
-	void init(sf::Vector2f sceneIniCoord) = 0;
+    Player* getPlayer();
+    void setPlayer(Player* p);
 
-	sf::Vector2f getSceneCoord();
-	sf::Vector2i getMapSize();
-	Player* getPlayer();
+    sf::Vector2i getMapSize();
+    sf::Vector2f getSceneCoord();
 
-	void setPlayer(Player* p);
+    void init(sf::Vector2f sceneIniCoord) = 0;
 
 protected:
 	Map _map;
+    Fairy* _fairy;
+    Player* _player;
 	sf::Vector2f _sceneIniCoord;
     status::gameStatus _status;
-    Player* _player;
 
     void renderSorted(std::vector<Collisionable*>& cols);
 
