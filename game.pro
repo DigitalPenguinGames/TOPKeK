@@ -19,7 +19,9 @@ SOURCES += main.cpp \
 		SceneChanger.cpp \
 		Player.cpp \
 		Projectile.cpp \
-		Collisionable.cpp
+		Collisionable.cpp \
+    Fairy.cpp \
+    Effect.cpp
 
 HEADERS += utils.hpp \
 		Resources.cpp \
@@ -33,4 +35,6 @@ HEADERS += utils.hpp \
 		SceneChanger.hpp \
 		Player.hpp \
 		Projectile.hpp \
-		Collisionable.hpp
+		Collisionable.hpp \
+    Fairy.hpp \
+    Effect.hpp
