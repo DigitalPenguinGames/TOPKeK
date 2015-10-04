@@ -14,14 +14,14 @@ Fairy::Fairy() {
 Fairy::~Fairy() { }
 
 void Fairy::draw(sf::RenderWindow* window) {
-    //this->setColor(sf::Color(255 - (255* (lifes+0.001)/maxLifes), 0, 0));
+    this->setColor(sf::Color(255 , 0 + (255* (lifes+0.001)/maxLifes), 0 + (255* (lifes+0.001)/maxLifes), 255));
     drawEffect(*window);
 }
 
 void Fairy::update(float deltatime, sf::Vector2f mousePos) {
     updateAnimation(deltatime);
 
-    float prevAngle = _angle;
+    //float prevAngle = _angle;
 
     _angle = getAngle(centerPosition, this->Effect::getPosition());
     this->rotate(_angle - this->getRotation());
