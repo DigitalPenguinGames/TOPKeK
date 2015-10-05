@@ -64,6 +64,12 @@ void OutsideScene::update(float deltaTime) {
 	//(void)deltaTime;
 	_player->update(deltaTime);
     _fairy->update(deltaTime, sf::Vector2f(_window->mapPixelToCoords(sf::Mouse::getPosition(*_window),_view)));
+
+    // Collisiones & things
+    std::pair<bool,SceneChanger*> aux = _map.playerInsideExit(_player->getPositionTransition());
+	if (aux.first) {
+		changeScene(aux.second);
+	}
 }
 
 void OutsideScene::render() {

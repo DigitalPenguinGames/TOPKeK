@@ -18,6 +18,8 @@ public:
     void move(directions dir);
     void attack();
 
+    sf::Vector2f getPositionTransition();
+
 private:
     directions _dir;
     linkActions _action;
@@ -30,6 +32,8 @@ private:
     float _elapsedAttack;
 
     bool _moving;
+
+    sf::IntRect _walkBounds;
 
 
 };

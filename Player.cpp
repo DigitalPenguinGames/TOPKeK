@@ -10,6 +10,8 @@ Player::Player(){
 	_currentAnimation = 0;
 	_attacking = false;
 	_moving = false;
+
+	_walkBounds = sf::IntRect(4,13,8,2);
 }
 
 Player::~Player(){}
@@ -56,4 +58,11 @@ void Player::attack() {
 	_attacking = true;
 	_elapsedAttack = ATTACKTIMERANIMATION;
 	_action = linkActions::attack;
+}
+
+sf::Vector2f Player::getPositionTransition() {
+	sf::Vector2f pos = _sprite.getPosition();
+	pos.x += _walkBounds.left + _walkBounds.width/2;
+	pos.y += _walkBounds.top + _walkBounds.height/2;
+	return pos;
 }
