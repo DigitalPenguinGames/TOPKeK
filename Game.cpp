@@ -45,86 +45,94 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 	std::cout << "Changing to scene " << sceneName << std::endl;
 
 	// Animations
-	if (_lastScene != nullptr && _lastScene->getType() == _currentScene->getType()) {
-		if (_currentScene->getType() == sceneTypes::outside) {
-			if (sC == nullptr) {std::cout << "ERROR: Changing between two outisde scenes without SceneChanger"<< std::endl;exit(EXIT_FAILURE);}
-			
-			_currentScene = aux;	
+	_currentScene = aux;
+	if (_lastScene != nullptr) {
+		std::cout << _lastScene->getType() << " " << _currentScene->getType() << std::endl;
+		if (_lastScene->getType() == _currentScene->getType()) {
+			if (_currentScene->getType() == sceneTypes::outside || _currentScene->getType() == sceneTypes::dungeon) {
+				if (sC == nullptr) {std::cout << "ERROR: Changing between two outisde scenes without SceneChanger"<< std::endl;exit(EXIT_FAILURE);}
+				
+				ScenePlayable* lastScene = dynamic_cast<ScenePlayable*>(_lastScene);
+				ScenePlayable* currentScene = dynamic_cast<ScenePlayable*>(_currentScene);
+
+				sf::Vector2f offset;
+				int dir = sC->getChangeDirection();
+				switch (dir) {
+					case directions::left:
+						offset.y = TILESIZE * (sC->_pos.y-sC->_nextScenePos.y);
+						offset.x = -currentScene->getMapSize().x*TILESIZE;
+						break;
+					case directions::right:
+						offset.y = TILESIZE * (sC->_pos.y-sC->_nextScenePos.y);
+						offset.x = lastScene->getMapSize().x*TILESIZE;
+						break;
+					case directions::up:
+						offset.x = TILESIZE * (sC->_pos.x-sC->_nextScenePos.x);
+						offset.y = -currentScene->getMapSize().y*TILESIZE;
+						break;
+					case directions::down:
+						offset.x = TILESIZE * (sC->_pos.x-sC->_nextScenePos.x);
+						offset.y = lastScene->getMapSize().y*TILESIZE;
+						break;
+				}
+
+				sceneIniCoord = lastScene->getSceneCoord()+offset;
+
+				//std::cout << "offset: " << offset.x << " " << offset.y << " sceneIniCoord " << sceneIniCoord.x << " " << sceneIniCoord.y << std::endl;
+				// std::cout << lastScene->getSceneCoord().x << " " << lastScene->getSceneCoord().y << std::endl;
+
+				_currentScene->init(sceneIniCoord);
+				currentScene->setPlayer(lastScene->getPlayer());
+				
+
+				// Transition animation:
+				sf::View* view = lastScene->getPtrView();
+				sf::Vector2f lastViewCenter = view->getCenter();
+				//std::cout << view->getCenter().x << " " << view->getCenter().y << std::endl;
+
+				sf::Clock clock;
+				sf::Time deltaTime;
+				float count=0.f, timer = 1.5f;
+				// speed
+				sf::Vector2f speed(offset.x/timer,offset.y/timer);
+				// zoom
+				float maxzoom = 1.01, originalZoom = 1, speedZoom = (maxzoom - originalZoom)/(timer*2); // cambiar el speed
+
+				//std::cout << "speed: " << speed.x << " " << speed.y << std::endl;
+
+				while (count < timer) {
+					deltaTime = clock.restart();
+					count += deltaTime.asSeconds();
+					view->move(speed*deltaTime.asSeconds());
+
+					// if (count < timer/2.f) view->zoom(1-speedZoom);
+					// else view->zoom(1.f/(1-speedZoom));
+
+					_window.setView(*view);
+	                _window.clear();
+					lastScene->render();
+					currentScene->render();
+					_window.setView(_window.getDefaultView());
+					_window.display();
+
+				}
+				
+				view->setCenter(lastViewCenter+offset); // Put the center of the camera in his position (like move(speed*(timer-count)))
+
+				_currentScene->_view = *view;
+
+				return;
+			}
+		// 
+		}
+		else if (_lastScene->getType() == sceneTypes::outside || sceneTypes::dungeon == _currentScene->getType()) {
 			ScenePlayable* lastScene = dynamic_cast<ScenePlayable*>(_lastScene);
 			ScenePlayable* currentScene = dynamic_cast<ScenePlayable*>(_currentScene);
-
-			sf::Vector2f offset;
-			int dir = sC->getChangeDirection();
-			switch (dir) {
-				case directions::left:
-					offset.y = TILESIZE * (sC->_pos.y-sC->_nextScenePos.y);
-					offset.x = -currentScene->getMapSize().x*TILESIZE;
-					break;
-				case directions::right:
-					offset.y = TILESIZE * (sC->_pos.y-sC->_nextScenePos.y);
-					offset.x = lastScene->getMapSize().x*TILESIZE;
-					break;
-				case directions::up:
-					offset.x = TILESIZE * (sC->_pos.x-sC->_nextScenePos.x);
-					offset.y = -currentScene->getMapSize().y*TILESIZE;
-					break;
-				case directions::down:
-					offset.x = TILESIZE * (sC->_pos.x-sC->_nextScenePos.x);
-					offset.y = lastScene->getMapSize().y*TILESIZE;
-					break;
-			}
-
-			sceneIniCoord = lastScene->getSceneCoord()+offset;
-
-			//std::cout << "offset: " << offset.x << " " << offset.y << " sceneIniCoord " << sceneIniCoord.x << " " << sceneIniCoord.y << std::endl;
-			// std::cout << lastScene->getSceneCoord().x << " " << lastScene->getSceneCoord().y << std::endl;
-
-			_currentScene->init(sceneIniCoord);
 			currentScene->setPlayer(lastScene->getPlayer());
 			
-
-			// Transition animation:
-			sf::View* view = lastScene->getPtrView();
-			sf::Vector2f lastViewCenter = view->getCenter();
-			//std::cout << view->getCenter().x << " " << view->getCenter().y << std::endl;
-
-			sf::Clock clock;
-			sf::Time deltaTime;
-			float count=0.f, timer = 1.5f;
-			// speed
-			sf::Vector2f speed(offset.x/timer,offset.y/timer);
-			// zoom
-			float maxzoom = 1.01, originalZoom = 1, speedZoom = (maxzoom - originalZoom)/(timer*2); // cambiar el speed
-
-			//std::cout << "speed: " << speed.x << " " << speed.y << std::endl;
-
-			while (count < timer) {
-				deltaTime = clock.restart();
-				count += deltaTime.asSeconds();
-				view->move(speed*deltaTime.asSeconds());
-
-				// if (count < timer/2.f) view->zoom(1-speedZoom);
-				// else view->zoom(1.f/(1-speedZoom));
-
-				_window.setView(*view);
-                _window.clear();
-				lastScene->render();
-				currentScene->render();
-				_window.setView(_window.getDefaultView());
-				_window.display();
-
-			}
-			
-			view->setCenter(lastViewCenter+offset); // Put the center of the camera in his position (like move(speed*(timer-count)))
-
-			_currentScene->_view = *view;
-
-			return;
 		}
-		// 
-	}
-	_currentScene = aux;	
-	_currentScene->init(sceneIniCoord);
+	}	
+	_currentScene->init();	
 }
 
 
@@ -160,6 +168,10 @@ void Game::loadScene(std::string sceneName) {
 	switch(myStoi(sceneType)) {
 		case sceneTypes::outside:
 			aux = new OutsideScene(this,&_window,sceneTypes::outside, sceneName, str);
+			break;
+		case sceneTypes::dungeon:
+			aux = new DungeonScene(this,&_window,sceneTypes::dungeon, sceneName, str);
+			break;
 	}
 	
 	_scenes.insert(std::make_pair(sceneName.substr(0,sceneName.length()-sizeof(SCENEEXTENSION)+1),aux));

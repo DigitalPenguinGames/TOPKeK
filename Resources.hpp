@@ -10,6 +10,7 @@ public:
 	static sf::Texture tileSet;
 	static sf::Texture linkSet;
 	static sf::Texture textureTest;
+	static sf::Texture dungeon;
 	static std::vector<SpriteSheetDescription> descriptions;
 
 private:

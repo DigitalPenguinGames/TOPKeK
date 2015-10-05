@@ -4,6 +4,7 @@
 #include "utils.hpp"
 #include "Tile.hpp"
 #include "SceneChanger.hpp"
+#include "Background.hpp"
 
 class Map {
 public:
@@ -16,9 +17,11 @@ public:
 	sf::Vector2i getSize();
 private:
 	std::vector<std::vector<int> > _premap;
-	std::vector<std::vector<Tile> > _map;
+	std::vector<std::vector<Tile> > _map; // If sceneType == outside
+	Background* _background; 			  // If sceneType == dungeon
 	std::vector<SceneChanger> _sceneChangers;
 	sf::Vector2f _mapIniCoord;
+	int _mapType;
 };
 
 #endif

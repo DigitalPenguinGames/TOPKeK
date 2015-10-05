@@ -49,7 +49,7 @@ namespace status{
 //Scenes
 enum sceneTypes {
 	outside = 0,
-	inside = 1
+	dungeon = 1
 };
 
 // SpriteSheets

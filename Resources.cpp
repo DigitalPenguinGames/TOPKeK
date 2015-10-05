@@ -4,14 +4,17 @@
 sf::Texture			Resources::tileSet;
 sf::Texture			Resources::linkSet;
 sf::Texture			Resources::textureTest;
+sf::Texture			Resources::dungeon;
 
 std::vector<SpriteSheetDescription> Resources::descriptions;
 
 void Resources::load() {
 	//...loadFromFile();
 	tileSet.loadFromFile(TEXTURETPATH+std::string("OverworldTiles.png"));
-	if (!linkSet.loadFromFile(TEXTURETPATH+std::string("link2.png"))) std::cout << "Broken" << std::endl;
+	linkSet.loadFromFile(TEXTURETPATH+std::string("link2.png"));
 	textureTest.loadFromFile(TEXTURETPATH+std::string("textureTest.png"));
+	dungeon.loadFromFile(TEXTURETPATH+std::string("dungeon.png"));
+
 	descriptions = std::vector<SpriteSheetDescription>(spriteDescriptionsQtt);
 	descriptions[linkSpritesDescriptions] = loadDescription("linkSheet");
 	descriptions[swordDescriptions] = loadDescription("swordSheet");

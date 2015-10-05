@@ -5,6 +5,7 @@
 #include "Scene.hpp"
 #include "utils.hpp"
 #include "OutsideScene.hpp"
+#include "DungeonScene.hpp"
 #include "SceneChanger.hpp"
 
 class Game {

@@ -19,20 +19,24 @@ def main():
 
 		if mapType == "outside":
 			output += "0 "
-		elif mapType == "inside":
+
+			output += width + " " + height + " "
+
+			#
+
+			data = layer.find('data')
+			csv = data.text.split(',')
+
+			#
+
+			for x in csv:
+				output += str(int(x)-1) + " "
+
+
+		elif mapType == "dungeon":
 			output += "1 "
 
-		output += width + " " + height + " "
-
-		#
-
-		data = layer.find('data')
-		csv = data.text.split(',')
-
-		#
-
-		for x in csv:
-			output += str(int(x)-1) + " "
+		
 
 		#
 

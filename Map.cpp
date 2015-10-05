@@ -3,15 +3,23 @@
 Map::Map(std::string description) {
 	_mapIniCoord = sf::Vector2f(FLT_MAX,FLT_MAX);
 	std::istringstream des(description);
-	int typeOfMap, width, height;
-	des >> typeOfMap >> width >> height;
-	std::cout << typeOfMap << " " << width << " " << height << std::endl;
-	_premap = std::vector < std::vector < int > >(width,std::vector<int>(height));
-	for (int j = 0; j < int(_premap[0].size()); ++j) {
-		for (int i = 0; i < int(_premap.size()); ++i) {
-			des >> _premap[i][j];
-		}
-	}
+	int width, height;
+	des >> _mapType;
+	switch (_mapType) {
+		case sceneTypes::outside: // outside
+			des >> width >> height;
+			std::cout << _mapType << " " << width << " " << height << std::endl;
+			_premap = std::vector < std::vector < int > >(width,std::vector<int>(height));
+			for (int j = 0; j < int(_premap[0].size()); ++j) {
+				for (int i = 0; i < int(_premap.size()); ++i) {
+					des >> _premap[i][j];
+				}
+			}
+			break;
+		case sceneTypes::dungeon: // dungeon
+			std::cout << "dungone " << std::endl;
+			break;
+	} 
 
 
 	// for (int j = 0; j < int(_premap[0].size()); ++j) {
@@ -43,19 +51,34 @@ Map::~Map() {
 }
 
 void Map::init(sf::Vector2f sceneIniCoord) {
-	_map = std::vector<std::vector<Tile> >(_premap.size(), std::vector<Tile>(_premap[0].size()));
-	for (int j = 0; j < int(_premap[0].size()); ++j) 
-		for (int i = 0; i < int(_premap.size()); ++i) {
-			sf::Vector2f pos(i*TILESIZE+sceneIniCoord.x,j*TILESIZE+sceneIniCoord.y);
-			_map[i][j] = (Tile(_premap[i][j],pos));
-		}
 	_mapIniCoord = sceneIniCoord;
+	switch (_mapType) {
+		case sceneTypes::outside:
+			_map = std::vector<std::vector<Tile> >(_premap.size(), std::vector<Tile>(_premap[0].size()));
+			for (int j = 0; j < int(_premap[0].size()); ++j) 
+				for (int i = 0; i < int(_premap.size()); ++i) {
+					sf::Vector2f pos(i*TILESIZE+sceneIniCoord.x,j*TILESIZE+sceneIniCoord.y);
+					_map[i][j] = (Tile(_premap[i][j],pos));
+				}
+			break;
+		case sceneTypes::dungeon:
+			_background = new Background(_mapIniCoord);
+			break;
+	}
+	
 }
 
 void Map::draw(sf::RenderWindow* w) {
-	for (int j = 0; j < int(_map[0].size()); ++j) 
-		for (int i = 0; i < int(_map.size()); ++i)
-	 		_map[i][j].draw(w);
+	switch (_mapType) {
+		case sceneTypes::outside:
+			for (int j = 0; j < int(_map[0].size()); ++j) 
+				for (int i = 0; i < int(_map.size()); ++i)
+			 		_map[i][j].draw(w);
+			break;
+		case sceneTypes::dungeon:
+			_background->draw(w);
+			break;
+	}
 
 	//std::cout << "Drawing map from " << _mapIniCoord.x << " " << int(_map[0].size()) << " " << int(_map.size()) << std::endl;
 }

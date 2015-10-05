@@ -15,13 +15,14 @@ SOURCES += main.cpp \
 		OutsideScene.cpp \
 		DungeonScene.cpp \
 		Map.cpp \
+		Background.cpp \
 		Tile.cpp \
 		SceneChanger.cpp \
 		Player.cpp \
 		Projectile.cpp \
 		Collisionable.cpp \
-    Fairy.cpp \
-    Effect.cpp
+    	Fairy.cpp \
+    	Effect.cpp
 
 HEADERS += utils.hpp \
 		Resources.cpp \
@@ -31,10 +32,11 @@ HEADERS += utils.hpp \
 		OutsideScene.hpp \
 		DungeonScene.hpp \
 		Map.hpp \
+		Background.hpp \
 		Tile.hpp \
 		SceneChanger.hpp \
 		Player.hpp \
 		Projectile.hpp \
 		Collisionable.hpp \
-    Fairy.hpp \
-    Effect.hpp
+    	Fairy.hpp \
+    	Effect.hpp
