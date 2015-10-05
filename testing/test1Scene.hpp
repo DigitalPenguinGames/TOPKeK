@@ -8,7 +8,7 @@ class Game;
 
 class test1Scene : public Scene {
 public:
-    test1Scene(Game* g, sf::RenderWindow* w);
+    test1Scene(Game* g, sf::RenderTarget* w);
     ~test1Scene();
 
     void processInput();

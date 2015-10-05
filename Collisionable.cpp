@@ -10,7 +10,7 @@ void Collisionable::update(float deltaTime) {
     _sprite.move(_speed*deltaTime);
 }
 
-void Collisionable::draw(sf::RenderWindow* window) {
+void Collisionable::draw(sf::RenderTarget* window) {
     window->draw(_sprite);
 }
 

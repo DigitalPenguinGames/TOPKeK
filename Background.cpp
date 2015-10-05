@@ -7,6 +7,6 @@ Background::Background(sf::Vector2f pos) {
 
 Background::~Background(){}
 
-void Background::draw(sf::RenderWindow* w) {
+void Background::draw(sf::RenderTarget* w) {
     w->draw(sprite);
 }

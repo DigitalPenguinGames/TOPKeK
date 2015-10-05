@@ -13,7 +13,7 @@ public:
     Fairy();
     ~Fairy();
 
-    void draw(sf::RenderWindow *window);
+    void draw(sf::RenderTarget *window);
 
     void update(float deltatime, sf::Vector2f mousePos);
 

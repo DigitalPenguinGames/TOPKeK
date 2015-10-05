@@ -36,12 +36,12 @@ struct CollisionPositionCompare : public std::binary_function<Collisionable*, Co
     }
 };
 
-void ScenePlayable::renderSorted(std::vector<Collisionable*>& cols) {
+void ScenePlayable::renderSorted(sf::RenderTarget* target, std::vector<Collisionable*>& cols) {
     std::priority_queue<Collisionable*, std::vector<Collisionable*>, CollisionPositionCompare> thingsToDraw;
-    for (int i = 0; i < cols.size(); ++i) thingsToDraw.push(cols[i]);
+    for (unsigned int i = 0; i < cols.size(); ++i) thingsToDraw.push(cols[i]);
 
     while (!thingsToDraw.empty()) {
-        thingsToDraw.top()->draw(_window);
+        thingsToDraw.top()->draw(target);
         thingsToDraw.pop();
     }
 }

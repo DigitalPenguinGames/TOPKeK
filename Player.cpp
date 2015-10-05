@@ -42,7 +42,7 @@ void Player::update(float deltaTime) {
     }
 }
 
-void Player::draw(sf::RenderWindow* w) {
+void Player::draw(sf::RenderTarget* w) {
     // Draw Sword
     w->draw(_sprite);
 }

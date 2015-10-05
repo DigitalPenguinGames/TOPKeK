@@ -9,7 +9,7 @@ public:
     Tile();
     Tile(int n, sf::Vector2f pos);
     ~Tile();
-    void draw(sf::RenderWindow *w);
+    void draw(sf::RenderTarget *w);
     sf::Vector2f getPosition();
 private:
     sf::Sprite sprite;

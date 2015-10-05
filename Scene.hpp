@@ -26,7 +26,8 @@ protected:
 
     virtual void processInput();
     virtual void update(float deltaTime);
-    virtual void render();
+    void render();
+    virtual void render(sf::RenderTarget* target);
     void initView(sf::Vector2i windowSize);
     void changeScene(SceneChanger *sC);
 

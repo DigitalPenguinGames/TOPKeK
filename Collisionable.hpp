@@ -8,7 +8,7 @@ class Collisionable {
      Collisionable(sf::Vector2f speed = sf::Vector2f(0,0));
      ~Collisionable();
      virtual void update(float deltaTime);
-     virtual void draw(sf::RenderWindow* window);
+     virtual void draw(sf::RenderTarget* window);
 
      static bool collisioning(Collisionable* c1, Collisionable* c2);
 

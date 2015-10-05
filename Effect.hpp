@@ -49,7 +49,7 @@ class Effect : public sf::Sprite {
         timeBetweenAnimations (as default 1second) will update the image that is displayed
         to the next one (will attach the propper texture to the Effect).
 
-    - DRAW with draw(sf::RenderWindow& window);
+    - DRAW with draw(sf::RenderTarget& window);
         if "active", it will draw on the window passed as parameter the actual image of the animaiton.
 
      */
@@ -129,7 +129,7 @@ public:
     void updateAnimation(float deltatime);
 
 //DRAW
-    void drawEffect(sf::RenderWindow& window);
+    void drawEffect(sf::RenderTarget& window);
 
 //OTHER FUNCTIONS
 

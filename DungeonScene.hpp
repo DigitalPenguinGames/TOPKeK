@@ -14,7 +14,7 @@ public:
 private:
     void processInput();
     void update(float deltaTime);
-    void render();
+    void render(sf::RenderTarget* target);
 
 };
 

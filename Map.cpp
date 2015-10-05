@@ -68,7 +68,7 @@ void Map::init(sf::Vector2f sceneIniCoord) {
     
 }
 
-void Map::draw(sf::RenderWindow* w) {
+void Map::draw(sf::RenderTarget* w) {
     switch (_mapType) {
         case sceneTypes::outside:
             for (int j = 0; j < int(_map[0].size()); ++j) 

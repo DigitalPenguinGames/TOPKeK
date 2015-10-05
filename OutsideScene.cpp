@@ -72,14 +72,14 @@ void OutsideScene::update(float deltaTime) {
     }
 }
 
-void OutsideScene::render() {
-    _map.draw(_window);
+void OutsideScene::render(sf::RenderTarget* target) {
+    _map.draw(target);
     // Drawing the dinamic things
     std::vector<Collisionable*> collisionables;
     collisionables.push_back(_player);
     collisionables.push_back(_fairy);
 
-    renderSorted(collisionables);
+    renderSorted(target, collisionables);
 
     //    _fairy->draw((*_window));
     //_player->draw(_window);

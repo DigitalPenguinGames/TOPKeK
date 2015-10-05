@@ -1,6 +1,6 @@
 #include "test1Scene.hpp"
 
-test1Scene::test1Scene(Game* g, sf::RenderWindow* w) : Scene(w), game(g) {
+test1Scene::test1Scene(Game* g, sf::RenderTarget* w) : Scene(w), game(g) {
     rectangle.setSize(sf::Vector2f(float(w->getSize().x-100),float(w->getSize().y-100)));
     rectangle.setPosition(50,50);
     rectangle.setFillColor(sf::Color::Yellow);

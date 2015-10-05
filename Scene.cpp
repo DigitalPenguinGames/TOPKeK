@@ -67,7 +67,11 @@ void Scene::update(float deltaTime) {
 }
 
 void Scene::render() {
+    render(_window);
+}
 
+void Scene::render(sf::RenderTarget* target) {
+    (void) target;
 }
 
 void Scene::display() {

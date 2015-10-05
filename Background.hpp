@@ -9,7 +9,7 @@ public:
     Background(sf::Vector2f pos);
     ~Background();
 
-    void draw(sf::RenderWindow* w);
+    void draw(sf::RenderTarget* w);
 
 private:
     //sf::Sprite collision;

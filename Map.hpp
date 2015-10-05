@@ -11,7 +11,7 @@ public:
     Map(std::string description);
     ~Map();
     void init(sf::Vector2f sceneIniCoord);
-    void draw(sf::RenderWindow* w);
+    void draw(sf::RenderTarget* w);
     Tile* getPtrTile(sf::Vector2i pos);
     std::pair<bool,SceneChanger*> playerInsideExit(sf::Vector2f pos); // Change to Vector2f
     sf::Vector2i getSize();

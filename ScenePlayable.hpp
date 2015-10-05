@@ -29,7 +29,7 @@ protected:
     sf::Vector2f _sceneIniCoord;
     status::gameStatus _status;
 
-    void renderSorted(std::vector<Collisionable*>& cols);
+    void renderSorted(sf::RenderTarget* target, std::vector<Collisionable*>& cols);
 
 private:
     void display();

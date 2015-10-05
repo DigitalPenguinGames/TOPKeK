@@ -13,7 +13,7 @@ Fairy::Fairy() {
 
 Fairy::~Fairy() { }
 
-void Fairy::draw(sf::RenderWindow* window) {
+void Fairy::draw(sf::RenderTarget* window) {
     this->setColor(sf::Color(255 , 0 + (255* (lifes+0.001)/maxLifes), 0 + (255* (lifes+0.001)/maxLifes), 255));
     drawEffect(*window);
 }

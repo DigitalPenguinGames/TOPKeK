@@ -13,7 +13,7 @@ Tile::Tile(int n,sf::Vector2f pos) {
 
 Tile::~Tile() {}
 
-void Tile::draw(sf::RenderWindow* w) {
+void Tile::draw(sf::RenderTarget* w) {
     w->draw(sprite);
 }
 

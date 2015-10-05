@@ -13,7 +13,7 @@ public:
     Player();
     ~Player();
     void update(float deltaTime);
-    void draw(sf::RenderWindow* w);
+    void draw(sf::RenderTarget* w);
 
     void move(directions dir);
     void attack();

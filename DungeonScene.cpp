@@ -61,13 +61,12 @@ void DungeonScene::update(float deltaTime) {
     _player->update(deltaTime);
 }
 
-void DungeonScene::render() {
-    _map.draw(_window);
+void DungeonScene::render(sf::RenderTarget* target) {
+    _map.draw(target);
     // Drawing the dinamic things
     std::vector<Collisionable*> collisionables;
     collisionables.push_back(_player);
+    collisionables.push_back(_fairy);
 
-    renderSorted(collisionables);
-
-    //_player->draw(_window);
+    renderSorted(target, collisionables);
 }
