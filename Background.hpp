@@ -6,14 +6,14 @@
 
 class Background {
 public:
-	Background(sf::Vector2f pos);
-	~Background();
+    Background(sf::Vector2f pos);
+    ~Background();
 
-	void draw(sf::RenderWindow* w);
+    void draw(sf::RenderWindow* w);
 
 private:
-	//sf::Sprite collision;
-	sf::Sprite sprite;
+    //sf::Sprite collision;
+    sf::Sprite sprite;
 
 };
 

@@ -2,8 +2,8 @@
 #include "Game.hpp"
 
 ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string name, std::string description) :
-	Scene(g,w,sT,name),
-	_map(description) {	
+    Scene(g,w,sT,name),
+    _map(description) {    
     _status = status::running;
     _fairy = new Fairy();
 }
@@ -11,11 +11,11 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
 ScenePlayable::~ScenePlayable(){}
 
 sf::Vector2f ScenePlayable::getSceneCoord() {
-	return _map.getPtrTile(sf::Vector2i(0,0))->getPosition();
+    return _map.getPtrTile(sf::Vector2i(0,0))->getPosition();
 }
 
 sf::Vector2i ScenePlayable::getMapSize() {
-	return _map.getSize();
+    return _map.getSize();
 }
 
 Player* ScenePlayable::getPlayer() {
@@ -48,12 +48,12 @@ void ScenePlayable::renderSorted(std::vector<Collisionable*>& cols) {
 
 
 void ScenePlayable::display() {
-	_window->clear();
+    _window->clear();
     switch(_status){
         case status::onMenu:
-        	// set the PauseMenú view
-        	// render pause menú
-        	//break;
+            // set the PauseMenú view
+            // render pause menú
+            //break;
         case status::running:
             _window->setView(_view);
             render();

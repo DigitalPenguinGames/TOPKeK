@@ -6,13 +6,13 @@
 
 class Tile{ 
 public:
-	Tile();
-	Tile(int n, sf::Vector2f pos);
-	~Tile();
-	void draw(sf::RenderWindow *w);
-	sf::Vector2f getPosition();
+    Tile();
+    Tile(int n, sf::Vector2f pos);
+    ~Tile();
+    void draw(sf::RenderWindow *w);
+    sf::Vector2f getPosition();
 private:
-	sf::Sprite sprite;
+    sf::Sprite sprite;
 };
 
 #endif

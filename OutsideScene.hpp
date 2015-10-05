@@ -9,15 +9,15 @@
 class OutsideScene : public ScenePlayable {
 friend class Game;
 public:
-	OutsideScene(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string name, std::string description);
-	~OutsideScene();
+    OutsideScene(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string name, std::string description);
+    ~OutsideScene();
 
-	void init(sf::Vector2f sceneIniCoord);
+    void init(sf::Vector2f sceneIniCoord);
 
 private:
-	void processInput();
-	void update(float deltaTime);
-	void render();
+    void processInput();
+    void update(float deltaTime);
+    void render();
 
 };
 

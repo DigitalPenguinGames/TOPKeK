@@ -12,7 +12,7 @@ class ScenePlayable : public Scene {
 public:
 
     ScenePlayable(Game *g, sf::RenderWindow* w, sceneTypes sT, std::string name, std::string description);
-	~ScenePlayable();
+    ~ScenePlayable();
 
     Player* getPlayer();
     void setPlayer(Player* p);
@@ -23,16 +23,16 @@ public:
     void init(sf::Vector2f sceneIniCoord) = 0;
 
 protected:
-	Map _map;
+    Map _map;
     Fairy* _fairy;
     Player* _player;
-	sf::Vector2f _sceneIniCoord;
+    sf::Vector2f _sceneIniCoord;
     status::gameStatus _status;
 
     void renderSorted(std::vector<Collisionable*>& cols);
 
 private:
-	void display();
+    void display();
 
 };
 

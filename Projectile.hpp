@@ -6,14 +6,14 @@
 
 class Projectile : public Collisionable {
 public:
-	Projectile();
-	~Projectile();
+    Projectile();
+    ~Projectile();
 
-	void update(float deltaTime); 
+    void update(float deltaTime); 
 
 private:
-	bool willDie; // When collision, the proyectile will disapear?
-	float timeToDespawn;
+    bool willDie; // When collision, the proyectile will disapear?
+    float timeToDespawn;
 };
 
 #endif

@@ -10,21 +10,21 @@
 
 class Game {
 public:
-	Game();
-	~Game();
+    Game();
+    ~Game();
 
-	void start();
+    void start();
 
-	void changeScene(SceneChanger* sC);
+    void changeScene(SceneChanger* sC);
 
 private:
-	sf::RenderWindow _window;
-	std::map<std::string, Scene*> _scenes;
-	Scene* _currentScene;
-	Scene* _lastScene;
+    sf::RenderWindow _window;
+    std::map<std::string, Scene*> _scenes;
+    Scene* _currentScene;
+    Scene* _lastScene;
 
-	void loadScenes();
-	void loadScene(std::string sceneName);
+    void loadScenes();
+    void loadScene(std::string sceneName);
 };
 
 #endif

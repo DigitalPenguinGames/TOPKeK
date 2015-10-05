@@ -5,17 +5,17 @@
 
 class SceneChanger {
 public:
-	SceneChanger();
-	SceneChanger(sf::Vector2f pos, std::string nextScene, sf::Vector2f nextScenePos);
-	~SceneChanger();
+    SceneChanger();
+    SceneChanger(sf::Vector2f pos, std::string nextScene, sf::Vector2f nextScenePos);
+    ~SceneChanger();
 
-	std::string getNextSceneName();
-	sf::FloatRect getRect(sf::Vector2f offset);
-	directions getChangeDirection();
+    std::string getNextSceneName();
+    sf::FloatRect getRect(sf::Vector2f offset);
+    directions getChangeDirection();
 
-	sf::Vector2f _pos;
-	std::string _nextScene;
-	sf::Vector2f _nextScenePos;
+    sf::Vector2f _pos;
+    std::string _nextScene;
+    sf::Vector2f _nextScenePos;
 
 
 };

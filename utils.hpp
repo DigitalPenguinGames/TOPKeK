@@ -36,8 +36,8 @@
 #include <SFML/Graphics.hpp>
 
 //movement dir { down, left, right, up , none };
-const int mx[5] = {0,  -1,	 1,	   0,   0   };
-const int my[5] = {1,	0,	 0,   -1,   0   };
+const int mx[5] = {0,  -1,     1,       0,   0   };
+const int my[5] = {1,    0,     0,   -1,   0   };
 
 const float TO_RADIANS = (1 / 180.0f) * (float ) M_PI;
 const float TO_DEGREES = (1 / (float ) M_PI) * 180;
@@ -48,42 +48,42 @@ namespace status{
 
 //Scenes
 enum sceneTypes {
-	outside = 0,
-	dungeon = 1
+    outside = 0,
+    dungeon = 1
 };
 
 // SpriteSheets
 typedef std::vector< std::vector < sf::IntRect> > SpriteSheetDescription;
 
 enum spriteSheetsDescriptions {
-	linkSpritesDescriptions,
-	swordDescriptions,
-	spriteDescriptionsQtt
+    linkSpritesDescriptions,
+    swordDescriptions,
+    spriteDescriptionsQtt
 };
 
 // Animations
 enum linkActions {
-	move			,
-	attack			,
-	linkActionsQtt
+    move            ,
+    attack            ,
+    linkActionsQtt
 };
 
 // Sword Types
 enum swordtypes {
-	first,
-	second,
-	third,
-	fourth,
-	qttSwordTypes
+    first,
+    second,
+    third,
+    fourth,
+    qttSwordTypes
 };
 
 // Directions
 enum directions {
-	down			,
-	left 			,
-	up				,
-	right 			,
-	directionsQtty
+    down            ,
+    left             ,
+    up                ,
+    right             ,
+    directionsQtty
 };
 
 bool isInt(std::string s);
