@@ -30,22 +30,6 @@ void Fairy::update(float deltatime, sf::Vector2f mousePos) {
     velocity.y = 0.8*velocity.y + 0.2*(mousePos.y - this->Effect::getPosition().y ) * deltatime;
     this->move(velocity);
 
-    /*
-    //float prevAngle = _angle;
-    _angle = getAngle(this->Effect::getPosition(), mousePos);
-
-    sf::Vector2f movement;
-    std::cout << " angle : " <<_angle << std::endl;
-
-    if(getModule(this->Effect::getPosition(), mousePos) > 1 ){
-        movement.y = std::sin(_angle)*velocity.y *deltatime;
-        movement.x = std::cos(_angle)*velocity.x *deltatime;
-    } else movement.x = movement.y = 0;
-    this->move(movement);
-    //setPosition(mousePos);
-    */
-
-
 }
 
 int Fairy::getLifes() const {
