@@ -5,6 +5,7 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
 	Scene(g,w,sT,name),
 	_map(description) {	
     _status = status::running;
+    _fairy = new Fairy();
 }
 
 ScenePlayable::~ScenePlayable(){}

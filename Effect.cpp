@@ -164,7 +164,7 @@ void Effect::updateAnimation(float deltatime) {
     }
 }
 
-void Effect::draw(sf::RenderWindow& window) {
+void Effect::drawEffect(sf::RenderWindow& window) {
     if(activated){
         window.draw((*this));
     }
@@ -174,11 +174,11 @@ void Effect::setActualAnimation(int newPosition)    {
     actualAnimation = newPosition%animation.size();
 }
 
-int Effect::inc_actualAnim() {
+void Effect::inc_actualAnim() {
     actualAnimation = (actualAnimation+1)%animation.size();
 }
 
-int Effect::dec_actualAnim() {
+void Effect::dec_actualAnim() {
     actualAnimation = (actualAnimation-1)%animation.size();
 }
 

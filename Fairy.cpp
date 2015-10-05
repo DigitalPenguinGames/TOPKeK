@@ -2,6 +2,9 @@
 
 Fairy::Fairy() {
 
+    loadHorizontalSpriteSheet("Resources/Textures/fairy.png",5);
+    setOrigin(getGlobalBounds().width/2, getGlobalBounds().height/2);
+
     lifes = 3;
     maxLifes = 3;
     velocity.x = 50; velocity.y = 50;
@@ -10,18 +13,29 @@ Fairy::Fairy() {
 
 Fairy::~Fairy() { }
 
-void Fairy::draw(sf::RenderWindow window) {
-    this->setColor(sf::Color(255 - (255* (lifes+0.001)/maxLifes), 0, 0));
-    this->Effect::draw(window);
+void Fairy::draw(sf::RenderWindow* window) {
+    this->setColor(sf::Color(255 , 0 + (255* (lifes+0.001)/maxLifes), 0 + (255* (lifes+0.001)/maxLifes), 255));
+    drawEffect(*window);
 }
 
 void Fairy::update(float deltatime, sf::Vector2f mousePos) {
-    sf::Vector2f pos = this->Effect::getPosition();
-    float angle = getAngle(pos, mousePos);
-    this->rotate(angle - this->getRotation());
+    updateAnimation(deltatime);
+
+    //float prevAngle = _angle;
+
+    _angle = getAngle(centerPosition, this->Effect::getPosition());
+    this->rotate(_angle - this->getRotation());
+
+
+    _angle = getAngle(this->Effect::getPosition(), mousePos);
+
     sf::Vector2f movement;
-    movement.x = std::cos(angle)*velocity.x *deltatime;
-    movement.y = std::cos(angle)*velocity.y *deltatime;
+    std::cout << " angle : " <<_angle << std::endl;
+
+    if(getModule(this->Effect::getPosition(), mousePos) > float(TILESIZE)  ){
+        movement.y = std::sin(_angle)*velocity.y *deltatime;
+        movement.x = std::cos(_angle)*velocity.x *deltatime;
+    } else movement.x = movement.y = 0;
     this->move(movement);
 }
 
@@ -41,6 +55,11 @@ sf::Vector2f Fairy::getCenterPosition() const {
 void Fairy::setCenterPosition(const sf::Vector2f &value) {
     centerPosition = value;
 }
+
+float Fairy::getCenterAngle() const{
+    return _angle;
+}
+
 
 sf::Vector2f Fairy::getVelocity() const {
     return velocity;

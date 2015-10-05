@@ -47,6 +47,10 @@ void OutsideScene::processInput() {
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) _player->move(directions::right);
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) _player->move(directions::left);
 
+    _fairy->setCenterPosition(sf::Vector2f(_player->getPosition()));
+    _fairy->setScale(TILESIZE/_fairy->getLocalBounds().width,
+                     TILESIZE/_fairy->getLocalBounds().width);
+    _fairy->setOrigin(_fairy->getLocalBounds().width/2, _fairy->getLocalBounds().height/2);
 	// if      (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) _player2->attack();
 	// if      (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) _player2->move(directions::up);
 	// else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) _player2->move(directions::down);
@@ -59,15 +63,18 @@ void OutsideScene::processInput() {
 void OutsideScene::update(float deltaTime) {
 	//(void)deltaTime;
 	_player->update(deltaTime);
+    _fairy->update(deltaTime, sf::Vector2f(_window->mapPixelToCoords(sf::Mouse::getPosition(*_window),_view)));
 }
 
 void OutsideScene::render() {
 	_map.draw(_window);
 	// Drawing the dinamic things
 	std::vector<Collisionable*> collisionables;
-	collisionables.push_back(_player);
+    collisionables.push_back(_player);
+    collisionables.push_back(_fairy);
 
-	renderSorted(collisionables);
+    renderSorted(collisionables);
 
+    //    _fairy->draw((*_window));
 	//_player->draw(_window);
 }

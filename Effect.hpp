@@ -129,14 +129,14 @@ public:
     void updateAnimation(float deltatime);
 
 //DRAW
-    void draw(sf::RenderWindow& window);
+    void drawEffect(sf::RenderWindow& window);
 
 //OTHER FUNCTIONS
 
     //Increments the image on the animation
-    int inc_actualAnim();
+    void inc_actualAnim();
     //Decrements the image on the animation
-    int dec_actualAnim();
+    void dec_actualAnim();
 
     //Enable animation
     void active();
