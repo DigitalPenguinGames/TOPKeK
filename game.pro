@@ -32,7 +32,8 @@ SOURCES += main.cpp \
     GUI/Layout.cpp \
     GUI/TextButton.cpp \
     GUI/VLayout.cpp \
-    GUI/Widget.cpp
+    GUI/Widget.cpp \
+    TextBox.cpp
 
 HEADERS += utils.hpp \
 		Resources.cpp \
@@ -59,4 +60,5 @@ HEADERS += utils.hpp \
     GUI/TextButton.hpp \
     GUI/VLayout.hpp \
     GUI/Widget.hpp \
-    GUI/Frame.hpp
+    GUI/Frame.hpp \
+    TextBox.hpp
