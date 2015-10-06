@@ -7,12 +7,13 @@ class Resources {
 public:
     static void load();
     //static sf::Texture ...
+    static sf::Shader  DtO;
     static sf::Texture tileSet;
     static sf::Texture linkSet;
-    static sf::Texture textureTest;
     static sf::Texture dungeon;
+    static sf::Texture textureTest;
+    static sf::Font pauseMenuFont;
     static std::vector<SpriteSheetDescription> descriptions;
-    static sf::Shader  DtO;
 private:
     static SpriteSheetDescription loadDescription(std::string fileName);
 

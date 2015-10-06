@@ -4,6 +4,8 @@
 OutsideScene::OutsideScene(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string name, std::string description) :
     ScenePlayable(g,w,sT,name,description)
 {
+
+    //std::cout << &(*w) << std::endl;
     _sceneIniCoord = sf::Vector2f(FLT_MAX,FLT_MAX);
 }
 
@@ -28,6 +30,10 @@ void OutsideScene::processInput() {
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::P) {
             if(_status == status::running) _status = status::onMenu;
             else _status = status::running;
+        }
+
+        if(_status == status::onMenu){
+            _menu.processEvent(event);
         }
         //else if (event.type == sf::Event::Resized) initView();
     }
@@ -62,6 +68,7 @@ void OutsideScene::processInput() {
 
 void OutsideScene::update(float deltaTime) {
     //(void)deltaTime;
+
     _player->update(deltaTime);
     _fairy->update(deltaTime, sf::Vector2f(_window->mapPixelToCoords(sf::Mouse::getPosition(*_window),_view)));
 
@@ -80,6 +87,7 @@ void OutsideScene::render(sf::RenderTarget* target) {
     collisionables.push_back(_fairy);
 
     renderSorted(target, collisionables);
+
 
     //    _fairy->draw((*_window));
     //_player->draw(_window);

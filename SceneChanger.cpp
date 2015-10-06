@@ -13,6 +13,7 @@ std::string SceneChanger::getNextSceneName() {
     return _nextScene;
 }
 
+
 sf::FloatRect SceneChanger::getRect(sf::Vector2f offset) {
     directions dir = getChangeDirection();
     sf::Vector2f localOffset(TILESIZE-4,TILESIZE-4);

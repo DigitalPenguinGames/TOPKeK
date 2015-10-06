@@ -6,6 +6,17 @@
 #include "Fairy.hpp"
 #include "Scene.hpp"
 #include "Player.hpp"
+#include "GUI/Label.hpp"
+#include "GUI/Frame.hpp"
+#include "GUI/Layout.hpp"
+#include "GUI/Widget.hpp"
+#include "GUI/Button.hpp"
+#include "GUI/VLayout.hpp"
+#include "GUI/Container.hpp"
+#include "GUI/ImgButton.hpp"
+#include "GUI/TextButton.hpp"
+#include "GUI/ImgTextButton.hpp"
+
 
 class Game;
 class ScenePlayable : public Scene {
@@ -24,6 +35,7 @@ public:
 
 protected:
     Map _map;
+    Frame _menu;
     Fairy* _fairy;
     Player* _player;
     sf::Vector2f _sceneIniCoord;
