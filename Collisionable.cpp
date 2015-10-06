@@ -1,13 +1,13 @@
 #include "Collisionable.hpp"
 
-Collisionable::Collisionable(sf::Vector2f speed) : _speed(speed) {
-
+Collisionable::Collisionable(sf::Vector2f position) {
+    _sprite.setPosition(position);
 }
 
 Collisionable::~Collisionable() {}
 
 void Collisionable::update(float deltaTime) {
-    _sprite.move(_speed*deltaTime);
+    (void) deltaTime;
 }
 
 void Collisionable::draw(sf::RenderTarget* window) {

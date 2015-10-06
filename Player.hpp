@@ -4,6 +4,7 @@
 #include "utils.hpp"
 #include "Collisionable.hpp"
 #include "Resources.hpp"
+#include "Projectile.hpp"
 
 #define ATTACKTIMERANIMATION 0.5
 #define ELAPSEDWALKING 0.18
@@ -34,6 +35,8 @@ private:
     bool _moving;
 
     sf::IntRect _walkBounds;
+
+    Projectile _sword;
 
 
 };

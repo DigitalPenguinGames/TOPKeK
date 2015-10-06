@@ -44,7 +44,9 @@ void Player::update(float deltaTime) {
 
 void Player::draw(sf::RenderTarget* w) {
     // Draw Sword
+    if (_attacking) _sword.draw(w);
     w->draw(_sprite);
+
 }
 
 
@@ -58,6 +60,7 @@ void Player::attack() {
     _attacking = true;
     _elapsedAttack = ATTACKTIMERANIMATION;
     _action = linkActions::attack;
+    _sword.init(_dir, _sprite.getPosition());
 }
 
 sf::Vector2f Player::getPositionTransition() {
