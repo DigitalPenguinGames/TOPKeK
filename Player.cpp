@@ -44,7 +44,22 @@ void Player::update(float deltaTime) {
 
 void Player::draw(sf::RenderTarget* w) {
     // Draw Sword
-    if (_attacking) _sword.draw(w);
+    if (_attacking) {
+        sf::Vector2f size = sf::Vector2f(_sprite.getGlobalBounds().width,_sprite.getGlobalBounds().height);
+        float offset = size.x/10;
+        _sword.setPosition(sf::Vector2f(        // V posar la posició del player
+                        _sword.getPosition().x + (size.x/2          * (_dir == directions::up))
+                                               + (size.x/2          * (_dir == directions::down))
+                                               + ((size.x-offset)   * (_dir == directions::right))
+                                               + (offset            * (_dir == directions::left)),
+                        _sword.getPosition().y + (size.y/2          * (_dir == directions::right))
+                                               + (size.y/2          * (_dir == directions::left))
+                                               + ((size.y-offset)   * (_dir == directions::down))
+                                               + (offset            * (_dir == directions::up))
+                        ));
+
+        _sword.draw(w);
+    }
     w->draw(_sprite);
 
 }
