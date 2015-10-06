@@ -29,3 +29,7 @@ sf::Vector2f Collisionable::getPosition() {
 sf::IntRect Collisionable::getBounds() {
     return _bounds;
 }
+
+void Collisionable::setPosition(sf::Vector2f pos) {
+    _sprite.setPosition(pos);
+}

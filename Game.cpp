@@ -1,7 +1,7 @@
 #include "Game.hpp"
 
 Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Close | sf::Style::Resize) {
-    //_window.setFramerateLimit(FRAMERATE);
+    _window.setFramerateLimit(FRAMERATE);
     Resources::load();
     _currentScene = nullptr;
     _lastScene = nullptr;
@@ -150,11 +150,19 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             rt1.create(WINDOWRATIOX,WINDOWRATIOY);
             rt2.create(WINDOWRATIOX,WINDOWRATIOY);
 
+            sf::Vector2i ppos = _window.mapCoordsToPixel(lastScene->getPlayer()->getPositionTransition(),*lastScene->getPtrView());
+            sf::Vector2f playerPos1(ppos.x,_window.getSize().y - ppos.y); // Fragment Y = 0 is on bottom
+
             lastScene->render(&rt1);
 
-            rt1.display();
-
+            currentScene->getPlayer()->setPosition(sf::Vector2f(sC->_nextScenePos.x*TILESIZE, sC->_nextScenePos.y*TILESIZE));
             currentScene->render(&rt2);
+
+            ppos = _window.mapCoordsToPixel(currentScene->getPlayer()->getPositionTransition(),*currentScene->getPtrView());
+            sf::Vector2f playerPos2(ppos.x,_window.getSize().y - ppos.y); // Fragment Y = 0 is on bottom
+
+            rt1.display();
+            
 
             rt2.display();
 
@@ -162,19 +170,20 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 
             sf::Clock clock;
             sf::Time deltaTime;
-            float count=0.f, timer = 1.5f;
+            float count=0.f, timer = 2.f;
 
 
             Resources::DtO.setParameter("texture", sf::Shader::CurrentTexture);
             Resources::DtO.setParameter("maxTime",timer/2);
-            Resources::DtO.setParameter("max", _window.getSize().x+_window.getSize().y);
+            Resources::DtO.setParameter("max", (_window.getSize().x+_window.getSize().y)*0.55);
             Resources::DtO.setParameter("expand", false);
 
-            sf::Vector2i ppos = _window.mapCoordsToPixel(lastScene->getPlayer()->getPositionTransition(),*lastScene->getPtrView());
-            sf::Vector2f playerPos(ppos.x,_window.getSize().y - ppos.y); // Fragment Y = 0 is on bottom
-            Resources::DtO.setParameter("pos",playerPos);
+            
+            Resources::DtO.setParameter("pos",playerPos1);
 
-            std::cout << playerPos.x << " " << playerPos.y << std::endl;
+             
+
+            //std::cout << playerPos.x << " " << playerPos.y << std::endl;
 
             bool changed = false;
 
@@ -192,6 +201,7 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                     if (!changed) {
                         changed = true;
                         Resources::DtO.setParameter("expand", true);
+                        Resources::DtO.setParameter("pos",playerPos2);
                     }
                      Resources::DtO.setParameter("time",count-(timer/2.f));
                     _window.setView(*currentScene->getPtrView());
