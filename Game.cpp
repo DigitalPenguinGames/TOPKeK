@@ -137,7 +137,8 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             }
         // 
         }
-        else if (_lastScene->getType() == sceneTypes::outside || sceneTypes::dungeon == _currentScene->getType()) {
+        else if ((_lastScene->getType() == sceneTypes::outside && sceneTypes::dungeon == _currentScene->getType()) ||
+                 (_currentScene->getType() == sceneTypes::outside && sceneTypes::dungeon == _lastScene->getType())) {
 
             ScenePlayable* lastScene = dynamic_cast<ScenePlayable*>(_lastScene);
             ScenePlayable* currentScene = dynamic_cast<ScenePlayable*>(_currentScene);
