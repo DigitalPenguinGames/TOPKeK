@@ -49,19 +49,6 @@ void Player::update(float deltaTime) {
 void Player::draw(sf::RenderTarget* w) {
     // Draw Sword
     if (_attacking) {
-        sf::Vector2f size = sf::Vector2f(_sprite.getGlobalBounds().width,_sprite.getGlobalBounds().height);
-
-        _sword.setPosition(sf::Vector2f(        // V posar la posició del player
-                        _sword.getPosition().x + ((size.x/2+4) * (_dir == directions::up   ))
-                                               + ((size.x/2-2) * (_dir == directions::down ))
-                                               + ((size.x-5)   * (_dir == directions::right))
-                                               + (4            * (_dir == directions::left )),
-                        _sword.getPosition().y + ((size.y/2+4) * (_dir == directions::right))
-                                               + ((size.y/2-3) * (_dir == directions::left ))
-                                               + ((size.y-2-3) * (_dir == directions::down ))
-                                               + (6            * (_dir == directions::up   ))
-                        ));
-
         _sword.draw(w);
     }
     w->draw(_sprite);
@@ -80,6 +67,19 @@ void Player::attack() {
     _action = linkActions::attack;
     _elapsedAttack = ATTACKTIMERANIMATION;
     _sword.init(_dir, _sprite.getPosition());
+    // This code will be at the Sword class (?):D
+    sf::Vector2f size = sf::Vector2f(_sprite.getGlobalBounds().width,_sprite.getGlobalBounds().height);
+
+        _sword.setPosition(sf::Vector2f(        // V posar la posició del player
+                        _sword.getPosition().x + ((size.x/2+2) * (_dir == directions::up   ))
+                                               + ((size.x/2-3) * (_dir == directions::down ))
+                                               + ((size.x-5)   * (_dir == directions::right))
+                                               + (4            * (_dir == directions::left )),
+                        _sword.getPosition().y + ((size.y/2+4) * (_dir == directions::right))
+                                               + ((size.y/2-3) * (_dir == directions::left ))
+                                               + ((size.y-2-3) * (_dir == directions::down ))
+                                               + (4            * (_dir == directions::up   ))
+                        ));
 }
 
 sf::Vector2f Player::getPositionTransition() {

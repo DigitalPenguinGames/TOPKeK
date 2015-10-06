@@ -25,7 +25,6 @@ void Projectile::init(directions dir, sf::Vector2f pos) {
             break;
         default:
             break;
-
     }
 }
 
