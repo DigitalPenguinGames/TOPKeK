@@ -22,7 +22,17 @@ SOURCES += main.cpp \
 		Projectile.cpp \
 		Collisionable.cpp \
     	Fairy.cpp \
-    	Effect.cpp
+    	Effect.cpp \
+    GUI/Button.cpp \
+    GUI/Container.cpp \
+    GUI/Frame.cpp \
+    GUI/ImgButton.cpp \
+    GUI/ImgTextButton.cpp \
+    GUI/Label.cpp \
+    GUI/Layout.cpp \
+    GUI/TextButton.cpp \
+    GUI/VLayout.cpp \
+    GUI/Widget.cpp
 
 HEADERS += utils.hpp \
 		Resources.cpp \
@@ -39,4 +49,14 @@ HEADERS += utils.hpp \
 		Projectile.hpp \
 		Collisionable.hpp \
     	Fairy.hpp \
-    	Effect.hpp
+    	Effect.hpp \
+    GUI/Button.hpp \
+    GUI/Container.hpp \
+    GUI/ImgButton.hpp \
+    GUI/ImgTextButton.hpp \
+    GUI/Label.hpp \
+    GUI/Layout.hpp \
+    GUI/TextButton.hpp \
+    GUI/VLayout.hpp \
+    GUI/Widget.hpp \
+    GUI/Frame.hpp
