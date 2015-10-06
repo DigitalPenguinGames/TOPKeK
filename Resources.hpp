@@ -12,7 +12,7 @@ public:
     static sf::Texture textureTest;
     static sf::Texture dungeon;
     static std::vector<SpriteSheetDescription> descriptions;
-
+    static sf::Shader  DtO;
 private:
     static SpriteSheetDescription loadDescription(std::string fileName);
 

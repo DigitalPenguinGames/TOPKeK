@@ -138,9 +138,72 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
         // 
         }
         else if (_lastScene->getType() == sceneTypes::outside || sceneTypes::dungeon == _currentScene->getType()) {
+
             ScenePlayable* lastScene = dynamic_cast<ScenePlayable*>(_lastScene);
             ScenePlayable* currentScene = dynamic_cast<ScenePlayable*>(_currentScene);
+
             currentScene->setPlayer(lastScene->getPlayer());
+
+            _currentScene->init();
+
+            sf::RenderTexture rt1,rt2;
+            rt1.create(WINDOWRATIOX,WINDOWRATIOY);
+            rt2.create(WINDOWRATIOX,WINDOWRATIOY);
+
+            lastScene->render(&rt1);
+
+            rt1.display();
+
+            currentScene->render(&rt2);
+
+            rt2.display();
+
+            sf::Sprite sprite1(rt1.getTexture()), sprite2(rt2.getTexture());
+
+            sf::Clock clock;
+            sf::Time deltaTime;
+            float count=0.f, timer = 1.5f;
+
+
+            Resources::DtO.setParameter("texture", sf::Shader::CurrentTexture);
+            Resources::DtO.setParameter("maxTime",timer/2);
+            Resources::DtO.setParameter("max", _window.getSize().x+_window.getSize().y);
+            Resources::DtO.setParameter("expand", false);
+
+            sf::Vector2i ppos = _window.mapCoordsToPixel(lastScene->getPlayer()->getPositionTransition(),*lastScene->getPtrView());
+            sf::Vector2f playerPos(ppos.x,_window.getSize().y - ppos.y); // Fragment Y = 0 is on bottom
+            Resources::DtO.setParameter("pos",playerPos);
+
+            std::cout << playerPos.x << " " << playerPos.y << std::endl;
+
+            bool changed = false;
+
+            while (count < timer) {
+                deltaTime = clock.restart();
+                count += deltaTime.asSeconds();
+
+                Resources::DtO.setParameter("time",count);
+                _window.clear();
+                if (count < timer/2.f) {
+                    _window.setView(*lastScene->getPtrView());
+                    _window.draw(sprite1,&Resources::DtO);
+                }
+                else {
+                    if (!changed) {
+                        changed = true;
+                        Resources::DtO.setParameter("expand", true);
+                    }
+                     Resources::DtO.setParameter("time",count-(timer/2.f));
+                    _window.setView(*currentScene->getPtrView());
+                    _window.draw(sprite2,&Resources::DtO);
+                }
+
+                _window.setView(_window.getDefaultView());
+                _window.display();
+
+            }
+
+            return;
             
         }
     }    

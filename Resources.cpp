@@ -5,6 +5,7 @@ sf::Texture            Resources::tileSet;
 sf::Texture            Resources::linkSet;
 sf::Texture            Resources::textureTest;
 sf::Texture            Resources::dungeon;
+sf::Shader             Resources::DtO;
 
 std::vector<SpriteSheetDescription> Resources::descriptions;
 
@@ -18,6 +19,8 @@ void Resources::load() {
     descriptions = std::vector<SpriteSheetDescription>(spriteDescriptionsQtt);
     descriptions[linkSpritesDescriptions] = loadDescription("linkSheet");
     descriptions[swordDescriptions] = loadDescription("swordSheet");
+
+    if (!DtO.loadFromFile(SHADERPATH+std::string("transitionDtO.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
 }
 
 

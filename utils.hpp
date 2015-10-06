@@ -8,6 +8,7 @@
 #define SCENEEXTENSIONSIZE 6
 #define TEXTURETPATH "Resources/Textures/"
 #define TEXTUREDESCRIPTIONEXTENSION ".description"
+#define SHADERPATH "Resources/Shaders/"
 
 #define TILESIZE 16
 #define TILEOFFSET 1
