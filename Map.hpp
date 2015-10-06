@@ -15,6 +15,7 @@ public:
     Tile* getPtrTile(sf::Vector2i pos);
     std::pair<bool,SceneChanger*> playerInsideExit(sf::Vector2f pos); // Change to Vector2f
     sf::Vector2i getSize();
+    sf::Vector2f getSceneCoord();
 private:
     std::vector<std::vector<int> > _premap;
     std::vector<std::vector<Tile> > _map; // If sceneType == outside

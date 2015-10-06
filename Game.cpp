@@ -88,8 +88,8 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                 
 
                 // Transition animation:
-                sf::View* view = lastScene->getPtrView();
-                sf::Vector2f lastViewCenter = view->getCenter();
+                sf::View view = *lastScene->getPtrView();
+                sf::Vector2f lastViewCenter = view.getCenter();
                 //std::cout << view->getCenter().x << " " << view->getCenter().y << std::endl;
 
                 sf::Clock clock;
@@ -107,7 +107,7 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                 while (count < timer) {
                     deltaTime = clock.restart();
                     count += deltaTime.asSeconds();
-                    view->move(speed*deltaTime.asSeconds());
+                    view.move(speed*deltaTime.asSeconds());
 
                     // Moving the player.
                     if (count > timer*(3.5f/4.f)) {
@@ -118,7 +118,7 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                     // if (count < timer/2.f) view->zoom(1-speedZoom);
                     // else view->zoom(1.f/(1-speedZoom));
 
-                    _window.setView(*view);
+                    _window.setView(view);
                     _window.clear();
                     lastScene->render();
                     currentScene->render();
@@ -127,9 +127,9 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 
                 }
                 
-                view->setCenter(lastViewCenter+offset); // Put the center of the camera in his position (like move(speed*(timer-count)))
+                _currentScene->getPtrView()->setCenter(lastViewCenter+offset); // Put the center of the camera in his position (like move(speed*(timer-count)))
 
-                _currentScene->_view = *view;
+                //_currentScene->_view = *view;
                 
 
 
@@ -149,12 +149,20 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 
             sf::RenderTexture rt1,rt2;
             rt1.create(WINDOWRATIOX,WINDOWRATIOY);
+            rt1.clear(sf::Color::White);
             rt2.create(WINDOWRATIOX,WINDOWRATIOY);
 
             sf::Vector2i ppos = _window.mapCoordsToPixel(lastScene->getPlayer()->getPositionTransition(),*lastScene->getPtrView());
             sf::Vector2f playerPos1(ppos.x,_window.getSize().y - ppos.y); // Fragment Y = 0 is on bottom
 
+            _window.setView(lastScene->_view); // I need the view to draw in the renderTexture correctly
+            sf::View auxView = *lastScene->getPtrView();
+            auxView.setViewport(sf::FloatRect(0,0,1,1)); // Change the viewport to avoid cuttin the scene
+            rt1.setView(auxView);
             lastScene->render(&rt1);
+            _window.setView(_window.getDefaultView());
+            rt1.setView(_window.getDefaultView());
+            // All of this is not needed with the second RenderTexture because his sceneIniCoord will be (0,0)
 
             currentScene->getPlayer()->setPosition(sf::Vector2f(sC->_nextScenePos.x*TILESIZE, sC->_nextScenePos.y*TILESIZE));
             currentScene->render(&rt2);
@@ -186,6 +194,9 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 
             //std::cout << playerPos.x << " " << playerPos.y << std::endl;
 
+            sf::View view = *lastScene->getPtrView();
+            view.setCenter(view.getCenter()-lastScene->getSceneCoord());
+
             bool changed = false;
 
             while (count < timer) {
@@ -195,7 +206,7 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                 Resources::DtO.setParameter("time",count);
                 _window.clear();
                 if (count < timer/2.f) {
-                    _window.setView(*lastScene->getPtrView());
+                    _window.setView(view);
                     _window.draw(sprite1,&Resources::DtO);
                 }
                 else {

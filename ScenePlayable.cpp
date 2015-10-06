@@ -36,7 +36,7 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
 ScenePlayable::~ScenePlayable(){}
 
 sf::Vector2f ScenePlayable::getSceneCoord() {
-    return _map.getPtrTile(sf::Vector2i(0,0))->getPosition();
+    return _map.getSceneCoord();
 }
 
 sf::Vector2i ScenePlayable::getMapSize() {

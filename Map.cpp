@@ -99,3 +99,8 @@ Tile* Map::getPtrTile(sf::Vector2i pos) {
 sf::Vector2i Map::getSize() {
     return sf::Vector2i(_premap.size(),_premap[0].size());
 }
+
+
+sf::Vector2f Map::getSceneCoord() {
+    return _mapIniCoord;
+}
