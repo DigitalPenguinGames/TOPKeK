@@ -20,6 +20,7 @@ public:
     void attack();
 
     sf::Vector2f getPositionTransition();
+    directions getDirection();
 
 private:
     directions _dir;

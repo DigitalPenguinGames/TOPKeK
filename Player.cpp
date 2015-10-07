@@ -88,3 +88,7 @@ sf::Vector2f Player::getPositionTransition() {
     pos.y += _walkBounds.top + _walkBounds.height/2;
     return pos;
 }
+
+directions Player::getDirection() {
+    return _dir;
+}

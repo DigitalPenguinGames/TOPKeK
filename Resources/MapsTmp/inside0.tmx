@@ -27,7 +27,7 @@
  <objectgroup name="Exits" opacity="0.97">
   <object id="30" gid="23" x="112" y="32" width="16" height="16">
    <properties>
-    <property name="scene" value="ini"/>
+    <property name="scene" value="hub"/>
     <property name="x" value="4"/>
     <property name="y" value="2"/>
    </properties>
