@@ -28,7 +28,7 @@ public:
     Player* getPlayer();
     void setPlayer(Player* p);
 
-    sf::Vector2i getMapSize();
+    sf::Vector2i getMapSize(); // in number of tiles
     sf::Vector2f getSceneCoord();
 
     void init(sf::Vector2f sceneIniCoord) = 0;
@@ -42,6 +42,7 @@ protected:
     status::gameStatus _status;
 
     void renderSorted(sf::RenderTarget* target, std::vector<Collisionable*>& cols);
+    void centerView();
 
 private:
     void display();

@@ -71,8 +71,30 @@ void ScenePlayable::renderSorted(sf::RenderTarget* target, std::vector<Collision
     }
 }
 
+void ScenePlayable::centerView() {
+    sf::Vector2f finalPos;
+    sf::Vector2f viewSize = _view.getSize();
+    sf::Vector2f mapSize = sf::Vector2f(getMapSize().x * TILESIZE, getMapSize().y * TILESIZE);
+    directions dir = _player->getDirection();
+    sf::Vector2f speed(TILESIZE,TILESIZE);
+    sf::Vector2f playerPrediction;
+    playerPrediction.x = (dir == directions::left ? -speed.x : (dir == directions::right ? speed.x : 0));
+    playerPrediction.y = (dir == directions::up ? -speed.y : (dir == directions::down ? speed.y : 0));
+    sf::Vector2f playerPos = _player->getPositionTransition()+ playerPrediction;
+    
+    if (mapSize.x < viewSize.x) finalPos.x = mapSize.x/2 + _sceneIniCoord.x;
+    else finalPos.x = std::max(viewSize.x/2 + _sceneIniCoord.x, std::min(playerPos.x, _sceneIniCoord.x + mapSize.x - viewSize.x/2));
+    if (mapSize.y < viewSize.y) finalPos.y = mapSize.y/2 + _sceneIniCoord.y;
+    else finalPos.y = std::max(viewSize.y/2 + _sceneIniCoord.y, std::min(playerPos.y, _sceneIniCoord.y + mapSize.y - viewSize.y/2));
+
+    sf::Vector2f movement = (finalPos - _view.getCenter())*(1.0f/FRAMERATE);
+    _view.setCenter(_view.getCenter()+movement);
+
+}
+
 
 void ScenePlayable::display() {
+    centerView();
     _window->clear();
     bool drawMenu = false;
     switch(_status){

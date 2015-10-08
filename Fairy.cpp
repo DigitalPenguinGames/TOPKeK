@@ -30,6 +30,7 @@ void Fairy::update(float deltatime, sf::Vector2f mousePos) {
     velocity.x = 0.8*velocity.x + 0.2*(mousePos.x - this->Effect::getPosition().x ) * deltatime;
     velocity.y = 0.8*velocity.y + 0.2*(mousePos.y - this->Effect::getPosition().y ) * deltatime;
     this->move(velocity);
+    _sprite.setPosition(this->Sprite::getPosition().x,this->Sprite::getPosition().y-4);
 
 }
 

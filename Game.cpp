@@ -15,9 +15,9 @@ Game::~Game() {
 
 void Game::start() {
     loadScenes();
-    changeScene(new SceneChanger(sf::Vector2f(0,0),"ini",sf::Vector2f(0,0)));
+    changeScene(new SceneChanger(sf::Vector2f(0,0),"hub",sf::Vector2f(0,0)));
 
-    OutsideScene* aux = dynamic_cast<OutsideScene*>((*_scenes.find("ini")).second);
+    OutsideScene* aux = dynamic_cast<OutsideScene*>((*_scenes.find("hub")).second);
     aux->setPlayer(new Player());
 
     while (_currentScene != nullptr) {
