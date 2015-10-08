@@ -9,6 +9,7 @@ Fairy::Fairy() {
     maxLifes = 3;
     velocity.x = 0.0; velocity.y = 0.0;
     centerPosition.x = 0; centerPosition.y = 0;
+
 }
 
 Fairy::~Fairy() { }
