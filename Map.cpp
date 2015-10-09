@@ -97,7 +97,14 @@ Tile* Map::getPtrTile(sf::Vector2i pos) {
 }
 
 sf::Vector2i Map::getSize() {
-    return sf::Vector2i(_premap.size(),_premap[0].size());
+    switch (_mapType) {
+        case sceneTypes::dungeon:
+        case sceneTypes::lightDungeon:
+            return sf::Vector2i(16,11); // Full Hardcoded
+        case sceneTypes::outside:
+            return sf::Vector2i(_premap.size(),_premap[0].size());    
+    }
+    return sf::Vector2i(0,0); // This will not be never called
 }
 
 
