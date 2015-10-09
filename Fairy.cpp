@@ -63,4 +63,6 @@ void Fairy::setVelocity(const sf::Vector2f &value) {
     velocity = value;
 }
 
-
+sf::Vector2f Fairy::getPosition() const {
+    return sf::Sprite::getPosition();
+}

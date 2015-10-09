@@ -16,7 +16,7 @@ public:
     void run();
     void killScene();
 
-    sceneTypes getType();
+    virtual sceneTypes getType();
     sf::View* getPtrView();
 protected:
     Game* _game;

@@ -25,6 +25,8 @@ public:
 
     float getCenterAngle() const;
 
+    sf::Vector2f getPosition() const;
+
 private:
 
     int lifes;

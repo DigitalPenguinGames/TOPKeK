@@ -14,6 +14,7 @@ sf::Texture            Resources::linkSetBL;
 sf::Texture            Resources::textureTest;
 sf::Texture            Resources::dungeon;
 sf::Shader             Resources::DtO;
+sf::Shader             Resources::sLighting;
 sf::Font               Resources::pauseMenuFont;
 
 std::vector<SpriteSheetDescription> Resources::descriptions;
@@ -38,6 +39,7 @@ void Resources::load() {
     descriptions[swordDescriptions] = loadDescription("swordSheet");
 
     if (!DtO.loadFromFile(SHADERPATH+std::string("transitionDtO.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
+    if (!sLighting.loadFromFile(SHADERPATH+std::string("lighting.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
 
     if (! pauseMenuFont.loadFromFile("Resources/Fonts/font.otf")) exit(EXIT_FAILURE);
 

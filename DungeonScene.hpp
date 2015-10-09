@@ -11,7 +11,9 @@ public:
 
     void init(sf::Vector2f sceneIniCoord);
 
-private:
+    sceneTypes getType();
+
+protected:
     void update(float deltaTime);
     void render(sf::RenderTarget* target);
 

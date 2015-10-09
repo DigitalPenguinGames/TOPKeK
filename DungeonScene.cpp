@@ -40,3 +40,7 @@ void DungeonScene::render(sf::RenderTarget* target) {
 
     renderSorted(target, collisionables);
 }
+
+sceneTypes DungeonScene::getType(){
+    return sceneTypes::dungeon;
+}

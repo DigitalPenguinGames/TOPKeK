@@ -15,9 +15,9 @@ Game::~Game() {
 
 void Game::start() {
     loadScenes();
-    changeScene(new SceneChanger(sf::Vector2f(0,0),"hub",sf::Vector2f(0,0)));
+    changeScene(new SceneChanger(sf::Vector2f(0,0),"inside0",sf::Vector2f(0,0)));
 
-    OutsideScene* aux = dynamic_cast<OutsideScene*>((*_scenes.find("hub")).second);
+    DungeonScene* aux = dynamic_cast<DungeonScene*>((*_scenes.find("inside0")).second);
     aux->setPlayer(new Player());
 
     while (_currentScene != nullptr) {
@@ -155,13 +155,10 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             sf::Vector2i ppos = _window.mapCoordsToPixel(lastScene->getPlayer()->getPositionTransition(),*lastScene->getPtrView());
             sf::Vector2f playerPos1(ppos.x,_window.getSize().y - ppos.y); // Fragment Y = 0 is on bottom
 
-            _window.setView(lastScene->_view); // I need the view to draw in the renderTexture correctly
             sf::View auxView = *lastScene->getPtrView();
             auxView.setViewport(sf::FloatRect(0,0,1,1)); // Change the viewport to avoid cuttin the scene
-            rt1.setView(auxView);
+            rt1.setView(auxView); // I need the view to draw in the renderTexture correctly
             lastScene->render(&rt1);
-            _window.setView(_window.getDefaultView());
-            rt1.setView(_window.getDefaultView());
             // All of this is not needed with the second RenderTexture because his sceneIniCoord will be (0,0)
 
             currentScene->getPlayer()->setPosition(sf::Vector2f(sC->_nextScenePos.x*TILESIZE, sC->_nextScenePos.y*TILESIZE));
@@ -251,7 +248,6 @@ void Game::loadScenes() {
 }
 
 void Game::loadScene(std::string sceneName) {
-    std::cout << sceneName.substr(0,sceneName.length()-sizeof(SCENEEXTENSION)+1) << std::endl;
 
     std::ifstream t(SCENEPATH + sceneName);
     std::string str((std::istreambuf_iterator<char>(t)),
@@ -262,12 +258,18 @@ void Game::loadScene(std::string sceneName) {
     std::string sceneType;
     description >> sceneType;
     Scene* aux;
+
+    std::cout << sceneName.substr(0,sceneName.length()-sizeof(SCENEEXTENSION)+1) << " " << sceneType <<  std::endl;
+
     switch(myStoi(sceneType)) {
         case sceneTypes::outside:
             aux = new OutsideScene(this,&_window,sceneTypes::outside, sceneName, str);
             break;
         case sceneTypes::dungeon:
             aux = new DungeonScene(this,&_window,sceneTypes::dungeon, sceneName, str);
+            break;
+        case sceneTypes::lightedDungeon:
+            aux = new LightedDungeonScene(this,&_window,sceneTypes::lightedDungeon, sceneName, str);
             break;
     }
     

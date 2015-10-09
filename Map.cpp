@@ -61,6 +61,7 @@ void Map::init(sf::Vector2f sceneIniCoord) {
                     _map[i][j] = (Tile(_premap[i][j],pos));
                 }
             break;
+        case sceneTypes::lightedDungeon:
         case sceneTypes::dungeon:
             _background = new Background(_mapIniCoord);
             break;
@@ -75,6 +76,7 @@ void Map::draw(sf::RenderTarget* w) {
                 for (int i = 0; i < int(_map.size()); ++i)
                      _map[i][j].draw(w);
             break;
+        case sceneTypes::lightedDungeon:
         case sceneTypes::dungeon:
             _background->draw(w);
             break;
@@ -99,7 +101,7 @@ Tile* Map::getPtrTile(sf::Vector2i pos) {
 sf::Vector2i Map::getSize() {
     switch (_mapType) {
         case sceneTypes::dungeon:
-        case sceneTypes::lightDungeon:
+        case sceneTypes::lightedDungeon:
             return sf::Vector2i(16,11); // Full Hardcoded
         case sceneTypes::outside:
             return sf::Vector2i(_premap.size(),_premap[0].size());    
