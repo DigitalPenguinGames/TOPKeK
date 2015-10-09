@@ -23,6 +23,7 @@ SOURCES += main.cpp \
 		Collisionable.cpp \
     	Fairy.cpp \
     	Effect.cpp \
+        Light.cpp \
     GUI/Button.cpp \
     GUI/Container.cpp \
     GUI/Frame.cpp \
@@ -51,6 +52,7 @@ HEADERS += utils.hpp \
 		Collisionable.hpp \
     	Fairy.hpp \
     	Effect.hpp \
+        Light.hpp \
     GUI/Button.hpp \
     GUI/Container.hpp \
     GUI/ImgButton.hpp \

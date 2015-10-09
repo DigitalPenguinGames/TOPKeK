@@ -3,6 +3,14 @@
 // sf::Texture        Resources::....
 sf::Texture            Resources::tileSet;
 sf::Texture            Resources::linkSet;
+sf::Texture            Resources::linkSetT;
+sf::Texture            Resources::linkSetB;
+sf::Texture            Resources::linkSetL;
+sf::Texture            Resources::linkSetR;
+sf::Texture            Resources::linkSetTR;
+sf::Texture            Resources::linkSetTL;
+sf::Texture            Resources::linkSetBR;
+sf::Texture            Resources::linkSetBL;
 sf::Texture            Resources::textureTest;
 sf::Texture            Resources::dungeon;
 sf::Shader             Resources::DtO;
@@ -13,7 +21,15 @@ std::vector<SpriteSheetDescription> Resources::descriptions;
 void Resources::load() {
     //...loadFromFile();
     tileSet.loadFromFile(TEXTURETPATH+std::string("OverworldTiles.png"));
-    linkSet.loadFromFile(TEXTURETPATH+std::string("link2.png"));
+    linkSet.loadFromFile(TEXTURETPATH+std::string("link.png"));
+    linkSetT.loadFromFile(TEXTURETPATH+std::string("linkTop.png"));
+    linkSetB.loadFromFile(TEXTURETPATH+std::string("linkBot.png"));
+    linkSetL.loadFromFile(TEXTURETPATH+std::string("linkLeft.png"));
+    linkSetR.loadFromFile(TEXTURETPATH+std::string("linkRight.png"));
+    linkSetTR.loadFromFile(TEXTURETPATH+std::string("linkTopRight.png"));
+    linkSetTL.loadFromFile(TEXTURETPATH+std::string("linkTopLeft.png"));
+    linkSetBR.loadFromFile(TEXTURETPATH+std::string("linkBotRight.png"));
+    linkSetBL.loadFromFile(TEXTURETPATH+std::string("linkBotLeft.png"));
     textureTest.loadFromFile(TEXTURETPATH+std::string("textureTest.png"));
     dungeon.loadFromFile(TEXTURETPATH+std::string("dungeon.png"));
 
