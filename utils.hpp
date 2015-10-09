@@ -81,10 +81,16 @@ enum swordtypes {
 
 // Directions
 enum directions {
-    down            ,
-    left             ,
-    up                ,
-    right             ,
+    down    , // This have
+    left    , // to be
+    up      , // in this
+    right   , // order
+    none    ,
+    topRight,
+    topLeft ,
+    botRight,
+    botLeft ,
+
     directionsQtty
 };
 
