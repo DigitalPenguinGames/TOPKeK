@@ -25,6 +25,7 @@ SOURCES += main.cpp \
     	Fairy.cpp \
     	Effect.cpp \
         Light.cpp \
+        LightSprite.cpp \
     GUI/Button.cpp \
     GUI/Container.cpp \
     GUI/Frame.cpp \
@@ -55,6 +56,7 @@ HEADERS += utils.hpp \
     	Fairy.hpp \
     	Effect.hpp \
         Light.hpp \
+        LightSprite.hpp \
     GUI/Button.hpp \
     GUI/Container.hpp \
     GUI/ImgButton.hpp \

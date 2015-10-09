@@ -15,10 +15,10 @@ Game::~Game() {
 
 void Game::start() {
     loadScenes();
-    changeScene(new SceneChanger(sf::Vector2f(0,0),"inside0",sf::Vector2f(0,0)));
-
     DungeonScene* aux = dynamic_cast<DungeonScene*>((*_scenes.find("inside0")).second);
     aux->setPlayer(new Player());
+    changeScene(new SceneChanger(sf::Vector2f(0,0),"inside0",sf::Vector2f(0,0)));
+
 
     while (_currentScene != nullptr) {
         _currentScene->run();

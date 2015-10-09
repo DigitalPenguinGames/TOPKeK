@@ -13,8 +13,9 @@ void LightedDungeonScene::init(sf::Vector2f sceneIniCoord) {
     _texture.create(DUNGEONSIZEX,DUNGEONSIZEY);
 
     Resources::sLighting.setParameter("texture", sf::Shader::CurrentTexture);
-    Resources::sLighting.setParameter("min", 100);
-    Resources::sLighting.setParameter("max", 400);
+    Resources::sLighting.setParameter("min", 10);
+    Resources::sLighting.setParameter("max", 900);
+    _player->setLight(&_light);
 }
 
 void LightedDungeonScene::update(float deltaTime) {
@@ -36,4 +37,9 @@ void LightedDungeonScene::render(sf::RenderTarget* target) {
     lightPos.y = _window->getSize().y - lightPos.y;
     Resources::sLighting.setParameter("posLight", lightPos);
     target->draw(aux, &Resources::sLighting);
+}
+
+void LightedDungeonScene::changeScene(SceneChanger* sC) {
+    Scene::changeScene(sC);
+    _player->setLight(nullptr);
 }

@@ -17,6 +17,8 @@ private:
     sf::RenderTexture _texture;
     void update(float deltaTime);
     void render(sf::RenderTarget* target);
+
+    void changeScene(SceneChanger *sC);
 };
 
 #endif

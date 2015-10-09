@@ -5,6 +5,7 @@
 #include "Collisionable.hpp"
 #include "Resources.hpp"
 #include "Projectile.hpp"
+#include "LightSprite.hpp"
 
 #define ATTACKTIMERANIMATION 0.5
 #define ELAPSEDWALKING 0.18
@@ -22,10 +23,13 @@ public:
     sf::Vector2f getPositionTransition();
     directions getDirection();
 
+    void setLight(Light* light);
+
 private:
     directions _dir;
     linkActions _action;
     SpriteSheetDescription _description;
+    LightSprite _lightSprite;
 
     float _elapsedAnimation;
     int _currentAnimation;

@@ -29,7 +29,7 @@ protected:
     void render();
     virtual void render(sf::RenderTarget* target);
     void initView(sf::Vector2i windowSize);
-    void changeScene(SceneChanger *sC);
+    virtual void changeScene(SceneChanger *sC);
 
     virtual void display();
 private: 
