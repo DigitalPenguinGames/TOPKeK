@@ -15,6 +15,7 @@ public:
 private:
     Light _light;
     sf::RenderTexture _texture;
+    void update(float deltaTime);
     void render(sf::RenderTarget* target);
 };
 

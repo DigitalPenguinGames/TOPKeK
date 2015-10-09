@@ -17,6 +17,11 @@ void LightedDungeonScene::init(sf::Vector2f sceneIniCoord) {
     Resources::sLighting.setParameter("max", 400);
 }
 
+void LightedDungeonScene::update(float deltaTime) {
+    DungeonScene::update(deltaTime);
+    _light.setPosition(_fairy->getPosition());
+}
+
 void LightedDungeonScene::render(sf::RenderTarget* target) {
     sf::View auxView = _view;
     auxView.setViewport(sf::FloatRect(0,0,1,1)); // Change the viewport to avoid cuttin the scene
@@ -27,7 +32,7 @@ void LightedDungeonScene::render(sf::RenderTarget* target) {
     sf::Sprite aux(_texture.getTexture());
     aux.setPosition(_sceneIniCoord);
 
-    sf::Vector2f lightPos(_window->mapCoordsToPixel(_fairy->getPosition(),_view));
+    sf::Vector2f lightPos(_window->mapCoordsToPixel(_light.getPosition(),_view));
     lightPos.y = _window->getSize().y - lightPos.y;
     Resources::sLighting.setParameter("posLight", lightPos);
     target->draw(aux, &Resources::sLighting);
