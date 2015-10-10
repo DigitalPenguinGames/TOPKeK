@@ -10,7 +10,7 @@ LightSprite::LightSprite(SpriteSheetDescription description, std::vector<sf::Tex
     for (unsigned int i = 0; i < _sprites.size(); ++i) _sprites[i].setTexture(*textures[i]);
 }
 
-LightSprite::~LightSprite() {}
+LightSprite::~LightSprite() { }
 
 
 

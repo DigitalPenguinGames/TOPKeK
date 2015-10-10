@@ -19,15 +19,14 @@ Player::Player(){
 
     std::vector<sf::Texture*> textures(9);
     textures[directions::none]  = &Resources::linkSet;
-    textures[directions::down]  = &Resources::linkSetB;
     textures[directions::up]    = &Resources::linkSetT;
     textures[directions::left]  = &Resources::linkSetL;
+    textures[directions::down]  = &Resources::linkSetB;
     textures[directions::right] = &Resources::linkSetR;
-
-    textures[directions::botLeft]  = &Resources::linkSetBL;
-    textures[directions::botRight] = &Resources::linkSetBR;
     textures[directions::topLeft]  = &Resources::linkSetTL;
+    textures[directions::botLeft]  = &Resources::linkSetBL;
     textures[directions::topRight] = &Resources::linkSetTR;
+    textures[directions::botRight] = &Resources::linkSetBR;
 
     _lightSprite = LightSprite(_description, textures);
 }
@@ -83,9 +82,11 @@ void Player::move(directions dir) {
     if (_attacking) return;
     _moving = true;
     _dir = dir;
+        SoundManager::playSound("attack");
 }
     
 void Player::attack() {
+
     _attacking = true;
     _action = linkActions::attack;
     _elapsedAttack = ATTACKTIMERANIMATION;

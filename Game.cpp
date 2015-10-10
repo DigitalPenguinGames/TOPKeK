@@ -5,6 +5,7 @@ Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Clos
     Resources::load();
     _currentScene = nullptr;
     _lastScene = nullptr;
+    SoundManager::load();
 }
 
 Game::~Game() {

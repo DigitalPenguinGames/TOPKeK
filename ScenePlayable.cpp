@@ -21,14 +21,6 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
     layout->add(resB);
     _menu.setLayout(layout);
 
-
-/*
-    w->draw(_menu);
-    w->display();
-    while(1);
-*/
-    //std::cout << "dad:" <<&(*w) << std::endl;
-
     _status = status::running;
     _fairy = new Fairy();
 }

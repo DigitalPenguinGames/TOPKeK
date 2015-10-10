@@ -32,6 +32,8 @@
 #include <queue> // priority queue
 #include <functional> // priority queue stuff
 
+#include "SoundManager.hpp"
+
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>

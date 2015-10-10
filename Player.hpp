@@ -14,34 +14,36 @@ class Player : public Collisionable {
 public:
     Player();
     ~Player();
+
     void update(float deltaTime);
     void draw(sf::RenderTarget* w);
 
-    void move(directions dir);
     void attack();
+    void move(directions dir);
 
-    sf::Vector2f getPositionTransition();
     directions getDirection();
+    sf::Vector2f getPositionTransition();
 
     void setLight(Light* light);
 
 private:
+
     directions _dir;
     linkActions _action;
-    SpriteSheetDescription _description;
     LightSprite _lightSprite;
+    SpriteSheetDescription _description;
 
-    float _elapsedAnimation;
     int _currentAnimation;
+    float _elapsedAnimation;
+
+    bool _moving;
 
     bool _attacking;
     float _elapsedAttack;
 
-    bool _moving;
-
+    Projectile _sword;
     sf::IntRect _walkBounds;
 
-    Projectile _sword;
 
 
 };
