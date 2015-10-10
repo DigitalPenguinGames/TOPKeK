@@ -14,5 +14,5 @@ void main()
     else if (distance < min) gl_FragColor = texture2D(texture, gl_TexCoord[0].xy) * gl_Color;
     else gl_FragColor = texture2D(texture, gl_TexCoord[0].xy) * vec4(delta,delta,delta,1.0);
     //if (delta < posDelta) gl_FragColor = vec4(posDelta,posDelta,posDelta,1);
-     
+
 }
