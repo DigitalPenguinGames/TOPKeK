@@ -13,16 +13,23 @@ public:
     static void load();
 
     static void playSound(std::string name);
-
+    static void playMusic(std::string name);
+    static void stopMusic(std::string name);
+    static void pauseMusic(std::string name);
+    static void setLoop(bool loop, std::string name);
+    static void setPitch(float pitch, std::string name);
+    static void setVolume(float volume, std::string name);
+    static void setPosition(float x, float y, float z, std::string name);
 
 private:
 
-     static sf::Sound  attack;
+     static sf::Music menuMusic;
      static sf::SoundBuffer attackBuf;
 
-
      static std::map<std::string, sf::Sound> soundMap;
-     static std::map<std::string, sf::Sound>::iterator it;
+     static std::map<std::string, sf::Sound>::iterator sit;
+     static std::map<std::string, sf::Music> musicMap;
+     static std::map<std::string, sf::Music>::iterator mit;
 
 };
 

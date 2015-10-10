@@ -82,11 +82,11 @@ void Player::move(directions dir) {
     if (_attacking) return;
     _moving = true;
     _dir = dir;
-        SoundManager::playSound("attack");
 }
     
 void Player::attack() {
 
+    SoundManager::playSound("attack");
     _attacking = true;
     _action = linkActions::attack;
     _elapsedAttack = ATTACKTIMERANIMATION;
