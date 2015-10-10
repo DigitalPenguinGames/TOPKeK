@@ -12,7 +12,7 @@ void LightedDungeonScene::init(sf::Vector2f sceneIniCoord) {
     _light.setPosition(sceneIniCoord + sf::Vector2f(100,100));
     _texture.create(DUNGEONSIZEX,DUNGEONSIZEY);
 
-    Resources::sLighting.setParameter("texture" , sf::Texture ());//, sf::Shader::CurrentTexture);
+    Resources::sLighting.setParameter("texture" , sf::Shader::CurrentTexture);
     Resources::sLighting.setParameter("min", 10);
     Resources::sLighting.setParameter("max", 900);
     _player->setLight(&_light);
