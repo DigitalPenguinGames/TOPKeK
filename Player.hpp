@@ -24,6 +24,7 @@ public:
     directions getDirection();
     sf::Vector2f getPositionTransition();
 
+    void setPosition(sf::Vector2f pos);
     void setLight(Light* light);
 
 private:

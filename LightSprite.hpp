@@ -14,10 +14,14 @@ public:
     void draw(sf::RenderTarget* target);
 
     void setLight(Light* light);
+
+    void setPosition(sf::Vector2f pos);
+    void setRotation(float rotation);
 private:
     std::vector<sf::Sprite> _sprites;
     Light* _light;
     sf::Vector2f _pos;
+    float _rotation;
     directions _dir;
     int _action;
     int _currentAnimation;

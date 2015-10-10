@@ -15,7 +15,7 @@ class Collisionable {
      sf::Vector2f getPosition();
      sf::IntRect getBounds();
 
-     void setPosition(sf::Vector2f pos);
+     virtual void setPosition(sf::Vector2f pos);
 
  protected:
      sf::Sprite _sprite;

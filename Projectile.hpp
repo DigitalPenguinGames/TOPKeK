@@ -4,6 +4,7 @@
 #include "utils.hpp"
 #include "Collisionable.hpp"
 #include "Resources.hpp"
+#include "LightSprite.hpp"
 
 class Projectile : public Collisionable {
 public:
@@ -16,7 +17,11 @@ public:
 
     void draw(sf::RenderTarget* w);
 
+    void setPosition(sf::Vector2f pos);
+    void setLight(Light* light);
+
 private:
+    LightSprite _lightSprite;
     bool willDie; // When collision, the proyectile will disapear?
     float timeToDespawn;
     float deltaToDespawn;

@@ -3,6 +3,7 @@
 LightSprite::LightSprite(){}
 
 LightSprite::LightSprite(SpriteSheetDescription description, std::vector<sf::Texture*> textures) :
+    _rotation(0),
     _description(description)
 {
     _light = nullptr;
@@ -22,19 +23,22 @@ void LightSprite::update( sf::Vector2f pos, int dir, int action,int currentAnima
 }
 
 void LightSprite::draw(sf::RenderTarget* target) {
-    if (_light == nullptr) {
-        _sprites[directions::none].setTextureRect(_description[_action*directionsQtty+_dir][_currentAnimation%_description[_action*directionsQtty+_dir].size()]);
-        _sprites[directions::none].setPosition(_pos);
-        target->draw(_sprites[directions::none]);
-    }
-    else {
-        directions dir = pointsToDirection(_pos, _light->getPosition());
-        _sprites[dir].setTextureRect(_description[_action*directionsQtty+_dir][_currentAnimation%_description[_action*directionsQtty+_dir].size()]);
-        _sprites[dir].setPosition(_pos);
-        target->draw(_sprites[dir]);
-    }
+    directions dir = directions::none;
+    if (_light != nullptr) dir = pointsToDirection(_pos, _light->getPosition());
+    _sprites[dir].setTextureRect(_description[_action*4+_dir][_currentAnimation%_description[_action*4+_dir].size()]);
+    _sprites[dir].setPosition(_pos);
+    _sprites[dir].setRotation(_rotation);
+    target->draw(_sprites[dir]);
 }
 
 void LightSprite::setLight(Light* light) {
     _light = light;
+}
+
+void LightSprite::setPosition(sf::Vector2f pos) {
+    _pos = pos;
+}
+
+void LightSprite::setRotation(float rotation){
+    _rotation = rotation;
 }

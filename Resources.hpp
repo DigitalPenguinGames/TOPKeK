@@ -10,6 +10,7 @@ public:
     static sf::Shader  DtO;
     static sf::Shader sLighting;
     static sf::Texture tileSet;
+    static sf::Texture tileSetCols;
     static sf::Texture linkSet;
     static sf::Texture linkSetT;
     static sf::Texture linkSetB;

@@ -16,9 +16,9 @@ Game::~Game() {
 
 void Game::start() {
     loadScenes();
-    DungeonScene* aux = dynamic_cast<DungeonScene*>((*_scenes.find("inside0")).second);
+    ScenePlayable* aux = dynamic_cast<ScenePlayable*>((*_scenes.find("hub")).second);
     aux->setPlayer(new Player());
-    changeScene(new SceneChanger(sf::Vector2f(0,0),"inside0",sf::Vector2f(0,0)));
+    changeScene(new SceneChanger(sf::Vector2f(0,0),"hub",sf::Vector2f(0,0)));
 
 
     while (_currentScene != nullptr) {
@@ -144,9 +144,7 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             ScenePlayable* lastScene = dynamic_cast<ScenePlayable*>(_lastScene);
             ScenePlayable* currentScene = dynamic_cast<ScenePlayable*>(_currentScene);
 
-            currentScene->setPlayer(lastScene->getPlayer());
 
-            _currentScene->init();
 
             sf::RenderTexture rt1,rt2;
             rt1.create(WINDOWRATIOX,WINDOWRATIOY);
@@ -162,6 +160,9 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             lastScene->render(&rt1);
             // All of this is not needed with the second RenderTexture because his sceneIniCoord will be (0,0)
 
+            currentScene->setPlayer(lastScene->getPlayer());
+            _currentScene->init();
+            
             currentScene->getPlayer()->setPosition(sf::Vector2f(sC->_nextScenePos.x*TILESIZE, sC->_nextScenePos.y*TILESIZE));
             currentScene->render(&rt2);
 

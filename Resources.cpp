@@ -2,6 +2,7 @@
 
 // sf::Texture        Resources::....
 sf::Texture            Resources::tileSet;
+sf::Texture            Resources::tileSetCols;
 sf::Texture            Resources::linkSet;
 sf::Texture            Resources::linkSetT;
 sf::Texture            Resources::linkSetB;
@@ -22,6 +23,7 @@ std::vector<SpriteSheetDescription> Resources::descriptions;
 void Resources::load() {
     //...loadFromFile();
     tileSet.loadFromFile(TEXTURETPATH+std::string("OverworldTiles.png"));
+    tileSetCols.loadFromFile(TEXTURETPATH+std::string("OverworldTilesColision.png"));
     linkSet.loadFromFile(TEXTURETPATH+std::string("link.png"));
     linkSetT.loadFromFile(TEXTURETPATH+std::string("linkTop.png"));
     linkSetB.loadFromFile(TEXTURETPATH+std::string("linkBot.png"));

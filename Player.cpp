@@ -2,9 +2,8 @@
 
 Player::Player(){
 
-    _sprite.setPosition(100,100); // Hardcoded
-    _sprite.setTexture(Resources::linkSet);
-
+    _sprite.setPosition(70,70); // Hardcoded
+    
     _dir = directions::down;
     _action = linkActions::move;
     _description = Resources::descriptions[linkSpritesDescriptions];
@@ -41,8 +40,7 @@ void Player::update(float deltaTime) {
             _currentAnimation = (_currentAnimation+1)%_description[_action*directionsQtty+_dir].size();
         }
     }
-    _sprite.setTextureRect(_description[_action*directionsQtty+_dir][_currentAnimation%_description[_action*directionsQtty+_dir].size()]);
-
+    
     if (_attacking) {
         _elapsedAttack -= deltaTime;
         if (_elapsedAttack <= 0) {
@@ -82,7 +80,7 @@ void Player::move(directions dir) {
     if (_attacking) return;
     _moving = true;
     _dir = dir;
-        SoundManager::playSound("attack");
+    //SoundManager::playSound("attack");
 }
     
 void Player::attack() {
@@ -94,15 +92,17 @@ void Player::attack() {
     // gd:This code will be at the Sword class (?):D
     // gb:Not a good point, because the player is setting "His" object sword where he decide to do.
     // gb:Sword do not have to know that it is beeing placed on a place or another.
-    sf::Vector2f size = sf::Vector2f(_sprite.getGlobalBounds().width,_sprite.getGlobalBounds().height);
+   
+    // sf::Vector2f size = sf::Vector2f(_sprite.getGlobalBounds().width,_sprite.getGlobalBounds().height);
+   
     _sword.setPosition(sf::Vector2f(        // V posar la posició del player
-                    _sword.getPosition().x + ((size.x/2+2) * (_dir == directions::up   ))
-                                           + ((size.x/2-3) * (_dir == directions::down ))
-                                           + ((size.x-5)   * (_dir == directions::right))
+                    _sword.getPosition().x + ((10) * (_dir == directions::up   ))
+                                           + ((5) * (_dir == directions::down ))
+                                           + ((11)   * (_dir == directions::right))
                                            + (4            * (_dir == directions::left )),
-                    _sword.getPosition().y + ((size.y/2+4) * (_dir == directions::right))
-                                           + ((size.y/2-3) * (_dir == directions::left ))
-                                           + ((size.y-2-3) * (_dir == directions::down ))
+                    _sword.getPosition().y + ((12) * (_dir == directions::right))
+                                           + ((5) * (_dir == directions::left ))
+                                           + ((11) * (_dir == directions::down ))
                                            + (4            * (_dir == directions::up   ))
                     ));
 }
@@ -119,6 +119,12 @@ directions Player::getDirection() {
 }
 
 
+void Player::setPosition(sf::Vector2f pos) {
+    _lightSprite.setPosition(pos);
+    _sprite.setPosition(pos);
+}
+
 void Player::setLight(Light* light) {
     _lightSprite.setLight(light);
+    _sword.setLight(light);
 }
