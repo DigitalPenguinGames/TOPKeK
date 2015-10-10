@@ -14,6 +14,7 @@ SOURCES += main.cpp \
 		ScenePlayable.cpp \
 		OutsideScene.cpp \
 		DungeonScene.cpp \
+        LightedDungeonScene.cpp \
 		Map.cpp \
 		Background.cpp \
 		Tile.cpp \
@@ -23,6 +24,8 @@ SOURCES += main.cpp \
 		Collisionable.cpp \
     	Fairy.cpp \
     	Effect.cpp \
+        Light.cpp \
+        LightSprite.cpp \
     GUI/Button.cpp \
     GUI/Container.cpp \
     GUI/Frame.cpp \
@@ -42,6 +45,7 @@ HEADERS += utils.hpp \
 		ScenePlayable.hpp \
 		OutsideScene.hpp \
 		DungeonScene.hpp \
+        LightedDungeonScene.hpp \
 		Map.hpp \
 		Background.hpp \
 		Tile.hpp \
@@ -51,6 +55,8 @@ HEADERS += utils.hpp \
 		Collisionable.hpp \
     	Fairy.hpp \
     	Effect.hpp \
+        Light.hpp \
+        LightSprite.hpp \
     GUI/Button.hpp \
     GUI/Container.hpp \
     GUI/ImgButton.hpp \

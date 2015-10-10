@@ -50,7 +50,8 @@ namespace status{
 //Scenes
 enum sceneTypes {
     outside = 0,
-    dungeon = 1
+    dungeon = 1,
+    lightedDungeon = 2,
 };
 
 // SpriteSheets
@@ -80,10 +81,16 @@ enum swordtypes {
 
 // Directions
 enum directions {
-    down            ,
-    left             ,
-    up                ,
-    right             ,
+    down    , // This have
+    left    , // to be
+    up      , // in this
+    right   , // order
+    none    ,
+    topRight,
+    topLeft ,
+    botRight,
+    botLeft ,
+
     directionsQtty
 };
 
@@ -102,5 +109,7 @@ float getAngle(const sf::Vector2f &orig,const sf::Vector2f &des);
 float getModule(const sf::Vector2f &orig, const sf::Vector2f &des);
 
 bool isCollisioning(sf::Vector2f point1, float radius1, sf::Vector2f point2, float radius2);
+
+directions pointsToDirection(sf::Vector2f pos1, sf::Vector2f pos2);
 
 #endif

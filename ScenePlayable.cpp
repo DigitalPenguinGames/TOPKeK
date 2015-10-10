@@ -115,3 +115,49 @@ void ScenePlayable::display() {
     }
     _window->display();
 }
+
+void ScenePlayable::processInput() {
+    sf::Event event;
+    while (_window->pollEvent(event)) {
+        if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
+        else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+            _window->close(); exit(0);
+        }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::P) {
+            if(_status == status::running) _status = status::onMenu;
+            else _status = status::running;
+        }
+
+        if(_status == status::onMenu){
+            _menu.processEvent(event);
+        }
+        //else if (event.type == sf::Event::Resized) initView();
+    }
+
+    // Debug change scene
+    sf::Vector2f mousePos = _window->mapPixelToCoords(sf::Mouse::getPosition(*_window),_view);
+    //std::cout << "mouse position " << mousePos.x << " " << mousePos.y << std::endl;
+    std::pair<bool,SceneChanger*> aux = _map.playerInsideExit(mousePos);
+    if (aux.first) {
+        changeScene(aux.second);
+    }
+
+    // Debug link movement
+    if      (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z)) _player->attack();
+    if      (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) _player->move(directions::up);
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) _player->move(directions::down);
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) _player->move(directions::right);
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) _player->move(directions::left);
+
+    _fairy->setCenterPosition(sf::Vector2f(_player->getPosition()));
+    _fairy->setScale(TILESIZE/_fairy->getLocalBounds().width,
+                     TILESIZE/_fairy->getLocalBounds().width);
+    _fairy->setOrigin(_fairy->getLocalBounds().width/2, _fairy->getLocalBounds().height/2);
+    // if      (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) _player2->attack();
+    // if      (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) _player2->move(directions::up);
+    // else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) _player2->move(directions::down);
+    // else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) _player2->move(directions::right);
+    // else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) _player2->move(directions::left);
+    
+
+}

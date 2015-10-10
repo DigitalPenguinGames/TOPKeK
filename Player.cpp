@@ -16,6 +16,20 @@ Player::Player(){
     _attacking = false;
 
     _walkBounds = sf::IntRect(4,13,8,2);
+
+    std::vector<sf::Texture*> textures(9);
+    textures[directions::none]  = &Resources::linkSet;
+    textures[directions::down]  = &Resources::linkSetB;
+    textures[directions::up]    = &Resources::linkSetT;
+    textures[directions::left]  = &Resources::linkSetL;
+    textures[directions::right] = &Resources::linkSetR;
+
+    textures[directions::botLeft]  = &Resources::linkSetBL;
+    textures[directions::botRight] = &Resources::linkSetBR;
+    textures[directions::topLeft]  = &Resources::linkSetTL;
+    textures[directions::topRight] = &Resources::linkSetTR;
+
+    _lightSprite = LightSprite(_description, textures);
 }
 
 Player::~Player(){}
@@ -51,6 +65,7 @@ void Player::update(float deltaTime) {
         */
         _moving = false;
     }
+    _lightSprite.update(_sprite.getPosition(),_dir,_action,_currentAnimation);
 }
 
 void Player::draw(sf::RenderTarget* w) {
@@ -58,8 +73,8 @@ void Player::draw(sf::RenderTarget* w) {
         // Draw Sword
         _sword.draw(w);
     }
-    //Draw sprite (sword will be always under the player sprite)
-    w->draw(_sprite);
+   _lightSprite.draw(w);
+
 
 }
 
@@ -100,4 +115,9 @@ sf::Vector2f Player::getPositionTransition() {
 
 directions Player::getDirection() {
     return _dir;
+}
+
+
+void Player::setLight(Light* light) {
+    _lightSprite.setLight(light);
 }
