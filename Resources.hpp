@@ -11,6 +11,8 @@ public:
     static sf::Shader sLighting;
     static sf::Texture tileSet;
     static sf::Texture tileSetCols;
+    static sf::Texture dungeon;
+    static sf::Texture dungeonCols;
     static sf::Texture linkSet;
     static sf::Texture linkSetT;
     static sf::Texture linkSetB;
@@ -20,7 +22,6 @@ public:
     static sf::Texture linkSetTL;
     static sf::Texture linkSetBR;
     static sf::Texture linkSetBL;
-    static sf::Texture dungeon;
     static sf::Texture textureTest;
     static sf::Font pauseMenuFont;
     static std::vector<SpriteSheetDescription> descriptions;

@@ -74,6 +74,7 @@ void Map::init(sf::Vector2f sceneIniCoord) {
         case sceneTypes::lightedDungeon:
         case sceneTypes::dungeon:
             _background = new Background(_mapIniCoord);
+            _collisionBackground = Resources::dungeonCols.copyToImage();
             break;
         default:
             break;
