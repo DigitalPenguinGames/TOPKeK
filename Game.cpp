@@ -87,8 +87,8 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                 //std::cout << "offset: " << offset.x << " " << offset.y << " sceneIniCoord " << sceneIniCoord.x << " " << sceneIniCoord.y << std::endl;
                 // std::cout << lastScene->getSceneCoord().x << " " << lastScene->getSceneCoord().y << std::endl;
 
-                _currentScene->init(sceneIniCoord);
                 currentScene->setPlayer(lastScene->getPlayer());
+                _currentScene->init(sceneIniCoord);
                 
 
                 // Transition animation:

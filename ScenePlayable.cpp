@@ -72,7 +72,7 @@ void ScenePlayable::centerView() {
     sf::Vector2f playerPrediction;
     playerPrediction.x = (dir == directions::left ? -speed.x : (dir == directions::right ? speed.x : 0));
     playerPrediction.y = (dir == directions::up ? -speed.y : (dir == directions::down ? speed.y : 0));
-    sf::Vector2f playerPos = _player->getPositionTransition()+ playerPrediction;
+    sf::Vector2f playerPos = _player->getPositionTransition() + playerPrediction;
     
     if (mapSize.x < viewSize.x) finalPos.x = mapSize.x/2 + _sceneIniCoord.x;
     else finalPos.x = std::max(viewSize.x/2 + _sceneIniCoord.x, std::min(playerPos.x, _sceneIniCoord.x + mapSize.x - viewSize.x/2));

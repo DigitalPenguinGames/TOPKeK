@@ -7,12 +7,14 @@
 class Tile{ 
 public:
     Tile();
-    Tile(int n, sf::Vector2f pos);
+    Tile(int n, sf::Vector2f pos, sf::Vector2f offset);
     ~Tile();
-    void draw(sf::RenderTarget *w);
+    void draw(sf::RenderTarget* w);
+    void drawCollision(sf::RenderTarget* target);
     sf::Vector2f getPosition();
 private:
-    sf::Sprite sprite;
+    sf::Sprite _sprite;
+    sf::Sprite _collision;
 };
 
 #endif

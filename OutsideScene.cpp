@@ -14,6 +14,7 @@ OutsideScene::~OutsideScene() {
 }
 
 void OutsideScene::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
+    _player->setMap(&_map);
     if (sceneIniCoord == _sceneIniCoord) return;
     _sceneIniCoord = sceneIniCoord;
     _map.init(_sceneIniCoord);
@@ -23,8 +24,6 @@ void OutsideScene::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
 
 
 void OutsideScene::update(float deltaTime) {
-    //(void)deltaTime;
-
     _player->update(deltaTime);
     _fairy->update(deltaTime, sf::Vector2f(_window->mapPixelToCoords(sf::Mouse::getPosition(*_window),_view)));
 

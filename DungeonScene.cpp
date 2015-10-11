@@ -12,6 +12,7 @@ DungeonScene::~DungeonScene() {
 }
 
 void DungeonScene::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
+    _player->setMap(&_map);
     if (sceneIniCoord == _sceneIniCoord) return;
     _sceneIniCoord = sceneIniCoord;
     _map.init(_sceneIniCoord);

@@ -6,6 +6,7 @@
 #include "Resources.hpp"
 #include "Projectile.hpp"
 #include "LightSprite.hpp"
+#include "Map.hpp"
 
 #define ATTACKTIMERANIMATION 0.5
 #define ELAPSEDWALKING 0.18
@@ -26,9 +27,10 @@ public:
 
     void setPosition(sf::Vector2f pos);
     void setLight(Light* light);
+    void setMap(Map* map);
 
 private:
-
+    Map* _map;
     directions _dir;
     linkActions _action;
     LightSprite _lightSprite;

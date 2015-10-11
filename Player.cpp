@@ -53,7 +53,8 @@ void Player::update(float deltaTime) {
         initial = _sprite.getPosition();
         movement.x = (_dir == directions::left ? -speed.x : (_dir == directions::right ? speed.x : 0));
         movement.y = (_dir == directions::up ? -speed.y : (_dir == directions::down ? speed.y : 0));
-        _sprite.move(movement*deltaTime);
+        _sprite.move(_map->getMaxMovement(initial,movement*deltaTime,_walkBounds));
+        //_sprite.move(movement*deltaTime);
         /*
          if( There is collision on the map with the player ){
             sf::Vector2f fixedMovement = last possible place from initial to _sprite.getPosition();
@@ -127,4 +128,8 @@ void Player::setPosition(sf::Vector2f pos) {
 void Player::setLight(Light* light) {
     _lightSprite.setLight(light);
     _sword.setLight(light);
+}
+
+void Player::setMap(Map* map) {
+    _map = map;
 }

@@ -54,16 +54,28 @@ void Map::init(sf::Vector2f sceneIniCoord) {
     _mapIniCoord = sceneIniCoord;
     switch (_mapType) {
         case sceneTypes::outside:
+        {
+            sf::RenderTexture texture;
+            texture.create(_premap.size()*TILESIZE, _premap[0].size()*TILESIZE);
+
             _map = std::vector<std::vector<Tile> >(_premap.size(), std::vector<Tile>(_premap[0].size()));
-            for (int j = 0; j < int(_premap[0].size()); ++j) 
+            for (int j = 0; j < int(_premap[0].size()); ++j){
                 for (int i = 0; i < int(_premap.size()); ++i) {
-                    sf::Vector2f pos(i*TILESIZE+sceneIniCoord.x,j*TILESIZE+sceneIniCoord.y);
-                    _map[i][j] = (Tile(_premap[i][j],pos));
+                    sf::Vector2f pos(i*TILESIZE,j*TILESIZE);
+                    _map[i][j] = (Tile(_premap[i][j],pos, sceneIniCoord));
+                    _map[i][j].drawCollision(&texture);
                 }
+            }
+
+            texture.display();
+            _collisionBackground= texture.getTexture().copyToImage();
             break;
+        }
         case sceneTypes::lightedDungeon:
         case sceneTypes::dungeon:
             _background = new Background(_mapIniCoord);
+            break;
+        default:
             break;
     }
     
@@ -112,4 +124,25 @@ sf::Vector2i Map::getSize() {
 
 sf::Vector2f Map::getSceneCoord() {
     return _mapIniCoord;
+}
+
+sf::Vector2f Map::getMaxMovement(sf::Vector2f ini, sf::Vector2f movement, sf::IntRect rect) {
+    bool hit = false;
+    sf::Vector2f final = ini + movement - _mapIniCoord;
+
+    float left = final.x + rect.left;
+    float top = final.y + rect.top;
+
+    for (int i = left; i < left + rect.width; ++i) {
+        for(int j = top; j < top + rect.height; ++j) {
+            sf::Color color = _collisionBackground.getPixel(i,j);
+            if (color != sf::Color::White) {
+                hit = true;
+                return sf::Vector2f(0,0);
+            }
+        }
+    }
+
+    if (hit) return sf::Vector2f(0,0);
+    return movement;
 }
