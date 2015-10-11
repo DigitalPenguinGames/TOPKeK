@@ -33,6 +33,7 @@
 #include <queue> // priority queue
 #include <functional> // priority queue stuff
 
+#include "DataManager.hpp"
 #include "SoundManager.hpp"
 
 #include <SFML/System.hpp>

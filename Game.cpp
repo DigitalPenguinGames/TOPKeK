@@ -2,11 +2,12 @@
 
 Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Close | sf::Style::Resize) {
     _window.setFramerateLimit(FRAMERATE);
+    DataManager::load();
     Resources::load();
     _currentScene = nullptr;
     _lastScene = nullptr;
     SoundManager::load();
-    SoundManager::playMusic("menuMusic");
+    if (DataManager::getFloat("MasterVolumen",1.0f) == 1.0f) SoundManager::playMusic("menuMusic");
     SoundManager::setLoop(true, "menuMusic");
 }
 

@@ -3,7 +3,7 @@
 
 #include <map>
 #include <iostream>
-#include<SFML/Audio.hpp>
+#include <SFML/Audio.hpp>
 
 //#define SOUND static sf::Sound
 
