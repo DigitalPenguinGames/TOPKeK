@@ -24,6 +24,9 @@ private:
     Scene* _currentScene;
     Scene* _lastScene;
 
+    sf::Mutex _mutex;
+    sf::Thread* _thread;
+
     void loadScenes();
     void loadScene(std::string sceneName);
 };

@@ -9,6 +9,7 @@
 #define TEXTURETPATH "Resources/Textures/"
 #define TEXTUREDESCRIPTIONEXTENSION ".description"
 #define SHADERPATH "Resources/Shaders/"
+#define DATAPATH "Resources/Data/"
 
 #define TILESIZE 16
 #define TILEOFFSET 1
@@ -99,6 +100,8 @@ enum directions {
 bool isInt(std::string s);
 
 int myStoi(std::string s);
+
+bool myStob(std::string s);
 
 float radToAngle(float rad);
 

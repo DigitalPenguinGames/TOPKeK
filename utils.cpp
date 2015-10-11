@@ -14,6 +14,10 @@ int myStoi(std::string s) {
     return x;
 }
 
+bool myStob(std::string s) {
+    return s != "0";
+}
+
 float difference(float a, float b){
     float c = a-b;
     if(c > 0) return c;
