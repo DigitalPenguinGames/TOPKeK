@@ -27,7 +27,7 @@ sf::Vector2f Collisionable::getPosition() {
 }
 
 sf::IntRect Collisionable::getBounds() {
-    return _bounds;
+    return sf::IntRect(_sprite.getPosition().x + _bounds.left, _sprite.getPosition().y + _bounds.top, _bounds.width, _bounds.height);
 }
 
 void Collisionable::setPosition(sf::Vector2f pos) {

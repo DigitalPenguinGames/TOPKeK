@@ -112,6 +112,33 @@ directions Player::getDirection() {
     return _dir;
 }
 
+sf::IntRect Player::getSwordRect() {
+    sf::Vector2f pos = _sword.getPosition();
+    sf::IntRect gSword = _sword.getBounds();
+    sf::IntRect sword(pos.x - gSword.left, pos.y - gSword.top, gSword.width, gSword.height);
+    switch(_dir){
+        case directions::down:
+            return sf::IntRect(pos.x+sword.left, pos.y+sword.top, sword.width, sword.height);
+        case directions::up:
+            return sf::IntRect(pos.x-sword.left, pos.y-sword.top, -sword.width, -sword.height);
+        case directions::right:
+            return sf::IntRect(pos.x+sword.top, pos.y-sword.left, sword.height, -sword.width);
+        case directions::left:
+            return sf::IntRect(pos.x-sword.top, pos.y+sword.left, -sword.height, sword.width);
+        default:
+            return sf::IntRect(0,0,0,0); // This will never be called
+    }
+}
+
+
+float Player::getSwordDamage() {
+    return 2; //SWORDDAMAGE
+}
+
+bool Player::isAttacking() {
+    return _attacking;
+}
+
 
 void Player::setPosition(sf::Vector2f pos) {
     _lightSprite.setPosition(pos);

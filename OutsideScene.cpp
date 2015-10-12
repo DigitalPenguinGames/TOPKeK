@@ -33,6 +33,16 @@ void OutsideScene::update(float deltaTime) {
     if (aux.first) {
         changeScene(aux.second);
     }
+
+    if (_player->isAttacking()) {
+        sf::IntRect swordRect = _player->getSwordRect();
+        
+        for (auto it = _enemies.begin(); it != _enemies.end(); ++it) {
+            if (swordRect.intersects((*it)->getBounds())){
+                (*it)->getHit(_player->getSwordDamage(), sf::Vector2f(0,0));
+            }
+        } 
+    }
 }
 
 void OutsideScene::render(sf::RenderTarget* target) {

@@ -1,5 +1,4 @@
 uniform sampler2D texture;
-uniform float maxTime;
 uniform vec2 posLight;
 uniform float maxx;
 uniform float minn;

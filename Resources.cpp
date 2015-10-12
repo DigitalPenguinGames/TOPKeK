@@ -18,6 +18,7 @@ sf::Texture            Resources::overEnemies;
 sf::Texture            Resources::textureTest;
 sf::Shader             Resources::DtO;
 sf::Shader             Resources::sLighting;
+sf::Shader             Resources::cInvert;
 sf::Font               Resources::pauseMenuFont;
 
 std::vector<SpriteSheetDescription> Resources::descriptions;
@@ -47,6 +48,7 @@ void Resources::load() {
 
     if (!DtO.loadFromFile(SHADERPATH+std::string("transitionDtO.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
     if (!sLighting.loadFromFile(SHADERPATH+std::string("lighting.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
+    if (!cInvert.loadFromFile(SHADERPATH+std::string("invert.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
 
     if (!pauseMenuFont.loadFromFile("Resources/Fonts/font.otf")) exit(EXIT_FAILURE);
 

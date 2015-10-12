@@ -10,6 +10,7 @@ Octorok::Octorok(Map* map, sf::Vector2f pos) : Enemy(map,pos) {
     _speed = sf::Vector2f(15,15);
 
     _walkBounds = sf::IntRect(2,2,12,12);
+    _bounds = _walkBounds;
 
     _time = 0;
 
