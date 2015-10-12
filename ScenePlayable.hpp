@@ -5,6 +5,7 @@
 #include "utils.hpp"
 #include "Fairy.hpp"
 #include "Scene.hpp"
+#include "Enemy.hpp"
 #include "Player.hpp"
 #include "GUI/Label.hpp"
 #include "GUI/Frame.hpp"
@@ -40,6 +41,7 @@ protected:
     Player* _player;
     sf::Vector2f _sceneIniCoord;
     status::gameStatus _status;
+    std::list<Enemy*> _enemies;
 
     void renderSorted(sf::RenderTarget* target, std::vector<Collisionable*>& cols);
     void centerView();

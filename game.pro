@@ -20,6 +20,8 @@ SOURCES += main.cpp \
 		Tile.cpp \
 		SceneChanger.cpp \
 		Player.cpp \
+        Enemy.cpp \
+        Octorok.cpp \
 		Projectile.cpp \
 		Collisionable.cpp \
     	Fairy.cpp \
@@ -53,6 +55,8 @@ HEADERS += utils.hpp \
 		Tile.hpp \
 		SceneChanger.hpp \
 		Player.hpp \
+        Enemy.hpp \
+        Octorok.hpp \
 		Projectile.hpp \
 		Collisionable.hpp \
     	Fairy.hpp \

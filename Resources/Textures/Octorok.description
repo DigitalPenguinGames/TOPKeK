@@ -1,0 +1,8 @@
+moveDown    48  0 16 16
+moveDown    72  0 16 16
+moveLeft     0  0 16 16
+moveLeft    24  0 16 16
+moveUp     144  0 16 16
+moveUp     168  0 16 16
+moveRight   96  0 16 16
+moveRight  120  0 16 16

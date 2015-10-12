@@ -14,6 +14,7 @@ sf::Texture            Resources::linkSetTR;
 sf::Texture            Resources::linkSetTL;
 sf::Texture            Resources::linkSetBR;
 sf::Texture            Resources::linkSetBL;
+sf::Texture            Resources::overEnemies;
 sf::Texture            Resources::textureTest;
 sf::Shader             Resources::DtO;
 sf::Shader             Resources::sLighting;
@@ -36,11 +37,13 @@ void Resources::load() {
     linkSetTL.loadFromFile(TEXTURETPATH+std::string("linkTopLeft.png"));
     linkSetBR.loadFromFile(TEXTURETPATH+std::string("linkBotRight.png"));
     linkSetBL.loadFromFile(TEXTURETPATH+std::string("linkBotLeft.png"));
+    overEnemies.loadFromFile(TEXTURETPATH+std::string("OverworldEnemies.png"));
     textureTest.loadFromFile(TEXTURETPATH+std::string("textureTest.png"));
 
     descriptions = std::vector<SpriteSheetDescription>(spriteDescriptionsQtt);
     descriptions[linkSpritesDescriptions] = loadDescription("linkSheet");
     descriptions[swordDescriptions] = loadDescription("swordSheet");
+    descriptions[octorokDescriptions] = loadDescription("Octorok");
 
     if (!DtO.loadFromFile(SHADERPATH+std::string("transitionDtO.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
     if (!sLighting.loadFromFile(SHADERPATH+std::string("lighting.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);

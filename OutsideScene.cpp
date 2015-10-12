@@ -19,6 +19,7 @@ void OutsideScene::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
     _sceneIniCoord = sceneIniCoord;
     _map.init(_sceneIniCoord);
     initView(sf::Vector2i(WINDOWRATIOX,WINDOWRATIOY));
+    _enemies.push_back(new Octorok(&_map, sf::Vector2f(70+sceneIniCoord.x,70+sceneIniCoord.y)));
 }
 
 
@@ -26,7 +27,7 @@ void OutsideScene::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
 void OutsideScene::update(float deltaTime) {
     _player->update(deltaTime);
     _fairy->update(deltaTime, sf::Vector2f(_window->mapPixelToCoords(sf::Mouse::getPosition(*_window),_view)));
-
+    for (auto it = _enemies.begin(); it != _enemies.end(); ++it) (*it)->update(deltaTime);
     // Collisiones & things
     std::pair<bool,SceneChanger*> aux = _map.playerInsideExit(_player->getPositionTransition());
     if (aux.first) {
@@ -40,6 +41,7 @@ void OutsideScene::render(sf::RenderTarget* target) {
     std::vector<Collisionable*> collisionables;
     collisionables.push_back(_player);
     collisionables.push_back(_fairy);
+    for (auto it = _enemies.begin(); it != _enemies.end(); ++it) collisionables.push_back(*it);
 
     renderSorted(target, collisionables);
 

@@ -22,6 +22,7 @@ public:
     static sf::Texture linkSetTL;
     static sf::Texture linkSetBR;
     static sf::Texture linkSetBL;
+    static sf::Texture overEnemies;
     static sf::Texture textureTest;
     static sf::Font pauseMenuFont;
     static std::vector<SpriteSheetDescription> descriptions;

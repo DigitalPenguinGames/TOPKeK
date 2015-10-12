@@ -131,11 +131,17 @@ sf::Vector2f Map::getMaxMovement(sf::Vector2f ini, sf::Vector2f movement, sf::In
     bool hit = false;
     sf::Vector2f final = ini + movement - _mapIniCoord;
 
-    float left = final.x + rect.left;
-    float top = final.y + rect.top;
+    sf::Vector2f size(getSize().x * TILESIZE,getSize().y * TILESIZE);
 
-    for (int i = left; i < left + rect.width; ++i) {
-        for(int j = top; j < top + rect.height; ++j) {
+    float left = std::max(0.0f,final.x + rect.left);
+    float top = std::max(0.0f,final.y + rect.top);
+
+    float width = std::min(left + rect.width,size.x);
+    float height = std::min(top + rect.height,size.y);
+    
+
+    for (int i = left; i < width ; ++i) {
+        for(int j = top; j < height; ++j) {
             sf::Color color = _collisionBackground.getPixel(i,j);
             if (color != sf::Color::White) {
                 hit = true;

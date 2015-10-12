@@ -5,6 +5,7 @@
 #include "utils.hpp"
 #include "Map.hpp"
 #include "SceneChanger.hpp"
+#include "Octorok.hpp"
 
 class OutsideScene : public ScenePlayable {
 friend class Game;

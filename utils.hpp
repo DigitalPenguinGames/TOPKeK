@@ -24,6 +24,7 @@
 
 
 #include <map>
+#include <list>
 #include <string>
 #include <dirent.h> // read directory
 #include <iostream>
@@ -64,6 +65,7 @@ typedef std::vector< std::vector < sf::IntRect> > SpriteSheetDescription;
 enum spriteSheetsDescriptions {
     linkSpritesDescriptions,
     swordDescriptions,
+    octorokDescriptions,
     spriteDescriptionsQtt
 };
 
