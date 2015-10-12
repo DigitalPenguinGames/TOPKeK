@@ -12,6 +12,7 @@ sf::SoundBuffer     SoundManager::linkAttack0;
 sf::SoundBuffer     SoundManager::linkAttack1;
 sf::SoundBuffer     SoundManager::linkAttack2;
 sf::SoundBuffer     SoundManager::linkAttack3;
+sf::SoundBuffer     SoundManager::shootBigBall;
 //sf::SoundBuffer     SoundManager::SOUND_NAME;
 
 
@@ -45,6 +46,10 @@ void SoundManager::load(){
     soundMap["linkAttack2"].setBuffer(linkAttack2);
     if(!linkAttack3.loadFromFile("Resources/Sounds/linkAttack3.ogg")){ std::cout << "Fail on loading linkAttack3" << std::endl;};
     soundMap["linkAttack3"].setBuffer(linkAttack3);
+
+
+    if(!shootBigBall.loadFromFile("Resources/Sounds/escupGran1.ogg")){ std::cout << "Fail on loading ShootBigBall" << std::endl;};
+    soundMap["shootBigBall"].setBuffer(shootBigBall);
 
 }
 
