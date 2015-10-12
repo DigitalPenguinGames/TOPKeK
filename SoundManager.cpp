@@ -2,6 +2,7 @@
 
 //f. dec.
 sf::Music           SoundManager::menuMusic;
+sf::Music           SoundManager::overWorldMusic;
 
 sf::SoundBuffer     SoundManager::attackBuf;
 sf::SoundBuffer     SoundManager::softSword;
@@ -23,6 +24,7 @@ std::map<std::string, sf::Music>::iterator SoundManager::mit;
 void SoundManager::load(){
 
     musicMap["menuMusic"].openFromFile("Resources/Sounds/menuMusic.ogg");
+    musicMap["overWorld"].openFromFile("Resources/Sounds/overWorld.ogg");
 
     if(!attackBuf.loadFromFile("Resources/Sounds/attack.ogg")){ std::cout << "Fail on loading attack" << std::endl;};
     soundMap["chamaleonTongue"].setBuffer(attackBuf);
@@ -43,8 +45,6 @@ void SoundManager::load(){
     soundMap["linkAttack2"].setBuffer(linkAttack2);
     if(!linkAttack3.loadFromFile("Resources/Sounds/linkAttack3.ogg")){ std::cout << "Fail on loading linkAttack3" << std::endl;};
     soundMap["linkAttack3"].setBuffer(linkAttack3);
-
-
 
 }
 

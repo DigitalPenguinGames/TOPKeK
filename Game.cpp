@@ -9,8 +9,10 @@ Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Clos
     SoundManager::load();
     if (DataManager::getFloat("MasterVolumen",1.0f) == 1.0f) {
         //SoundManager::playMusic("menuMusic");
+        SoundManager::playMusic("overWorld");
     }
-    SoundManager::setLoop(true, "menuMusic");
+//    SoundManager::setLoop(true, "menuMusic");
+    SoundManager::setLoop(true, "overWorld");
 }
 
 Game::~Game() {

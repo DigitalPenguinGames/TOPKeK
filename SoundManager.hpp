@@ -24,6 +24,7 @@ public:
 private:
 
      static sf::Music   menuMusic;
+     static sf::Music   overWorldMusic;
 
      static sf::SoundBuffer     attackBuf;
      static sf::SoundBuffer     softSword;
