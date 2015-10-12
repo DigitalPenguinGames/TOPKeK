@@ -38,6 +38,7 @@ SOURCES += main.cpp \
     GUI/Layout.cpp \
     GUI/TextButton.cpp \
     GUI/VLayout.cpp \
+    GUI/HLayout.cpp \
     GUI/Widget.cpp \
     TextBox.cpp \
     SoundManager.cpp \
@@ -73,6 +74,7 @@ HEADERS += utils.hpp \
     GUI/Layout.hpp \
     GUI/TextButton.hpp \
     GUI/VLayout.hpp \
+    GUI/HLayout.hpp \
     GUI/Widget.hpp \
     GUI/Frame.hpp \
     TextBox.hpp \
