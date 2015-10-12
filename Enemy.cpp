@@ -8,6 +8,7 @@ Enemy::Enemy(Map* map, sf::Vector2f pos) : _map(map) {
     _elapsedWalking = 0;
     _elapsedAnimation = 0;
     _currentAnimation = 0;
+    _hitedTimer = 0;
 
     _moving = false;
     _attacking = false;
