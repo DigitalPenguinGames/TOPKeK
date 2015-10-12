@@ -2,7 +2,16 @@
 
 //f. dec.
 sf::Music           SoundManager::menuMusic;
+
 sf::SoundBuffer     SoundManager::attackBuf;
+sf::SoundBuffer     SoundManager::softSword;
+sf::SoundBuffer     SoundManager::stabSword;
+sf::SoundBuffer     SoundManager::stepGround;
+sf::SoundBuffer     SoundManager::linkAttack0;
+sf::SoundBuffer     SoundManager::linkAttack1;
+sf::SoundBuffer     SoundManager::linkAttack2;
+sf::SoundBuffer     SoundManager::linkAttack3;
+//sf::SoundBuffer     SoundManager::SOUND_NAME;
 
 
 std::map<std::string, sf::Sound> SoundManager::soundMap;
@@ -13,10 +22,29 @@ std::map<std::string, sf::Music>::iterator SoundManager::mit;
 
 void SoundManager::load(){
 
-    if(!attackBuf.loadFromFile("Resources/Sounds/attack.ogg")){ std::cout << "Fail on loading attack" << std::endl;};
-    soundMap["attack"].setBuffer(attackBuf);
-
     musicMap["menuMusic"].openFromFile("Resources/Sounds/menuMusic.ogg");
+
+    if(!attackBuf.loadFromFile("Resources/Sounds/attack.ogg")){ std::cout << "Fail on loading attack" << std::endl;};
+    soundMap["chamaleonTongue"].setBuffer(attackBuf);
+
+    if(!softSword.loadFromFile("Resources/Sounds/espasaSuau.ogg")){ std::cout << "Fail on loading softSword" << std::endl;};
+    soundMap["softSword"].setBuffer(softSword);
+    if(!stabSword.loadFromFile("Resources/Sounds/espasaSeca.ogg")){ std::cout << "Fail on loading stabSword" << std::endl;};
+    soundMap["stabSword"].setBuffer(stabSword);
+
+    if(!stepGround.loadFromFile("Resources/Sounds/passaTerra.ogg")){ std::cout << "Fail on loading stepGround" << std::endl;};
+    soundMap["stepGround"].setBuffer(stepGround);
+
+    if(!linkAttack0.loadFromFile("Resources/Sounds/linkAttack0.ogg")){ std::cout << "Fail on loading linkAttack0" << std::endl;};
+    soundMap["linkAttack0"].setBuffer(linkAttack0);
+    if(!linkAttack1.loadFromFile("Resources/Sounds/linkAttack1.ogg")){ std::cout << "Fail on loading linkAttack1" << std::endl;};
+    soundMap["linkAttack1"].setBuffer(linkAttack1);
+    if(!linkAttack2.loadFromFile("Resources/Sounds/linkAttack2.ogg")){ std::cout << "Fail on loading linkAttack2" << std::endl;};
+    soundMap["linkAttack2"].setBuffer(linkAttack2);
+    if(!linkAttack3.loadFromFile("Resources/Sounds/linkAttack3.ogg")){ std::cout << "Fail on loading linkAttack3" << std::endl;};
+    soundMap["linkAttack3"].setBuffer(linkAttack3);
+
+
 
 }
 

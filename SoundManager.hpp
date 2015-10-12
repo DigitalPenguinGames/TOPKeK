@@ -23,12 +23,20 @@ public:
 
 private:
 
-     static sf::Music menuMusic;
-     static sf::SoundBuffer attackBuf;
+     static sf::Music   menuMusic;
+
+     static sf::SoundBuffer     attackBuf;
+     static sf::SoundBuffer     softSword;
+     static sf::SoundBuffer     stabSword;
+     static sf::SoundBuffer     stepGround;
+     static sf::SoundBuffer     linkAttack0;
+     static sf::SoundBuffer     linkAttack1;
+     static sf::SoundBuffer     linkAttack2;
+     static sf::SoundBuffer     linkAttack3;
 
      static std::map<std::string, sf::Sound> soundMap;
-     static std::map<std::string, sf::Sound>::iterator sit;
      static std::map<std::string, sf::Music> musicMap;
+     static std::map<std::string, sf::Sound>::iterator sit;
      static std::map<std::string, sf::Music>::iterator mit;
 
 };
