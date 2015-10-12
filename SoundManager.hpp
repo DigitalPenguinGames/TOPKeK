@@ -34,6 +34,7 @@ private:
      static sf::SoundBuffer     linkAttack1;
      static sf::SoundBuffer     linkAttack2;
      static sf::SoundBuffer     linkAttack3;
+     static sf::SoundBuffer     shootBigBall;
 
      static std::map<std::string, sf::Sound> soundMap;
      static std::map<std::string, sf::Music> musicMap;
