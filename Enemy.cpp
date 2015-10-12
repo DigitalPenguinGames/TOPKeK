@@ -2,6 +2,9 @@
 
 Enemy::Enemy(Map* map, sf::Vector2f pos) : _map(map) {
     _speed = sf::Vector2f(0,0);
+    _hp = 20;
+    _dead = false;
+
     _elapsedWalking = 0;
     _elapsedAnimation = 0;
     _currentAnimation = 0;
@@ -16,6 +19,7 @@ Enemy::~Enemy() {}
 
 
 void Enemy::update(float deltaTime) {
+    _hitedTimer -= deltaTime;
     if(_moving) {
         _elapsedAnimation -= deltaTime;
         if (_elapsedAnimation < 0) {
@@ -43,9 +47,26 @@ void Enemy::update(float deltaTime) {
 }
 
 void Enemy::draw(sf::RenderTarget* window) {
-    window->draw(_sprite);
+    if (_hitedTimer > 0) {
+        Resources::cInvert.setParameter("deltaTime", _hitedTimer);
+        window->draw(_sprite,&Resources::cInvert);
+    }
+    else window->draw(_sprite);
 }
 
 void Enemy::setMap(Map* map) {
     _map = map;
+}
+
+void Enemy::getHit(float much, sf::Vector2f from) {
+    if (_hitedTimer > 0) return;
+    Resources::cInvert.setParameter("Time", 1.5);
+    _hitedTimer = 1.5; // One second of invulneravility;
+    _hp -= much;
+    _dead = _hp <= 0;
+    std::cout << "it hurts" << std::endl;
+}
+
+bool Enemy::isAlive() {
+    return !_dead;
 }

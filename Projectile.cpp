@@ -17,6 +17,8 @@ Projectile::Projectile() {
     textures[directions::botRight] = &Resources::linkSetBR;
 
     _lightSprite = LightSprite(Resources::descriptions[swordDescriptions], textures);
+
+    _bounds = sf::IntRect(0,0,7,16);
 }
 
 Projectile::~Projectile() {}

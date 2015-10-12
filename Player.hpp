@@ -24,6 +24,9 @@ public:
 
     directions getDirection();
     sf::Vector2f getPositionTransition();
+    bool isAttacking();
+    sf::IntRect getSwordRect();
+    float getSwordDamage();
 
     void setPosition(sf::Vector2f pos);
     void setLight(Light* light);

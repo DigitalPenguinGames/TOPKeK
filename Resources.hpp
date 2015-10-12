@@ -9,6 +9,7 @@ public:
     //static sf::Texture ...
     static sf::Shader  DtO;
     static sf::Shader sLighting;
+    static sf::Shader cInvert;
     static sf::Texture tileSet;
     static sf::Texture tileSetCols;
     static sf::Texture dungeon;
