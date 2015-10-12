@@ -4,6 +4,7 @@ Enemy::Enemy(Map* map, sf::Vector2f pos) : _map(map) {
     _speed = sf::Vector2f(0,0);
     _hp = 20;
     _dead = false;
+    _damage = 0;
 
     _elapsedWalking = 0;
     _elapsedAnimation = 0;
@@ -65,9 +66,13 @@ void Enemy::getHit(float much, sf::Vector2f from) {
     _hitedTimer = 1.5; // One second of invulneravility;
     _hp -= much;
     _dead = _hp <= 0;
-    std::cout << "it hurts" << std::endl;
+    std::cout << "it hurts " << _hp << std::endl;
 }
 
 bool Enemy::isAlive() {
     return !_dead;
+}
+
+float Enemy::getDamage() {
+    return _damage;
 }

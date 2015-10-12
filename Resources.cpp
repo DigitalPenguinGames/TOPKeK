@@ -45,6 +45,7 @@ void Resources::load() {
     descriptions[linkSpritesDescriptions] = loadDescription("linkSheet");
     descriptions[swordDescriptions] = loadDescription("swordSheet");
     descriptions[octorokDescriptions] = loadDescription("Octorok");
+    descriptions[rockProjDescription] = loadDescription("rockProj");
 
     if (!DtO.loadFromFile(SHADERPATH+std::string("transitionDtO.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
     if (!sLighting.loadFromFile(SHADERPATH+std::string("lighting.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);

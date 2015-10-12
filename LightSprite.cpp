@@ -31,6 +31,15 @@ void LightSprite::draw(sf::RenderTarget* target) {
     target->draw(_sprites[dir]);
 }
 
+void LightSprite::draw(sf::RenderTarget* target, sf::Shader* shader) {
+    directions dir = directions::none;
+    if (_light != nullptr) dir = pointsToDirection(_pos, _light->getPosition(), _rotation);
+    _sprites[dir].setTextureRect(_description[_action*4+_dir][_currentAnimation%_description[_action*4+_dir].size()]);
+    _sprites[dir].setPosition(_pos);
+    _sprites[dir].setRotation(_rotation);
+    target->draw(_sprites[dir], shader);
+}
+
 void LightSprite::setLight(Light* light) {
     _light = light;
 }

@@ -66,6 +66,7 @@ enum spriteSheetsDescriptions {
     linkSpritesDescriptions,
     swordDescriptions,
     octorokDescriptions,
+    rockProjDescription,
     spriteDescriptionsQtt
 };
 

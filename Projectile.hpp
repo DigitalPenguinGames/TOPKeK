@@ -20,7 +20,7 @@ public:
     void setPosition(sf::Vector2f pos);
     void setLight(Light* light);
 
-private:
+protected:
     LightSprite _lightSprite;
     bool willDie; // When collision, the proyectile will disapear?
     float timeToDespawn;

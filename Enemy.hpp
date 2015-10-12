@@ -8,7 +8,7 @@
 class Enemy : public Collisionable {
 public:
     Enemy(Map* map, sf::Vector2f pos);
-    ~Enemy();
+    virtual ~Enemy();
 
     virtual void update(float deltaTime);
     virtual void draw(sf::RenderTarget* window);
@@ -17,6 +17,8 @@ public:
     void getHit(float much, sf::Vector2f from);
 
     bool isAlive();
+    float getDamage();
+
 protected:
     Map* _map;
     sf::Vector2f _speed;
@@ -25,6 +27,7 @@ protected:
     float _hp;
     bool _dead;
     float _hitedTimer;
+    float _damage;
 
     directions _dir;
     linkActions _action;

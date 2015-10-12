@@ -15,6 +15,7 @@ Player::Player(){
     _attacking = false;
 
     _walkBounds = sf::IntRect(4,13,8,2);
+    _bounds = sf::IntRect(4,13,8,2);
 
     std::vector<sf::Texture*> textures(9);
     textures[directions::none]  = &Resources::linkSet;
@@ -28,11 +29,17 @@ Player::Player(){
     textures[directions::botRight] = &Resources::linkSetBR;
 
     _lightSprite = LightSprite(_description, textures);
+
+    _hp = DataManager::getFloat("linkHp",4.0f);
+    _maxHp = DataManager::getFloat("linkMaxHp",4.0f);
+    _dead = false;
+    _hitedTimer = 0;
 }
 
 Player::~Player(){}
 
 void Player::update(float deltaTime) {
+    _hitedTimer -= deltaTime;
     if(_moving) {
         _elapsedAnimation -= deltaTime;
         if (_elapsedAnimation < 0) {
@@ -64,11 +71,25 @@ void Player::draw(sf::RenderTarget* w) {
     if (_attacking) {
         _sword.draw(w);
     }
-   _lightSprite.draw(w);
-
-
+    if (_hitedTimer > 0) {
+        Resources::cInvert.setParameter("deltaTime", _hitedTimer);
+        _lightSprite.draw(w,&Resources::cInvert);
+    }
+   else _lightSprite.draw(w);
 }
 
+bool Player::isAlive() {
+    return !_dead;
+}
+
+void Player::getHit(float much, sf::Vector2f from) {
+    if (_hitedTimer > 0) return;
+    Resources::cInvert.setParameter("Time", 1.5);
+    _hitedTimer = 1.5; // One second of invulneravility;
+    _hp -= much;
+    _dead = _hp <= 0;
+    std::cout << "it hurts " << _hp << std::endl;
+}
 
 void Player::move(directions dir) {
     if (_attacking) return;

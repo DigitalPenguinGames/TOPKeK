@@ -27,7 +27,10 @@ public:
     bool isAttacking();
     sf::IntRect getSwordRect();
     float getSwordDamage();
+    bool isAlive();
 
+
+    void getHit(float much, sf::Vector2f from);
     void setPosition(sf::Vector2f pos);
     void setLight(Light* light);
     void setMap(Map* map);
@@ -38,6 +41,11 @@ private:
     linkActions _action;
     LightSprite _lightSprite;
     SpriteSheetDescription _description;
+
+    float _hp;
+    float _maxHp;
+    bool _dead;
+    float _hitedTimer;
 
     int _currentAnimation;
     float _elapsedAnimation;

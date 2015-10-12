@@ -13,6 +13,7 @@ Octorok::Octorok(Map* map, sf::Vector2f pos) : Enemy(map,pos) {
     _bounds = _walkBounds;
 
     _time = 0;
+    _damage = 0.5;
 
     _sprite.setTextureRect(_description[_action*4+_dir][_currentAnimation%_description[_action*4+_dir].size()]);
 }

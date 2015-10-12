@@ -7,6 +7,7 @@
 #include "Scene.hpp"
 #include "Enemy.hpp"
 #include "Player.hpp"
+#include "Weapon.hpp"
 #include "GUI/Label.hpp"
 #include "GUI/Frame.hpp"
 #include "GUI/Layout.hpp"
@@ -42,6 +43,9 @@ protected:
     sf::Vector2f _sceneIniCoord;
     status::gameStatus _status;
     std::list<Enemy*> _enemies;
+    std::list<Weapon*> _allyWeapons;
+    std::list<Weapon*> _enemyWeapons;
+    std::list<Weapon*> _forAllWeapons;
 
     void renderSorted(sf::RenderTarget* target, std::vector<Collisionable*>& cols);
     void centerView();

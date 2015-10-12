@@ -34,15 +34,77 @@ void OutsideScene::update(float deltaTime) {
         changeScene(aux.second);
     }
 
-    if (_player->isAttacking()) {
+    if (_player->isAttacking()/*&& _player.isUsingSword*/) {
         sf::IntRect swordRect = _player->getSwordRect();
-        
         for (auto it = _enemies.begin(); it != _enemies.end(); ++it) {
             if (swordRect.intersects((*it)->getBounds())){
                 (*it)->getHit(_player->getSwordDamage(), sf::Vector2f(0,0));
             }
         } 
     }
+    // Collisions between player and things
+
+    sf::IntRect playerBound = _player->getBounds();
+    for (auto it = _enemies.begin(); it != _enemies.end(); ++it) {
+        if (playerBound.intersects((*it)->getBounds())) _player->getHit((*it)->getDamage(),(*it)->getPosition());
+    }
+    for (auto it = _enemyWeapons.begin(); it != _enemyWeapons.end(); ++it) {
+        if (playerBound.intersects((*it)->getBounds())) {
+           _player->getHit((*it)->getDamage(),(*it)->getPosition());
+            (*it)->hit();
+        }
+    }
+    for (auto it = _forAllWeapons.begin(); it != _forAllWeapons.end(); ++it) {
+        if (playerBound.intersects((*it)->getBounds())) _player->getHit((*it)->getDamage(),(*it)->getPosition());
+    }
+    // Collision between object(rupies, arrows, bombs);
+
+    // Collisions between Enemies and things
+    for (auto enemyIt = _enemies.begin(); enemyIt != _enemies.end(); ++enemyIt) {
+        sf::IntRect bounds = (*enemyIt)->getBounds();
+        for (auto it = _allyWeapons.begin(); it != _allyWeapons.end(); ++it) {
+            if (bounds.intersects((*it)->getBounds())) (*enemyIt)->getHit((*it)->getDamage(),(*it)->getPosition());
+        }
+        for (auto it = _forAllWeapons.begin(); it != _forAllWeapons.end(); ++it) {
+            if (bounds.intersects((*it)->getBounds())) (*enemyIt)->getHit((*it)->getDamage(),(*it)->getPosition());
+        }
+        // Collisions between rocks & co
+    }
+
+
+    // Are all the shits alive?
+    {
+        for (auto it = _enemies.begin(); it != _enemies.end(); ++it) {
+            if (!(*it)->isAlive()) {
+                delete (*it);
+                it = _enemies.erase(it);
+                --it;
+            }
+        }
+        for (auto it = _enemyWeapons.begin(); it != _enemyWeapons.end(); ++it) {
+            if (!(*it)->isAlive()) {
+                delete (*it);
+                it = _enemyWeapons.erase(it);
+                --it;
+            }
+        }
+        for (auto it = _allyWeapons.begin(); it != _allyWeapons.end(); ++it) {
+            if (!(*it)->isAlive()) {
+                delete (*it);
+                it = _allyWeapons.erase(it);
+                --it;
+            }
+        }
+        for (auto it = _forAllWeapons.begin(); it != _forAllWeapons.end(); ++it) {
+            if (!(*it)->isAlive()) {
+                delete (*it);
+                it = _forAllWeapons.erase(it);
+                --it;
+            }
+        }
+        // Objects (rupies, shit)
+    }
+
 }
 
 void OutsideScene::render(sf::RenderTarget* target) {

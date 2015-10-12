@@ -1,11 +1,12 @@
 uniform sampler2D texture;
 uniform float Time;
 uniform float deltaTime;
-float blinkTimes = 6.0;
+float blinkTimes;
 
 
 void main()
 {
+    blinkTimes = Time*8.0;
     float aux = ((deltaTime/Time)*blinkTimes);
 
     float x = step(mod(aux,2.0), 1.0);

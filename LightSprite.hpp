@@ -12,6 +12,7 @@ public:
 
     void update(sf::Vector2f pos, int dir, int action, int currentAnimation);
     void draw(sf::RenderTarget* target);
+    void draw(sf::RenderTarget* target, sf::Shader* shader);
 
     void setLight(Light* light);
 
