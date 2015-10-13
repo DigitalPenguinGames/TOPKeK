@@ -53,7 +53,7 @@ void OutsideScene::update(float deltaTime) {
     }
     for (auto it = _enemyWeapons.begin(); it != _enemyWeapons.end(); ++it) {
         if (playerBound.intersects((*it)->getGlobalBound())) {
-            if (!counterDirection(_player->getDirection(),(*it)->getDirection())) 
+            if (!counterDirection(_player->getDirection(),(*it)->getDirection()) || _player->isAttacking()) 
                 _player->getHit((*it)->getDamage(),(*it)->getPosition());
             (*it)->hit();
         }
