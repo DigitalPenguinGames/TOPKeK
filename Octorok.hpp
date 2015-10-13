@@ -11,6 +11,8 @@ public:
     ~Octorok();
 
     void update(float deltaTime);
+    sf::Vector2f getBotPosition();
+
 private:
     float _time;
 };

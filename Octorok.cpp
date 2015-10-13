@@ -35,3 +35,7 @@ void Octorok::update(float deltaTime) {
     _moving = (std::rand()%2 == 0);
     Enemy::update(deltaTime);
 }
+
+sf::Vector2f Octorok::getBotPosition() {
+    return sf::Vector2f(_sprite.getPosition().x+_bounds.left+_bounds.width/2, _sprite.getPosition().y);
+}

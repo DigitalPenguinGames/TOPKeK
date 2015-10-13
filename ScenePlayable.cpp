@@ -56,8 +56,8 @@ void ScenePlayable::setPlayer(Player* p) {
 struct CollisionPositionCompare : public std::binary_function<Collisionable*, Collisionable*, bool>
 {
     bool operator()(Collisionable* c1, Collisionable* c2) const {
-        float pos1 = c1->getPosition().y+c1->getPosition().x*0.01;
-        float pos2 = c2->getPosition().y+c2->getPosition().x*0.01;
+        float pos1 = c1->getBotPosition().y+c1->getBotPosition().x*0.01;
+        float pos2 = c2->getBotPosition().y+c2->getBotPosition().x*0.01;
         return pos1 > pos2;
     }
 };

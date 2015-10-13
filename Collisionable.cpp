@@ -37,3 +37,6 @@ sf::IntRect Collisionable::getBounds() {
 void Collisionable::setPosition(sf::Vector2f pos) {
     _sprite.setPosition(pos);
 }
+sf::Vector2f Collisionable::getBotPosition() {
+    return sf::Vector2f(_sprite.getPosition().x+_bounds.left+_bounds.width/2, _sprite.getPosition().y + _bounds.top+_bounds.height);
+}

@@ -13,6 +13,7 @@ class Collisionable {
      static bool collisioning(Collisionable* c1, Collisionable* c2);
 
      sf::Vector2f getPosition();
+     virtual sf::Vector2f getBotPosition();
      sf::IntRect getGlobalBound();
      sf::IntRect getBounds();
 
