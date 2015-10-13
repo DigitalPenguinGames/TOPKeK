@@ -35,35 +35,37 @@ def main():
 
 		elif mapType == "dungeon":
 			output += "1 "
+		elif mapType == "dungeonLight":
+			output += "2 "
 
 		
 
 		#
+		for shit in root.findall ('objectgroup'):
+			if (shit.get('name') == 'Objects'):
+				continue
+			elif (shit.get('name') == 'Exits'):
+				output += str(len(shit.findall('object'))) + " "
+				for obj in shit.findall('object'):
+					objX = int(obj.get('x')) / int(obj.get('width'))
+					objY = (int(obj.get('y'))-1) / int(obj.get('height'))
 
-		shit = root.find('objectgroup')
-		
-		output += str(len(shit.findall('object'))) + " "
+					# 
 
-		for obj in shit.findall('object'):
-			objX = int(obj.get('x')) / int(obj.get('width'))
-			objY = (int(obj.get('y'))-1) / int(obj.get('height'))
+					output += str(int(objX)) + " " + str(int(objY)) + " "
 
-			# 
+					scene = ""
+					sceneX = 0
+					sceneY = 0
+					for prop in obj.find("properties").findall('property'):
+						if prop.get('name') == "scene":
+							scene = prop.get('value')
+						elif prop.get('name') == "x":
+							sceneX = prop.get('value')
+						elif prop.get('name') == "y":
+							sceneY = prop.get('value')
 
-			output += str(int(objX)) + " " + str(int(objY)) + " "
-
-			scene = ""
-			sceneX = 0
-			sceneY = 0
-			for prop in obj.find("properties").findall('property'):
-				if prop.get('name') == "scene":
-					scene = prop.get('value')
-				elif prop.get('name') == "x":
-					sceneX = prop.get('value')
-				elif prop.get('name') == "y":
-					sceneY = prop.get('value')
-
-			output += scene + " " + str(sceneX) + " " + str(sceneY) + " "
+					output += scene + " " + str(sceneX) + " " + str(sceneY) + " "
 
 
 		name = c

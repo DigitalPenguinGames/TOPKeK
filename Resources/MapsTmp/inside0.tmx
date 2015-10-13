@@ -8,7 +8,7 @@
  </imagelayer>
  <layer name="Tile Layer 1" width="16" height="11">
   <properties>
-   <property name="type" value="dungeon"/>
+   <property name="type" value="dungeonLight"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

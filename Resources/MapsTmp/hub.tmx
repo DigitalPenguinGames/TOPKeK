@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="27">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="98">
  <tileset firstgid="1" name="OverWorld" tilewidth="16" tileheight="16" spacing="1" margin="1" tilecount="144">
   <image source="../Textures/OverworldTiles.png" width="307" height="137"/>
   <terraintypes>
@@ -29,39 +29,107 @@
   <tile id="134" terrain="1,1,2,1"/>
   <tile id="135" terrain="1,1,1,2"/>
  </tileset>
+ <tileset firstgid="145" name="OverworldObjects" tilewidth="48" tileheight="32" spacing="1" margin="1" tilecount="12">
+  <image source="../Textures/OverworldObjects.png" width="148" height="133"/>
+ </tileset>
  <layer name="Tile Layer 1" width="20" height="20">
   <properties>
    <property name="type" value="outside"/>
   </properties>
   <data encoding="csv">
-62,62,62,62,62,62,62,9,9,9,9,9,9,9,9,9,9,9,9,9,
-62,62,62,62,29,62,63,9,9,9,9,9,9,9,9,9,9,9,9,9,
-62,62,62,63,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
-62,62,63,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
-62,63,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
-9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
-9,9,26,26,26,26,26,9,26,26,26,26,26,9,26,9,9,9,26,9,
-9,9,26,9,9,9,9,9,26,9,9,9,26,9,26,9,9,9,26,9,
-9,9,26,9,9,9,9,9,26,9,9,9,26,9,9,26,9,26,9,9,
-9,9,26,3,3,3,9,9,26,9,9,9,26,9,9,9,26,9,9,9,
-9,9,26,9,26,26,26,9,26,26,26,26,26,3,9,9,26,9,9,9,
-9,9,26,9,9,9,26,9,26,9,9,9,26,9,9,9,26,9,9,9,
-9,9,26,26,26,26,26,9,26,9,9,9,26,9,9,9,26,9,9,9,
-9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
-9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
-9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
-9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
-9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
-9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
-9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9
+62,62,62,62,62,62,62,9,9,110,110,110,110,110,110,110,110,110,110,92,
+62,62,62,62,29,62,63,9,9,9,9,9,9,9,9,9,9,9,9,91,
+62,62,62,63,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,91,
+62,62,63,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,91,
+62,63,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,91,
+9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,3,9,9,9,91,
+93,9,3,3,3,3,3,3,3,3,3,3,3,9,3,3,3,3,3,91,
+93,3,3,9,9,9,3,3,3,9,9,9,3,3,3,3,9,3,3,91,
+93,3,3,3,3,3,3,3,3,9,9,3,3,9,9,3,3,3,3,91,
+93,3,3,3,3,3,9,9,3,9,3,3,3,3,9,9,3,3,9,91,
+93,3,3,3,3,3,3,9,3,3,3,3,3,3,9,9,3,9,9,91,
+93,9,3,9,9,9,3,9,3,3,9,9,3,9,9,9,3,9,9,91,
+93,9,3,3,3,3,3,9,3,3,9,9,3,9,9,9,3,9,9,91,
+93,9,9,9,9,9,9,9,3,9,9,9,9,9,9,9,3,9,9,91,
+93,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,3,9,9,91,
+93,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,91,
+93,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,91,
+93,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,91,
+93,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,91,
+92,74,74,74,74,74,74,74,74,74,74,74,74,74,74,74,74,74,74,92
 </data>
  </layer>
+ <objectgroup name="Objects">
+  <object id="27" gid="148" x="144" y="208" width="48" height="32"/>
+  <object id="29" gid="151" x="32" y="144" width="48" height="32"/>
+  <object id="30" gid="151" x="32" y="128" width="48" height="32"/>
+  <object id="31" gid="151" x="32" y="160" width="48" height="32"/>
+  <object id="32" gid="151" x="32" y="176" width="48" height="32"/>
+  <object id="33" gid="151" x="32" y="192" width="48" height="32"/>
+  <object id="35" gid="151" x="32" y="208" width="48" height="32"/>
+  <object id="36" gid="151" x="32" y="224" width="48" height="32"/>
+  <object id="38" gid="151" x="48" y="128" width="48" height="32"/>
+  <object id="40" gid="151" x="64" y="128" width="48" height="32"/>
+  <object id="41" gid="151" x="80" y="128" width="48" height="32"/>
+  <object id="42" gid="151" x="96" y="128" width="48" height="32"/>
+  <object id="43" gid="151" x="96" y="144" width="48" height="32"/>
+  <object id="45" gid="151" x="48" y="224" width="48" height="32"/>
+  <object id="46" gid="151" x="64" y="224" width="48" height="32"/>
+  <object id="47" gid="151" x="80" y="224" width="48" height="32"/>
+  <object id="48" gid="151" x="96" y="224" width="48" height="32"/>
+  <object id="49" gid="151" x="96" y="208" width="48" height="32"/>
+  <object id="50" gid="151" x="96" y="192" width="48" height="32"/>
+  <object id="51" gid="151" x="80" y="192" width="48" height="32"/>
+  <object id="53" gid="151" x="128" y="208" width="48" height="32"/>
+  <object id="54" gid="151" x="128" y="224" width="48" height="32"/>
+  <object id="56" gid="151" x="128" y="192" width="48" height="32"/>
+  <object id="57" gid="151" x="128" y="160" width="48" height="32"/>
+  <object id="58" gid="151" x="128" y="176" width="48" height="32"/>
+  <object id="59" gid="151" x="128" y="144" width="48" height="32"/>
+  <object id="60" gid="151" x="128" y="128" width="48" height="32"/>
+  <object id="61" gid="151" x="144" y="128" width="48" height="32"/>
+  <object id="62" gid="151" x="160" y="128" width="48" height="32"/>
+  <object id="63" gid="151" x="176" y="128" width="48" height="32"/>
+  <object id="64" gid="151" x="192" y="128" width="48" height="32"/>
+  <object id="65" gid="151" x="192" y="144" width="48" height="32"/>
+  <object id="66" gid="151" x="192" y="144" width="48" height="32"/>
+  <object id="67" gid="151" x="192" y="160" width="48" height="32"/>
+  <object id="68" gid="151" x="192" y="176" width="48" height="32"/>
+  <object id="69" gid="151" x="192" y="192" width="48" height="32"/>
+  <object id="70" gid="151" x="192" y="192" width="48" height="32"/>
+  <object id="71" gid="151" x="192" y="208" width="48" height="32"/>
+  <object id="72" gid="151" x="192" y="224" width="48" height="32"/>
+  <object id="73" gid="151" x="144" y="192" width="48" height="32"/>
+  <object id="74" gid="151" x="160" y="192" width="48" height="32"/>
+  <object id="75" gid="151" x="176" y="192" width="48" height="32"/>
+  <object id="76" gid="151" x="224" y="128" width="48" height="32"/>
+  <object id="78" gid="151" x="240" y="144" width="48" height="32"/>
+  <object id="79" gid="151" x="256" y="160" width="48" height="32"/>
+  <object id="80" gid="151" x="272" y="144" width="48" height="32"/>
+  <object id="81" gid="151" x="288" y="128" width="48" height="32"/>
+  <object id="82" gid="151" x="256" y="176" width="48" height="32"/>
+  <object id="83" gid="151" x="256" y="176" width="48" height="32"/>
+  <object id="84" gid="151" x="256" y="192" width="48" height="32"/>
+  <object id="85" gid="151" x="256" y="192" width="48" height="32"/>
+  <object id="86" gid="151" x="256" y="208" width="48" height="32"/>
+  <object id="87" gid="151" x="256" y="224" width="48" height="32"/>
+  <object id="88" gid="153" x="144" y="144" width="48" height="32"/>
+  <object id="89" gid="153" x="144" y="144" width="48" height="32"/>
+  <object id="90" gid="153" x="144" y="160" width="48" height="32"/>
+  <object id="91" gid="153" x="144" y="176" width="48" height="32"/>
+  <object id="92" gid="153" x="160" y="176" width="48" height="32"/>
+  <object id="93" gid="153" x="176" y="176" width="48" height="32"/>
+  <object id="94" gid="153" x="176" y="160" width="48" height="32"/>
+  <object id="95" gid="153" x="176" y="144" width="48" height="32"/>
+  <object id="96" gid="153" x="160" y="144" width="48" height="32"/>
+  <object id="97" gid="156" x="160" y="160" width="48" height="32"/>
+ </objectgroup>
  <objectgroup name="Exits" opacity="0.46">
   <object id="19" name="cave" gid="9" x="64" y="32" width="16" height="16">
    <properties>
     <property name="scene" value="inside0"/>
     <property name="x" value="8"/>
-    <property name="y" value="9"/>
+    <property name="y" value="8"/>
    </properties>
   </object>
   <object id="21" name="leftExit" gid="23" x="0" y="96" width="16" height="16">
