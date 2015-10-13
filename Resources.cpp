@@ -16,6 +16,12 @@ sf::Texture            Resources::linkSetBR;
 sf::Texture            Resources::linkSetBL;
 sf::Texture            Resources::overEnemies;
 sf::Texture            Resources::textureTest;
+sf::Texture            Resources::heart;
+sf::Texture            Resources::shinnyHeart;
+sf::Texture            Resources::halfHeart;
+sf::Texture            Resources::shinnyHalfHeart;
+sf::Texture            Resources::emptyHeart;
+sf::Texture            Resources::shinnyEmptyHeart;
 sf::Shader             Resources::DtO;
 sf::Shader             Resources::sLighting;
 sf::Shader             Resources::cInvert;
@@ -40,6 +46,12 @@ void Resources::load() {
     linkSetBL.loadFromFile(TEXTURETPATH+std::string("linkBotLeft.png"));
     overEnemies.loadFromFile(TEXTURETPATH+std::string("OverworldEnemies.png"));
     textureTest.loadFromFile(TEXTURETPATH+std::string("textureTest.png"));
+    heart.loadFromFile(TEXTURETPATH+std::string("heart.png"));
+    shinnyHeart.loadFromFile(TEXTURETPATH+std::string("shinnyHeart.png"));
+    halfHeart.loadFromFile(TEXTURETPATH+std::string("halfHeart.png"));
+    shinnyHalfHeart.loadFromFile(TEXTURETPATH+std::string("shinnyHalfHeart.png"));
+    emptyHeart.loadFromFile(TEXTURETPATH+std::string("emptyHeart.png"));
+    shinnyEmptyHeart.loadFromFile(TEXTURETPATH+std::string("shinnyEmptyHeart.png"));
 
     descriptions = std::vector<SpriteSheetDescription>(spriteDescriptionsQtt);
     descriptions[linkSpritesDescriptions] = loadDescription("linkSheet");

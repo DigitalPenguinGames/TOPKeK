@@ -25,6 +25,12 @@ public:
     static sf::Texture linkSetBL;
     static sf::Texture overEnemies;
     static sf::Texture textureTest;
+    static sf::Texture heart;
+    static sf::Texture shinnyHeart;
+    static sf::Texture halfHeart;
+    static sf::Texture shinnyHalfHeart;
+    static sf::Texture emptyHeart;
+    static sf::Texture shinnyEmptyHeart;
     static sf::Font pauseMenuFont;
     static std::vector<SpriteSheetDescription> descriptions;
 private:
