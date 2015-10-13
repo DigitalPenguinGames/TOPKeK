@@ -121,4 +121,8 @@ bool isCollisioning(sf::Vector2f point1, float radius1, sf::Vector2f point2, flo
 
 directions pointsToDirection(sf::Vector2f pos1, sf::Vector2f pos2, float rotation);
 
+sf::Vector2f getRelativeCenter(sf::Vector2f origen, sf::IntRect boundOr, sf::IntRect boundDest);
+
+bool counterDirection(directions d1, directions d2);
+
 #endif

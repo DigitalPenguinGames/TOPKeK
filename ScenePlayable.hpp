@@ -35,6 +35,11 @@ public:
 
     void init(sf::Vector2f sceneIniCoord) = 0;
 
+    void addEnemy(Enemy* enemy);
+    void addAllyWeapon(Weapon* weapon);
+    void addEnemyWeapon(Weapon* weapon);
+    void addForAllWeapon(Weapon* weapon);
+
 protected:
     Map _map;
     Frame _menu;

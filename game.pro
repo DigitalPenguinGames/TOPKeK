@@ -23,6 +23,7 @@ SOURCES += main.cpp \
         Enemy.cpp \
         Octorok.cpp \
         Weapon.cpp \
+        RockProjectile.cpp \
 		Projectile.cpp \
 		Collisionable.cpp \
     	Fairy.cpp \
@@ -60,6 +61,7 @@ HEADERS += utils.hpp \
         Enemy.hpp \
         Octorok.hpp \
         Weapon.hpp \
+        RockProjectile.hpp \
 		Projectile.hpp \
 		Collisionable.hpp \
     	Fairy.hpp \

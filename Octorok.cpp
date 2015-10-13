@@ -1,6 +1,7 @@
 #include "Octorok.hpp"
+#include "ScenePlayable.hpp"
 
-Octorok::Octorok(Map* map, sf::Vector2f pos) : Enemy(map,pos) {
+Octorok::Octorok(ScenePlayable* scene, Map* map, sf::Vector2f pos) : Enemy(scene, map,pos) {
     _sprite.setTexture(Resources::overEnemies);
     _description = Resources::descriptions[octorokDescriptions];
     _dir = directions::down;
@@ -25,6 +26,7 @@ void Octorok::update(float deltaTime) {
     if (_time < 0) {
         _time += 3;
         _dir = directions(std::rand()%4);
+        _scene->addEnemyWeapon(new RockProjectile(_map, getRelativeCenter(_sprite.getPosition(), getBounds(), sf::IntRect(1,2,6,6)), _dir));
     }
     _moving = (std::rand()%2 == 0);
     Enemy::update(deltaTime);

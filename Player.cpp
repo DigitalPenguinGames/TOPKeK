@@ -15,7 +15,7 @@ Player::Player(){
     _attacking = false;
 
     _walkBounds = sf::IntRect(4,13,8,2);
-    _bounds = sf::IntRect(4,13,8,2);
+    _bounds = sf::IntRect(4,2,8,12);
 
     std::vector<sf::Texture*> textures(9);
     textures[directions::none]  = &Resources::linkSet;
@@ -135,7 +135,7 @@ directions Player::getDirection() {
 
 sf::IntRect Player::getSwordRect() {
     sf::Vector2f pos = _sword.getPosition();
-    sf::IntRect gSword = _sword.getBounds();
+    sf::IntRect gSword = _sword.getGlobalBound();
     sf::IntRect sword(pos.x - gSword.left, pos.y - gSword.top, gSword.width, gSword.height);
     switch(_dir){
         case directions::down:

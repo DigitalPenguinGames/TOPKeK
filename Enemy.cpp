@@ -1,6 +1,6 @@
 #include "Enemy.hpp"
 
-Enemy::Enemy(Map* map, sf::Vector2f pos) : _map(map) {
+Enemy::Enemy(ScenePlayable* scene, Map* map, sf::Vector2f pos) : _scene(scene), _map(map) {
     _speed = sf::Vector2f(0,0);
     _hp = 20;
     _dead = false;

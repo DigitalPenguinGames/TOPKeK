@@ -88,3 +88,27 @@ directions pointsToDirection(sf::Vector2f pos1, sf::Vector2f pos2, float rotatio
 
     else return directions::left;
 }
+
+sf::Vector2f getRelativeCenter(sf::Vector2f origen, sf::IntRect boundOr, sf::IntRect boundDest) {
+    sf::Vector2f final;
+
+    final.x = boundOr.left + boundOr.width/2 - boundDest.width/2 - boundDest.left + origen.x;
+    final.y = boundOr.top + boundOr.height/2 - boundDest.height/2 - boundDest.top + origen.y;
+
+    return final;
+}
+
+bool counterDirection(directions d1, directions d2) {
+    switch (d1) {
+        case directions::down:
+            return d2 == directions::up;
+        case directions::up:
+            return d2 == directions::down;
+        case directions::left:
+            return d2 == directions::right;
+        case directions::right:
+            return d2 == directions::left;
+        default:
+            return false;
+    }
+}

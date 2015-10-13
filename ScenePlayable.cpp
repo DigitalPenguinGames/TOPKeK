@@ -153,3 +153,19 @@ void ScenePlayable::processInput() {
     
 
 }
+
+void ScenePlayable::addEnemy(Enemy* enemy) {
+    _enemies.push_back(enemy);
+}
+
+void ScenePlayable::addAllyWeapon(Weapon* weapon) {
+    _allyWeapons.push_back(weapon);
+}
+
+void ScenePlayable::addEnemyWeapon(Weapon* weapon){
+    _enemyWeapons.push_back(weapon);
+}
+
+void ScenePlayable::addForAllWeapon(Weapon* weapon){
+    _forAllWeapons.push_back(weapon);
+}

@@ -5,9 +5,10 @@
 #include "Map.hpp"
 #include "Collisionable.hpp"
 
+class ScenePlayable;
 class Enemy : public Collisionable {
 public:
-    Enemy(Map* map, sf::Vector2f pos);
+    Enemy(ScenePlayable* scene, Map* map, sf::Vector2f pos);
     virtual ~Enemy();
 
     virtual void update(float deltaTime);
@@ -20,6 +21,7 @@ public:
     float getDamage();
 
 protected:
+    ScenePlayable* _scene;
     Map* _map;
     sf::Vector2f _speed;
     sf::IntRect _walkBounds;

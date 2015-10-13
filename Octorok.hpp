@@ -3,10 +3,11 @@
 
 #include "Enemy.hpp"
 #include "Resources.hpp"
+#include "RockProjectile.hpp"
 
 class Octorok : public Enemy {
 public:
-    Octorok(Map* map, sf::Vector2f pos);
+    Octorok(ScenePlayable* scene,Map* map, sf::Vector2f pos);
     ~Octorok();
 
     void update(float deltaTime);
