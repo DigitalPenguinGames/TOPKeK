@@ -43,7 +43,8 @@ SOURCES += main.cpp \
     GUI/Widget.cpp \
     TextBox.cpp \
     SoundManager.cpp \
-    DataManager.cpp
+    DataManager.cpp \
+    StatsBar.cpp
 
 HEADERS += utils.hpp \
 		Resources.cpp \
@@ -81,4 +82,5 @@ HEADERS += utils.hpp \
     GUI/Frame.hpp \
     TextBox.hpp \
     SoundManager.hpp \
-    DataManager.hpp
+    DataManager.hpp \
+    StatsBar.hpp

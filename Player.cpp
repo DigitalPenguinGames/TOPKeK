@@ -75,7 +75,9 @@ void Player::draw(sf::RenderTarget* w) {
         Resources::cInvert.setParameter("deltaTime", _hitedTimer);
         _lightSprite.draw(w,&Resources::cInvert);
     }
-   else _lightSprite.draw(w);
+   else {
+        _lightSprite.draw(w);
+    }
 }
 
 bool Player::isAlive() {

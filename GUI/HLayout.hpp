@@ -28,10 +28,10 @@ protected:
 
     virtual void processEvents(const sf::Vector2f& parent_pos) override;
 
+    std::vector<Widget*> _widgets;
 
 private:
 
-    std::vector<Widget*> _widgets;
     virtual void updateShape() override;
     virtual void draw(sf::RenderTarget& target,
                       sf::RenderStates states) const override;

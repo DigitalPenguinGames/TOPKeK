@@ -135,7 +135,7 @@ void ScenePlayable::processInput() {
     }
 
     // Debug link movement
-    if      (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z)) _player->attack();
+    if      (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) _player->attack();
     if      (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) _player->move(directions::up);
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) _player->move(directions::down);
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) _player->move(directions::right);
