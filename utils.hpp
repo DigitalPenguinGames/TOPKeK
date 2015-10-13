@@ -125,4 +125,8 @@ sf::Vector2f getRelativeCenter(sf::Vector2f origen, sf::IntRect boundOr, sf::Int
 
 bool counterDirection(directions d1, directions d2);
 
+int getHorizontal(directions dir);
+
+int getVertical(directions dir);
+
 #endif

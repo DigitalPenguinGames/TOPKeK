@@ -59,8 +59,8 @@ void Player::update(float deltaTime) {
     else if (_moving) {
         sf::Vector2f movement, speed(50,50), initial;
         initial = _sprite.getPosition();
-        movement.x = (_dir == directions::left ? -speed.x : (_dir == directions::right ? speed.x : 0));
-        movement.y = (_dir == directions::up ? -speed.y : (_dir == directions::down ? speed.y : 0));
+        movement.x = getHorizontal(_dir) * speed.x;
+        movement.y = getVertical(_dir) * speed.y;
         _sprite.move(_map->getMaxMovement(initial,movement*deltaTime,_walkBounds));
         _moving = false;
     }

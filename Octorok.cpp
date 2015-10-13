@@ -27,7 +27,10 @@ void Octorok::update(float deltaTime) {
         _time += 3;
         _dir = directions(std::rand()%4);
         SoundManager::playSound("shootBigBall");
-        _scene->addEnemyWeapon(new RockProjectile(_map, getRelativeCenter(_sprite.getPosition(), getBounds(), sf::IntRect(1,2,6,6)), _dir));
+        sf::Vector2f offset;
+        offset.x = getHorizontal(_dir) * (getBounds().left+getBounds().width /2);
+        offset.y = getVertical  (_dir) * (getBounds().top +getBounds().height/2);
+        _scene->addEnemyWeapon(new RockProjectile(_map, getRelativeCenter(_sprite.getPosition(), getBounds(), sf::IntRect(1,2,6,6)) + offset, _dir));
     }
     _moving = (std::rand()%2 == 0);
     Enemy::update(deltaTime);

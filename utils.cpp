@@ -112,3 +112,10 @@ bool counterDirection(directions d1, directions d2) {
             return false;
     }
 }
+
+int getHorizontal(directions dir) {
+    return (dir == directions::left ? -1 : (dir == directions::right ? 1 : 0));   
+}
+int getVertical(directions dir) {
+    return (dir == directions::up   ? -1 : (dir == directions::down  ? 1 : 0));
+}

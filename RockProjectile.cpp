@@ -6,7 +6,7 @@ RockProjectile::RockProjectile(Map* map, sf::Vector2f pos, directions dir) : Wea
     _sprite.setTextureRect(_description[0][0]);
     _bounds = sf::IntRect(1,2,6,6);
     _damage = 0.5;
-    _speed = sf::Vector2f(10,10);
+    _speed = sf::Vector2f(30,30);
     _angle = 0;
 }
 
