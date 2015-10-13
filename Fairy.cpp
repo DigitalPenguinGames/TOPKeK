@@ -9,6 +9,7 @@ Fairy::Fairy() {
     maxLifes = 3;
     velocity.x = 0.0; velocity.y = 0.0;
     centerPosition.x = 0; centerPosition.y = 0;
+    _bounds = sf::IntRect(3,3,10,10);
 
 }
 
@@ -30,7 +31,7 @@ void Fairy::update(float deltatime, sf::Vector2f mousePos) {
     velocity.x = 0.8*velocity.x + 0.2*(mousePos.x - this->Effect::getPosition().x ) * deltatime;
     velocity.y = 0.8*velocity.y + 0.2*(mousePos.y - this->Effect::getPosition().y ) * deltatime;
     this->move(velocity);
-    _sprite.setPosition(this->Sprite::getPosition().x,this->Sprite::getPosition().y-4);
+    _sprite.setPosition(this->Sprite::getPosition().x,this->Sprite::getPosition().y);
 
 }
 
@@ -66,4 +67,8 @@ void Fairy::setVelocity(const sf::Vector2f &value) {
 
 sf::Vector2f Fairy::getPosition() const {
     return sf::Sprite::getPosition();
+}
+
+sf::Vector2f Fairy::getBotPosition() {
+    return sf::Vector2f(_sprite.getPosition().x+_bounds.left+_bounds.width/2, _sprite.getPosition().y + TILESIZE);
 }

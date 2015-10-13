@@ -26,6 +26,7 @@ public:
     float getCenterAngle() const;
 
     sf::Vector2f getPosition() const;
+    sf::Vector2f getBotPosition();
 
 private:
 
