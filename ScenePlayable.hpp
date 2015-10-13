@@ -8,6 +8,7 @@
 #include "Enemy.hpp"
 #include "Player.hpp"
 #include "Weapon.hpp"
+#include "StatsBar.hpp"
 #include "GUI/Label.hpp"
 #include "GUI/Frame.hpp"
 #include "GUI/Layout.hpp"

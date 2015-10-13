@@ -4,7 +4,7 @@
 #include <stdexcept>
 #include "Widget.hpp"
 
-class Layout : protected Widget{
+class Layout : public Widget{
 
 public:
     Layout(Widget* parent=nullptr);

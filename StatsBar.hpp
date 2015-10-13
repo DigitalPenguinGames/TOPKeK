@@ -19,6 +19,7 @@ public:
     StatsBar(int maxHP, sf::Texture heart, sf::Texture halfHeart, sf::Texture emptyHeart);
     ~StatsBar();
 
+    void updatePics();
     void updateShape();
     void setMaxHP(int value);
     void setActualHP(float value);

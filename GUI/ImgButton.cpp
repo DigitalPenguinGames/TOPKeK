@@ -36,20 +36,13 @@ sf::Vector2f ImgButton::getSize() const{
 }
 
 void ImgButton::updateShape(){
-    /*sf::Vector2f label_size = _label.getSize();
-    unsigned int char_size = _label.getCharacterSize();
-    _shape.setSize(sf::Vector2f(char_size*2+label_size.x, char_size*2+label_size.y));
-    _label.setPosition(char_size,char_size);
-*/
     _sprite.setScale(_shape.getSize().x/_sprite.getLocalBounds().width, _shape.getSize().y/_sprite.getLocalBounds().height );
     Widget::updateShape();
 }
 
 void ImgButton::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     states.transform.translate(_position);
-    target.draw(_shape, states);
     target.draw(_sprite, states);
-    //target.draw(_label,states);
 }
 
 void ImgButton::onMouseEntered() {

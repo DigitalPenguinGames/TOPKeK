@@ -7,6 +7,11 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
     _menu(*w)
 {
 
+    StatsBar* life = new StatsBar(10, Resources::heart,Resources::halfHeart,Resources::emptyHeart);
+    life->setSize(sf::Vector2f(250, 50.0));
+    life->setPosition(0,0);
+
+    /*
     //setting the menu
     VLayout* layout = new VLayout;
     layout->setSpace(25);
@@ -20,12 +25,16 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
     layout->add(exitB);
     layout->add(resB);
     _menu.setLayout(layout);
+    */
+    _menu.setLayout(life);
+    _menu.setPosition(0,0);
 
     _status = status::running;
     _fairy = new Fairy();
 }
 
-ScenePlayable::~ScenePlayable(){}
+ScenePlayable::~ScenePlayable(){
+}
 
 sf::Vector2f ScenePlayable::getSceneCoord() {
     return _map.getSceneCoord();

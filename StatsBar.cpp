@@ -1,5 +1,5 @@
 #include "StatsBar.hpp"
-
+#include <iostream>
 StatsBar::StatsBar(int maxHP, sf::Texture heart, sf::Texture halfHeart, sf::Texture emptyHeart){
 
     _space = 0;
@@ -12,6 +12,8 @@ StatsBar::StatsBar(int maxHP, sf::Texture heart, sf::Texture halfHeart, sf::Text
     _heart = new ImgButton(heart, heart, this);
     _halfHeart = new ImgButton(halfHeart, halfHeart, this);;
     _emptyHeart = new ImgButton(emptyHeart, emptyHeart, this);;
+
+    updatePics();
 }
 
 
@@ -21,43 +23,41 @@ StatsBar::~StatsBar(){
     delete _emptyHeart;
 }
 
-void StatsBar::updateShape(){
-
-    sf::Vector2f butSize((size.x)/_maxHP, size.y);
+void StatsBar::updatePics() {
+    sf::Vector2f butSize(size.y, size.y);
     _heart->setSize(butSize);
     _halfHeart->setSize(butSize);
     _emptyHeart->setSize(butSize);
 
-    _widgets.empty();
+/*    for(Widget* widget : _widgets) {
+        delete widget;
+    }*/
+    _widgets.clear();
     for(int i  = 0; i < _maxHP; ++i ){
         if(i < _actualHP){
-            _widgets.emplace_back(_heart);
+            add(new ImgButton(*_heart));
         }
         else {
-            if( _actualHP > i && _actualHP < i+1){
-                _widgets.emplace_back(_halfHeart);
+            if( i > _actualHP && _actualHP > i-1){
+                add(new ImgButton(*_halfHeart));
             }
             else {
-                _widgets.emplace_back(_emptyHeart);
+                add(new ImgButton(*_emptyHeart));
             }
         }
     }
+    StatsBar::updateShape();
+}
 
-    float max_y = (_parent?_parent->getSize().y:0);
-    for(Widget* widget : _widgets) {
-        sf::Vector2f size = widget->getSize();
-        float widget_y = size.y;
-        if(widget_y > max_y)
-        max_y = widget_y;
-    }
+void StatsBar::updateShape(){
 
     float pos_x = _space;
-    if(_parent)
-        pos_x = (_parent->getSize().x - getSize().x)/2.f;
+    //if(_parent)
+      //  pos_x = (_parent->getSize().x - getSize().x)/2.f;
 
     for(Widget* widget : _widgets) {
         sf::Vector2f size = widget->getSize();
-        widget->setPosition(pos_x,(max_y-size.y)/2.0);
+        widget->setPosition(pos_x,0);
         pos_x += size.x + _space;
     }
 
@@ -66,12 +66,12 @@ void StatsBar::updateShape(){
 
 void StatsBar::setMaxHP(int value){
     _maxHP = value;
-    updateShape();
+    updatePics();
 }
 
 void StatsBar::setActualHP(float value){
     _actualHP = value;
-    updateShape();
+    updatePics();
 }
 sf::Vector2f StatsBar::getSize() const{
     return size;
@@ -79,6 +79,6 @@ sf::Vector2f StatsBar::getSize() const{
 
 void StatsBar::setSize(const sf::Vector2f &value){
     size = value;
-    updateShape();
+    updatePics();
 }
 
