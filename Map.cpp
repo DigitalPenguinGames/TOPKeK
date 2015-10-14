@@ -29,19 +29,29 @@ Map::Map(std::string description) {
     //     std::cout << std::endl;
     // }
     
-
-
-    int nExists, x, y, nextSceneX, nextSceneY;
-    std::string nextScene;
-    des >> nExists;
-    for (int i = 0; i < nExists; ++i) {
-        des >> x >> y >> nextScene >> nextSceneX >> nextSceneY;
-        //std::cout << " " << x << " " << y << " " << nextScene << " " << nextSceneX << " " << nextSceneY;
-        _sceneChangers.push_back(SceneChanger(sf::Vector2f(x,y),nextScene,sf::Vector2f(nextSceneX,nextSceneY)));
-    }
-
-
-
+    while(true){ //hohoho im so evil hohoho
+        std::string objectGroup;
+        des >> objectGroup;
+        if("finish" == objectGroup) break; // rekt m8
+        else if ("Objects" == objectGroup) {
+            // Nosing at ol huhu
+        }
+        else if ("Exits" == objectGroup) {
+            int nExists, x, y, nextSceneX, nextSceneY;
+            std::string nextScene;
+            des >> nExists;
+            for (int i = 0; i < nExists; ++i) {
+                des >> x >> y >> nextScene >> nextSceneX >> nextSceneY;
+                //std::cout << " " << x << " " << y << " " << nextScene << " " << nextSceneX << " " << nextSceneY;
+                _sceneChangers.push_back(SceneChanger(sf::Vector2f(x,y),nextScene,sf::Vector2f(nextSceneX,nextSceneY)));
+            }
+        }
+        else {
+            // I crai evritime
+            std::cout << "Broken us fuck :/ We dont have a object group thtat is called " << objectGroup << std::endl;
+            exit(EXIT_FAILURE);
+        }
+    }  
 }
 
 Map::~Map() {

@@ -43,8 +43,10 @@ def main():
 		#
 		for shit in root.findall ('objectgroup'):
 			if (shit.get('name') == 'Objects'):
+				output += "Objects "
 				continue
 			elif (shit.get('name') == 'Exits'):
+				output += "Exits "
 				output += str(len(shit.findall('object'))) + " "
 				for obj in shit.findall('object'):
 					objX = int(obj.get('x')) / int(obj.get('width'))
@@ -67,6 +69,7 @@ def main():
 
 					output += scene + " " + str(sceneX) + " " + str(sceneY) + " "
 
+		output += "finish "
 
 		name = c
 		extension = "scene"
