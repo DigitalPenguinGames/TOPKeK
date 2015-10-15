@@ -19,8 +19,12 @@ class Collisionable {
 
      virtual void setPosition(sf::Vector2f pos);
 
+     virtual void cmove(sf::Vector2f movement);
+     virtual void resetMove();
+
  protected:
      sf::Sprite _sprite;
+     sf::Vector2f _pastPosition;
      sf::Vector2f _speed;
      sf::IntRect _bounds; // IntRect(offset.x, offset.y, width, height)
  }; 

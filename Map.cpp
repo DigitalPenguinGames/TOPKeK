@@ -18,7 +18,7 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene) {
             }
             break;
         case sceneTypes::dungeon: // dungeon
-            std::cout << "dungone " << std::endl;
+        case sceneTypes::lightedDungeon:
             break;
     } 
 
@@ -41,7 +41,6 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene) {
             for (int i = 0; i < numberOfProps; ++i) {
                 int x,y,gid;
                 des >> gid >> x >> y;
-                std::cout << gid << " " << x << " " << y << std::endl;
                 _scene->addProp(new Prop(gid,sf::Vector2f(x,y)) );
             }
         }

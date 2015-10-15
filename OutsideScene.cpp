@@ -61,9 +61,11 @@ void OutsideScene::update(float deltaTime) {
     for (auto it = _forAllWeapons.begin(); it != _forAllWeapons.end(); ++it) {
         if (playerBound.intersects((*it)->getGlobalBound())) _player->getHit((*it)->getDamage(),(*it)->getPosition());
     }
-    // for (unsigned int i = 0; i < _props.size(); ++i) {
-
-    // }
+    sf::IntRect playerWalkBounds = _player->getGlobalWalkBounds();
+    for (auto it = _props.begin(); it != _props.end(); ++it) {
+        // here will be like player->colwithprop(gid) prop->collisionwithplayer
+        if (playerWalkBounds.intersects((*it)->getGlobalBound())) _player->resetMove();
+    }
     // Collision between object(rupies, arrows, bombs);
 
     // Collisions between Enemies and things
