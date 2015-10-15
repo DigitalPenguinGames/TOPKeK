@@ -77,9 +77,35 @@ void OutsideScene::update(float deltaTime) {
         for (auto it = _forAllWeapons.begin(); it != _forAllWeapons.end(); ++it) {
             if (bounds.intersects((*it)->getGlobalBound())) (*enemyIt)->getHit((*it)->getDamage(),(*it)->getPosition());
         }
+
+        sf::IntRect enemyWalkBounds = (*enemyIt)->getGlobalWalkBounds();
+        for (auto it = _props.begin(); it != _props.end(); ++it) {
+            if (enemyWalkBounds.intersects((*it)->getGlobalBound())) (*enemyIt)->resetMove();
+        }
         // Collisions between rocks & co
     }
 
+    // Collisions between weapons & props
+    for (auto weaponIt = _enemyWeapons.begin(); weaponIt != _enemyWeapons.end(); ++weaponIt) {
+        sf::IntRect bounds = (*weaponIt)->getGlobalBound();
+        for (auto it = _props.begin(); it != _props.end(); ++it) {
+            if (bounds.intersects((*it)->getGlobalBound())) (*weaponIt)->hit();
+        }
+    }
+
+    for (auto weaponIt = _allyWeapons.begin(); weaponIt != _allyWeapons.end(); ++weaponIt) {
+        sf::IntRect bounds = (*weaponIt)->getGlobalBound();
+        for (auto it = _props.begin(); it != _props.end(); ++it) {
+            if (bounds.intersects((*it)->getGlobalBound())) (*weaponIt)->hit();
+        }
+    }
+
+    for (auto weaponIt = _forAllWeapons.begin(); weaponIt != _forAllWeapons.end(); ++weaponIt) {
+        sf::IntRect bounds = (*weaponIt)->getGlobalBound();
+        for (auto it = _props.begin(); it != _props.end(); ++it) {
+            if (bounds.intersects((*it)->getGlobalBound())) (*weaponIt)->hit();
+        }
+    }
 
     // Are all the shits alive?
     {

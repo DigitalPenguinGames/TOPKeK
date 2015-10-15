@@ -88,7 +88,7 @@ sf::Vector2f Player::getBotPosition() {
     return sf::Vector2f(_sprite.getPosition().x+_bounds.left+_bounds.width/2, _sprite.getPosition().y + 16);
 }
 
-void Player::getHit(float much, sf::Vector2f from) {
+void Player::getHit(float much, sf::Vector2f) {
     if (_hitedTimer > 0) return;
     Resources::cInvert.setParameter("Time", 1.5);
     _hitedTimer = 1.5; // One second of invulneravility;
