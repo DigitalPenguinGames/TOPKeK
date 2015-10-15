@@ -18,6 +18,7 @@ public:
 
     virtual sceneTypes getType();
     sf::View* getPtrView();
+    std::string getSceneName();
 protected:
     Game* _game;
     sf::RenderWindow* _window;

@@ -14,6 +14,7 @@ public:
     static sf::Texture tileSetCols;
     static sf::Texture dungeon;
     static sf::Texture dungeonCols;
+    static sf::Texture propsOver;
     static sf::Texture linkSet;
     static sf::Texture linkSetT;
     static sf::Texture linkSetB;

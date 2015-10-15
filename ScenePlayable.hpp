@@ -6,6 +6,7 @@
 #include "Fairy.hpp"
 #include "Scene.hpp"
 #include "Enemy.hpp"
+#include "Prop.hpp"
 #include "Player.hpp"
 #include "Weapon.hpp"
 #include "StatsBar.hpp"
@@ -40,18 +41,20 @@ public:
     void addAllyWeapon(Weapon* weapon);
     void addEnemyWeapon(Weapon* weapon);
     void addForAllWeapon(Weapon* weapon);
+    void addProp(Prop* prop);
 
 protected:
+    std::list<Enemy*> _enemies;
+    std::list<Weapon*> _allyWeapons;
+    std::list<Weapon*> _enemyWeapons;
+    std::list<Weapon*> _forAllWeapons;
+    std::list<Prop* > _props;
     Map _map;
     Frame _menu;
     Fairy* _fairy;
     Player* _player;
     sf::Vector2f _sceneIniCoord;
     status::gameStatus _status;
-    std::list<Enemy*> _enemies;
-    std::list<Weapon*> _allyWeapons;
-    std::list<Weapon*> _enemyWeapons;
-    std::list<Weapon*> _forAllWeapons;
 
     void renderSorted(sf::RenderTarget* target, std::vector<Collisionable*>& cols);
     void centerView();

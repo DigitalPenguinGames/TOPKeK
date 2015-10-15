@@ -3,10 +3,9 @@
 
 ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string name, std::string description) :
     Scene(g,w,sT,name),
-    _map(description),
+    _map(this,description),
     _menu(*w)
 {
-
     StatsBar* life = new StatsBar(10, Resources::heart,Resources::halfHeart,Resources::emptyHeart);
     life->setSize(sf::Vector2f(250, 50.0));
     life->setPosition(0,0);
@@ -177,4 +176,8 @@ void ScenePlayable::addEnemyWeapon(Weapon* weapon){
 
 void ScenePlayable::addForAllWeapon(Weapon* weapon){
     _forAllWeapons.push_back(weapon);
+}
+
+void ScenePlayable::addProp(Prop* prop) {
+    _props.push_back(prop);
 }

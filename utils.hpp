@@ -67,13 +67,14 @@ enum spriteSheetsDescriptions {
     swordDescriptions,
     octorokDescriptions,
     rockProjDescription,
+    propsOverDescription,
     spriteDescriptionsQtt
 };
 
 // Animations
 enum linkActions {
     move            ,
-    attack            ,
+    attack          ,
     linkActionsQtt
 };
 
@@ -84,6 +85,23 @@ enum swordtypes {
     third,
     fourth,
     qttSwordTypes
+};
+
+// Props Types
+enum propTypes {
+    treeGreen   ,
+    treeBrown   ,
+    treeWhite   ,
+    statueGreen ,
+    statueBrown ,
+    statueWhite ,
+    bushGreen   ,
+    bushBrown   ,
+    grave       ,
+    soldierGreen,
+    soldierBrown,
+    soldierWhite,
+    propsQtty
 };
 
 // Directions

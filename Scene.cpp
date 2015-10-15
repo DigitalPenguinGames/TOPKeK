@@ -51,6 +51,10 @@ sf::View* Scene::getPtrView() {
     return &_view;
 }
 
+std::string Scene::getSceneName() {
+    return _sceneName;
+}
+
 void Scene::processInput() {
     sf::Event event;
     while (_window->pollEvent(event)) {

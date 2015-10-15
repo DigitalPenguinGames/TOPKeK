@@ -5,10 +5,12 @@
 #include "Tile.hpp"
 #include "SceneChanger.hpp"
 #include "Background.hpp"
+#include "Prop.hpp"
 
+class ScenePlayable;
 class Map {
 public:
-    Map(std::string description);
+    Map(ScenePlayable* scene, std::string description);
     ~Map();
     void init(sf::Vector2f sceneIniCoord);
     void draw(sf::RenderTarget* w);
@@ -18,6 +20,7 @@ public:
     sf::Vector2f getSceneCoord();
     sf::Vector2f getMaxMovement(sf::Vector2f ini, sf::Vector2f movement, sf::IntRect rect);;
 private:
+    ScenePlayable* _scene;
     std::vector<std::vector<int> > _premap;
     std::vector<std::vector<Tile> > _map; // If sceneType == outside
     Background* _background;               // If sceneType == dungeon

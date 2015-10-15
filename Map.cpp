@@ -1,6 +1,7 @@
 #include "Map.hpp"
+#include "ScenePlayable.hpp"
 
-Map::Map(std::string description) {
+Map::Map(ScenePlayable* scene, std::string description) : _scene(scene) {
     _mapIniCoord = sf::Vector2f(FLT_MAX,FLT_MAX);
     std::istringstream des(description);
     int width, height;
@@ -35,6 +36,14 @@ Map::Map(std::string description) {
         if("finish" == objectGroup) break; // rekt m8
         else if ("Objects" == objectGroup) {
             // Nosing at ol huhu
+            int numberOfProps;
+            des >> numberOfProps;
+            for (int i = 0; i < numberOfProps; ++i) {
+                int x,y,gid;
+                des >> gid >> x >> y;
+                std::cout << gid << " " << x << " " << y << std::endl;
+                _scene->addProp(new Prop(gid,sf::Vector2f(x,y)) );
+            }
         }
         else if ("Exits" == objectGroup) {
             int nExists, x, y, nextSceneX, nextSceneY;
@@ -42,13 +51,12 @@ Map::Map(std::string description) {
             des >> nExists;
             for (int i = 0; i < nExists; ++i) {
                 des >> x >> y >> nextScene >> nextSceneX >> nextSceneY;
-                //std::cout << " " << x << " " << y << " " << nextScene << " " << nextSceneX << " " << nextSceneY;
                 _sceneChangers.push_back(SceneChanger(sf::Vector2f(x,y),nextScene,sf::Vector2f(nextSceneX,nextSceneY)));
             }
         }
         else {
             // I crai evritime
-            std::cout << "Broken us fuck :/ We dont have a object group thtat is called " << objectGroup << std::endl;
+            std::cout << "Broken as fuck :/ We dont have a object group that is called " << objectGroup << std::endl;
             exit(EXIT_FAILURE);
         }
     }  

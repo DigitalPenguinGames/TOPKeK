@@ -5,6 +5,7 @@ regex = "*.tmx"
 
 def main():
 	for c in glob.glob(regex):
+		print(c)
 		output = ""
 		tree = ET.parse(c)
 		root = tree.getroot()
@@ -44,6 +45,14 @@ def main():
 		for shit in root.findall ('objectgroup'):
 			if (shit.get('name') == 'Objects'):
 				output += "Objects "
+				numberOfProps = len(shit.findall('object'))
+				output += str(numberOfProps) + " "
+				for prop in shit.findall('object'):
+					gid = prop.get('gid')
+					x = prop.get('x')
+					y = prop.get('y')
+					output += gid + " " + x + " " + y + " "
+
 				continue
 			elif (shit.get('name') == 'Exits'):
 				output += "Exits "

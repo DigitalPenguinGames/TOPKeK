@@ -26,6 +26,7 @@ SOURCES += main.cpp \
         RockProjectile.cpp \
 		Projectile.cpp \
 		Collisionable.cpp \
+        Prop.cpp \
     	Fairy.cpp \
     	Effect.cpp \
         Light.cpp \
@@ -65,6 +66,7 @@ HEADERS += utils.hpp \
         RockProjectile.hpp \
 		Projectile.hpp \
 		Collisionable.hpp \
+        Prop.hpp \
     	Fairy.hpp \
     	Effect.hpp \
         Light.hpp \

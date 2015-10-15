@@ -60,7 +60,7 @@ void Player::update(float deltaTime) {
         sf::Vector2f movement, speed(50,50), initial;
         initial = _sprite.getPosition();
         movement.x = getHorizontal(_dir) * speed.x;
-        movement.y = getVertical(_dir) * speed.y;
+        movement.y = getVertical(_dir) * speed.y; 
         _sprite.move(_map->getMaxMovement(initial,movement*deltaTime,_walkBounds));
         _moving = false;
     }
@@ -82,6 +82,10 @@ void Player::draw(sf::RenderTarget* w) {
 
 bool Player::isAlive() {
     return !_dead;
+}
+
+sf::Vector2f Player::getBotPosition() {
+    return sf::Vector2f(_sprite.getPosition().x+_bounds.left+_bounds.width/2, _sprite.getPosition().y + 16);
 }
 
 void Player::getHit(float much, sf::Vector2f from) {

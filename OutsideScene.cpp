@@ -61,6 +61,9 @@ void OutsideScene::update(float deltaTime) {
     for (auto it = _forAllWeapons.begin(); it != _forAllWeapons.end(); ++it) {
         if (playerBound.intersects((*it)->getGlobalBound())) _player->getHit((*it)->getDamage(),(*it)->getPosition());
     }
+    // for (unsigned int i = 0; i < _props.size(); ++i) {
+
+    // }
     // Collision between object(rupies, arrows, bombs);
 
     // Collisions between Enemies and things
@@ -121,6 +124,7 @@ void OutsideScene::render(sf::RenderTarget* target) {
     for (auto it = _enemyWeapons.begin(); it != _enemyWeapons.end(); ++it) collisionables.push_back(*it);
     for (auto it = _allyWeapons.begin(); it != _allyWeapons.end(); ++it) collisionables.push_back(*it);
     for (auto it = _forAllWeapons.begin(); it != _forAllWeapons.end(); ++it) collisionables.push_back(*it);
+    for (auto it = _props.begin(); it != _props.end(); ++it) collisionables.push_back(*it);
     renderSorted(target, collisionables);
 
 

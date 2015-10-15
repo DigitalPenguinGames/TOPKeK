@@ -5,6 +5,7 @@ sf::Texture            Resources::tileSet;
 sf::Texture            Resources::tileSetCols;
 sf::Texture            Resources::dungeon;
 sf::Texture            Resources::dungeonCols;
+sf::Texture            Resources::propsOver;
 sf::Texture            Resources::linkSet;
 sf::Texture            Resources::linkSetT;
 sf::Texture            Resources::linkSetB;
@@ -35,6 +36,7 @@ void Resources::load() {
     tileSetCols.loadFromFile(TEXTURETPATH+std::string("OverworldTilesColision.png"));
     dungeon.loadFromFile(TEXTURETPATH+std::string("dungeon.png"));
     dungeonCols.loadFromFile(TEXTURETPATH+std::string("dungeonCollision.png"));
+    propsOver.loadFromFile(TEXTURETPATH+std::string("OverworldObjects.png"));
     linkSet.loadFromFile(TEXTURETPATH+std::string("link.png"));
     linkSetT.loadFromFile(TEXTURETPATH+std::string("linkTop.png"));
     linkSetB.loadFromFile(TEXTURETPATH+std::string("linkBot.png"));
@@ -58,6 +60,7 @@ void Resources::load() {
     descriptions[swordDescriptions] = loadDescription("swordSheet");
     descriptions[octorokDescriptions] = loadDescription("Octorok");
     descriptions[rockProjDescription] = loadDescription("rockProj");
+    descriptions[propsOverDescription] = loadDescription("propsOverworld");
 
     if (!DtO.loadFromFile(SHADERPATH+std::string("transitionDtO.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
     if (!sLighting.loadFromFile(SHADERPATH+std::string("lighting.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
