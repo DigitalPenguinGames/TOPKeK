@@ -34,11 +34,11 @@ void StatsBar::updatePics() {
     }*/
     _widgets.clear();
     for(int i  = 0; i < _maxHP; ++i ){
-        if(i < _actualHP){
+        if(i+1 <= _actualHP){
             add(new ImgButton(*_heart));
         }
         else {
-            if( i > _actualHP && _actualHP > i-1){
+            if( i < _actualHP && _actualHP < i+1){
                 add(new ImgButton(*_halfHeart));
             }
             else {

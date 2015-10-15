@@ -31,6 +31,8 @@ public:
     float getSwordDamage();
     bool isAlive();
     sf::Vector2f getBotPosition();
+    float getHp();
+    float getMaxHp();
 
     void getHit(float much, sf::Vector2f from);
     void setPosition(sf::Vector2f pos);

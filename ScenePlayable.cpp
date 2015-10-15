@@ -4,11 +4,12 @@
 ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string name, std::string description) :
     Scene(g,w,sT,name),
     _map(this,description),
-    _menu(*w)
+    _menu(*w),
+    _hud(*w)
 {
-    StatsBar* life = new StatsBar(10, Resources::heart,Resources::halfHeart,Resources::emptyHeart);
-    life->setSize(sf::Vector2f(250, 50.0));
-    life->setPosition(0,0);
+    _life = new StatsBar(10, Resources::heart,Resources::halfHeart,Resources::emptyHeart);
+    _life->setSize(sf::Vector2f(250, 50.0));
+    _life->setPosition(0,0);
 
     /*
     //setting the menu
@@ -25,8 +26,8 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
     layout->add(resB);
     _menu.setLayout(layout);
     */
-    _menu.setLayout(life);
-    _menu.setPosition(0,0);
+    _hud.setLayout(_life);
+    _hud.setPosition(0,0);
 
     _status = status::running;
     _fairy = new Fairy();
@@ -104,6 +105,7 @@ void ScenePlayable::display() {
             _window->setView(_view);
             render();
             _window->setView(_window->getDefaultView());
+            _window->draw(_hud);
             if(drawMenu){
                 _window->draw(_menu);
             }

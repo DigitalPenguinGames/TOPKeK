@@ -88,6 +88,14 @@ sf::Vector2f Player::getBotPosition() {
     return sf::Vector2f(_sprite.getPosition().x+_bounds.left+_bounds.width/2, _sprite.getPosition().y + 16);
 }
 
+float Player::getHp() {
+    return _hp;
+}
+    
+float Player::getMaxHp() {
+    return _maxHp;
+}
+
 void Player::getHit(float much, sf::Vector2f) {
     if (_hitedTimer > 0) return;
     Resources::cInvert.setParameter("Time", 1.5);

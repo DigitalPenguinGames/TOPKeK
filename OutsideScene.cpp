@@ -20,6 +20,7 @@ void OutsideScene::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
     _map.init(_sceneIniCoord);
     initView(sf::Vector2i(WINDOWRATIOX,WINDOWRATIOY));
     _enemies.push_back(new Octorok(this, &_map, sf::Vector2f(70+sceneIniCoord.x,70+sceneIniCoord.y)));
+    _life->setMaxHP(_player->getMaxHp());
 }
 
 
@@ -139,6 +140,8 @@ void OutsideScene::update(float deltaTime) {
         }
         // Objects (rupies, shit)
     }
+
+    _life->setActualHP(_player->getHp());
 
 }
 

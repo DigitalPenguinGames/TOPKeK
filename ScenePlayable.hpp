@@ -49,12 +49,16 @@ protected:
     std::list<Weapon*> _enemyWeapons;
     std::list<Weapon*> _forAllWeapons;
     std::list<Prop* > _props;
+
+    sf::Vector2f _sceneIniCoord;
     Map _map;
-    Frame _menu;
     Fairy* _fairy;
     Player* _player;
-    sf::Vector2f _sceneIniCoord;
+
     status::gameStatus _status;
+    Frame _menu;
+    Frame _hud;
+    StatsBar* _life;
 
     void renderSorted(sf::RenderTarget* target, std::vector<Collisionable*>& cols);
     void centerView();
