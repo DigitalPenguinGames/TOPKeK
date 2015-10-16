@@ -107,7 +107,7 @@ void Player::attack() {
 
     if(!_attacking) {
         SoundManager::playSound("stabSword");
-        int n = rand()%10;
+        int n = rand()%4;
         if(n < 4)
         SoundManager::playSound("linkAttack"+std::to_string(n));
         _attacking = true;

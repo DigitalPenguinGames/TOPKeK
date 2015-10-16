@@ -12,6 +12,7 @@
 #include "StatsBar.hpp"
 #include "GUI/Label.hpp"
 #include "GUI/Frame.hpp"
+#include "FairyShoot.hpp"
 #include "GUI/Layout.hpp"
 #include "GUI/Widget.hpp"
 #include "GUI/Button.hpp"

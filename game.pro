@@ -45,7 +45,8 @@ SOURCES += main.cpp \
     TextBox.cpp \
     SoundManager.cpp \
     DataManager.cpp \
-    StatsBar.cpp
+    StatsBar.cpp \
+    FairyShoot.cpp
 
 HEADERS += utils.hpp \
 		Resources.cpp \
@@ -85,4 +86,5 @@ HEADERS += utils.hpp \
     TextBox.hpp \
     SoundManager.hpp \
     DataManager.hpp \
-    StatsBar.hpp
+    StatsBar.hpp \
+    FairyShoot.hpp
