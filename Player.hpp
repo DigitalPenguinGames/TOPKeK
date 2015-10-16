@@ -26,12 +26,17 @@ public:
     sf::Vector2f getPositionTransition();
     bool isAttacking();
     sf::IntRect getSwordRect();
+    sf::IntRect getWalkBounds();
+    sf::IntRect getGlobalWalkBounds();
     float getSwordDamage();
     bool isAlive();
     sf::Vector2f getBotPosition();
+    float getHp();
+    float getMaxHp();
 
     void getHit(float much, sf::Vector2f from);
     void setPosition(sf::Vector2f pos);
+    void resetMove();
     void setLight(Light* light);
     void setMap(Map* map);
 

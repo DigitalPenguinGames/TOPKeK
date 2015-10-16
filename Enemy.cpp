@@ -43,7 +43,7 @@ void Enemy::update(float deltaTime) {
         initial = _sprite.getPosition();
         movement.x = (_dir == directions::left ? -_speed.x : (_dir == directions::right ? _speed.x : 0));
         movement.y = (_dir == directions::up ? -_speed.y : (_dir == directions::down ? _speed.y : 0));
-        _sprite.move(_map->getMaxMovement(initial,movement*deltaTime,_walkBounds));
+        cmove(_map->getMaxMovement(initial,movement*deltaTime,_walkBounds));
         _moving = false;
     }
 }
@@ -60,7 +60,7 @@ void Enemy::setMap(Map* map) {
     _map = map;
 }
 
-void Enemy::getHit(float much, sf::Vector2f from) {
+void Enemy::getHit(float much, sf::Vector2f) {
     if (_hitedTimer > 0) return;
     Resources::cInvert.setParameter("Time", 1.5);
     _hitedTimer = 1.5; // One second of invulneravility;
@@ -75,4 +75,13 @@ bool Enemy::isAlive() {
 
 float Enemy::getDamage() {
     return _damage;
+}
+
+sf::IntRect Enemy::getWalkBounds() {
+    return _walkBounds;
+}
+
+
+sf::IntRect Enemy::getGlobalWalkBounds() {
+    return sf::IntRect(_walkBounds.left+_sprite.getPosition().x, _walkBounds.top + _sprite.getPosition().y, _walkBounds.width, _walkBounds.height);
 }

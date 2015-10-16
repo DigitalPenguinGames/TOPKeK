@@ -34,9 +34,19 @@ sf::IntRect Collisionable::getBounds() {
     return _bounds;
 }
 
+sf::Vector2f Collisionable::getBotPosition() {
+    return sf::Vector2f(_sprite.getPosition().x+_bounds.left+_bounds.width/2, _sprite.getPosition().y + _bounds.top+_bounds.height);
+}
+
 void Collisionable::setPosition(sf::Vector2f pos) {
     _sprite.setPosition(pos);
 }
-sf::Vector2f Collisionable::getBotPosition() {
-    return sf::Vector2f(_sprite.getPosition().x+_bounds.left+_bounds.width/2, _sprite.getPosition().y + _bounds.top+_bounds.height);
+
+void Collisionable::cmove(sf::Vector2f movement) {
+    _pastPosition = _sprite.getPosition();
+    setPosition(_sprite.getPosition() + movement);
+}
+
+void Collisionable::resetMove() {
+    _sprite.setPosition(_pastPosition);
 }

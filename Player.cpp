@@ -61,7 +61,7 @@ void Player::update(float deltaTime) {
         initial = _sprite.getPosition();
         movement.x = getHorizontal(_dir) * speed.x;
         movement.y = getVertical(_dir) * speed.y; 
-        _sprite.move(_map->getMaxMovement(initial,movement*deltaTime,_walkBounds));
+        cmove(_map->getMaxMovement(initial,movement*deltaTime,_walkBounds));
         _moving = false;
     }
     _lightSprite.update(_sprite.getPosition(),_dir,_action,_currentAnimation);
@@ -88,7 +88,15 @@ sf::Vector2f Player::getBotPosition() {
     return sf::Vector2f(_sprite.getPosition().x+_bounds.left+_bounds.width/2, _sprite.getPosition().y + 16);
 }
 
-void Player::getHit(float much, sf::Vector2f from) {
+float Player::getHp() {
+    return _hp;
+}
+    
+float Player::getMaxHp() {
+    return _maxHp;
+}
+
+void Player::getHit(float much, sf::Vector2f) {
     if (_hitedTimer > 0) return;
     Resources::cInvert.setParameter("Time", 1.5);
     _hitedTimer = 1.5; // One second of invulneravility;
@@ -124,8 +132,8 @@ void Player::attack() {
                                                + ((11)  * (_dir == directions::down ))
                                                + (4     * (_dir == directions::up   ))
                         ));
+        _elapsedAttack = ATTACKTIMERANIMATION;
     }
-    _elapsedAttack = ATTACKTIMERANIMATION;
 }
 
 sf::Vector2f Player::getPositionTransition() {
@@ -157,9 +165,18 @@ sf::IntRect Player::getSwordRect() {
     }
 }
 
+sf::IntRect Player::getWalkBounds() {
+    return _walkBounds;
+}
+
+
+sf::IntRect Player::getGlobalWalkBounds() {
+    return sf::IntRect(_walkBounds.left+_sprite.getPosition().x, _walkBounds.top + _sprite.getPosition().y, _walkBounds.width, _walkBounds.height);
+}
+
 
 float Player::getSwordDamage() {
-    return 2; //SWORDDAMAGE
+    return 2; //SWORDDAMAGE sword.getDamage()
 }
 
 bool Player::isAttacking() {
@@ -168,8 +185,13 @@ bool Player::isAttacking() {
 
 
 void Player::setPosition(sf::Vector2f pos) {
+    Collisionable::setPosition(pos);
     _lightSprite.setPosition(pos);
-    _sprite.setPosition(pos);
+}
+
+void Player::resetMove() {
+    Collisionable::resetMove();
+    _lightSprite.setPosition(_pastPosition);
 }
 
 void Player::setLight(Light* light) {

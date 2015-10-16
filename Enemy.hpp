@@ -19,6 +19,8 @@ public:
 
     bool isAlive();
     float getDamage();
+    sf::IntRect getWalkBounds();
+    sf::IntRect getGlobalWalkBounds();
 
 protected:
     ScenePlayable* _scene;
