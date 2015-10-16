@@ -23,6 +23,7 @@ sf::Texture            Resources::halfHeart;
 sf::Texture            Resources::shinnyHalfHeart;
 sf::Texture            Resources::emptyHeart;
 sf::Texture            Resources::shinnyEmptyHeart;
+sf::Texture            Resources::fairyShoot;
 sf::Shader             Resources::DtO;
 sf::Shader             Resources::sLighting;
 sf::Shader             Resources::cInvert;
@@ -33,6 +34,7 @@ std::vector<SpriteSheetDescription> Resources::descriptions;
 void Resources::load() {
     //...loadFromFile();
     tileSet.loadFromFile(TEXTURETPATH+std::string("OverworldTiles.png"));
+    fairyShoot.loadFromFile(TEXTURETPATH+std::string("fairyShoot.png"));
     tileSetCols.loadFromFile(TEXTURETPATH+std::string("OverworldTilesColision.png"));
     dungeon.loadFromFile(TEXTURETPATH+std::string("dungeon.png"));
     dungeonCols.loadFromFile(TEXTURETPATH+std::string("dungeonCollision.png"));

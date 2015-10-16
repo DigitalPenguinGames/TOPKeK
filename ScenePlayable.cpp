@@ -135,6 +135,7 @@ void ScenePlayable::processInput() {
                 //spawn FairyShoot;
                 FairyShoot* fs;
                 fs = new FairyShoot(&_map, _fairy->getPosition(), _player->getPosition(), directions::up);
+                                    //_player->getPosition(), directions::up);
                 _allyWeapons.push_back(fs);
             }
         }

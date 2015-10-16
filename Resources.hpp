@@ -11,6 +11,7 @@ public:
     static sf::Shader sLighting;
     static sf::Shader cInvert;
     static sf::Texture tileSet;
+    static sf::Texture fairyShoot;
     static sf::Texture tileSetCols;
     static sf::Texture dungeon;
     static sf::Texture dungeonCols;
