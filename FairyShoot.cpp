@@ -17,10 +17,6 @@ FairyShoot::FairyShoot(Map* map, sf::Vector2f pos, sf::Vector2f dest, directions
     _speed = sf::Vector2f(10,10);
     _bounds = sf::IntRect(1,2,6,6);
 
-   // Resources::fairyShootShader.setParameter("texture" , sf::Shader::CurrentTexture);
-    //Resources::fairyShootShader.setParameter("time",1.5);
-    //Resources::fairyShootShader.setParameter("posF", getPosition());
-    //Resources::fairyShootShader.setParameter("posS", _destiny);
     _shader = &Resources::fairyShootShader;
 }
 
@@ -42,13 +38,13 @@ void FairyShoot::update(float deltaTime){
     }
 
     Resources::fairyShootShader.setParameter("texture" , sf::Shader::CurrentTexture);
-    Resources::fairyShootShader.setParameter("time",_lifeTime);
 
 }
 
 void FairyShoot::draw(sf::RenderTarget *target){
     Resources::fairyShootShader.setParameter("posF", getPosition());
     Resources::fairyShootShader.setParameter("posS", _destiny);
+    Resources::fairyShootShader.setParameter("time",_lifeTime);
     target->draw(_sprite, _shader);
 }
 

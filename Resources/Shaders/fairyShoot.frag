@@ -14,7 +14,7 @@ void main()
 //                         *originalColor.rgba*0.7
 //                 )
                 (originalColor.rgba*0.8) 
-                + 0.2*(originalColor.rgba*float(sin(time*distance(posF, posS)/10)) )*originalColor.a 
+                + 0.2*(originalColor.rgba*float(sin(time*distance(posF, posS)/10.0)) )*originalColor.a 
             )
 //             )
               ;  
