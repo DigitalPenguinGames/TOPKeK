@@ -17,11 +17,11 @@ FairyShoot::FairyShoot(Map* map, sf::Vector2f pos, sf::Vector2f dest, directions
     _speed = sf::Vector2f(10,10);
     _bounds = sf::IntRect(1,2,6,6);
 
-
-    Resources::sLighting.setParameter("texture" , sf::Shader::CurrentTexture);
-//    Resources::sLighting.setParameter("minn", 10);
-//    Resources::sLighting.setParameter("maxx", 900);
-    _shader = &Resources::sLighting;
+   // Resources::fairyShootShader.setParameter("texture" , sf::Shader::CurrentTexture);
+    //Resources::fairyShootShader.setParameter("time",1.5);
+    //Resources::fairyShootShader.setParameter("posF", getPosition());
+    //Resources::fairyShootShader.setParameter("posS", _destiny);
+    _shader = &Resources::fairyShootShader;
 }
 
 FairyShoot::~FairyShoot(){};
@@ -40,9 +40,15 @@ void FairyShoot::update(float deltaTime){
     if( _lifeTime > _maxLifeTime || _sprite.getPosition() == _destiny){
        _dead = true;
     }
+
+    Resources::fairyShootShader.setParameter("texture" , sf::Shader::CurrentTexture);
+    Resources::fairyShootShader.setParameter("time",_lifeTime);
+
 }
 
 void FairyShoot::draw(sf::RenderTarget *target){
+    Resources::fairyShootShader.setParameter("posF", getPosition());
+    Resources::fairyShootShader.setParameter("posS", _destiny);
     target->draw(_sprite, _shader);
 }
 

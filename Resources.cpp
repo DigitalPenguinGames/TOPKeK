@@ -1,11 +1,9 @@
 #include "Resources.hpp"
 
 // sf::Texture        Resources::....
+sf::Texture            Resources::heart;
 sf::Texture            Resources::tileSet;
-sf::Texture            Resources::tileSetCols;
 sf::Texture            Resources::dungeon;
-sf::Texture            Resources::dungeonCols;
-sf::Texture            Resources::propsOver;
 sf::Texture            Resources::linkSet;
 sf::Texture            Resources::linkSetT;
 sf::Texture            Resources::linkSetB;
@@ -15,18 +13,22 @@ sf::Texture            Resources::linkSetTR;
 sf::Texture            Resources::linkSetTL;
 sf::Texture            Resources::linkSetBR;
 sf::Texture            Resources::linkSetBL;
+sf::Texture            Resources::propsOver;
+sf::Texture            Resources::halfHeart;
+sf::Texture            Resources::emptyHeart;
+sf::Texture            Resources::fairyShoot;
+sf::Texture            Resources::tileSetCols;
+sf::Texture            Resources::dungeonCols;
 sf::Texture            Resources::overEnemies;
 sf::Texture            Resources::textureTest;
-sf::Texture            Resources::heart;
 sf::Texture            Resources::shinnyHeart;
-sf::Texture            Resources::halfHeart;
 sf::Texture            Resources::shinnyHalfHeart;
-sf::Texture            Resources::emptyHeart;
 sf::Texture            Resources::shinnyEmptyHeart;
-sf::Texture            Resources::fairyShoot;
+
 sf::Shader             Resources::DtO;
-sf::Shader             Resources::sLighting;
 sf::Shader             Resources::cInvert;
+sf::Shader             Resources::sLighting;
+sf::Shader             Resources::fairyShootShader;
 sf::Font               Resources::pauseMenuFont;
 
 std::vector<SpriteSheetDescription> Resources::descriptions;
@@ -67,6 +69,7 @@ void Resources::load() {
     if (!DtO.loadFromFile(SHADERPATH+std::string("transitionDtO.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
     if (!sLighting.loadFromFile(SHADERPATH+std::string("lighting.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
     if (!cInvert.loadFromFile(SHADERPATH+std::string("invert.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
+    if (!fairyShootShader.loadFromFile(SHADERPATH+std::string("fairyShoot.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
 
     if (!pauseMenuFont.loadFromFile("Resources/Fonts/font.otf")) exit(EXIT_FAILURE);
 
