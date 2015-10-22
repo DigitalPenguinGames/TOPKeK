@@ -50,7 +50,34 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene) {
             des >> nExists;
             for (int i = 0; i < nExists; ++i) {
                 des >> x >> y >> nextScene >> nextSceneX >> nextSceneY;
-                _sceneChangers.push_back(SceneChanger(sf::Vector2f(x,y),nextScene,sf::Vector2f(nextSceneX,nextSceneY)));
+                SceneChanger sC(sf::Vector2f(x,y),nextScene,sf::Vector2f(nextSceneX,nextSceneY));
+                switch(_mapType){
+                    case sceneTypes::outside: 
+                        directions dir = sC.getChangeDirection();
+                        sf::Vector2f localOffset(TILESIZE-4,TILESIZE-4);
+                        switch (dir) {
+                            case directions::left:
+                                localOffset.x *= -1;
+                                localOffset.y = 0;
+                                break;
+                            case directions::right:
+                                localOffset.y = 0;
+                                break;
+                            case directions::up:
+                                localOffset.x = 0;
+                                localOffset.y *= -1;
+                                break;
+                            case directions::down:
+                                localOffset.x = 0;
+                                break;
+                            default:
+                                localOffset.x = 0;
+                                localOffset.y = -0.5;
+                                break;
+                        }
+                        sC.setBounds(sf::FloatRect(x*TILESIZE+localOffset.x,y*TILESIZE+localOffset.y,TILESIZE,TILESIZE));
+                }
+                _sceneChangers.push_back(sC);
             }
         }
         else {

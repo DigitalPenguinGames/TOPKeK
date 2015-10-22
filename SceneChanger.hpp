@@ -13,9 +13,12 @@ public:
     sf::FloatRect getRect(sf::Vector2f offset);
     directions getChangeDirection();
 
+    void setBounds(sf::FloatRect rect);
+
     sf::Vector2f _pos;
     std::string _nextScene;
     sf::Vector2f _nextScenePos;
+    sf::FloatRect _bound;
 
 
 };
