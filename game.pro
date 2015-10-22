@@ -12,7 +12,6 @@ SOURCES += main.cpp \
 		Game.cpp \
 		Scene.cpp \
 		ScenePlayable.cpp \
-		OutsideScene.cpp \
 		DungeonScene.cpp \
         LightedDungeonScene.cpp \
 		Map.cpp \
@@ -53,7 +52,6 @@ HEADERS += utils.hpp \
 		Game.cpp \
 		Scene.hpp \
 		ScenePlayable.hpp \
-		OutsideScene.hpp \
 		DungeonScene.hpp \
         LightedDungeonScene.hpp \
 		Map.hpp \

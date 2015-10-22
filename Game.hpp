@@ -4,7 +4,6 @@
 #include "Resources.hpp"
 #include "Scene.hpp"
 #include "utils.hpp"
-#include "OutsideScene.hpp"
 #include "DungeonScene.hpp"
 #include "LightedDungeonScene.hpp"
 #include "SceneChanger.hpp"
