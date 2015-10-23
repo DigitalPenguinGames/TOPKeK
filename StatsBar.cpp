@@ -29,9 +29,9 @@ void StatsBar::updatePics() {
     _halfHeart->setSize(butSize);
     _emptyHeart->setSize(butSize);
 
-/*    for(Widget* widget : _widgets) {
+    for(Widget* widget : _widgets) {
         delete widget;
-    }*/
+    }
     _widgets.clear();
     for(int i  = 0; i < _maxHP; ++i ){
         if(i+1 <= _actualHP){
@@ -65,11 +65,13 @@ void StatsBar::updateShape(){
 }
 
 void StatsBar::setMaxHP(int value){
+    if( _maxHP == value) return;
     _maxHP = value;
     updatePics();
 }
 
 void StatsBar::setActualHP(float value){
+    if( _actualHP == value) return;
     _actualHP = value;
     updatePics();
 }

@@ -19,6 +19,7 @@ FairyShoot::FairyShoot(Map* map, sf::Vector2f pos, sf::Vector2f dest, directions
     _bounds = sf::IntRect(1,2,6,6);
 
     _shader = &Resources::fairyShootShader;
+    Resources::fairyShootShader.setParameter("texture" , sf::Shader::CurrentTexture);
 }
 
 FairyShoot::~FairyShoot(){};
@@ -37,8 +38,6 @@ void FairyShoot::update(float deltaTime){
     if( _lifeTime > _maxLifeTime || _sprite.getPosition() == _destiny){
        _dead = true;
     }
-
-    Resources::fairyShootShader.setParameter("texture" , sf::Shader::CurrentTexture);
 
 }
 
