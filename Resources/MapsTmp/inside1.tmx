@@ -17,7 +17,7 @@
  </imagelayer>
  <layer name="Tile Layer 1" width="16" height="11">
   <properties>
-   <property name="type" value="dungeon"/>
+   <property name="type" value="dungeonLight"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -36,9 +36,9 @@
  <objectgroup name="Exits" opacity="0.97">
   <object id="33" name="bot" gid="158" x="112" y="164" width="32" height="20">
    <properties>
-    <property name="scene" value="hub"/>
-    <property name="x" value="4"/>
-    <property name="y" value="2"/>
+    <property name="scene" value="inside0"/>
+    <property name="x" value="7.5"/>
+    <property name="y" value="0"/>
    </properties>
   </object>
   <object id="35" name="top" gid="157" x="112" y="32" width="32" height="20">

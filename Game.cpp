@@ -129,8 +129,8 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 
                     _window.setView(view);
                     _window.clear();
-                    lastScene->render();
-                    currentScene->render();
+                    _lastScene->render();
+                    _currentScene->render();
                     _window.setView(_window.getDefaultView());
                     _window.display();
 
@@ -273,7 +273,7 @@ void Game::loadScene(std::string sceneName) {
 
     switch(myStoi(sceneType)) {
         case sceneTypes::outside:
-            aux = new OutsideScene(this,&_window,sceneTypes::outside, sceneName, str);
+            aux = new ScenePlayable(this,&_window,sceneTypes::outside, sceneName, str);
             break;
         case sceneTypes::dungeon:
             aux = new DungeonScene(this,&_window,sceneTypes::dungeon, sceneName, str);

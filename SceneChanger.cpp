@@ -15,6 +15,8 @@ std::string SceneChanger::getNextSceneName() {
 
 
 sf::FloatRect SceneChanger::getRect(sf::Vector2f offset) {
+    return sf::FloatRect(_bound.left+offset.x, _bound.top+offset.y, _bound.width, _bound.height);
+    // Removed in da fiuter
     directions dir = getChangeDirection();
     sf::Vector2f localOffset(TILESIZE-4,TILESIZE-4);
     switch (dir) {
@@ -36,8 +38,9 @@ sf::FloatRect SceneChanger::getRect(sf::Vector2f offset) {
             localOffset.x = localOffset.y = 0;
             break;
     }
-    return sf::FloatRect(_pos.x*TILESIZE+offset.x+localOffset.x,_pos.y*TILESIZE+offset.y+localOffset.y,TILESIZE,TILESIZE);
+    return sf::FloatRect(_pos.x+offset.x+localOffset.x,_pos.y+offset.y+localOffset.y,TILESIZE,TILESIZE);
 }
+
 
 directions SceneChanger::getChangeDirection() {
     if (_pos.x == 0) return directions::left;
@@ -45,4 +48,8 @@ directions SceneChanger::getChangeDirection() {
     else if (_nextScenePos.x==0) return directions::right;
     else if (_nextScenePos.y==0) return directions::down;
     else return directions::directionsQtty;
+}
+
+void SceneChanger::setBounds(sf::FloatRect rect) {
+    _bound = rect;
 }

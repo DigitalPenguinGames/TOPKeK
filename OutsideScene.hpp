@@ -15,9 +15,7 @@ public:
 
     void init(sf::Vector2f sceneIniCoord);
 
-private:
-    void update(float deltaTime);
-    void render(sf::RenderTarget* target);
+
 
 };
 

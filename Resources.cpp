@@ -112,12 +112,11 @@ SpriteSheetDescription Resources::loadDescription(std::string fileName) {
             descriptorPosition = positions.size();
             positions.insert(std::make_pair(key,descriptorPosition));
             ssd.push_back(std::vector<sf::IntRect>());
-            std::cout << "insertando la key " << key << " en la posicion " << descriptorPosition << std::endl;
         }
         else {
             descriptorPosition = positions[key];
-            std::cout << "la key " << key << " ya existia" << std::endl;
         }
+        std::cout << "insertando la key " << key << " en la posicion " << descriptorPosition << std::endl;
 
         if (i+4 >= int(v.size()) || 
             !isInt(v[i+1].second) || 

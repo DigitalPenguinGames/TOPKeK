@@ -53,17 +53,18 @@ def main():
 					y = prop.get('y')
 					output += gid + " " + x + " " + y + " "
 
-				continue
+				
 			elif (shit.get('name') == 'Exits'):
 				output += "Exits "
 				output += str(len(shit.findall('object'))) + " "
 				for obj in shit.findall('object'):
-					objX = int(obj.get('x')) / int(obj.get('width'))
-					objY = (int(obj.get('y'))-1) / int(obj.get('height'))
+					gid = int(obj.get('gid'))
+					objX = float(obj.get('x'))
+					objY = float(obj.get('y'))-16
 
 					# 
 
-					output += str(int(objX)) + " " + str(int(objY)) + " "
+					output += str(float(objX)) + " " + str(float(objY)) + " "
 
 					scene = ""
 					sceneX = 0
@@ -75,8 +76,10 @@ def main():
 							sceneX = prop.get('value')
 						elif prop.get('name') == "y":
 							sceneY = prop.get('value')
-
+						
 					output += scene + " " + str(sceneX) + " " + str(sceneY) + " "
+					if (mapType == "dungeon" or mapType == "dungeonLight"):
+						output += str(gid) + " "
 
 		output += "finish "
 

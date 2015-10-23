@@ -12,34 +12,15 @@ DungeonScene::~DungeonScene() {
 }
 
 void DungeonScene::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
-    _player->setMap(&_map);
-    if (sceneIniCoord == _sceneIniCoord) return;
-    _sceneIniCoord = sceneIniCoord;
-    _map.init(_sceneIniCoord);
-    initView(sf::Vector2i(WINDOWRATIOX,WINDOWRATIOY));
+    ScenePlayable::init(sceneIniCoord);
 }
 
 void DungeonScene::update(float deltaTime) {
-    //(void)deltaTime;
-
-    _player->update(deltaTime);
-    _fairy->update(deltaTime, sf::Vector2f(_window->mapPixelToCoords(sf::Mouse::getPosition(*_window),_view)));
-
-    // Collisiones & things
-    std::pair<bool,SceneChanger*> aux = _map.playerInsideExit(_player->getPositionTransition());
-    if (aux.first) {
-        changeScene(aux.second);
-    }
+    ScenePlayable::update(deltaTime);
 }
 
 void DungeonScene::render(sf::RenderTarget* target) {
-    _map.draw(target);
-    // Drawing the dinamic things
-    std::vector<Collisionable*> collisionables;
-    collisionables.push_back(_player);
-    collisionables.push_back(_fairy);
-
-    renderSorted(target, collisionables);
+    ScenePlayable::render(target);
 }
 
 sceneTypes DungeonScene::getType(){

@@ -6,6 +6,7 @@
 #include "Fairy.hpp"
 #include "Scene.hpp"
 #include "Enemy.hpp"
+#include "Octorok.hpp"
 #include "Prop.hpp"
 #include "Player.hpp"
 #include "Weapon.hpp"
@@ -36,7 +37,9 @@ public:
     sf::Vector2i getMapSize(); // in number of tiles
     sf::Vector2f getSceneCoord();
 
-    void init(sf::Vector2f sceneIniCoord) = 0;
+    void init(sf::Vector2f sceneIniCoord);
+    void update(float deltaTime);
+    void render(sf::RenderTarget* target);
 
     void addEnemy(Enemy* enemy);
     void addAllyWeapon(Weapon* weapon);
