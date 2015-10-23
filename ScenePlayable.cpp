@@ -173,10 +173,8 @@ void ScenePlayable::processInput() {
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) _player->move(directions::right);
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) _player->move(directions::left);
 
-    _fairy->setCenterPosition(sf::Vector2f(_player->getPosition()));
-    _fairy->setScale(TILESIZE/_fairy->getLocalBounds().width,
-                     TILESIZE/_fairy->getLocalBounds().width);
-    _fairy->setOrigin(_fairy->getLocalBounds().width/2, _fairy->getLocalBounds().height/2);
+    
+    
     // if      (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) _player2->attack();
     // if      (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) _player2->move(directions::up);
     // else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) _player2->move(directions::down);
@@ -209,6 +207,7 @@ void ScenePlayable::addProp(Prop* prop) {
 void ScenePlayable::update(float deltaTime) {
     _player->update(deltaTime);
     _fairy->update(deltaTime, sf::Vector2f(_window->mapPixelToCoords(sf::Mouse::getPosition(*_window),_view)));
+    _fairy->setCenterPosition(sf::Vector2f(_player->getPosition()));
     for (auto it = _enemies.begin(); it != _enemies.end(); ++it) (*it)->update(deltaTime);
     for (auto it = _enemyWeapons.begin(); it != _enemyWeapons.end(); ++it) (*it)->update(deltaTime);
     for (auto it = _allyWeapons.begin(); it != _allyWeapons.end(); ++it) (*it)->update(deltaTime); 

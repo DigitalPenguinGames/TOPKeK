@@ -39,20 +39,20 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene) {
             int numberOfProps;
             des >> numberOfProps;
             for (int i = 0; i < numberOfProps; ++i) {
-                int x,y,gid;
+                float x,y,gid;
                 des >> gid >> x >> y;
                 _scene->addProp(new Prop(gid,sf::Vector2f(x,y)) );
             }
         }
         else if ("Exits" == objectGroup) {
-            int nExists, x, y, nextSceneX, nextSceneY;
+            float nExists, x, y, nextSceneX, nextSceneY;
             std::string nextScene;
             des >> nExists;
             for (int i = 0; i < nExists; ++i) {
                 des >> x >> y >> nextScene >> nextSceneX >> nextSceneY;
-                SceneChanger sC(sf::Vector2f(x,y),nextScene,sf::Vector2f(nextSceneX,nextSceneY));
+                SceneChanger sC(sf::Vector2f(x/TILESIZE,y/TILESIZE),nextScene,sf::Vector2f(nextSceneX,nextSceneY));
                 switch(_mapType){
-                    case sceneTypes::outside: 
+                    case sceneTypes::outside: {
                         directions dir = sC.getChangeDirection();
                         sf::Vector2f localOffset(TILESIZE-4,TILESIZE-4);
                         switch (dir) {
@@ -72,10 +72,44 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene) {
                                 break;
                             default:
                                 localOffset.x = 0;
-                                localOffset.y = -0.5;
+                                localOffset.y *= -0.5;
                                 break;
                         }
-                        sC.setBounds(sf::FloatRect(x*TILESIZE+localOffset.x,y*TILESIZE+localOffset.y,TILESIZE,TILESIZE));
+                        sC.setBounds(sf::FloatRect(x+localOffset.x,y+localOffset.y,TILESIZE,TILESIZE));
+                        break;}
+                    case sceneTypes::lightedDungeon:
+                    case sceneTypes::dungeon: {
+                        int gid;
+                        des >> gid;
+                        gid -= 157; // The first horizontal door is the 157;
+                        
+
+                        if (gid < 6) y -= 20-16; // The map is shifting all the objects 16 to the top
+                        else if (gid < 12) y -= 16;
+                        std::cout << "gid " << gid <<" x " << x <<" y " << y << " nS " << nextScene << " x " << nextSceneX << " y " << nextSceneY << std::endl;
+                        sf::Vector2f localOffset(0,0);
+                        if (y == 12) {
+                            localOffset.x = 8;
+                            localOffset.y = -4;
+                        }
+                        else if (y == 144) {
+                            localOffset.x = 8;
+                            localOffset.y = 8;
+                        }
+                        else if (x == 12 && gid < 12) {
+                            localOffset.x = -4;
+                            localOffset.y = 8;
+                        }
+                        else if (x == 224 && gid < 12) {
+                            localOffset.x = 8;
+                            localOffset.y = 8;
+                        }
+                        sC.setBounds(sf::FloatRect(x+localOffset.x,y+localOffset.y,TILESIZE,TILESIZE));
+                        break;}
+                    default:
+                        std::cout << "Exit in a unspecified type os scene WOT" << std::endl;
+                        exit(EXIT_FAILURE);
+                        break; //lolz
                 }
                 _sceneChangers.push_back(sC);
             }
@@ -144,6 +178,7 @@ void Map::draw(sf::RenderTarget* w) {
 
 std::pair<bool,SceneChanger*> Map::playerInsideExit(sf::Vector2f pos) {
     for (int i = 0; i < int(_sceneChangers.size());++i) {
+        //std::cout << _sceneChangers[i]._bound.left << std::endl;
         if (_sceneChangers[i].getRect(_mapIniCoord).contains(pos)) {
             return std::pair<bool,SceneChanger*>(true,&_sceneChangers[i]);
         }

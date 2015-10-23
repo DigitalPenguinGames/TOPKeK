@@ -38,7 +38,7 @@ sf::FloatRect SceneChanger::getRect(sf::Vector2f offset) {
             localOffset.x = localOffset.y = 0;
             break;
     }
-    return sf::FloatRect(_pos.x*TILESIZE+offset.x+localOffset.x,_pos.y*TILESIZE+offset.y+localOffset.y,TILESIZE,TILESIZE);
+    return sf::FloatRect(_pos.x+offset.x+localOffset.x,_pos.y+offset.y+localOffset.y,TILESIZE,TILESIZE);
 }
 
 

@@ -3,7 +3,7 @@
 Fairy::Fairy() {
 
     loadHorizontalSpriteSheet("Resources/Textures/fairy.png",5);
-    setOrigin(getGlobalBounds().width/2, getGlobalBounds().height/2);
+    setOrigin(8, 8);
 
     lifes = 3;
     maxLifes = 3;
