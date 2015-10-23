@@ -2,6 +2,7 @@
 
 Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Close | sf::Style::Resize) {
     _window.setFramerateLimit(FRAMERATE);
+    _window.setMouseCursorVisible(false);
     DataManager::load();
     Resources::load();
     _currentScene = nullptr;

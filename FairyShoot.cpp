@@ -3,6 +3,7 @@
 FairyShoot::FairyShoot(Map* map, sf::Vector2f pos, sf::Vector2f dest, directions dir, float damage) : Weapon(map, pos, dir) {
 
     _sprite.setTexture(Resources::fairyShoot);
+    _sprite.setOrigin(_sprite.getLocalBounds().width/2,_sprite.getLocalBounds().height/2);
     _sprite.setPosition(pos);
 
     //HARDCODED ALERT!!!!!!!!!!!!!!!!!!!!!!!!!!
