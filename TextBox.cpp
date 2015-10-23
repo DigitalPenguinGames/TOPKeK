@@ -47,7 +47,7 @@ TextBox::TextBox(std::string myText, std::string texturePath, std::string fontPa
     lecturePointer = 0;
     boxTexts[0] = " ";
     float fraseLength = 2* sizeRow.x/sizeRow.y ; //trec dos per poder posar espais
-    
+
     for(int i = 1; i < qttyRows-1; ++i){
         boxTexts[i] =  " "+getFractionText(totalText, lecturePointer, lecturePointer + fraseLength);
         lecturePointer += fraseLength;
@@ -69,23 +69,43 @@ TextBox::TextBox(std::string myText, std::string texturePath, std::string fontPa
 
 
 void TextBox::setText(std::string s = "Click"){
-    text.setString(s);
-    if(s.size() != 0){
-        float actualCharSize, desiredCharSize;
-        float actualTextSize, desiredTextSize;
-        actualCharSize = text.getCharacterSize();
-        actualTextSize = text.getGlobalBounds().width+2;
-        desiredTextSize = sprite.getGlobalBounds().width;
-        desiredCharSize = actualCharSize*desiredTextSize/actualTextSize;
-        text.setCharacterSize(desiredCharSize);
+
+    totalText = s;
+
+    text.setString("Penguins");
+
+    textFinished = false;
+
+    int qttyRows = 4;
+    sf::Vector2f sizeRow( getSize().x/ 5, getSize().y/(qttyRows+2) );
+    std::cout << "size ROw = " << sizeRow.x << " ; " << sizeRow.y << std::endl;
+
+    lecturePointer = 0;
+    boxTexts = std::vector < std::string > (qttyRows, " ");
+    boxTexts[0] = " ";
+    float fraseLength = 2* sizeRow.x/sizeRow.y ; //trec dos per poder posar espais
+
+    for(int i = 1; i < qttyRows-1; ++i){
+        boxTexts[i] =  " "+getFractionText(totalText, lecturePointer, lecturePointer + fraseLength);
+        lecturePointer += fraseLength;
+
+        for(int j = boxTexts[i].size()-1; boxTexts[i][j] != ' '; --j){
+            boxTexts[i].pop_back();
+            --lecturePointer;
+        }
+
+        boxTexts[i] += " ";
     }
+
+    boxTexts[qttyRows-1] = " ";
+
+
 }
 
 std::string TextBox::getText(){ return text.getString();}
 
-void TextBox::draw(sf::RenderWindow& w){
+void TextBox::draw(sf::RenderTarget& w){
 
-    
     w.draw(sprite);
 
     for(int i = 0; i < 4; ++i){
@@ -94,26 +114,33 @@ void TextBox::draw(sf::RenderWindow& w){
         sprite.getGlobalBounds().height/6
     );    
         text.setScale(1,1);
+
         text.setString(boxTexts[i]);
+
         sf::Vector2f scaleRow(1,1);
+
         if((!text.getGlobalBounds().width < sprite.getGlobalBounds().width || boxTexts[i] != " ")){
+
             scaleRow = sf::Vector2f(
             sizeT.x/text.getGlobalBounds().width, 
             sizeT.y/text.getGlobalBounds().height );
+
         }else{
+
             scaleRow = sf::Vector2f(
             1, 
             sizeT.y/text.getGlobalBounds().height );
+
         }
-        
+
         text.setScale(scaleRow);
  
         sizeT.y = sprite.getGlobalBounds().height/4;
-//         std::cout << i*sizeT.y << "  VS  " << sprite.getGlobalBounds().height << std::endl;
+
         text.setPosition(sprite.getPosition().x, sprite.getPosition().y+i*sizeT.y );        
-        
-//         std::cout << "nd it is "<< 4*text.getGlobalBounds().height << std::endl;
+
         w.draw(text);
+
     }
 
 }
@@ -126,8 +153,15 @@ void TextBox::setTexture(std::string name){
     float sizeX = getSize().x;
     float sizeY = getSize().y;
     if(!texture.loadFromFile(name)) std::cerr << " texture not loaded on setTexture" << std::endl;
-    else sprite.setTexture(texture, true); 
+    else sprite.setTexture(texture, true);
     setSize(sizeX, sizeY);
+}
+void TextBox::setTexture(sf::Texture tex){
+    //float sizeX = getSize().x;
+    //float sizeY = getSize().y;
+    texture = tex;
+    sprite.setTexture(texture, true);
+    //setSize(sizeX, sizeY);
 }
 
 //TODO change it so with a key it can be skiped and not with mouse and so.
@@ -138,7 +172,7 @@ void TextBox::handleEvent(sf::Event e){
     delayy = sprite.getOrigin().y*sprite.getScale().y;
     sprite.move(-delayx, -delayy);
     if(e.type == sf::Event::MouseButtonPressed){
-        if (e.mouseButton.button == sf::Mouse::Left) {
+      /*  if (e.mouseButton.button == sf::Mouse::Left) {
             sf::Vector2f click(e.mouseButton.x, e.mouseButton.y);
             if(click.x > sprite.getPosition().x && click.x < sprite.getPosition().x+sprite.getGlobalBounds().width){
                 if(click.y > sprite.getPosition().y && click.y < sprite.getPosition().y+sprite.getGlobalBounds().height){
@@ -148,7 +182,7 @@ void TextBox::handleEvent(sf::Event e){
 //                     if(clickEffect && sprite.getTexture() == &texture) sprite.setTexture(pressed_texture);
                 }
             }
-        }
+        }*/
 
     }
     if(e.type == sf::Event::MouseButtonReleased){
@@ -158,13 +192,13 @@ void TextBox::handleEvent(sf::Event e){
         }
     }
     if(e.type == sf::Event::KeyPressed) {
-        if(e.key.code == sf::Keyboard::Space) {
+        if(e.key.code == sf::Keyboard::F) {
             clicked = true;
             is_clicked = true;
         }
     }
     if(e.type == sf::Event::KeyReleased) {
-        if(e.key.code == sf::Keyboard::Space) {
+        if(e.key.code == sf::Keyboard::F) {
             is_clicked = false;
             
             sf::Vector2f sizeRow( sprite.getGlobalBounds().width, int(sprite.getGlobalBounds().height/4) ); 
@@ -189,15 +223,9 @@ void TextBox::handleEvent(sf::Event e){
 }
 
 
-
-
-
-
-
-
 void TextBox::setTextColor(sf::Color c){text.setColor(c); }
 sf::Color TextBox::getTextColor(){ return text.getColor(); }
-void TextBox::setCharacterSize(int u){ /*text.setCharacterSize(u);*/ }
+void TextBox::setCharacterSize(int ){ /*text.setCharacterSize(u);*/ }
 int TextBox::getCharacterSize(){ return text.getCharacterSize(); }
 void TextBox::setFont(sf::Font f){ font = f; text.setFont(font); }
 
@@ -213,11 +241,6 @@ void TextBox::setPosition(sf::Vector2f position){
 
 
 sf::Vector2f TextBox::getSize(){ return sf::Vector2f(sprite.getGlobalBounds().width,sprite.getGlobalBounds().height); }
-void TextBox::setSize(float x, float y){ setSize(sf::Vector2f(x,y)); }
-void TextBox::setSize(sf::Vector2f size){
-    sprite.setScale(size.x/sprite.getGlobalBounds().width, size.y/sprite.getGlobalBounds().height);
-//     this->setText(text.getString());
-}
 
 
 float TextBox::timeSinceLastClick(){ return clock.getElapsedTime().asSeconds(); }
@@ -226,4 +249,18 @@ bool TextBox::hasBeenClicked(){
     bool r = clicked;
     if(clicked) clicked = false;
     return r;
+}
+
+void TextBox::setSize(float x, float y){ setSize(sf::Vector2f(x,y)); }
+void TextBox::setSize(sf::Vector2f size){
+    sprite.setScale(size.x/sprite.getLocalBounds().width, size.y/sprite.getLocalBounds().height);
+//     this->setText(text.getString());
+    float actualCharSize, desiredCharSize;
+    float actualTextSize, desiredTextSize;
+    actualCharSize = text.getCharacterSize();
+    actualTextSize = text.getLocalBounds().width+2;
+    desiredTextSize = sprite.getLocalBounds().width;
+    desiredCharSize = actualCharSize*desiredTextSize/actualTextSize;
+    if(desiredCharSize < 50) desiredCharSize = 50;
+    text.setCharacterSize(desiredCharSize);
 }

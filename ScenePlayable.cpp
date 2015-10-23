@@ -142,6 +142,10 @@ void ScenePlayable::processInput() {
             if(_status == status::running) _status = status::onMenu;
             else _status = status::running;
         }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::S){
+            if(!_player->speaking()) _player->setSpeaking(true);
+            else _player->setSpeaking(false);
+        }
         if(event.type == sf::Event::MouseButtonPressed){
             if (event.mouseButton.button == sf::Mouse::Left) {
                 //spawn FairyShoot;
@@ -163,7 +167,7 @@ void ScenePlayable::processInput() {
     //std::cout << "mouse position " << mousePos.x << " " << mousePos.y << std::endl;
     std::pair<bool,SceneChanger*> aux = _map.playerInsideExit(mousePos);
     if (aux.first) {
-        changeScene(aux.second);
+    //    changeScene(aux.second);
     }
 
     // Debug link movement

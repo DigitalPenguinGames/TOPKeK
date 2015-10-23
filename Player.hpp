@@ -1,12 +1,13 @@
 #ifndef __PLAYER_HPP__
 #define __PLAYER_HPP__
 
+#include "Map.hpp"
 #include "utils.hpp"
-#include "Collisionable.hpp"
 #include "Resources.hpp"
 #include "Projectile.hpp"
 #include "LightSprite.hpp"
-#include "Map.hpp"
+#include "Collisionable.hpp"
+#include "TextBoxManager.hpp"
 
 #define ATTACKTIMERANIMATION 0.5
 #define ELAPSEDWALKING 0.18
@@ -40,6 +41,9 @@ public:
     void setLight(Light* light);
     void setMap(Map* map);
 
+    bool speaking() const;
+    void setSpeaking(bool speaking);
+
 private:
     Map* _map;
     directions _dir;
@@ -49,16 +53,16 @@ private:
 
     float _hp;
     float _maxHp;
-    bool _dead;
     float _hitedTimer;
-
-    int _currentAnimation;
+    float _elapsedAttack;
     float _elapsedAnimation;
 
-    bool _moving;
+    int _currentAnimation;
 
+    bool _dead;
+    bool _moving;
     bool _attacking;
-    float _elapsedAttack;
+    bool _speaking;
 
     Projectile _sword;
     sf::IntRect _walkBounds;

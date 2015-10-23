@@ -46,7 +46,7 @@ public:
     /* Returns the characterSize*/
     int getCharacterSize();
     /* Set the size of the characters of the TextBox text*/
-    void setCharacterSize(int u);
+    void setCharacterSize(int);
 
     
     /* Returns the color of the TextBox's text*/
@@ -59,12 +59,16 @@ public:
     void setFont(sf::Font f);
 
     
-    /* Set the Texture that will be used as default TextBox image */
+    /* Set the Texture that will be used as default TextBox image.
+    This function takes as parameter the path of the image*/
     void setTexture(std::string name);
+    /*different version taking the reference of texture*/
+    void setTexture(sf::Texture tex);
+
     
     
     /* Draw the TextBox on the window passed as parameter */
-    void draw(sf::RenderWindow &w);
+    void draw(sf::RenderTarget &w);
 
     
     /* Update the private variables if needed acordingly to the event*/
@@ -72,6 +76,10 @@ public:
     
     bool getTextFinished();
     
+    /* Set the size passed as parameter */
+    void setSize(float x, float y);
+    void setSize(sf::Vector2f size);
+
 private:
 
     bool clicked;
@@ -88,9 +96,6 @@ private:
     float time_since_last_click;
     std::vector < std::string > boxTexts;
     
-    /* Set the size passed as parameter */
-    void setSize(float x, float y);
-    void setSize(sf::Vector2f size);
     
     std::string getFractionText(std::string text, int ini, int end);
     

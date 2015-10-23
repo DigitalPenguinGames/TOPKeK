@@ -14,6 +14,7 @@ public:
 
     static sf::Texture heart;
     static sf::Texture dungeon;
+    static sf::Texture talkBox;
     static sf::Texture tileSet;
     static sf::Texture linkSet;
     static sf::Texture linkSetT;

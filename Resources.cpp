@@ -3,6 +3,7 @@
 // sf::Texture        Resources::....
 sf::Texture            Resources::heart;
 sf::Texture            Resources::tileSet;
+sf::Texture            Resources::talkBox;
 sf::Texture            Resources::dungeon;
 sf::Texture            Resources::linkSet;
 sf::Texture            Resources::linkSetT;
@@ -35,6 +36,7 @@ std::vector<SpriteSheetDescription> Resources::descriptions;
 
 void Resources::load() {
     //...loadFromFile();
+    talkBox.loadFromFile(TEXTURETPATH+std::string("talkBox.png"));
     tileSet.loadFromFile(TEXTURETPATH+std::string("OverworldTiles.png"));
     fairyShoot.loadFromFile(TEXTURETPATH+std::string("fairyShoot.png"));
     tileSetCols.loadFromFile(TEXTURETPATH+std::string("OverworldTilesColision.png"));

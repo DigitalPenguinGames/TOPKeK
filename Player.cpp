@@ -13,9 +13,10 @@ Player::Player(){
 
     _moving = false;
     _attacking = false;
+    _speaking = false;
 
-    _walkBounds = sf::IntRect(4,13,8,2);
     _bounds = sf::IntRect(4,2,8,12);
+    _walkBounds = sf::IntRect(4,13,8,2);
 
     std::vector<sf::Texture*> textures(9);
     textures[directions::none]  = &Resources::linkSet;
@@ -68,6 +69,7 @@ void Player::update(float deltaTime) {
 }
 
 void Player::draw(sf::RenderTarget* w) {
+
     if (_attacking) {
         _sword.draw(w);
     }
@@ -77,6 +79,13 @@ void Player::draw(sf::RenderTarget* w) {
     }
    else {
         _lightSprite.draw(w);
+    }
+    if(_speaking){
+//        TextBoxManager::setSize(w->getView().getSize().x/2, w->getView().getSize().y/4);
+        TextBoxManager::drawText(w, "penguins",getPosition().x -TextBoxManager::getSize().x/2,
+                                                getPosition().y -TextBoxManager::getSize().y);                                                                                ;
+        TextBoxManager::setSize(getGlobalBound().width*5, getGlobalBound().height);
+        //TextBoxManager::drawText(w,"penguins");
     }
 }
 
@@ -202,3 +211,13 @@ void Player::setLight(Light* light) {
 void Player::setMap(Map* map) {
     _map = map;
 }
+bool Player::speaking() const
+{
+    return _speaking;
+}
+
+void Player::setSpeaking(bool speaking)
+{
+    _speaking = speaking;
+}
+

@@ -8,6 +8,7 @@ Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Clos
     _currentScene = nullptr;
     _lastScene = nullptr;
     SoundManager::load();
+    TextBoxManager::load();
     if (DataManager::getFloat("MasterVolumen",1.0f) == 1.0f) {
         //SoundManager::playMusic("menuMusic");
         //SoundManager::playMusic("overWorld");
