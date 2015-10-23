@@ -53,7 +53,7 @@ void StatsBar::updateShape(){
 
     float pos_x = _space;
     //if(_parent)
-      //  pos_x = (_parent->getSize().x - getSize().x)/2.f;
+      // pos_x = (_parent->getSize().x - getSize().x)/2.f;
 
     for(Widget* widget : _widgets) {
         sf::Vector2f size = widget->getSize();

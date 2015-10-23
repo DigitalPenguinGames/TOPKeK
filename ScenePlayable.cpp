@@ -120,7 +120,10 @@ void ScenePlayable::display() {
             _window->setView(_window->getDefaultView());
             _window->draw(_hud);
             if(drawMenu){
+                _window->setMouseCursorVisible(true);
                 _window->draw(_menu);
+            }else {
+                _window->setMouseCursorVisible(false);
             }
             break;
 
