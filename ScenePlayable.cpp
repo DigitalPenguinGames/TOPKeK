@@ -142,7 +142,7 @@ void ScenePlayable::processInput() {
             if(_status == status::running) _status = status::onMenu;
             else _status = status::running;
         }
-        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::S){
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E){
             if(!_player->speaking()) _player->setSpeaking(true);
             else _player->setSpeaking(false);
         }

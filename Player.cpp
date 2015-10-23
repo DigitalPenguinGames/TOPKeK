@@ -85,7 +85,6 @@ void Player::draw(sf::RenderTarget* w) {
         TextBoxManager::drawText(w, "penguins",getPosition().x -TextBoxManager::getSize().x/2,
                                                 getPosition().y -TextBoxManager::getSize().y);                                                                                ;
         TextBoxManager::setSize(getGlobalBound().width*5, getGlobalBound().height);
-        //TextBoxManager::drawText(w,"penguins");
     }
 }
 

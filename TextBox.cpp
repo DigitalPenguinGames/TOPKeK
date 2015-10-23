@@ -77,13 +77,13 @@ void TextBox::setText(std::string s = "Click"){
     textFinished = false;
 
     int qttyRows = 4;
-    sf::Vector2f sizeRow( getSize().x/ 5, getSize().y/(qttyRows+2) );
-    std::cout << "size ROw = " << sizeRow.x << " ; " << sizeRow.y << std::endl;
+    sf::Vector2f sizeRow( getSize().x , getSize().y/(qttyRows+2) );
+    //std::cout << "size ROw = " << sizeRow.x << " ; " << sizeRow.y << std::endl;
 
     lecturePointer = 0;
     boxTexts = std::vector < std::string > (qttyRows, " ");
     boxTexts[0] = " ";
-    float fraseLength = 2* sizeRow.x/sizeRow.y ; //trec dos per poder posar espais
+    float fraseLength = 2* sizeRow.x/sizeRow.y ;
 
     for(int i = 1; i < qttyRows-1; ++i){
         boxTexts[i] =  " "+getFractionText(totalText, lecturePointer, lecturePointer + fraseLength);
@@ -119,23 +119,26 @@ void TextBox::draw(sf::RenderTarget& w){
 
         sf::Vector2f scaleRow(1,1);
 
-        if((!text.getGlobalBounds().width < sprite.getGlobalBounds().width || boxTexts[i] != " ")){
+        if((text.getGlobalBounds().width > sprite.getGlobalBounds().width || boxTexts[i] != " ")){
 
             scaleRow = sf::Vector2f(
-            sizeT.x/text.getGlobalBounds().width, 
-            sizeT.y/text.getGlobalBounds().height );
+            sizeT.y/text.getGlobalBounds().height,
+            sizeT.y/text.getGlobalBounds().height);
+            //sizeT.y/text.getGlobalBounds().height );
 
         }else{
 
             scaleRow = sf::Vector2f(
             1, 
             sizeT.y/text.getGlobalBounds().height );
+//                        1);
 
         }
 
         text.setScale(scaleRow);
  
         sizeT.y = sprite.getGlobalBounds().height/4;
+        //sizeT.y = text.getGlobalBounds().height;
 
         text.setPosition(sprite.getPosition().x, sprite.getPosition().y+i*sizeT.y );        
 
@@ -255,12 +258,12 @@ void TextBox::setSize(float x, float y){ setSize(sf::Vector2f(x,y)); }
 void TextBox::setSize(sf::Vector2f size){
     sprite.setScale(size.x/sprite.getLocalBounds().width, size.y/sprite.getLocalBounds().height);
 //     this->setText(text.getString());
-    float actualCharSize, desiredCharSize;
+    /*float actualCharSize, desiredCharSize;
     float actualTextSize, desiredTextSize;
     actualCharSize = text.getCharacterSize();
     actualTextSize = text.getLocalBounds().width+2;
     desiredTextSize = sprite.getLocalBounds().width;
     desiredCharSize = actualCharSize*desiredTextSize/actualTextSize;
-    if(desiredCharSize < 50) desiredCharSize = 50;
-    text.setCharacterSize(desiredCharSize);
+    //if(desiredCharSize < 100) desiredCharSize = 100;
+    text.setCharacterSize(desiredCharSize);*/
 }
