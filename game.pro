@@ -30,6 +30,7 @@ SOURCES += main.cpp \
     	Effect.cpp \
         Light.cpp \
         LightSprite.cpp \
+        DungeonDoor.cpp \
     GUI/Button.cpp \
     GUI/Container.cpp \
     GUI/Frame.cpp \
@@ -71,6 +72,7 @@ HEADERS += utils.hpp \
     	Effect.hpp \
         Light.hpp \
         LightSprite.hpp \
+        DungeonDoor.hpp \   
     GUI/Button.hpp \
     GUI/Container.hpp \
     GUI/ImgButton.hpp \

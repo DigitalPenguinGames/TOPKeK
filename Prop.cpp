@@ -1,6 +1,6 @@
 #include "Prop.hpp"
 
-Prop::Prop(int gid, sf::Vector2f pos) {
+Prop::Prop(int gid, sf::Vector2f pos) : _gid(gid) {
     if (gid >= 145 && gid <= 156){
         _sprite.setTexture(Resources::propsOver);
         _description = Resources::descriptions[propsOverDescription];
@@ -9,6 +9,7 @@ Prop::Prop(int gid, sf::Vector2f pos) {
         if (gid <= 150) _bounds = sf::IntRect(0,22,48,10);
         else _bounds = sf::IntRect(0, 10, 16, 6);
     }
+    
 }
 
 Prop::~Prop() {}

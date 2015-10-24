@@ -68,6 +68,8 @@ enum spriteSheetsDescriptions {
     octorokDescriptions,
     rockProjDescription,
     propsOverDescription,
+    dungeonDoorsHor,
+    dungeonDoorsVer,
     spriteDescriptionsQtt
 };
 
@@ -102,6 +104,26 @@ enum propTypes {
     soldierBrown,
     soldierWhite,
     propsQtty
+};
+
+enum dungeonHorDoorTypes {
+    openTop,
+    openBot,
+    closTop,
+    closBot,
+    keysTop,
+    keysBot,
+    dungeonHorDoorQtty
+};
+
+enum dungeonVerDoorTypes {
+    openRight,
+    openLeft ,
+    closRight,
+    closLeft,
+    keysRight,
+    keysLeft,
+    dungeonVerDoorQtty
 };
 
 // Directions

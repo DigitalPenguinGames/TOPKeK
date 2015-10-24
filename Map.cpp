@@ -1,6 +1,8 @@
 #include "Map.hpp"
 #include "ScenePlayable.hpp"
 
+Map::Map() {}
+
 Map::Map(ScenePlayable* scene, std::string description) : _scene(scene) {
     _mapIniCoord = sf::Vector2f(FLT_MAX,FLT_MAX);
     std::istringstream des(description);
@@ -21,14 +23,6 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene) {
         case sceneTypes::lightedDungeon:
             break;
     } 
-
-
-    // for (int j = 0; j < int(_premap[0].size()); ++j) {
-    //     for (int i = 0; i < int(_premap.size()); ++i) {
-    //         std::cout << _premap[i][j] << " ";
-    //     }
-    //     std::cout << std::endl;
-    // }
     
     while(true){ //hohoho im so evil hohoho
         std::string objectGroup;
@@ -88,23 +82,30 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene) {
                         else if (gid < 12) y -= 16;
                         std::cout << "gid " << gid <<" x " << x <<" y " << y << " nS " << nextScene << " x " << nextSceneX << " y " << nextSceneY << std::endl;
                         sf::Vector2f localOffset(0,0);
-                        if (y == 12) {
+                        directions dir = none;
+                        if (y == 12 && gid < 12) {
                             localOffset.x = 8;
                             localOffset.y = -4;
+                            dir = directions::up;
                         }
-                        else if (y == 144) {
+                        else if (y == 144 && gid < 12) {
                             localOffset.x = 8;
                             localOffset.y = 8;
+                            dir = directions::down;
                         }
                         else if (x == 12 && gid < 12) {
                             localOffset.x = -4;
                             localOffset.y = 8;
+                            dir = directions::left;
                         }
                         else if (x == 224 && gid < 12) {
                             localOffset.x = 8;
                             localOffset.y = 8;
+                            dir = directions::right;
                         }
                         sC.setBounds(sf::FloatRect(x+localOffset.x,y+localOffset.y,TILESIZE,TILESIZE));
+                        DungeonDoor door(gid+157,sf::Vector2f(x,y));
+                        _dungeonDoors.push_back(std::make_pair(new DungeonDoor(gid+157,sf::Vector2f(x,y)), dir));
                         break;}
                     default:
                         std::cout << "Exit in a unspecified type os scene WOT" << std::endl;
@@ -116,7 +117,7 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene) {
         }
         else {
             // I crai evritime
-            std::cout << "Broken as fuck :/ We dont have a object group that is called " << objectGroup << std::endl;
+            std::cout << "Broken as fuck :/ We dont have a object group that is called (\"" << objectGroup << "\")" << std::endl;
             exit(EXIT_FAILURE);
         }
     }  
@@ -231,4 +232,8 @@ sf::Vector2f Map::getMaxMovement(sf::Vector2f ini, sf::Vector2f movement, sf::In
 
     if (hit) return sf::Vector2f(0,0);
     return movement;
+}
+
+std::list<std::pair<DungeonDoor*,directions> > Map::getDungeonDoors() {
+    return _dungeonDoors;
 }

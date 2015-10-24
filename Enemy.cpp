@@ -2,7 +2,7 @@
 
 Enemy::Enemy(ScenePlayable* scene, Map* map, sf::Vector2f pos) : _scene(scene), _map(map) {
     _speed = sf::Vector2f(0,0);
-    _hp = 20;
+    _hp = 5;
     _dead = false;
     _damage = 0;
 

@@ -207,7 +207,7 @@ void ScenePlayable::addForAllWeapon(Weapon* weapon){
     _forAllWeapons.push_back(weapon);
 }
 
-void ScenePlayable::addProp(Prop* prop) {
+void ScenePlayable::addProp(Collisionable* prop) {
     _props.push_back(prop);
 }
 

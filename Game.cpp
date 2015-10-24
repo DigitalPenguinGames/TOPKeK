@@ -65,8 +65,13 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                 ScenePlayable* lastScene = dynamic_cast<ScenePlayable*>(_lastScene);
                 ScenePlayable* currentScene = dynamic_cast<ScenePlayable*>(_currentScene);
 
+
+
                 sf::Vector2f offset;
                 directions dir = sC->getChangeDirection();
+                if (_currentScene->getType() != sceneTypes::outside) {
+                    sC->_nextScenePos = sC->_pos;
+                }
                 switch (dir) {
                     case directions::left:
                         offset.y = TILESIZE * (sC->_pos.y-sC->_nextScenePos.y);
@@ -85,9 +90,11 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                         offset.y = lastScene->getMapSize().y*TILESIZE;
                         break;
                     default:
+
                         break;
                 }
 
+                std::cout << "OFSEEEEEEEEEEEEEEEEET " << offset.x << " " << offset.y << std::endl;
                 sceneIniCoord = lastScene->getSceneCoord()+offset;
 
                 //std::cout << "offset: " << offset.x << " " << offset.y << " sceneIniCoord " << sceneIniCoord.x << " " << sceneIniCoord.y << std::endl;
@@ -120,7 +127,8 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                     view.move(speed*deltaTime.asSeconds());
 
                     // Moving the player.
-                    if (count > timer*(3.5f/4.f)) {
+                    if ((_currentScene->getType() == sceneTypes::outside && count > timer*(3.5f/4.f)) ||
+                        (_currentScene->getType() != sceneTypes::outside && count > timer*(0.8f/4.f))) {
                         player->move(dir);
                         player->update(deltaTime.asSeconds());
                     }

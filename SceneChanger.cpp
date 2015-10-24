@@ -43,10 +43,10 @@ sf::FloatRect SceneChanger::getRect(sf::Vector2f offset) {
 
 
 directions SceneChanger::getChangeDirection() {
-    if (_pos.x == 0) return directions::left;
-    else if (_pos.y == 0) return directions::up;
-    else if (_nextScenePos.x==0) return directions::right;
-    else if (_nextScenePos.y==0) return directions::down;
+    if (int(_pos.x) == 0) return directions::left;
+    else if (int(_pos.y) == 0) return directions::up;
+    else if (int(_nextScenePos.x)==0) return directions::right;
+    else if (int(_nextScenePos.y)==0) return directions::down;
     else return directions::directionsQtty;
 }
 

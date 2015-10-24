@@ -1,0 +1,7 @@
+openDoorright  0  0  32 20
+openDoorleft  32  0  32 20
+closDoorright  0 20  32 20
+closDoorleft  32 20  32 20
+keysDoorright  0 40  32 20
+keysDoorleft  32 40  32 20
+

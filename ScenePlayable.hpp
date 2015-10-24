@@ -45,14 +45,14 @@ public:
     void addAllyWeapon(Weapon* weapon);
     void addEnemyWeapon(Weapon* weapon);
     void addForAllWeapon(Weapon* weapon);
-    void addProp(Prop* prop);
+    void addProp(Collisionable* prop);
 
 protected:
     std::list<Enemy*> _enemies;
     std::list<Weapon*> _allyWeapons;
     std::list<Weapon*> _enemyWeapons;
     std::list<Weapon*> _forAllWeapons;
-    std::list<Prop* > _props;
+    std::list<Collisionable*> _props;
 
     sf::Vector2f _sceneIniCoord;
     Map _map;

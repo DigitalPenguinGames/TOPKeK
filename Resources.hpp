@@ -36,6 +36,8 @@ public:
     static sf::Texture tileSetCols;
     static sf::Texture shinnyHalfHeart;
     static sf::Texture shinnyEmptyHeart;
+    static sf::Texture dungeonDoorsVertical;
+    static sf::Texture dungeonDoorsHorizontal;
 
     static sf::Font pauseMenuFont;
     static std::vector<SpriteSheetDescription> descriptions;

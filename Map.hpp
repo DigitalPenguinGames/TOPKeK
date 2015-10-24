@@ -6,10 +6,12 @@
 #include "SceneChanger.hpp"
 #include "Background.hpp"
 #include "Prop.hpp"
+#include "DungeonDoor.hpp"
 
 class ScenePlayable;
 class Map {
 public:
+    Map();
     Map(ScenePlayable* scene, std::string description);
     ~Map();
     void init(sf::Vector2f sceneIniCoord);
@@ -18,7 +20,10 @@ public:
     std::pair<bool,SceneChanger*> playerInsideExit(sf::Vector2f pos); // Change to Vector2f
     sf::Vector2i getSize();
     sf::Vector2f getSceneCoord();
-    sf::Vector2f getMaxMovement(sf::Vector2f ini, sf::Vector2f movement, sf::IntRect rect);;
+    sf::Vector2f getMaxMovement(sf::Vector2f ini, sf::Vector2f movement, sf::IntRect rect);
+
+    std::list<std::pair<DungeonDoor*,directions> > getDungeonDoors();
+
 private:
     ScenePlayable* _scene;
     std::vector<std::vector<int> > _premap;
@@ -28,6 +33,8 @@ private:
     sf::Vector2f _mapIniCoord;
     int _mapType;
     sf::Image _collisionBackground;
+    sf::Sprite _foreground;
+    std::list<std::pair<DungeonDoor*,directions> > _dungeonDoors;
 };
 
 #endif

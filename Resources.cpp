@@ -25,6 +25,8 @@ sf::Texture            Resources::textureTest;
 sf::Texture            Resources::shinnyHeart;
 sf::Texture            Resources::shinnyHalfHeart;
 sf::Texture            Resources::shinnyEmptyHeart;
+sf::Texture            Resources::dungeonDoorsVertical;
+sf::Texture            Resources::dungeonDoorsHorizontal;
 
 sf::Shader             Resources::DtO;
 sf::Shader             Resources::cInvert;
@@ -60,13 +62,19 @@ void Resources::load() {
     shinnyHalfHeart.loadFromFile(TEXTURETPATH+std::string("shinnyHalfHeart.png"));
     emptyHeart.loadFromFile(TEXTURETPATH+std::string("emptyHeart.png"));
     shinnyEmptyHeart.loadFromFile(TEXTURETPATH+std::string("shinnyEmptyHeart.png"));
+    dungeonDoorsVertical.loadFromFile(TEXTURETPATH+std::string("dungeonDoorsVer.png"));
+    dungeonDoorsHorizontal.loadFromFile(TEXTURETPATH+std::string("dungeonDoorsHor.png"));
 
     descriptions = std::vector<SpriteSheetDescription>(spriteDescriptionsQtt);
     descriptions[linkSpritesDescriptions] = loadDescription("linkSheet");
     descriptions[swordDescriptions] = loadDescription("swordSheet");
     descriptions[octorokDescriptions] = loadDescription("Octorok");
     descriptions[rockProjDescription] = loadDescription("rockProj");
-    descriptions[propsOverDescription] = loadDescription("propsOverworld");
+    descriptions[propsOverDescription] = loadDescription("propsOverworld"); 
+    descriptions[dungeonDoorsHor] = loadDescription("dungeonDoorsHor"); 
+    descriptions[dungeonDoorsVer] = loadDescription("dungeonDoorsVer"); 
+
+
 
     if (!DtO.loadFromFile(SHADERPATH+std::string("transitionDtO.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
     if (!sLighting.loadFromFile(SHADERPATH+std::string("lighting.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);

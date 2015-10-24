@@ -8,8 +8,10 @@ class Prop : public Collisionable {
 public:
     Prop( int gid, sf::Vector2f pos);
     ~Prop();
+    int getGid();
 private:
     SpriteSheetDescription _description;
+    int _gid;
 };
 
 
