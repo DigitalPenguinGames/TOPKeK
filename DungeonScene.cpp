@@ -20,12 +20,12 @@ void DungeonScene::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
     ScenePlayable::init(sceneIniCoord);
     if (sceneIniCoord == aux) return;
     if (aux == sf::Vector2f(FLT_MAX,FLT_MAX)) {
-    auto mapDoors = _map.getDungeonDoors();
-    for (auto it = mapDoors.begin(); it != mapDoors.end(); ++it) addDoor(*(*it).first,(*it).second);
-    addProp(&_topDoor);
-	addProp(&_botDoor);
-	addProp(&_leftDoor);
-	addProp(&_rightDoor);
+        auto mapDoors = _map.getDungeonDoors();
+        for (auto it = mapDoors.begin(); it != mapDoors.end(); ++it) addDoor(*(*it).first,(*it).second);
+        addProp(&_topDoor);
+    	addProp(&_botDoor);
+    	addProp(&_leftDoor);
+    	addProp(&_rightDoor);
 	}
 	_topDoor.setIniCoord(_sceneIniCoord);
 	_botDoor.setIniCoord(_sceneIniCoord);

@@ -14,11 +14,13 @@ public:
     directions getChangeDirection();
 
     void setBounds(sf::FloatRect rect);
+    void setDirection(directions dir);
 
     sf::Vector2f _pos;
     std::string _nextScene;
     sf::Vector2f _nextScenePos;
     sf::FloatRect _bound;
+    directions _dir;
 
 
 };

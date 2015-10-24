@@ -11,6 +11,7 @@ SceneChanger::~SceneChanger() {}
 
 std::string SceneChanger::getNextSceneName() {
     return _nextScene;
+    _dir = directions::none;
 }
 
 
@@ -43,13 +44,13 @@ sf::FloatRect SceneChanger::getRect(sf::Vector2f offset) {
 
 
 directions SceneChanger::getChangeDirection() {
-    if (int(_pos.x) == 0) return directions::left;
-    else if (int(_pos.y) == 0) return directions::up;
-    else if (int(_nextScenePos.x)==0) return directions::right;
-    else if (int(_nextScenePos.y)==0) return directions::down;
-    else return directions::directionsQtty;
+    return _dir;
 }
 
 void SceneChanger::setBounds(sf::FloatRect rect) {
     _bound = rect;
+}
+
+void SceneChanger::setDirection(directions dir) {
+    _dir = dir;
 }

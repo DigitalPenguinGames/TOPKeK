@@ -70,6 +70,7 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene) {
                                 break;
                         }
                         sC.setBounds(sf::FloatRect(x+localOffset.x,y+localOffset.y,TILESIZE,TILESIZE));
+                        sC.setDirection(dir);
                         break;}
                     case sceneTypes::lightedDungeon:
                     case sceneTypes::dungeon: {
@@ -104,6 +105,7 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene) {
                             dir = directions::right;
                         }
                         sC.setBounds(sf::FloatRect(x+localOffset.x,y+localOffset.y,TILESIZE,TILESIZE));
+                        sC.setDirection(dir);
                         DungeonDoor door(gid+157,sf::Vector2f(x,y));
                         _dungeonDoors.push_back(std::make_pair(new DungeonDoor(gid+157,sf::Vector2f(x,y)), dir));
                         break;}
