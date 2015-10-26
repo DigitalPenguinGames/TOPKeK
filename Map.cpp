@@ -35,7 +35,7 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene) {
             for (int i = 0; i < numberOfProps; ++i) {
                 float x,y,gid;
                 des >> gid >> x >> y;
-                _scene->addProp(new Prop(gid,sf::Vector2f(x,y)) );
+                _scene->addProp( new Prop(gid,sf::Vector2f(x,y)) );
             }
         }
         else if ("Exits" == objectGroup) {
@@ -47,7 +47,7 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene) {
                 SceneChanger sC(sf::Vector2f(x/TILESIZE,y/TILESIZE),nextScene,sf::Vector2f(nextSceneX,nextSceneY));
                 switch(_mapType){
                     case sceneTypes::outside: {
-                        directions dir = sC.getChangeDirection();
+                        directions dir = sC.getOutsideDirection();
                         sf::Vector2f localOffset(TILESIZE-4,TILESIZE-4);
                         switch (dir) {
                             case directions::left:

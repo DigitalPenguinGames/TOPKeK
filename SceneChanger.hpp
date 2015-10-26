@@ -12,6 +12,7 @@ public:
     std::string getNextSceneName();
     sf::FloatRect getRect(sf::Vector2f offset);
     directions getChangeDirection();
+    directions getOutsideDirection();
 
     void setBounds(sf::FloatRect rect);
     void setDirection(directions dir);

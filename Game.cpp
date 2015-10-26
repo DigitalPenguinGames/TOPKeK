@@ -70,7 +70,7 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                 sf::Vector2f offset;
                 directions dir = sC->getChangeDirection();
                 if (_currentScene->getType() != sceneTypes::outside) {
-                    sC->_nextScenePos = sC->_pos;
+                    sC->_nextScenePos = sC->_pos; // IM CHANGING THE ORIGINAL. THIS IS NOT A COPY. ATTENTION!!
                 }
                 switch (dir) {
                     case directions::left:
