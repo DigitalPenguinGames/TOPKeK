@@ -2,6 +2,7 @@
 #include "Enemy.hpp"
 #include "Weapon.hpp"
 #include "RockProjectile.hpp"
+#include "DungeonDoor.hpp"
 
 Player::Player(){
 
@@ -251,6 +252,11 @@ void Player::intersectsWith(Collisionable* c) {
         }
         else resetMove();
         return;
+    }
+
+    DungeonDoor* door = dynamic_cast<DungeonDoor*>(c);
+    if (door != nullptr) {
+        if (!door->isOpened()) resetMove();
     }
 }
 

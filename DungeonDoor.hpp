@@ -15,6 +15,7 @@ public:
 	void close();
 	sf::Vector2f getBotPosition();
 	void setIniCoord(sf::Vector2f coord);
+	bool isOpened();
 private:
     SpriteSheetDescription _description;
 	int _gid;
