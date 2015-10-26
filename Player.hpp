@@ -38,6 +38,8 @@ public:
     void getHit(float much, sf::Vector2f from);
     void setPosition(sf::Vector2f pos);
     void resetMove();
+    void intersectsWith(Collisionable* c);
+
     void setLight(Light* light);
     void setMap(Map* map);
 

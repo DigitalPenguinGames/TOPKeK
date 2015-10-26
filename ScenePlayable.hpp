@@ -64,6 +64,8 @@ protected:
     Frame _hud;
     StatsBar* _life;
 
+    void updateHUD();
+
     void renderSorted(sf::RenderTarget* target, std::vector<Collisionable*>& cols);
     void centerView();
 

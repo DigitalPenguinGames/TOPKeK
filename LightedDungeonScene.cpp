@@ -15,7 +15,7 @@ void LightedDungeonScene::init(sf::Vector2f sceneIniCoord) {
     Resources::sLighting.setParameter("texture" , sf::Shader::CurrentTexture);
     Resources::sLighting.setParameter("minn", 10);
     Resources::sLighting.setParameter("maxx", 900);
-    _player->setLight(&_light);
+    //_player->setLight(&_light);
 }
 
 void LightedDungeonScene::update(float deltaTime) {

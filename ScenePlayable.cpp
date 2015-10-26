@@ -234,64 +234,93 @@ void ScenePlayable::update(float deltaTime) {
         } 
     }
     // Collisions between player and things
-
-    sf::IntRect playerBound = _player->getGlobalBound();
-    for (auto it = _enemies.begin(); it != _enemies.end(); ++it) {
-        if (playerBound.intersects((*it)->getGlobalBound())) _player->getHit((*it)->getDamage(),(*it)->getPosition());
-    }
-    for (auto it = _enemyWeapons.begin(); it != _enemyWeapons.end(); ++it) {
-        if (playerBound.intersects((*it)->getGlobalBound())) {
-            if (!counterDirection(_player->getDirection(),(*it)->getDirection()) || _player->isAttacking()) 
-                _player->getHit((*it)->getDamage(),(*it)->getPosition());
-            (*it)->hit();
+    {
+        sf::IntRect playerBound = _player->getGlobalBound();
+        for (auto it = _enemies.begin(); it != _enemies.end(); ++it) {
+            if (playerBound.intersects((*it)->getGlobalBound())) {
+                _player->intersectsWith(*it);
+                (*it)->intersectsWith(_player);
+            }
         }
+        for (auto it = _enemyWeapons.begin(); it != _enemyWeapons.end(); ++it) {
+            if (playerBound.intersects((*it)->getGlobalBound())) {
+                _player->intersectsWith(*it);
+                (*it)->intersectsWith(_player);
+            }
+        }
+        for (auto it = _forAllWeapons.begin(); it != _forAllWeapons.end(); ++it) {
+            if (playerBound.intersects((*it)->getGlobalBound())) {
+                _player->intersectsWith(*it);
+                (*it)->intersectsWith(_player);
+            }
+        }
+        sf::IntRect playerWalkBounds = _player->getGlobalWalkBounds();
+        for (auto it = _props.begin(); it != _props.end(); ++it) {
+            // here will be like player->colwithprop(gid) prop->collisionwithplayer
+            if (playerWalkBounds.intersects((*it)->getGlobalBound())) {
+                _player->intersectsWith(*it);
+                (*it)->intersectsWith(_player);
+            }
+        }
+        // Collision between object(rupies, arrows, bombs);
     }
-    for (auto it = _forAllWeapons.begin(); it != _forAllWeapons.end(); ++it) {
-        if (playerBound.intersects((*it)->getGlobalBound())) _player->getHit((*it)->getDamage(),(*it)->getPosition());
-    }
-    sf::IntRect playerWalkBounds = _player->getGlobalWalkBounds();
-    for (auto it = _props.begin(); it != _props.end(); ++it) {
-        // here will be like player->colwithprop(gid) prop->collisionwithplayer
-        if (playerWalkBounds.intersects((*it)->getGlobalBound())) _player->resetMove();
-    }
-    // Collision between object(rupies, arrows, bombs);
 
     // Collisions between Enemies and things
     for (auto enemyIt = _enemies.begin(); enemyIt != _enemies.end(); ++enemyIt) {
         sf::IntRect bounds = (*enemyIt)->getGlobalBound();
         for (auto it = _allyWeapons.begin(); it != _allyWeapons.end(); ++it) {
-            if (bounds.intersects((*it)->getGlobalBound())) (*enemyIt)->getHit((*it)->getDamage(),(*it)->getPosition());
+            if (bounds.intersects((*it)->getGlobalBound())) {
+                (*enemyIt)->intersectsWith(*it);
+                (*it)->intersectsWith(*enemyIt);
+            }
         }
         for (auto it = _forAllWeapons.begin(); it != _forAllWeapons.end(); ++it) {
-            if (bounds.intersects((*it)->getGlobalBound())) (*enemyIt)->getHit((*it)->getDamage(),(*it)->getPosition());
+            if (bounds.intersects((*it)->getGlobalBound())) {
+                (*enemyIt)->intersectsWith(*it);
+                (*it)->intersectsWith(*enemyIt);
+            }
         }
 
         sf::IntRect enemyWalkBounds = (*enemyIt)->getGlobalWalkBounds();
         for (auto it = _props.begin(); it != _props.end(); ++it) {
-            if (enemyWalkBounds.intersects((*it)->getGlobalBound())) (*enemyIt)->resetMove();
+            if (enemyWalkBounds.intersects((*it)->getGlobalBound())) {
+                (*enemyIt)->intersectsWith(*it);
+                (*it)->intersectsWith(*enemyIt);
+            }
         }
         // Collisions between rocks & co
     }
 
     // Collisions between weapons & props
-    for (auto weaponIt = _enemyWeapons.begin(); weaponIt != _enemyWeapons.end(); ++weaponIt) {
-        sf::IntRect bounds = (*weaponIt)->getGlobalBound();
-        for (auto it = _props.begin(); it != _props.end(); ++it) {
-            if (bounds.intersects((*it)->getGlobalBound())) (*weaponIt)->hit();
+    { 
+        for (auto weaponIt = _enemyWeapons.begin(); weaponIt != _enemyWeapons.end(); ++weaponIt) {
+            sf::IntRect bounds = (*weaponIt)->getGlobalBound();
+            for (auto it = _props.begin(); it != _props.end(); ++it) {
+                if (bounds.intersects((*it)->getGlobalBound())) {
+                    (*weaponIt)->intersectsWith(*it);
+                    (*it)->intersectsWith(*weaponIt);
+                }
+            }
         }
-    }
 
-    for (auto weaponIt = _allyWeapons.begin(); weaponIt != _allyWeapons.end(); ++weaponIt) {
-        sf::IntRect bounds = (*weaponIt)->getGlobalBound();
-        for (auto it = _props.begin(); it != _props.end(); ++it) {
-            if (bounds.intersects((*it)->getGlobalBound())) (*weaponIt)->hit();
+        for (auto weaponIt = _allyWeapons.begin(); weaponIt != _allyWeapons.end(); ++weaponIt) {
+            sf::IntRect bounds = (*weaponIt)->getGlobalBound();
+            for (auto it = _props.begin(); it != _props.end(); ++it) {
+                if (bounds.intersects((*it)->getGlobalBound())) {
+                    (*weaponIt)->intersectsWith(*it);
+                    (*it)->intersectsWith(*weaponIt);
+                }
+            }
         }
-    }
 
-    for (auto weaponIt = _forAllWeapons.begin(); weaponIt != _forAllWeapons.end(); ++weaponIt) {
-        sf::IntRect bounds = (*weaponIt)->getGlobalBound();
-        for (auto it = _props.begin(); it != _props.end(); ++it) {
-            if (bounds.intersects((*it)->getGlobalBound())) (*weaponIt)->hit();
+        for (auto weaponIt = _forAllWeapons.begin(); weaponIt != _forAllWeapons.end(); ++weaponIt) {
+            sf::IntRect bounds = (*weaponIt)->getGlobalBound();
+            for (auto it = _props.begin(); it != _props.end(); ++it) {
+                if (bounds.intersects((*it)->getGlobalBound())) {
+                    (*weaponIt)->intersectsWith(*it);
+                    (*it)->intersectsWith(*weaponIt);
+                }
+            }
         }
     }
 
@@ -328,8 +357,7 @@ void ScenePlayable::update(float deltaTime) {
         // Objects (rupies, shit)
     }
 
-    _life->setActualHP(_player->getHp());
-
+    updateHUD();
 }
 
 
@@ -345,4 +373,9 @@ void ScenePlayable::render(sf::RenderTarget* target) {
     for (auto it = _forAllWeapons.begin(); it != _forAllWeapons.end(); ++it) collisionables.push_back(*it);
     for (auto it = _props.begin(); it != _props.end(); ++it) collisionables.push_back(*it);
     renderSorted(target, collisionables);
+}
+
+void ScenePlayable::updateHUD() {
+    _life->setActualHP(_player->getHp());
+
 }

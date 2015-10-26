@@ -1,4 +1,6 @@
 #include "Enemy.hpp"
+#include "Prop.hpp"
+#include "Weapon.hpp"
 
 Enemy::Enemy(ScenePlayable* scene, Map* map, sf::Vector2f pos) : _scene(scene), _map(map) {
     _speed = sf::Vector2f(0,0);
@@ -84,4 +86,17 @@ sf::IntRect Enemy::getWalkBounds() {
 
 sf::IntRect Enemy::getGlobalWalkBounds() {
     return sf::IntRect(_walkBounds.left+_sprite.getPosition().x, _walkBounds.top + _sprite.getPosition().y, _walkBounds.width, _walkBounds.height);
+}
+
+void Enemy::intersectsWith(Collisionable* c) {
+    Weapon* weapon = dynamic_cast<Weapon*>(c);
+    if (weapon != nullptr) {
+        getHit(weapon->getDamage(),sf::Vector2f(0,0));
+        return;
+    }
+    Prop* prop = dynamic_cast<Prop*>(c);
+    if (prop != nullptr) {
+        resetMove();
+        return;
+    }
 }

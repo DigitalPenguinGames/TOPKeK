@@ -22,6 +22,8 @@ public:
     sf::IntRect getWalkBounds();
     sf::IntRect getGlobalWalkBounds();
 
+    virtual void intersectsWith(Collisionable* c);
+
 protected:
     ScenePlayable* _scene;
     Map* _map;

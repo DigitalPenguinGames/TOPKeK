@@ -17,6 +17,7 @@ public:
     directions getDirection();
 
     virtual void hit(); // Do something when hit
+    virtual void intersectsWith(Collisionable* c);
 protected:
     Map* _map;
     SpriteSheetDescription _description;

@@ -1,4 +1,7 @@
 #include "Player.hpp"
+#include "Enemy.hpp"
+#include "Weapon.hpp"
+#include "RockProjectile.hpp"
 
 Player::Player(){
 
@@ -200,6 +203,55 @@ void Player::setPosition(sf::Vector2f pos) {
 void Player::resetMove() {
     Collisionable::resetMove();
     _lightSprite.setPosition(_pastPosition);
+}
+
+void Player::intersectsWith(Collisionable* c) {
+    Enemy* enemy = dynamic_cast<Enemy*>(c);
+    if (enemy != nullptr) {
+        getHit(enemy->getDamage(),sf::Vector2f(0,0));
+        return;
+    }
+
+    RockProjectile* rock = dynamic_cast<RockProjectile*>(c);
+    if (rock != nullptr) {
+        if (!counterDirection(getDirection(),rock->getDirection()) || isAttacking()) {
+            getHit(rock->getDamage(),sf::Vector2f(0,0));
+        }
+        return;
+    }
+
+    Weapon* weapon = dynamic_cast<Weapon*>(c);
+    if (weapon != nullptr) {
+        getHit(weapon->getDamage(),sf::Vector2f(0,0));
+        return;
+    }
+
+    Prop* prop = dynamic_cast<Prop*>(c);
+    if (prop != nullptr) {
+        if (prop->getGid() <= 150) { // Bad practice!! every collisionable must change just himself
+            sf::IntRect movement;
+            if (getGlobalWalkBounds().intersects(prop->getGlobalBound(),movement)) {
+                sf::Vector2f mov(movement.width,movement.height);
+                if (getDirection() == directions::up) {
+                    mov.x = 0;
+                    mov.y *= -1;
+                }
+                else if (getDirection() == directions::left) {
+                    mov.x *= -1;
+                    mov.y = 0;
+                } 
+                if (getDirection() == directions::down) {
+                    mov.x = 0;
+                }
+                else if (getDirection() == directions::right) {
+                    mov.y = 0;
+                } 
+                prop->cmove(mov);
+            }
+        }
+        else resetMove();
+        return;
+    }
 }
 
 void Player::setLight(Light* light) {

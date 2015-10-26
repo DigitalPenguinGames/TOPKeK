@@ -13,3 +13,7 @@ Prop::Prop(int gid, sf::Vector2f pos) : _gid(gid) {
 }
 
 Prop::~Prop() {}
+
+int Prop::getGid() {
+    return _gid;
+}

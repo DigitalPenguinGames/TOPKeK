@@ -1,13 +1,13 @@
 #include "Collisionable.hpp"
 
-Collisionable::Collisionable(sf::Vector2f position) {
+Collisionable::Collisionable(sf::Vector2f position) : _pastPosition(position) {
     _sprite.setPosition(position);
+    // _pastPosition = position;
 }
 
 Collisionable::~Collisionable() {}
 
-void Collisionable::update(float deltaTime) {
-    (void) deltaTime;
+void Collisionable::update(float) {
 }
 
 void Collisionable::draw(sf::RenderTarget* window) {
@@ -49,4 +49,12 @@ void Collisionable::cmove(sf::Vector2f movement) {
 
 void Collisionable::resetMove() {
     _sprite.setPosition(_pastPosition);
+}
+
+bool Collisionable::hasMoved() {
+    return _sprite.getPosition() != _pastPosition;
+}
+
+void Collisionable::intersectsWith(Collisionable*) {
+    // if (hasMoved()) resetMove();
 }

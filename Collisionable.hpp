@@ -21,6 +21,9 @@ class Collisionable {
 
      virtual void cmove(sf::Vector2f movement);
      virtual void resetMove();
+     bool hasMoved();
+
+     virtual void intersectsWith(Collisionable* c);
 
  protected:
      sf::Sprite _sprite;

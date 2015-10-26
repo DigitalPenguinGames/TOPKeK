@@ -1,4 +1,6 @@
 #include "Weapon.hpp"
+#include "Prop.hpp"
+#include "Player.hpp"
 
 Weapon::Weapon(Map* map, sf::Vector2f pos, directions dir) : 
     Collisionable(pos),
@@ -34,4 +36,17 @@ void Weapon::hit() {
 
 directions Weapon::getDirection() {
     return _dir;
+}
+
+void Weapon::intersectsWith(Collisionable* c) {
+    Prop* prop = dynamic_cast<Prop*>(c);
+    if (prop != nullptr) {
+        hit();
+        return;
+    }
+    Player* player = dynamic_cast<Player*>(c);
+    if (player != nullptr) {
+        hit();
+        return;
+    }
 }
