@@ -18,7 +18,6 @@ private:
 
     float _lifeTime;
     float _maxLifeTime;
-    sf::Sprite _sprite;
     sf::Shader* _shader;
     sf::Vector2f _destiny;
 
