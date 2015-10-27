@@ -235,10 +235,17 @@ void ScenePlayable::update(float deltaTime) {
     // Collisions between player and things
     {
         sf::IntRect playerBound = _player->getGlobalBound();
+        sf::IntRect fairyBounds = _fairy->Collisionable::getGlobalBound();
+        //std::cout << fairyBounds.top << " " << fairyBounds.height << std::endl;
+
         for (auto it = _enemies.begin(); it != _enemies.end(); ++it) {
             if (playerBound.intersects((*it)->getGlobalBound())) {
                 _player->intersectsWith(*it);
                 (*it)->intersectsWith(_player);
+            }
+            if (fairyBounds.intersects((*it)->getGlobalBound())) {
+                _fairy->intersectsWith(*it);
+                (*it)->intersectsWith(_fairy);
             }
         }
         for (auto it = _enemyWeapons.begin(); it != _enemyWeapons.end(); ++it) {
@@ -246,11 +253,19 @@ void ScenePlayable::update(float deltaTime) {
                 _player->intersectsWith(*it);
                 (*it)->intersectsWith(_player);
             }
+            if (fairyBounds.intersects((*it)->getGlobalBound())) {
+                _fairy->intersectsWith(*it);
+                (*it)->intersectsWith(_fairy);
+            }
         }
         for (auto it = _forAllWeapons.begin(); it != _forAllWeapons.end(); ++it) {
             if (playerBound.intersects((*it)->getGlobalBound())) {
                 _player->intersectsWith(*it);
                 (*it)->intersectsWith(_player);
+            }
+            if (fairyBounds.intersects((*it)->getGlobalBound())) {
+                _fairy->intersectsWith(*it);
+                (*it)->intersectsWith(_fairy);
             }
         }
         sf::IntRect playerWalkBounds = _player->getGlobalWalkBounds();
@@ -375,6 +390,7 @@ void ScenePlayable::render(sf::RenderTarget* target) {
 }
 
 void ScenePlayable::updateHUD() {
-    _life->setActualHP(_player->getHp());
-
+    float total = _player->getHp()+_fairy->getHp();
+    _life->setActualHP(total);
+    //if( total < 0) kill both
 }

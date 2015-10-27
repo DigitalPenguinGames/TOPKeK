@@ -83,10 +83,10 @@ void TextBox::setText(std::string s = "Click"){
     lecturePointer = 0;
     boxTexts = std::vector < std::string > (qttyRows, " ");
     boxTexts[0] = " ";
-    float fraseLength = 2* sizeRow.x/sizeRow.y ;
+    float fraseLength = 2* sizeRow.x/sizeRow.y;
 
     for(int i = 1; i < qttyRows-1; ++i){
-        boxTexts[i] =  " "+getFractionText(totalText, lecturePointer, lecturePointer + fraseLength);
+        boxTexts[i] =  "  "+getFractionText(totalText, lecturePointer, lecturePointer + fraseLength);
         lecturePointer += fraseLength;
 
         for(int j = boxTexts[i].size()-1; boxTexts[i][j] != ' '; --j){
@@ -94,7 +94,7 @@ void TextBox::setText(std::string s = "Click"){
             --lecturePointer;
         }
 
-        boxTexts[i] += " ";
+        boxTexts[i] += "  ";
     }
 
     boxTexts[qttyRows-1] = " ";
@@ -122,16 +122,15 @@ void TextBox::draw(sf::RenderTarget& w){
         if((text.getGlobalBounds().width > sprite.getGlobalBounds().width || boxTexts[i] != " ")){
 
             scaleRow = sf::Vector2f(
-            sizeT.y/text.getGlobalBounds().height,
-            sizeT.y/text.getGlobalBounds().height);
+            sizeT.y/text.getLocalBounds().height,
+            sizeT.y/text.getLocalBounds().height);
             //sizeT.y/text.getGlobalBounds().height );
 
         }else{
 
             scaleRow = sf::Vector2f(
             1, 
-            sizeT.y/text.getGlobalBounds().height );
-//                        1);
+            sizeT.y/text.getLocalBounds().height );
 
         }
 

@@ -129,7 +129,7 @@ public:
     void updateAnimation(float deltatime);
 
 //DRAW
-    void drawEffect(sf::RenderTarget& window);
+    void drawEffect(sf::RenderTarget& target);
 
 //OTHER FUNCTIONS
 

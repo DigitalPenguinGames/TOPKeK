@@ -164,9 +164,9 @@ void Effect::updateAnimation(float deltatime) {
     }
 }
 
-void Effect::drawEffect(sf::RenderTarget& window) {
+void Effect::drawEffect(sf::RenderTarget& target) {
     if(activated){
-        window.draw((*this));
+        target.draw((*this));
     }
 }
 

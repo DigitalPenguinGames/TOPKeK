@@ -1,12 +1,13 @@
 #include "Fairy.hpp"
+#include "Enemy.hpp"
+#include "Weapon.hpp"
 
 Fairy::Fairy() {
 
     loadHorizontalSpriteSheet("Resources/Textures/fairy.png",5);
     setOrigin(8, 8);
 
-    lifes = 3;
-    maxLifes = 3;
+    _Hp = 0;
     velocity.x = 0.0; velocity.y = 0.0;
     centerPosition.x = 0; centerPosition.y = 0;
     _bounds = sf::IntRect(-5,-5,10,10);
@@ -16,13 +17,17 @@ Fairy::Fairy() {
 Fairy::~Fairy() { }
 
 void Fairy::draw(sf::RenderTarget* window) {
-    this->setColor(sf::Color(255 , 0 + (255* (lifes+0.001)/maxLifes), 0 + (255* (lifes+0.001)/maxLifes), 255));
-    drawEffect(*window);
+    //deprecated
+    //this->setColor(sf::Color(255 , 0 + (255* (lifes+0.001)/maxLifes), 0 + (255* (lifes+0.001)/maxLifes), 255));
+    if( _hittedTime < 1 ) {
+        if(int(_hittedTime*10) %2) drawEffect(*window);
+    } else drawEffect(*window);
 }
 
 void Fairy::update(float deltatime, sf::Vector2f mousePos) {
     updateAnimation(deltatime);
 
+    _hittedTime += deltatime;
 
     _angle = getAngle(centerPosition, this->Effect::getPosition());
     this->rotate(_angle - this->getRotation());
@@ -32,15 +37,6 @@ void Fairy::update(float deltatime, sf::Vector2f mousePos) {
     this->move(velocity);
     cmove(velocity);
 
-}
-
-int Fairy::getLifes() const {
-    return lifes;
-}
-
-void Fairy::setLifes(int value) {
-    if (value > maxLifes) maxLifes = value;
-    lifes = value;
 }
 
 sf::Vector2f Fairy::getCenterPosition() const {
@@ -70,4 +66,33 @@ sf::Vector2f Fairy::getPosition() const {
 
 sf::Vector2f Fairy::getBotPosition() {
     return sf::Vector2f(_sprite.getPosition().x+_bounds.left+_bounds.width/2, _sprite.getPosition().y + TILESIZE);
+}
+int Fairy::getHp() const{
+    return _Hp;
+}
+
+void Fairy::setHp(float value){
+    _Hp = value;
+}
+
+
+void Fairy::getHit(float qtty, sf::Vector2f){
+    //TODO posar timer
+    if(_hittedTime < 1) return;
+    _hittedTime = 0;
+    _Hp -= qtty;
+}
+
+void Fairy::intersectsWith(Collisionable* c) {
+    Enemy* enemy = dynamic_cast<Enemy*>(c);
+    if (enemy != nullptr) {
+        getHit(enemy->getDamage(),sf::Vector2f(0,0));
+        return;
+    }
+
+    Weapon* weapon = dynamic_cast<Weapon*>(c);
+    if (weapon != nullptr) {
+        getHit(weapon->getDamage(),sf::Vector2f(0,0));
+        return;
+    }
 }
