@@ -25,7 +25,6 @@ void FairyShoot::hit(){
 
 void FairyShoot::update(float deltaTime){
     _lifeTime += deltaTime;
-    // Cambiar la formula para que no esté rota :D
     _speed.x = (0.8*_speed.x + 0.4*(_destiny.x - getPosition().x )) * deltaTime;
     _speed.y = (0.8*_speed.y + 0.4*(_destiny.y - getPosition().y )) * deltaTime;
 
