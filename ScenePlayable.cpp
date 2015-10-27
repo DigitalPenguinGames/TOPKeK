@@ -152,10 +152,9 @@ void ScenePlayable::processInput() {
         if(event.type == sf::Event::MouseButtonPressed){
             if (event.mouseButton.button == sf::Mouse::Left) {
                 //spawn FairyShoot;
-                FairyShoot* fs;
-                fs = new FairyShoot(&_map, _fairy->getPosition(), _player->getPosition(), directions::up);
-                                    //_player->getPosition(), directions::up);
-                _allyWeapons.push_back(fs);
+                sf::Vector2f begin = getRelativeCenter(_fairy->getPosition(), _fairy->getBounds(), FairyShoot::bounds());
+                sf::Vector2f end = getRelativeCenter(_player->getPosition(), _player->getBounds(), FairyShoot::bounds());
+                _allyWeapons.push_back(new FairyShoot(&_map, begin, end, directions::up));
             }
         }
 

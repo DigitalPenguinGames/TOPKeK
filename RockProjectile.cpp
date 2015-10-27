@@ -4,7 +4,7 @@ RockProjectile::RockProjectile(Map* map, sf::Vector2f pos, directions dir) : Wea
     _sprite.setTexture(Resources::overEnemies);
     _description = Resources::descriptions[rockProjDescription];
     _sprite.setTextureRect(_description[0][0]);
-    _bounds = sf::IntRect(1,2,6,6);
+    _bounds = RockProjectile::bounds();
     _damage = 0.5;
     _speed = sf::Vector2f(30,30);
     _angle = 0;
@@ -29,4 +29,8 @@ void RockProjectile::draw(sf::RenderTarget* target) {
 
 void RockProjectile::hit() {
     _dead = true;
+}
+
+sf::IntRect RockProjectile::bounds() {
+    return sf::IntRect(1,2,6,6);
 }

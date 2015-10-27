@@ -30,7 +30,7 @@ void Octorok::update(float deltaTime) {
         sf::Vector2f offset;
         offset.x = getHorizontal(_dir) * (getBounds().left+getBounds().width /2);
         offset.y = getVertical  (_dir) * (getBounds().top +getBounds().height/2);
-        _scene->addEnemyWeapon(new RockProjectile(_map, getRelativeCenter(_sprite.getPosition(), getBounds(), sf::IntRect(1,2,6,6)) + offset, _dir));
+        _scene->addEnemyWeapon(new RockProjectile(_map, getRelativeCenter(_sprite.getPosition(), getBounds(), RockProjectile::bounds()) + offset, _dir));
     }
     _moving = (std::rand()%2 == 0);
     Enemy::update(deltaTime);

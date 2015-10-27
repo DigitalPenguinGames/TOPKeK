@@ -14,6 +14,8 @@ public:
     void update(float deltaTime);
     void draw(sf::RenderTarget* target);
 
+    static sf::IntRect bounds();
+
 private:
 
     float _lifeTime;

@@ -13,6 +13,8 @@ public:
     void draw(sf::RenderTarget* target);
 
     void hit();
+
+    static sf::IntRect bounds();
 private:
     sf::Transform _transform;
     float _angle;
