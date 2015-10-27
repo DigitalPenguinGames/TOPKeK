@@ -1,8 +1,9 @@
-#include "Player.hpp"
 #include "Enemy.hpp"
 #include "Weapon.hpp"
-#include "RockProjectile.hpp"
+#include "Player.hpp"
+#include "FairyShoot.hpp"
 #include "DungeonDoor.hpp"
+#include "RockProjectile.hpp"
 
 Player::Player(){
 
@@ -218,6 +219,11 @@ void Player::intersectsWith(Collisionable* c) {
         if (!counterDirection(getDirection(),rock->getDirection()) || isAttacking()) {
             getHit(rock->getDamage(),sf::Vector2f(0,0));
         }
+        return;
+    }
+
+    FairyShoot* fs = dynamic_cast<FairyShoot*>(c);
+    if (fs != nullptr) {
         return;
     }
 

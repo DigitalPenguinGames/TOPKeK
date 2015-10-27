@@ -29,20 +29,15 @@ void FairyShoot::update(float deltaTime){
     _speed.x = (0.8*_speed.x + 0.4*(_destiny.x - getPosition().x )) * deltaTime;
     _speed.y = (0.8*_speed.y + 0.4*(_destiny.y - getPosition().y )) * deltaTime;
 
-    /*
-     * int signY = _speed.y/std::abs(_speed.y);
-    if( std::abs(_speed.y) < 0.2) _speed.y = 0.2 * signY;
-    int signX = _speed.x/std::abs(_speed.x);
-    if( std::abs(_speed.x) < 0.2) _speed.x = 0.2 * signX;
-*/
     float module = getModule(sf::Vector2f(0,0), _speed);
-    if(module < 0.2){
-        _speed.x = _speed.x/module * 0.3;
-        _speed.y = _speed.y/module * 0.3;
+    if(module < 0.3){
+        _speed.x = _speed.x/module * 0.4;
+        _speed.y = _speed.y/module * 0.4;
     }
+
     _sprite.move(_speed);
-    std::cout << _speed.x << " , " << _speed.y << std::endl;
-//    if(std::abs(_speed.x)+std::abs(_speed.y) < 0.2f) _dead = true;
+
+    if(getModule(_sprite.getPosition(), _destiny) < 10) _dead = true;
 
     if( _lifeTime > _maxLifeTime || _sprite.getPosition() == _destiny){
        _dead = true;

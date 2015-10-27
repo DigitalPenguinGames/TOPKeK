@@ -276,6 +276,13 @@ void ScenePlayable::update(float deltaTime) {
                 (*it)->intersectsWith(_player);
             }
         }
+        //Colision Player with ally weapons (i.e. fairy shoots must be destroyed)
+        for (auto it = _allyWeapons.begin(); it != _allyWeapons.end(); ++it) {
+            if (playerWalkBounds.intersects((*it)->getGlobalBound())) {
+                _player->intersectsWith(*it);
+                (*it)->intersectsWith(_player);
+            }
+        }
         // Collision between object(rupies, arrows, bombs);
     }
 
