@@ -9,7 +9,7 @@ Fairy::Fairy() {
     maxLifes = 3;
     velocity.x = 0.0; velocity.y = 0.0;
     centerPosition.x = 0; centerPosition.y = 0;
-    _bounds = sf::IntRect(3,3,10,10);
+    _bounds = sf::IntRect(-5,-5,10,10);
 
 }
 
@@ -21,7 +21,6 @@ void Fairy::draw(sf::RenderTarget* window) {
 }
 
 void Fairy::update(float deltatime, sf::Vector2f mousePos) {
-    mousePos.y += 10;
     updateAnimation(deltatime);
 
 
@@ -31,7 +30,7 @@ void Fairy::update(float deltatime, sf::Vector2f mousePos) {
     velocity.x = 0.8*velocity.x + 0.2*(mousePos.x - this->Effect::getPosition().x ) * deltatime;
     velocity.y = 0.8*velocity.y + 0.2*(mousePos.y - this->Effect::getPosition().y ) * deltatime;
     this->move(velocity);
-    _sprite.setPosition(this->Sprite::getPosition().x,this->Sprite::getPosition().y);
+    cmove(velocity);
 
 }
 
