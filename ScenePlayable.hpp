@@ -60,6 +60,7 @@ protected:
     Player* _player;
 
     status::gameStatus _status;
+    float _elapsedPress;
     Frame _menu;
     Frame _hud;
     StatsBar* _life;

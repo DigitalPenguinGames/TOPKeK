@@ -69,7 +69,8 @@ namespace InputAction {
       right         ,
       p1movementX   ,
       p2movementX   ,  
-      action        , 
+      action        ,
+      fairyAction   , 
       pause         ,
       inputQtt
   };
