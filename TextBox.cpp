@@ -10,8 +10,8 @@ TextBox::TextBox(){
 
 std::string TextBox::getFractionText(std::string text, int ini, int end){
     std::string ret = "";
-    for(unsigned int i = ini; i < end; ++i){
-        if(i >= text.size()) {
+    for(int i = ini; i < end; ++i){
+        if(i >= int(text.size())) {
             textFinished = true;
             ret += " ";
         }
