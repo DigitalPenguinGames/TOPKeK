@@ -37,6 +37,7 @@ private:
 
     Frame _menu;
     VLayout* _menuLayout;
+    VLayout* _selectedLayout;
 };
 
 

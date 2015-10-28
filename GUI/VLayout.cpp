@@ -30,6 +30,10 @@ sf::Vector2f VLayout::getSize()const {
     return sf::Vector2f(max_x+_space*2,y+_space);
 }
 
+int VLayout::getNWidgets() {
+    return _widgets.size();
+}
+
 bool VLayout::processEvent(const sf::Event& event,
                            const sf::Vector2f& parent_pos) {
     for(Widget* widget : _widgets) {
