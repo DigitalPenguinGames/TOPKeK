@@ -11,6 +11,7 @@ SOURCES += main.cpp \
 		Resources.cpp \
 		Game.cpp \
 		Scene.cpp \
+        SceneMenu.cpp \
 		ScenePlayable.cpp \
 		DungeonScene.cpp \
         LightedDungeonScene.cpp \
@@ -53,6 +54,7 @@ HEADERS += utils.hpp \
 		Resources.cpp \
 		Game.cpp \
 		Scene.hpp \
+        SceneMenu.hpp \
 		ScenePlayable.hpp \
 		DungeonScene.hpp \
         LightedDungeonScene.hpp \

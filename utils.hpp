@@ -55,9 +55,10 @@ namespace status{
 
 //Scenes
 enum sceneTypes {
+    menu = -1,
     outside = 0,
     dungeon = 1,
-    lightedDungeon = 2,
+    lightedDungeon = 2
 };
 
 // SpriteSheets

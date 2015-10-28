@@ -25,10 +25,11 @@ Game::~Game() {
 
 void Game::start() {
     loadScenes();
-    ScenePlayable* aux = dynamic_cast<ScenePlayable*>((*_scenes.find("hub")).second);
-    aux->setPlayer(new Player());
-    changeScene(new SceneChanger(sf::Vector2f(0,0),"hub",sf::Vector2f(0,0)));
-
+    // ScenePlayable* aux = dynamic_cast<ScenePlayable*>((*_scenes.find("hub")).second);
+    // aux->setPlayer(new Player());
+    // changeScene(new SceneChanger(sf::Vector2f(0,0),"hub",sf::Vector2f(0,0)));
+    
+    changeScene(new SceneChanger(sf::Vector2f(0,0),"menu",sf::Vector2f(0,0)));
 
     while (_currentScene != nullptr) {
         _currentScene->run();
@@ -244,8 +245,13 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             return;
             
         }
-    }    
+
+    }   
+
+            std::cout << "Same Type of scene" << std::endl;
     _currentScene->init();    
+    
+            std::cout << "Same Type of scene" << std::endl;
 }
 
 
@@ -264,6 +270,7 @@ void Game::loadScenes() {
       perror ("Could not open directory");
       exit(EXIT_FAILURE);
     }
+    _scenes.insert(std::make_pair("menu",new SceneMenu(this, &_window)));
 }
 
 void Game::loadScene(std::string sceneName) {

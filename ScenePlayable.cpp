@@ -36,8 +36,7 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
     _fairy = new Fairy();
 }
 
-ScenePlayable::~ScenePlayable(){
-}
+ScenePlayable::~ScenePlayable(){}
 
 void ScenePlayable::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
     _player->setMap(&_map);
