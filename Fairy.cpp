@@ -7,7 +7,7 @@ Fairy::Fairy() {
     loadHorizontalSpriteSheet("Resources/Textures/fairy.png",5);
     setOrigin(8, 8);
 
-    _Hp = 0;
+    _hp = 0;
     velocity.x = 0.0; velocity.y = 0.0;
     centerPosition.x = 0; centerPosition.y = 0;
     _bounds = sf::IntRect(-5,-5,10,10);
@@ -67,12 +67,12 @@ sf::Vector2f Fairy::getPosition() const {
 sf::Vector2f Fairy::getBotPosition() {
     return sf::Vector2f(_sprite.getPosition().x+_bounds.left+_bounds.width/2, _sprite.getPosition().y + TILESIZE);
 }
-int Fairy::getHp() const{
-    return _Hp;
+float Fairy::getHp() const{
+    return _hp;
 }
 
 void Fairy::setHp(float value){
-    _Hp = value;
+    _hp = value;
 }
 
 
@@ -80,7 +80,8 @@ void Fairy::getHit(float qtty, sf::Vector2f){
     //TODO posar timer
     if(_hittedTime < 1) return;
     _hittedTime = 0;
-    _Hp -= qtty;
+    _hp -= qtty;
+    std::cout << "it hurts " << _hp << std::endl;
 }
 
 void Fairy::intersectsWith(Collisionable* c) {

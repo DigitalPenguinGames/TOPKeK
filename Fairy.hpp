@@ -25,7 +25,7 @@ public:
     sf::Vector2f getPosition() const;
     sf::Vector2f getBotPosition();
 
-    int getHp() const;
+    float getHp() const;
     void setHp(float value);
 
     void intersectsWith(Collisionable *c);
@@ -33,7 +33,7 @@ public:
 
 private:
 
-    float _Hp;
+    float _hp;
     float _angle;
     float _hittedTime;
     sf::Vector2f velocity;
