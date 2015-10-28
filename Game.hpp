@@ -9,6 +9,7 @@
 #include "LightedDungeonScene.hpp"
 #include "SceneChanger.hpp"
 
+
 class Game {
 friend class SceneMenu;
 public:
@@ -31,6 +32,8 @@ private:
 
     void loadScenes();
     void loadScene(std::string sceneName);
+
+    void initInput();
 };
 
 #endif

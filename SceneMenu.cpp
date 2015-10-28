@@ -3,12 +3,15 @@
 
 SceneMenu::SceneMenu(Game* g, sf::RenderWindow* w) : Scene(g,w,sceneTypes::menu, "menu"),_menu(*w) {
     _game = g;
+    _elapsed = 0;
+    _buttonSelected = -1;
+
     sf::Vector2u targetResolution(640,360);
     initView(sf::Vector2i(targetResolution));
     sf::Vector2u displayResolution(_view.getSize());
 
-    VLayout* layout = new VLayout;
-    layout->setSpace(5);
+    _menuLayout = new VLayout;
+    _menuLayout->setSpace(5);
 
     TextButton* resB;
     resB = new TextButton("     Play", Resources::pauseMenuFont);
@@ -29,10 +32,10 @@ SceneMenu::SceneMenu(Game* g, sf::RenderWindow* w) : Scene(g,w,sceneTypes::menu,
     TextButton* exitB;
     exitB = new TextButton("     Exit", Resources::pauseMenuFont);
     exitB->onClick = [this](const sf::Event&, Button&){ exit(0); };
-    layout->add(resB);
-    layout->add(resB2);
-    layout->add(exitB);
-    _menu.setLayout(layout);
+    _menuLayout->add(resB);
+    _menuLayout->add(resB2);
+    _menuLayout->add(exitB);
+    _menu.setLayout(_menuLayout);
 
 }
 
@@ -45,11 +48,54 @@ void SceneMenu::processInput() {
         _menu.processEvent(event);
         if(event.type == sf::Event::MouseMoved) {
             _window->setMouseCursorVisible(true);
+            if (_buttonSelected >= 0) static_cast<TextButton*>(_menuLayout->at(_buttonSelected))->onMouseLeft();
+            _buttonSelected = -1;
+
+        }
+
+    }
+    InputManager::update();
+
+    if (_elapsed < 0.2) return;
+    if (InputManager::action(InputAction::menuDown)) {
+        _elapsed = 0;
+        _window->setMouseCursorVisible(false);
+
+        if (_buttonSelected >= 0) static_cast<TextButton*>(_menuLayout->at(_buttonSelected))->onMouseLeft();
+        _buttonSelected = (((_buttonSelected+1)%3+3)%3);
+        static_cast<TextButton*>(_menuLayout->at(_buttonSelected))->onMouseEntered();
+    }
+    if (InputManager::action(InputAction::menuUp)) {
+        _elapsed = 0;
+        _window->setMouseCursorVisible(false);
+
+        if (_buttonSelected >= 0) static_cast<TextButton*>(_menuLayout->at(_buttonSelected))->onMouseLeft();
+        _buttonSelected = (((_buttonSelected-1)%3+3)%3);
+        static_cast<TextButton*>(_menuLayout->at(_buttonSelected))->onMouseEntered();
+    }
+    if (InputManager::action(InputAction::menuEnter)) {
+        static_cast<Button*>(_menuLayout->at(_buttonSelected))->onClick(sf::Event(),*static_cast<Button*>(_menuLayout->at(_buttonSelected)));
+    }
+    float axis = InputManager::action(InputAction::menuMovement);
+    if (std::abs(axis) > 0.5) {
+        _elapsed = 0;
+        _window->setMouseCursorVisible(false);
+        if (axis < 0) {
+            if (_buttonSelected >= 0) static_cast<TextButton*>(_menuLayout->at(_buttonSelected))->onMouseLeft();
+            _buttonSelected = (((_buttonSelected-1)%3+3)%3);
+            static_cast<TextButton*>(_menuLayout->at(_buttonSelected))->onMouseEntered();
+        }
+        else {
+            if (_buttonSelected >= 0) static_cast<TextButton*>(_menuLayout->at(_buttonSelected))->onMouseLeft();
+            _buttonSelected = (((_buttonSelected+1)%3+3)%3);
+            static_cast<TextButton*>(_menuLayout->at(_buttonSelected))->onMouseEntered();
         }
     }
+
 }
 
-void SceneMenu::update(float ) {
+void SceneMenu::update(float deltaTime) {
+    _elapsed += deltaTime;
 }
 
 void SceneMenu::render(sf::RenderTarget*) {

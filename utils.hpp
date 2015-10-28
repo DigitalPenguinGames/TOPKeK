@@ -36,6 +36,7 @@
 
 #include "DataManager.hpp"
 #include "SoundManager.hpp"
+#include "InputManager.hpp"
 
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
@@ -51,6 +52,23 @@ const float TO_DEGREES = (1 / (float ) M_PI) * 180;
 // Scene Status
 namespace status{
     enum gameStatus {running, onMenu};
+}
+
+namespace InputAction {
+  enum action {
+      menuDown      ,
+      menuUp        ,
+      menuMovement  , // gamepad axis
+      menuEnter     ,
+      menuBack      ,
+      down          , 
+      up            , 
+      left          , 
+      right         , 
+      action        , 
+      pause         ,
+      inputQtt
+  };
 }
 
 //Scenes

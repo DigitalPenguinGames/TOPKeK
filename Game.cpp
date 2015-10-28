@@ -15,6 +15,7 @@ Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Clos
     }
 //    SoundManager::setLoop(true, "menuMusic");
     SoundManager::setLoop(true, "overWorld");
+    initInput();
 }
 
 Game::~Game() {
@@ -241,17 +242,10 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                 _window.display();
 
             }
-
             return;
-            
         }
-
     }   
-
-            std::cout << "Same Type of scene" << std::endl;
     _currentScene->init();    
-    
-            std::cout << "Same Type of scene" << std::endl;
 }
 
 
@@ -300,4 +294,14 @@ void Game::loadScene(std::string sceneName) {
     }
     
     _scenes.insert(std::make_pair(sceneName.substr(0,sceneName.length()-sizeof(SCENEEXTENSION)+1),aux));
+}
+
+void Game::initInput() {
+    InputManager::bind(InputAction::menuUp, sf::Keyboard::Up);
+    InputManager::bind(InputAction::menuDown, sf::Keyboard::Down);
+    InputManager::bind(InputAction::menuEnter, sf::Keyboard::Return);
+    InputManager::bind(InputAction::menuEnter, 0, 0);  // Xbox A
+    InputManager::bind(InputAction::menuBack, sf::Keyboard::Escape);
+    InputManager::bind(InputAction::menuBack, 0, 1); // Xbox B
+    InputManager::bind(InputAction::menuMovement, 0, sf::Joystick::Axis::Y);
 }

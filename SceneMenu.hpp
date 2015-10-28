@@ -28,8 +28,15 @@ public:
     void render(sf::RenderTarget* target);
 
 private:
+
+    float _elapsed;
+
     Game* _game;
+
+    int _buttonSelected;
+
     Frame _menu;
+    VLayout* _menuLayout;
 };
 
 
