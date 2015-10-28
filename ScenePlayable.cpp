@@ -134,49 +134,54 @@ void ScenePlayable::display() {
 }
 
 void ScenePlayable::processInput() {
+    InputManager::update();
     sf::Event event;
-    while (_window->pollEvent(event)) {
-        if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
-        else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-            _window->close(); exit(0);
-        }
-        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::P) {
-            if(_status == status::running) _status = status::onMenu;
-            else _status = status::running;
-        }
-        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E){
-            if(!_player->speaking()) _player->setSpeaking(true);
-            else _player->setSpeaking(false);
-        }
-        if(event.type == sf::Event::MouseButtonPressed){
-            if (event.mouseButton.button == sf::Mouse::Left) {
-                //spawn FairyShoot;
-                sf::Vector2f begin = getRelativeCenter(_fairy->getPosition(), _fairy->getBounds(), FairyShoot::bounds());
-                sf::Vector2f end = getRelativeCenter(_player->getPosition(), _player->getBounds(), FairyShoot::bounds());
-                _allyWeapons.push_back(new FairyShoot(&_map, begin, end, directions::up));
+    switch (_status) {
+        case status::onMenu:
+            while (_window->pollEvent(event)) {
+                _menu.processEvent(event);
+                if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::P) {
+                    if(_status == status::running) _status = status::onMenu;
+                    else _status = status::running;
+                }
             }
-        }
+            break;
+        case status::running:
+            while (_window->pollEvent(event)) {
+                if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
+                else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+                    _window->close(); exit(0);
+                }
+                if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::P) {
+                    if(_status == status::running) _status = status::onMenu;
+                    else _status = status::running;
+                }
+                if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E){
+                    if(!_player->speaking()) _player->setSpeaking(true);
+                    else _player->setSpeaking(false);
+                }
+                if(event.type == sf::Event::MouseButtonPressed){
+                    if (event.mouseButton.button == sf::Mouse::Left) {
+                        //spawn FairyShoot;
+                        sf::Vector2f begin = getRelativeCenter(_fairy->getPosition(), _fairy->getBounds(), FairyShoot::bounds());
+                        sf::Vector2f end = getRelativeCenter(_player->getPosition(), _player->getBounds(), FairyShoot::bounds());
+                        _allyWeapons.push_back(new FairyShoot(&_map, begin, end, directions::up));
+                    }
+                }
+            }
 
-        if(_status == status::onMenu){
-            _menu.processEvent(event);
-        }
-        //else if (event.type == sf::Event::Resized) initView();
+            if      (InputManager::action(InputAction::action)) _player->attack();
+            if      (InputManager::action(InputAction::up)    || InputManager::action(InputAction::p1movementY) < -0.5) _player->move(directions::up);
+            else if (InputManager::action(InputAction::down)  || InputManager::action(InputAction::p1movementY) >  0.5) _player->move(directions::down);
+            else if (InputManager::action(InputAction::right) || InputManager::action(InputAction::p1movementX) >  0.5) _player->move(directions::right);
+            else if (InputManager::action(InputAction::left)  || InputManager::action(InputAction::p1movementX) < -0.5) _player->move(directions::left);
+
+            break;
     }
 
-    // Debug change scene
-    sf::Vector2f mousePos = _window->mapPixelToCoords(sf::Mouse::getPosition(*_window),_view);
-    //std::cout << "mouse position " << mousePos.x << " " << mousePos.y << std::endl;
-    std::pair<bool,SceneChanger*> aux = _map.playerInsideExit(mousePos);
-    if (aux.first) {
-    //    changeScene(aux.second);
-    }
+
 
     // Debug link movement
-    if      (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) _player->attack();
-    if      (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) _player->move(directions::up);
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) _player->move(directions::down);
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) _player->move(directions::right);
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) _player->move(directions::left);
 
     
     
@@ -210,6 +215,11 @@ void ScenePlayable::addProp(Collisionable* prop) {
 }
 
 void ScenePlayable::update(float deltaTime) {
+
+    if (_status == status::onMenu) {
+        
+        return;
+    }
     _player->update(deltaTime);
     _fairy->update(deltaTime, sf::Vector2f(_window->mapPixelToCoords(sf::Mouse::getPosition(*_window),_view)));
     _fairy->setCenterPosition(sf::Vector2f(_player->getPosition()));

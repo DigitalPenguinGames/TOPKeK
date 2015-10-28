@@ -47,6 +47,7 @@ void SceneMenu::processInput() {
     sf::Event event;
     while (_window->pollEvent(event)) {
         _menu.processEvent(event);
+        if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
         if(event.type == sf::Event::MouseMoved) {
             _window->setMouseCursorVisible(true);
             if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
