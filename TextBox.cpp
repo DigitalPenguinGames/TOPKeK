@@ -1,16 +1,20 @@
 #include "TextBox.hpp"
 
 TextBox::TextBox(){
-    text.setString("");
+
+    lecturePointer = 0;
+
     clicked = false;
     is_clicked = false;
     textFinished = false;
+
     setPosition(0,0);
+    text.setString("");
 }
 
 std::string TextBox::getFractionText(std::string text, int ini, int end){
-    std::cout << "text : " << text << std::endl;
-    std::cout << "ini " << ini <<  "  end " << end << std::endl;
+    //std::cout << "text : " << text << std::endl;
+    //std::cout << "ini " << ini <<  "  end " << end << std::endl;
     std::string ret = "";
     for(int i = ini; i < end; ++i){
         if(i >= int(text.size())) {
@@ -45,19 +49,52 @@ TextBox::TextBox(std::string myText, std::string texturePath, std::string fontPa
     
 }
 
+void TextBox::setTextBestFit(std::string s = "Click", float charSize = 100){
+
+    totalText = s;
+    lecturePointer = 0;
+    textFinished = false;
+    setCharacterSize(charSize);
+
+    sf::FloatRect totalSpace;
+    totalSpace = sprite.getGlobalBounds();
+
+    sf::Vector2f spaces( totalSpace.width/16, totalSpace.height/8);
+
+    sf::IntRect box(totalSpace.left, totalSpace.top,
+                    totalSpace.width-spaces.x, totalSpace.height-spaces.y);
+
+    sf::Vector2f writted(box.left,box.top);
+
+    //I have to writte as much from totalText as I can in box
+    //and set the last character position on lecturePointer
+    while(writted.y+charSize < box.top+box.height){
+
+        while(writted.x < box.left+box.height){
+
+            int row = writted.y-box.top;
+            boxTexts[row] += (totalText[lecturePointer]);
+            ++lecturePointer;
+            writted.x += charSize;
+
+        }
+
+        writted.y += charSize;
+
+    }
 
 
-void TextBox::setText(std::string s = "Click"){
+
+}
+
+
+void TextBox::setText(std::string s = "Click",int qttyWritte, int qttyWhitesEnd, int qttyWhitesFirst){
     std::cout << "set Text : " << s << std::endl;
     totalText = s;
 
     text.setString("Penguins");
 
     textFinished = false;
-
-    int qttyWritte = 2;
-    int qttyWhitesEnd = 3;
-    int qttyWhitesFirst = 1;
 
     int qttyRows = qttyWhitesFirst + qttyWritte + qttyWhitesEnd;
     sf::Vector2f sizeRow( getSize().x , getSize().y/(qttyRows) );
@@ -232,13 +269,15 @@ void TextBox::handleEvent(sf::Event e){
 
 
 void TextBox::setTextColor(sf::Color c){text.setColor(c); }
-sf::Color TextBox::getTextColor(){ return text.getColor(); }
-void TextBox::setCharacterSize(int ){ /*text.setCharacterSize(u);*/ }
+sf::Color TextBox::getTextColor(){ return text.getColor();}
+
+void TextBox::setCharacterSize(int){/*text.setCharacterSize(u);*/}
 int TextBox::getCharacterSize(){ return text.getCharacterSize(); }
+
 void TextBox::setFont(sf::Font f){ font = f; text.setFont(font); }
 
-void TextBox::setPosition(float x, float y){ setPosition(sf::Vector2f(x, y)); }
 sf::Vector2f TextBox::getPosition(){ return sprite.getPosition(); }
+void TextBox::setPosition(float x, float y){ setPosition(sf::Vector2f(x, y)); }
 void TextBox::setPosition(sf::Vector2f position){
     sprite.setPosition(position);
     text.setPosition(position.x - (sprite.getGlobalBounds().width * (sprite.getOrigin().x/sprite.getLocalBounds().width) ) +
