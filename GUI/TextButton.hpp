@@ -21,6 +21,8 @@ public:
 
     virtual sf::Vector2f getSize()const override;
 
+    virtual void onMouseLeft() override;
+    virtual void onMouseEntered() override;
 private:
 
     Label _label;
@@ -29,8 +31,6 @@ private:
     sf::RectangleShape _shape;
 
     void updateShape()override;
-    virtual void onMouseLeft() override;
-    virtual void onMouseEntered() override;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 };

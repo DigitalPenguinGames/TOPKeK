@@ -36,6 +36,7 @@
 
 #include "DataManager.hpp"
 #include "SoundManager.hpp"
+#include "InputManager.hpp"
 
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
@@ -53,11 +54,34 @@ namespace status{
     enum gameStatus {running, onMenu};
 }
 
+namespace InputAction {
+  enum action {
+      menuDown      ,
+      menuUp        ,
+      menuMovement  , // gamepad axis
+      menuEnter     ,
+      menuBack      ,
+      down          , 
+      up            ,
+      p1movementY   , 
+      p2movementY   , 
+      left          , 
+      right         ,
+      p1movementX   ,
+      p2movementX   ,  
+      action        ,
+      fairyAction   , 
+      pause         ,
+      inputQtt
+  };
+}
+
 //Scenes
 enum sceneTypes {
+    menu = -1,
     outside = 0,
     dungeon = 1,
-    lightedDungeon = 2,
+    lightedDungeon = 2
 };
 
 // SpriteSheets

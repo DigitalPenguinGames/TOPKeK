@@ -15,6 +15,7 @@ Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Clos
     }
 //    SoundManager::setLoop(true, "menuMusic");
     SoundManager::setLoop(true, "overWorld");
+    initInput();
 }
 
 Game::~Game() {
@@ -25,10 +26,11 @@ Game::~Game() {
 
 void Game::start() {
     loadScenes();
-    ScenePlayable* aux = dynamic_cast<ScenePlayable*>((*_scenes.find("hub")).second);
-    aux->setPlayer(new Player());
-    changeScene(new SceneChanger(sf::Vector2f(0,0),"hub",sf::Vector2f(0,0)));
-
+    // ScenePlayable* aux = dynamic_cast<ScenePlayable*>((*_scenes.find("hub")).second);
+    // aux->setPlayer(new Player());
+    // changeScene(new SceneChanger(sf::Vector2f(0,0),"hub",sf::Vector2f(0,0)));
+    
+    changeScene(new SceneChanger(sf::Vector2f(0,0),"menu",sf::Vector2f(0,0)));
 
     while (_currentScene != nullptr) {
         _currentScene->run();
@@ -240,11 +242,9 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                 _window.display();
 
             }
-
             return;
-            
         }
-    }    
+    }   
     _currentScene->init();    
 }
 
@@ -264,6 +264,7 @@ void Game::loadScenes() {
       perror ("Could not open directory");
       exit(EXIT_FAILURE);
     }
+    _scenes.insert(std::make_pair("menu",new SceneMenu(this, &_window)));
 }
 
 void Game::loadScene(std::string sceneName) {
@@ -293,4 +294,29 @@ void Game::loadScene(std::string sceneName) {
     }
     
     _scenes.insert(std::make_pair(sceneName.substr(0,sceneName.length()-sizeof(SCENEEXTENSION)+1),aux));
+}
+
+void Game::initInput() {
+    InputManager::bind(InputAction::menuUp, sf::Keyboard::Up);
+    InputManager::bind(InputAction::menuDown, sf::Keyboard::Down);
+    InputManager::bind(InputAction::menuEnter, sf::Keyboard::Return);
+    InputManager::bind(InputAction::menuEnter, 0, 0);  // Xbox A
+    InputManager::bind(InputAction::menuBack, sf::Keyboard::Escape);
+    InputManager::bind(InputAction::menuBack, 0, 1); // Xbox B
+    InputManager::bind(InputAction::menuMovement, 0, sf::Joystick::Axis::Y);
+
+    InputManager::bind(InputAction::up, sf::Keyboard::W);
+    InputManager::bind(InputAction::down, sf::Keyboard::S);
+    InputManager::bind(InputAction::left, sf::Keyboard::A);
+    InputManager::bind(InputAction::right, sf::Keyboard::D);
+    InputManager::bind(InputAction::pause, sf::Keyboard::Escape);
+    InputManager::bind(InputAction::action, sf::Keyboard::Space);
+    InputManager::bind(InputAction::action, 0, 0);  // Xbox A
+    InputManager::bind(InputAction::p1movementX, 0, sf::Joystick::Axis::X);
+    InputManager::bind(InputAction::p2movementX, 0, sf::Joystick::Axis::U);
+    InputManager::bind(InputAction::p1movementY, 0, sf::Joystick::Axis::Y);
+    InputManager::bind(InputAction::p2movementY, 0, sf::Joystick::Axis::V);
+    InputManager::bind(InputAction::fairyAction, sf::Mouse::Left);
+    InputManager::bind(InputAction::fairyAction, 0, 5); // Xbox RB
+    InputManager::bind(InputAction::pause, 0, 7); // Xbox start
 }

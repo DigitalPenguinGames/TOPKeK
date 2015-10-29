@@ -19,6 +19,8 @@ public:
 
     virtual sf::Vector2f getSize()const override;
 
+    int getNWidgets();
+
 
 protected:
 

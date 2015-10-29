@@ -3,12 +3,15 @@
 
 #include "Resources.hpp"
 #include "Scene.hpp"
+#include "SceneMenu.hpp"
 #include "utils.hpp"
 #include "DungeonScene.hpp"
 #include "LightedDungeonScene.hpp"
 #include "SceneChanger.hpp"
 
+
 class Game {
+friend class SceneMenu;
 public:
     Game();
     ~Game();
@@ -16,6 +19,7 @@ public:
     void start();
 
     void changeScene(SceneChanger* sC);
+
 
 private:
     sf::RenderWindow _window;
@@ -28,6 +32,8 @@ private:
 
     void loadScenes();
     void loadScene(std::string sceneName);
+
+    void initInput();
 };
 
 #endif

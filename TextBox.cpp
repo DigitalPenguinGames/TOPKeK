@@ -13,7 +13,7 @@ std::string TextBox::getFractionText(std::string text, int ini, int end){
     std::cout << "ini " << ini <<  "  end " << end << std::endl;
     std::string ret = "";
     for(int i = ini; i < end; ++i){
-        if(i >= text.size()) {
+        if(i >= int(text.size())) {
             textFinished = true;
             ret += " ";
         }
