@@ -87,17 +87,9 @@ void Player::draw(sf::RenderTarget* w) {
     }
     if(_speaking){
 //        TextBoxManager::setSize(w->getView().getSize().x/2, w->getView().getSize().y/4);
-/*        TextBoxManager::drawText(w, 0 , 0);                                                                                ;
-        TextBoxManager::setSize(w->getView().getSize().x*2/3, w->getView().getSize().y*1/4);*/
         TextBoxManager::drawText(w,getPosition().x -TextBoxManager::getSize().x/2,
                                    getPosition().y -TextBoxManager::getSize().y);
-        TextBoxManager::setSize(w->getView().getSize().x*2/3, w->getView().getSize().y*1/4);
-        /*
-        TextBoxManager::drawText(w,getPosition().x -TextBoxManager::getSize().x/2,
-                                   getPosition().y -TextBoxManager::getSize().y);                                                                                ;
-        TextBoxManager::setSize(getGlobalBound().width*5, getGlobalBound().height*2);
 
-*/
     }
 }
 
@@ -288,11 +280,11 @@ bool Player::speaking() const{
 
 void Player::setSpeaking(bool speaking){
     _speaking = speaking;
-    if(speaking) TextBoxManager::setText("default");
+    if(speaking) TextBoxManager::setText("default", 12);
 }
 
 void Player::setSpeaking(bool speaking, std::string name){
     _speaking = speaking;
-    if(speaking) TextBoxManager::setText(name);
+    if(speaking) TextBoxManager::setText(name, 12);
 }
 

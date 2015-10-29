@@ -141,6 +141,7 @@ void ScenePlayable::processInput() {
     switch (_status) {
         case status::onMenu:
             while (_window->pollEvent(event)) {
+                TextBoxManager::processEvent(event);
                 _menu.processEvent(event);
                 if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
             }
@@ -153,6 +154,7 @@ void ScenePlayable::processInput() {
             break;
         case status::running:
             while (_window->pollEvent(event)) {
+                TextBoxManager::processEvent(event);
                 if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
                 if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E){
                     if(!_player->speaking()) _player->setSpeaking(true);

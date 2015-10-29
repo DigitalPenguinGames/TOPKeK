@@ -11,7 +11,7 @@ void TextBoxManager::load() {
     _textBox.setTexture(Resources::talkBox);
     _textBox.setTextColor(sf::Color::Black);
     _textBox.setFont(Resources::pauseMenuFont);
-    setText("default");
+    setText("default",30);
 
 }
 
@@ -24,7 +24,13 @@ void TextBoxManager::processEvent(sf::Event event){
 }
 
 void TextBoxManager::setText(std::string name){
-    _textBox.setText(texts[name]);
+    _textBox.setTextBestFit(texts[name],30);
+}
+
+void TextBoxManager::setText(std::string name, int charSize = 100){
+    std::cout << "up" << std::endl;
+    _textBox.setTextBestFit(texts[name], charSize);
+    std::cout << "down" << std::endl;
 }
 
 void TextBoxManager::drawText(sf::RenderTarget *window){
