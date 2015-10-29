@@ -15,18 +15,18 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
 
 
     //setting the menu
-    VLayout* layout = new VLayout;
-    layout->setSpace(25);
+    _menuLayout = new VLayout;
+    _menuLayout->setSpace(25);
 
     TextButton* resB;
     resB = new TextButton("Resume", Resources::pauseMenuFont);
     resB->onClick = [this](const sf::Event&, Button&){ _status = status::running; };
     TextButton* exitB;
-    exitB = new TextButton("Exit", Resources::pauseMenuFont);
-    exitB->onClick = [this](const sf::Event&, Button&){ exit(0); };
-    layout->add(exitB);
-    layout->add(resB);
-    _menu.setLayout(layout);
+    exitB = new TextButton("Menu", Resources::pauseMenuFont);
+    exitB->onClick = [this](const sf::Event&, Button&){ changeScene(new SceneChanger(sf::Vector2f(0,0), "menu", sf::Vector2f(0,0)));  };
+    _menuLayout->add(exitB);
+    _menuLayout->add(resB);
+    _menu.setLayout(_menuLayout);
 
     _hud.setLayout(_life);
     _hud.setPosition(0,0);
@@ -41,12 +41,13 @@ ScenePlayable::~ScenePlayable(){}
 
 void ScenePlayable::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
     _player->setMap(&_map);
+    _life->setMaxHP(_player->getMaxHp());
     if (sceneIniCoord == _sceneIniCoord) return;
     _sceneIniCoord = sceneIniCoord;
     _map.init(_sceneIniCoord);
     initView(sf::Vector2i(WINDOWRATIOX,WINDOWRATIOY));
+    // Temporal shiet
     _enemies.push_back(new Octorok(this, &_map, sf::Vector2f(70+sceneIniCoord.x,70+sceneIniCoord.y)));
-    _life->setMaxHP(_player->getMaxHp());
 }
 
 sf::Vector2f ScenePlayable::getSceneCoord() {
@@ -62,6 +63,7 @@ Player* ScenePlayable::getPlayer() {
 }
 
 void ScenePlayable::setPlayer(Player* p) {
+    if (_player != nullptr) delete _player;
     _player = p;
 }
 
@@ -139,19 +141,60 @@ void ScenePlayable::processInput() {
     sf::Event event;
 
     switch (_status) {
-        case status::onMenu:
+        case status::onMenu:{
             while (_window->pollEvent(event)) {
                 TextBoxManager::processEvent(event);
                 _menu.processEvent(event);
                 if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
+                if(event.type == sf::Event::MouseMoved) {
+                    _window->setMouseCursorVisible(true);
+                    if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
+                    _buttonSelected = -1;
+
+                }
             }
-            if (_status == status::onMenu && _elapsedPress < 0.3) return;
+            if (_elapsedPress < 0.3) return;
             if (InputManager::action(InputAction::pause)) {
                 _elapsedPress = 0;
                 if(_status == status::running) _status = status::onMenu;
                 else _status = status::running;
             }
-            break;
+            if (InputManager::action(InputAction::menuDown)) {
+                _elapsedPress = 0;
+                _window->setMouseCursorVisible(false);
+
+                if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
+                _buttonSelected = (((_buttonSelected+1)%_selectedLayout->getNWidgets()+_selectedLayout->getNWidgets())%_selectedLayout->getNWidgets());
+                static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseEntered();
+            }
+            if (InputManager::action(InputAction::menuUp)) {
+                _elapsedPress = 0;
+                _window->setMouseCursorVisible(false);
+
+                if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
+                _buttonSelected = (((_buttonSelected-1)%_selectedLayout->getNWidgets()+_selectedLayout->getNWidgets())%_selectedLayout->getNWidgets());
+                static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseEntered();
+            }
+            if (InputManager::action(InputAction::menuEnter)) {
+                if (_buttonSelected == -1) _buttonSelected = 0;
+                static_cast<Button*>(_selectedLayout->at(_buttonSelected))->onClick(sf::Event(),*static_cast<Button*>(_selectedLayout->at(_buttonSelected)));
+            }
+            float axis = InputManager::action(InputAction::menuMovement);
+            if (std::abs(axis) > 0.5) {
+                _elapsedPress = 0;
+                _window->setMouseCursorVisible(false);
+                if (axis < 0) {
+                    if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
+                    _buttonSelected = (((_buttonSelected-1)%_selectedLayout->getNWidgets()+_selectedLayout->getNWidgets())%_selectedLayout->getNWidgets());
+                    static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseEntered();
+                }
+                else {
+                    if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
+                    _buttonSelected = (((_buttonSelected+1)%_selectedLayout->getNWidgets()+_selectedLayout->getNWidgets())%_selectedLayout->getNWidgets());
+                    static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseEntered();
+                }
+            }
+            break;}
         case status::running:
             while (_window->pollEvent(event)) {
                 TextBoxManager::processEvent(event);
@@ -164,8 +207,10 @@ void ScenePlayable::processInput() {
             }
             if (InputManager::action(InputAction::pause) && _elapsedPress > 0.3 ) {
                 _elapsedPress = 0;
-                if(_status == status::running) _status = status::onMenu;
-                else _status = status::running;
+                _status = status::onMenu;
+                _selectedLayout = _menuLayout;
+                _buttonSelected = 0;
+                static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseEntered();
             }
 
             if      (InputManager::action(InputAction::action)) _player->attack();

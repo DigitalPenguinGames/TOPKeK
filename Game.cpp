@@ -52,12 +52,11 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
         std::cout << "The selected scene does not exist: " << sceneName << std::endl;
         exit(EXIT_FAILURE);
     }
-    Scene* aux = (*it).second;
     
     std::cout << "Changing to scene " << sceneName << std::endl;
 
     // Animations
-    _currentScene = aux;
+    _currentScene = (*it).second;
     if (_lastScene != nullptr) {
         std::cout << _lastScene->getType() << " " << _currentScene->getType() << std::endl;
         if (_lastScene->getType() == _currentScene->getType()) {
@@ -151,11 +150,8 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 
                 //_currentScene->_view = *view;
                 
-
-
                 return;
             }
-        // 
         }
         else if ((_lastScene->getType() == sceneTypes::outside && sceneTypes::dungeon == _currentScene->getType()) ||
                  (_currentScene->getType() == sceneTypes::outside && sceneTypes::dungeon == _lastScene->getType())) {
@@ -289,7 +285,7 @@ void Game::loadScene(std::string sceneName) {
             aux = new DungeonScene(this,&_window,sceneTypes::dungeon, sceneName, str);
             break;
         case sceneTypes::lightedDungeon:
-            aux = new LightedDungeonScene(this,&_window,sceneTypes::lightedDungeon, sceneName, str);
+            aux = new LightedDungeonScene(this,&_window,sceneTypes::dungeon, sceneName, str);
             break;
     }
     

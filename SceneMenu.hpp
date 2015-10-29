@@ -23,6 +23,9 @@ public:
     SceneMenu(Game* g, sf::RenderWindow* w);
     ~SceneMenu();
 
+
+    void init(sf::Vector2f );
+
     void update(float deltaTime);
     void processInput();
     void render(sf::RenderTarget* target);

@@ -3,8 +3,7 @@
 
 SceneMenu::SceneMenu(Game* g, sf::RenderWindow* w) : Scene(g,w,sceneTypes::menu, "menu"),_menu(*w) {
     _game = g;
-    _elapsed = 0;
-    _buttonSelected = -1;
+    
 
     sf::Vector2u targetResolution(640,360);
     initView(sf::Vector2i(targetResolution));
@@ -43,6 +42,11 @@ SceneMenu::SceneMenu(Game* g, sf::RenderWindow* w) : Scene(g,w,sceneTypes::menu,
 SceneMenu::~SceneMenu() {
 }
 
+void SceneMenu::init(sf::Vector2f ) {
+    _elapsed = 0;
+    _buttonSelected = -1;
+}
+
 void SceneMenu::processInput() {
     sf::Event event;
     while (_window->pollEvent(event)) {
@@ -52,9 +56,7 @@ void SceneMenu::processInput() {
             _window->setMouseCursorVisible(true);
             if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
             _buttonSelected = -1;
-
         }
-
     }
     InputManager::update();
 
@@ -76,6 +78,7 @@ void SceneMenu::processInput() {
         static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseEntered();
     }
     if (InputManager::action(InputAction::menuEnter)) {
+        if (_buttonSelected == -1) _buttonSelected = 0;
         static_cast<Button*>(_selectedLayout->at(_buttonSelected))->onClick(sf::Event(),*static_cast<Button*>(_selectedLayout->at(_buttonSelected)));
     }
     float axis = InputManager::action(InputAction::menuMovement);
