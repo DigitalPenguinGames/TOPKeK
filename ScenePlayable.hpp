@@ -60,10 +60,14 @@ protected:
     Player* _player;
 
     status::gameStatus _status;
-    float _elapsedPress;
     Frame _menu;
+    float _elapsedPress;
+    int _buttonSelected;
+    VLayout* _menuLayout;
+    VLayout* _selectedLayout;
     Frame _hud;
     StatsBar* _life;
+
 
     void updateHUD();
 
