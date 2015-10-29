@@ -21,8 +21,10 @@ public:
     /* The return indicates if the TextBox is
     clicked or not*/
     bool isClicked();
+
     /* Return true if the TextBox has been clicked */
     bool hasBeenClicked();
+
     /* Return the time since the last time the TextBox
     has been clicked (returned in a float as seconds)*/
     float timeSinceLastClick();
@@ -30,9 +32,11 @@ public:
 
     /* Return the position of the TextBox*/
     sf::Vector2f getPosition();
+
     /* Set the position of the TextBox */
     void setPosition(float x, float y);
     void setPosition(sf::Vector2f position);
+
     /*set the Origin of the TextBox*/
     void setOrigin(sf::Vector2f origin);
 

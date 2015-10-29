@@ -87,8 +87,8 @@ void Player::draw(sf::RenderTarget* w) {
     }
     if(_speaking){
 //        TextBoxManager::setSize(w->getView().getSize().x/2, w->getView().getSize().y/4);
-        TextBoxManager::drawText(w, "penguins",getPosition().x -TextBoxManager::getSize().x/2,
-                                                getPosition().y -TextBoxManager::getSize().y);                                                                                ;
+        TextBoxManager::drawText(w,getPosition().x -TextBoxManager::getSize().x/2,
+                                   getPosition().y -TextBoxManager::getSize().y);                                                                                ;
         TextBoxManager::setSize(getGlobalBound().width*5, getGlobalBound().height*2);
     }
 }
@@ -274,13 +274,17 @@ void Player::setLight(Light* light) {
 void Player::setMap(Map* map) {
     _map = map;
 }
-bool Player::speaking() const
-{
+bool Player::speaking() const{
     return _speaking;
 }
 
-void Player::setSpeaking(bool speaking)
-{
+void Player::setSpeaking(bool speaking){
     _speaking = speaking;
+    if(speaking) TextBoxManager::setText("penguins");
+}
+
+void Player::setSpeaking(bool speaking, std::string name){
+    _speaking = speaking;
+    if(speaking) TextBoxManager::setText(name);
 }
 

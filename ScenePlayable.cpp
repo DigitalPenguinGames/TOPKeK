@@ -137,6 +137,7 @@ void ScenePlayable::display() {
 void ScenePlayable::processInput() {
     sf::Event event;
     while (_window->pollEvent(event)) {
+        TextBoxManager::processEvent(event);
         if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
         else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
             _window->close(); exit(0);

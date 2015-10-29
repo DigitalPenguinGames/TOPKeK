@@ -11,6 +11,7 @@ void TextBoxManager::load() {
     _textBox.setTexture(Resources::talkBox);
     _textBox.setTextColor(sf::Color::Black);
     _textBox.setFont(Resources::pauseMenuFont);
+    setText("default");
 
 }
 
@@ -22,15 +23,15 @@ void TextBoxManager::processEvent(sf::Event event){
     _textBox.handleEvent(event);
 }
 
-void TextBoxManager::drawText(sf::RenderTarget *window, std::string name){
+void TextBoxManager::setText(std::string name){
     _textBox.setText(texts[name]);
+}
+
+void TextBoxManager::drawText(sf::RenderTarget *window){
     _textBox.draw(*window);
 }
 
-void TextBoxManager::drawText(sf::RenderTarget *window, std::string name,
-                                 float posX, float posY){
-    //textBox.draw(window);
-    _textBox.setText(texts[name]);
+void TextBoxManager::drawText(sf::RenderTarget *window, float posX, float posY){
     _textBox.setPosition(posX, posY);
     _textBox.draw(*window);
 }

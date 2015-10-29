@@ -45,6 +45,7 @@ public:
 
     bool speaking() const;
     void setSpeaking(bool speaking);
+    void setSpeaking(bool speaking, std::string name);
 
 private:
     Map* _map;

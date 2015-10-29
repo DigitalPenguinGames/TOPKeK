@@ -9,6 +9,8 @@ TextBox::TextBox(){
 }
 
 std::string TextBox::getFractionText(std::string text, int ini, int end){
+    std::cout << "text : " << text << std::endl;
+    std::cout << "ini " << ini <<  "  end " << end << std::endl;
     std::string ret = "";
     for(int i = ini; i < end; ++i){
         if(i >= text.size()) {
@@ -40,65 +42,52 @@ TextBox::TextBox(std::string myText, std::string texturePath, std::string fontPa
     else setFont(font);  
     setTextColor(sf::Color::Black);
     text.setCharacterSize(100);
-
-    int qttyRows = 4;
-    sf::Vector2f sizeRow( sizeX, int(sizeY/qttyRows) ); 
-    
-    lecturePointer = 0;
-    boxTexts[0] = " ";
-    float fraseLength = 2* sizeRow.x/sizeRow.y ; //trec dos per poder posar espais
-
-    for(int i = 1; i < qttyRows-1; ++i){
-        boxTexts[i] =  " "+getFractionText(totalText, lecturePointer, lecturePointer + fraseLength);
-        lecturePointer += fraseLength;
-        
-        for(int j = boxTexts[i].size()-1; boxTexts[i][j] != ' '; --j){
-            boxTexts[i].pop_back();
-            --lecturePointer;
-        }
-            
-        boxTexts[i] += " ";
-    }
-    
-    boxTexts[qttyRows-1] = " ";
-
-    setPosition(0,0);
     
 }
 
 
 
 void TextBox::setText(std::string s = "Click"){
-
+    std::cout << "set Text : " << s << std::endl;
     totalText = s;
 
     text.setString("Penguins");
 
     textFinished = false;
 
-    int qttyRows = 4;
-    sf::Vector2f sizeRow( getSize().x , getSize().y/(qttyRows+2) );
+    int qttyWritte = 2;
+    int qttyWhitesEnd = 3;
+    int qttyWhitesFirst = 1;
+
+    int qttyRows = qttyWhitesFirst + qttyWritte + qttyWhitesEnd;
+    sf::Vector2f sizeRow( getSize().x , getSize().y/(qttyRows) );
     //std::cout << "size ROw = " << sizeRow.x << " ; " << sizeRow.y << std::endl;
 
+    int actualRow = 0;
     lecturePointer = 0;
     boxTexts = std::vector < std::string > (qttyRows, " ");
-    boxTexts[0] = " ";
-    float fraseLength = 2* sizeRow.x/sizeRow.y;
 
-    for(int i = 1; i < qttyRows-1; ++i){
-        boxTexts[i] =  "  "+getFractionText(totalText, lecturePointer, lecturePointer + fraseLength);
+    for(int i = 0; i < qttyWhitesFirst; ++i){
+        boxTexts[actualRow] = " ";  ++actualRow;
+    }
+    //float fraseLength = 2*sizeRow.x/sizeRow.y-2; //-2 is so i can add 2 spaces on beggining and end
+    float fraseLength = sizeRow.x/sizeRow.y -2;
+    for(int i = 0; i < qttyWritte; ++i){
+        boxTexts[actualRow] =  "  "+getFractionText(totalText, lecturePointer, lecturePointer + fraseLength);
         lecturePointer += fraseLength;
 
-        for(int j = boxTexts[i].size()-1; boxTexts[i][j] != ' '; --j){
-            boxTexts[i].pop_back();
+        std::cout << boxTexts[actualRow] << std::endl;
+        for(int j = boxTexts[actualRow].size()-1; boxTexts[actualRow][j] != ' '; --j){
+            boxTexts[actualRow].pop_back();
             --lecturePointer;
         }
-
-        boxTexts[i] += "  ";
+        std::cout << "nd " << boxTexts[actualRow] << std::endl;
+        boxTexts[actualRow] += " ";
+        ++actualRow;
     }
-
-    boxTexts[qttyRows-1] = " ";
-
+    for(int i = 0; i < qttyWhitesEnd; ++i){
+        boxTexts[actualRow] = " ";   ++actualRow;
+    }
 
 }
 
@@ -108,11 +97,11 @@ void TextBox::draw(sf::RenderTarget& w){
 
     w.draw(sprite);
 
-    for(int i = 0; i < 4; ++i){
-    sf::Vector2f sizeT(
-        sprite.getGlobalBounds().width ,
-        sprite.getGlobalBounds().height/6
-    );    
+    for(int i = 0; i < boxTexts.size(); ++i){
+        sf::Vector2f sizeT(
+            sprite.getGlobalBounds().width ,
+            sprite.getGlobalBounds().height/boxTexts.size()
+        );
         text.setScale(1,1);
 
         text.setString(boxTexts[i]);
@@ -141,6 +130,8 @@ void TextBox::draw(sf::RenderTarget& w){
 
         text.setPosition(sprite.getPosition().x, sprite.getPosition().y+i*sizeT.y );        
 
+
+        std::cout << text.getString().toAnsiString() << std::endl;
         w.draw(text);
 
     }
@@ -168,7 +159,6 @@ void TextBox::setTexture(sf::Texture tex){
 
 //TODO change it so with a key it can be skiped and not with mouse and so.
 void TextBox::handleEvent(sf::Event e){
-    
     float delayx, delayy;
     delayx = sprite.getOrigin().x*sprite.getScale().x;
     delayy = sprite.getOrigin().y*sprite.getScale().y;
@@ -203,22 +193,38 @@ void TextBox::handleEvent(sf::Event e){
         if(e.key.code == sf::Keyboard::F) {
             is_clicked = false;
             
-            sf::Vector2f sizeRow( sprite.getGlobalBounds().width, int(sprite.getGlobalBounds().height/4) ); 
-            boxTexts[0] = " ";
-            float fraseLength = 2* sizeRow.x/sizeRow.y;
-    
-            for(int i = 1; i < 3; ++i){
-                boxTexts[i] =  " " + getFractionText(totalText, lecturePointer, lecturePointer + fraseLength);
+            int qttyWritte = 2;
+            int qttyWhitesEnd = 3;
+            int qttyWhitesFirst = 1;
+
+            int qttyRows = qttyWhitesFirst + qttyWritte + qttyWhitesEnd;
+            sf::Vector2f sizeRow( getSize().x , getSize().y/(qttyRows) );
+            //std::cout << "size ROw = " << sizeRow.x << " ; " << sizeRow.y << std::endl;
+
+            int actualRow = 0;
+            lecturePointer = 0;
+            boxTexts = std::vector < std::string > (qttyRows, " ");
+
+            for(int i = 0; i < qttyWhitesFirst; ++i){
+                boxTexts[actualRow] = " ";  ++actualRow;
+            }
+            //float fraseLength = 2*sizeRow.x/sizeRow.y-2; //-2 is so i can add 2 spaces on beggining and end
+            float fraseLength = sizeRow.x/sizeRow.y -2;
+            for(int i = 0; i < qttyWritte; ++i){
+                boxTexts[actualRow] =  "  "+getFractionText(totalText, lecturePointer, lecturePointer + fraseLength);
                 lecturePointer += fraseLength;
-            
+
                 for(int j = boxTexts[i].size()-1; boxTexts[i][j] != ' '; --j){
-                    boxTexts[i].pop_back();
+                    boxTexts[actualRow].pop_back();
                     --lecturePointer;
                 }
-                boxTexts[i] += " " ;
+
+                boxTexts[actualRow] += " ";
+                ++actualRow;
             }
-   
-            boxTexts[3] = " ";
+            for(int i = 0; i < qttyWhitesEnd; ++i){
+                boxTexts[actualRow] = " ";   ++actualRow;
+            }
         }
     }
     sprite.move(delayx, delayy);
