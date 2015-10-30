@@ -28,7 +28,7 @@
 #define and &&
 #define or ||
 #define not !
-#include "dirent.h" // read directory
+#include "windirent.h" // read directory
 #else
 #include <dirent.h> // read directory
 #endif
