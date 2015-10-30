@@ -72,7 +72,8 @@ void Resources::load() {
     descriptions[rockProjDescription] = loadDescription("rockProj");
     descriptions[propsOverDescription] = loadDescription("propsOverworld"); 
     descriptions[dungeonDoorsHor] = loadDescription("dungeonDoorsHor"); 
-    descriptions[dungeonDoorsVer] = loadDescription("dungeonDoorsVer"); 
+    descriptions[dungeonDoorsVer] = loadDescription("dungeonDoorsVer");
+    descriptions[objectsDescription] = loadDescription("objects"); 
 
 
 

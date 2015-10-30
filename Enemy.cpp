@@ -1,6 +1,8 @@
 #include "Enemy.hpp"
 #include "Prop.hpp"
 #include "Weapon.hpp"
+#include "Object.hpp"
+#include "ScenePlayable.hpp"
 
 Enemy::Enemy(ScenePlayable* scene, Map* map, sf::Vector2f pos) : _scene(scene), _map(map) {
     _speed = sf::Vector2f(0,0);
@@ -69,6 +71,14 @@ void Enemy::getHit(float much, sf::Vector2f) {
     _hp -= much;
     _dead = _hp <= 0;
     std::cout << "it hurts " << _hp << std::endl;
+    
+        drop();
+}
+
+void Enemy::drop() {
+    _scene->addObject(new Object(objectType(std::rand()%int(objectType::objectsQtty)), 
+        sf::Vector2f(_sprite.getPosition().x+_bounds.left+_bounds.width/2, 
+                     _sprite.getPosition().y+_bounds.top+_bounds.height/2)));
 }
 
 bool Enemy::isAlive() {

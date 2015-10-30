@@ -42,6 +42,7 @@ ScenePlayable::~ScenePlayable(){}
 void ScenePlayable::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
     _player->setMap(&_map);
     _life->setMaxHP(_player->getMaxHp());
+    clearMap();
     if (sceneIniCoord == _sceneIniCoord) return;
     _sceneIniCoord = sceneIniCoord;
     _map.init(_sceneIniCoord);
@@ -249,6 +250,10 @@ void ScenePlayable::addProp(Collisionable* prop) {
     _props.push_back(prop);
 }
 
+void ScenePlayable::addObject(Object* object) {
+    _objects.push_back(object);
+}
+
 void ScenePlayable::update(float deltaTime) {
     _elapsedPress += deltaTime;
     if (_status == status::onMenu) {
@@ -274,6 +279,7 @@ void ScenePlayable::update(float deltaTime) {
     for (auto it = _enemyWeapons.begin(); it != _enemyWeapons.end(); ++it) (*it)->update(deltaTime);
     for (auto it = _allyWeapons.begin(); it != _allyWeapons.end(); ++it) (*it)->update(deltaTime); 
     for (auto it = _forAllWeapons.begin(); it != _forAllWeapons.end(); ++it) (*it)->update(deltaTime);
+    for (auto it = _objects.begin(); it != _objects.end(); ++it) (*it)->update(deltaTime);
     // Collisiones & things
     std::pair<bool,SceneChanger*> aux = _map.playerInsideExit(_player->getPositionTransition());
     if (aux.first) {
@@ -340,6 +346,12 @@ void ScenePlayable::update(float deltaTime) {
             }
         }
         // Collision between object(rupies, arrows, bombs);
+        for (auto it = _objects.begin(); it != _objects.end(); ++it) {
+            if (playerBound.intersects((*it)->getGlobalBound())) {
+                _player->intersectsWith(*it);
+                (*it)->intersectsWith(_player);
+            }
+        }
     }
 
     // Collisions between Enemies and things
@@ -431,6 +443,13 @@ void ScenePlayable::update(float deltaTime) {
                 --it;
             }
         }
+        for (auto it = _objects.begin(); it != _objects.end(); ++it) {
+            if (!(*it)->isAlive()) {
+                delete (*it);
+                it = _objects.erase(it);
+                --it;
+            }
+        }
         // Objects (rupies, shit)
     }
 
@@ -449,7 +468,20 @@ void ScenePlayable::render(sf::RenderTarget* target) {
     for (auto it = _allyWeapons.begin(); it != _allyWeapons.end(); ++it) collisionables.push_back(*it);
     for (auto it = _forAllWeapons.begin(); it != _forAllWeapons.end(); ++it) collisionables.push_back(*it);
     for (auto it = _props.begin(); it != _props.end(); ++it) collisionables.push_back(*it);
+    for (auto it = _objects.begin(); it != _objects.end(); ++it) collisionables.push_back(*it);
     renderSorted(target, collisionables);
+}
+
+void ScenePlayable::clearMap() {
+    for(Weapon* weapon : _allyWeapons) {
+        delete weapon;
+    }
+    for(Weapon* weapon : _enemyWeapons) {
+        delete weapon;
+    }
+    for(Weapon* weapon : _forAllWeapons) {
+        delete weapon;
+    }
 }
 
 void ScenePlayable::updateHUD() {

@@ -10,6 +10,7 @@
 #include "Prop.hpp"
 #include "Player.hpp"
 #include "Weapon.hpp"
+#include "Object.hpp"
 #include "StatsBar.hpp"
 #include "GUI/Label.hpp"
 #include "GUI/Frame.hpp"
@@ -46,6 +47,7 @@ public:
     void addEnemyWeapon(Weapon* weapon);
     void addForAllWeapon(Weapon* weapon);
     void addProp(Collisionable* prop);
+    void addObject(Object* object);
 
 protected:
     std::list<Enemy*> _enemies;
@@ -53,6 +55,7 @@ protected:
     std::list<Weapon*> _enemyWeapons;
     std::list<Weapon*> _forAllWeapons;
     std::list<Collisionable*> _props;
+    std::list<Object*> _objects;
 
     sf::Vector2f _sceneIniCoord;
     Map _map;
@@ -68,6 +71,7 @@ protected:
     Frame _hud;
     StatsBar* _life;
 
+    void clearMap();
 
     void updateHUD();
 

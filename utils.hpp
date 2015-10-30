@@ -31,6 +31,7 @@
 #include <fstream>
 #include <sstream>
 #include <cfloat>
+#include <climits>
 #include <queue> // priority queue
 #include <functional> // priority queue stuff
 
@@ -95,6 +96,7 @@ enum spriteSheetsDescriptions {
     propsOverDescription,
     dungeonDoorsHor,
     dungeonDoorsVer,
+    objectsDescription,
     spriteDescriptionsQtt
 };
 
@@ -145,10 +147,23 @@ enum dungeonVerDoorTypes {
     openRight,
     openLeft ,
     closRight,
-    closLeft,
+    closLeft ,
     keysRight,
-    keysLeft,
+    keysLeft ,
     dungeonVerDoorQtty
+};
+
+enum objectType {
+    halfHeal ,
+    fullHeal ,
+    life     ,
+    rupee    ,
+    rupee5   ,
+    bomb     ,
+    key      ,
+    triforce ,
+    triblue  ,
+    objectsQtty
 };
 
 // Directions

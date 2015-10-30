@@ -16,6 +16,7 @@ public:
 
     void setMap(Map* map);
     void getHit(float much, sf::Vector2f from);
+    virtual void drop();
 
     bool isAlive();
     float getDamage();
