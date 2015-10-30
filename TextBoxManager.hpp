@@ -14,6 +14,7 @@ public:
     static void load();
     static sf::Vector2f getSize();
     static void setText(std::string name);
+    static void setText(std::string name, int charSize);
     static void setSize(float sizeX, float sizeY);
     static void processEvent(sf::Event event);
     static void drawText(sf::RenderTarget *window);
