@@ -28,13 +28,15 @@
 #define and &&
 #define or ||
 #define not !
+#include "dirent.h" // read directory
+#else
+#include <dirent.h> // read directory
 #endif
 
 
 #include <map>
 #include <list>
 #include <string>
-#include "dirent.h" // read directory
 #include <iostream>
 #include <fstream>
 #include <sstream>
