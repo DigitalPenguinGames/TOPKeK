@@ -35,6 +35,7 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
     _status = status::running;
     _elapsedPress = 0;
     _fairy = new Fairy();
+    _player = nullptr;
 }
 
 ScenePlayable::~ScenePlayable(){}
