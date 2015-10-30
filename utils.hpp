@@ -22,11 +22,19 @@
 #define DUNGEONSIZEX 256
 #define DUNGEONSIZEY 176
 
+#ifdef _WIN32
+#define NOMINMAX
+#define M_PI 3.14159
+#define and &&
+#define or ||
+#define not !
+#endif
+
 
 #include <map>
 #include <list>
 #include <string>
-#include <dirent.h> // read directory
+#include "dirent.h" // read directory
 #include <iostream>
 #include <fstream>
 #include <sstream>

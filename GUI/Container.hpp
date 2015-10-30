@@ -1,6 +1,14 @@
 #ifndef CONTAINER_HPP
 #define CONTAINER_HPP
 
+#ifdef _WIN32
+#define NOMINMAX
+#define M_PI 3.14159
+#define and &&
+#define or ||
+#define not !
+#endif
+
 #include "Widget.hpp"
 #include "Layout.hpp"
 
