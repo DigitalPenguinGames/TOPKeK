@@ -9,6 +9,8 @@ LightSprite::LightSprite(SpriteSheetDescription description, std::vector<sf::Tex
     _light = nullptr;
     _sprites = std::vector<sf::Sprite>(9);
     for (unsigned int i = 0; i < _sprites.size(); ++i) _sprites[i].setTexture(*textures[i]);
+	_action = 0;
+	_dir = directions::none;
 }
 
 LightSprite::~LightSprite() { }

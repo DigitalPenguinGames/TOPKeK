@@ -2,3 +2,5 @@ game
 *.o
 Makefile
 Resources/Data/savefile
+Debug/
+Release/
