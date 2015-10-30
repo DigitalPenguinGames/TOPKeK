@@ -280,11 +280,14 @@ bool Player::speaking() const{
 
 void Player::setSpeaking(bool speaking){
     _speaking = speaking;
+//    if(speaking) TextBoxManager::setSize(50,20);
     if(speaking) TextBoxManager::setText("default", 12);
 }
 
 void Player::setSpeaking(bool speaking, std::string name){
     _speaking = speaking;
+  //  if(speaking) TextBoxManager::setSize(50,20);
     if(speaking) TextBoxManager::setText(name, 12);
 }
+
 

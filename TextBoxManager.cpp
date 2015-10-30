@@ -28,9 +28,7 @@ void TextBoxManager::setText(std::string name){
 }
 
 void TextBoxManager::setText(std::string name, int charSize = 100){
-    std::cout << "up" << std::endl;
     _textBox.setTextBestFit(texts[name], charSize);
-    std::cout << "down" << std::endl;
 }
 
 void TextBoxManager::drawText(sf::RenderTarget *window){
@@ -45,15 +43,7 @@ void TextBoxManager::drawText(sf::RenderTarget *window, float posX, float posY){
 sf::Vector2f TextBoxManager::getSize(){
     return _textBox.getSize();
 }
-/*
- * void TextBoxManager::drawText(sf::RenderWindow window, std::string name,
-                                 float posX, float posY, float sizeX, float sizeY){
-    //textBox.draw(window);
-    _textBox.setSize();
-    _textBox.setText(texts[name]);
-    _textBox.setPosition(posX, posY);
-    _textBox.draw(window);
-}*/
+
 
 
 

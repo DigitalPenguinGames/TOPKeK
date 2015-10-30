@@ -44,8 +44,6 @@ public:
     /* Returns the string setted on the text*/
     std::string getText();
     /* Set the text on the TextBox */
-    void setText(std::string s,int qttyWritte = 3, int qttyWhitesEnd=2, int qttyWhitesFirst=1);
-    /**/
     void setTextBestFit(std::string s, float charSize);
     
     

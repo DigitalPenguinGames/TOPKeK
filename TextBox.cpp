@@ -15,8 +15,6 @@ TextBox::TextBox(){
 }
 
 std::string TextBox::getFractionText(std::string text, int ini, int end){
-    //std::cout << "text : " << text << std::endl;
-    //std::cout << "ini " << ini <<  "  end " << end << std::endl;
     std::string ret = "";
     for(int i = ini; i < end; ++i){
         if(i >= int(text.size())) {
@@ -71,11 +69,11 @@ void TextBox::setTextBestFit(std::string s = "Click", float charSize = 100){
     aux.setCharacterSize(charSize);
     aux.setFont(Resources::pauseMenuFont);
     boxTexts = std::vector<std::string>();
-    while(writted.y+charSize < box.top+box.height){
+    while(! textFinished &&  writted.y+charSize < box.top+box.height){
 
         float maxYsize = 0;
         boxTexts.push_back("");
-        while(writted.x+charSize < box.left+box.width){
+        while(! textFinished && lecturePointer < totalText.size() && writted.x+charSize < box.left+box.width){
 
             int row = writted.y-box.top;
             boxTexts[row] += (totalText[lecturePointer]);
@@ -83,6 +81,7 @@ void TextBox::setTextBestFit(std::string s = "Click", float charSize = 100){
             aux.setString(totalText[lecturePointer]);
                 std::cout << aux.getString().toAnsiString() << aux.getGlobalBounds().width << " , " << aux.getGlobalBounds().height << std::endl;
             ++lecturePointer;
+            if(lecturePointer > totalText.size()) textFinished = true;
             writted.x += aux.getGlobalBounds().width;
             if(aux.getGlobalBounds().height > maxYsize) maxYsize = aux.getGlobalBounds().height;
         }
@@ -94,47 +93,6 @@ void TextBox::setTextBestFit(std::string s = "Click", float charSize = 100){
     }
 
 
-}
-
-
-void TextBox::setText(std::string s = "Click",int qttyWritte, int qttyWhitesEnd, int qttyWhitesFirst){
-    std::cout << "set Text : " << s << std::endl;
-    totalText = s;
-
-    text.setString("Penguins");
-
-    /*textFinished = false;
-
-    int qttyRows = qttyWhitesFirst + qttyWritte + qttyWhitesEnd;
-    sf::Vector2f sizeRow( getSize().x , getSize().y/(qttyRows) );
-    //std::cout << "size ROw = " << sizeRow.x << " ; " << sizeRow.y << std::endl;
-
-    int actualRow = 0;
-    lecturePointer = 0;
-    boxTexts = std::vector < std::string > (qttyRows, " ");
-
-    for(int i = 0; i < qttyWhitesFirst; ++i){
-        boxTexts[actualRow] = " ";  ++actualRow;
-    }
-    //float fraseLength = 2*sizeRow.x/sizeRow.y-2; //-2 is so i can add 2 spaces on beggining and end
-    float fraseLength = sizeRow.x/sizeRow.y -2;
-    for(int i = 0; i < qttyWritte; ++i){
-        boxTexts[actualRow] =  "  "+getFractionText(totalText, lecturePointer, lecturePointer + fraseLength);
-        lecturePointer += fraseLength;
-
-        std::cout << boxTexts[actualRow] << std::endl;
-        for(int j = boxTexts[actualRow].size()-1; boxTexts[actualRow][j] != ' '; --j){
-            boxTexts[actualRow].pop_back();
-            --lecturePointer;
-        }
-        std::cout << "nd " << boxTexts[actualRow] << std::endl;
-        boxTexts[actualRow] += " ";
-        ++actualRow;
-    }
-    for(int i = 0; i < qttyWhitesEnd; ++i){
-        boxTexts[actualRow] = " ";   ++actualRow;
-    }
-*/
 }
 
 std::string TextBox::getText(){ return text.getString();}
@@ -192,17 +150,7 @@ void TextBox::handleEvent(sf::Event e){
     delayy = sprite.getOrigin().y*sprite.getScale().y;
     sprite.move(-delayx, -delayy);
     if(e.type == sf::Event::MouseButtonPressed){
-      /*  if (e.mouseButton.button == sf::Mouse::Left) {
-            sf::Vector2f click(e.mouseButton.x, e.mouseButton.y);
-            if(click.x > sprite.getPosition().x && click.x < sprite.getPosition().x+sprite.getGlobalBounds().width){
-                if(click.y > sprite.getPosition().y && click.y < sprite.getPosition().y+sprite.getGlobalBounds().height){
-                    clicked = true;
-                    is_clicked = true;
-                    clock.restart();
-//                     if(clickEffect && sprite.getTexture() == &texture) sprite.setTexture(pressed_texture);
-                }
-            }
-        }*/
+
 
     }
     if(e.type == sf::Event::MouseButtonReleased){
@@ -218,7 +166,7 @@ void TextBox::handleEvent(sf::Event e){
         }
     }
     if(e.type == sf::Event::KeyReleased) {
-        if(e.key.code == sf::Keyboard::F) {
+        if(e.key.code == sf::Keyboard::F && !textFinished) {
             is_clicked = false;
             
             sf::FloatRect totalSpace;
@@ -236,26 +184,23 @@ void TextBox::handleEvent(sf::Event e){
             aux.setCharacterSize(charSize);
             aux.setFont(Resources::pauseMenuFont);
             boxTexts = std::vector<std::string>();
-            while(writted.y+charSize < box.top+box.height){
+            while( writted.y+charSize < box.top+box.height){
 
-                float maxYsize = 0;
+                float maxYsize = 1;
                 boxTexts.push_back("");
-                while(writted.x+charSize < box.left+box.width){
+                while( writted.x+charSize < box.left+box.width){
 
                     int row = writted.y-box.top;
-                    boxTexts[row] += (totalText[lecturePointer]);
-
-                    aux.setString(totalText[lecturePointer]);
-                        std::cout <<"-------"<< aux.getString().toAnsiString() << aux.getGlobalBounds().width << " , " << aux.getGlobalBounds().height << std::endl;
+                    if(lecturePointer < totalText.size()-1) {
+                        boxTexts[row] += (totalText[lecturePointer]);
+                        aux.setString(totalText[lecturePointer]);
+                    }else textFinished = true;
                     ++lecturePointer;
                     writted.x += aux.getGlobalBounds().width;
                     if(aux.getGlobalBounds().height > maxYsize) maxYsize = aux.getGlobalBounds().height;
+
                 }
-
-                aux.setString(boxTexts[writted.y-box.top]);
-                std::cout << aux.getGlobalBounds().width << " , " << aux.getGlobalBounds().height << std::endl;
                 writted.y += maxYsize;
-
             }
         }
     }
@@ -284,9 +229,6 @@ void TextBox::setPosition(sf::Vector2f position){
 
 sf::Vector2f TextBox::getSize(){ return sf::Vector2f(sprite.getGlobalBounds().width,sprite.getGlobalBounds().height); }
 
-
-float TextBox::timeSinceLastClick(){ return clock.getElapsedTime().asSeconds(); }
-bool TextBox::isClicked(){ return is_clicked; }
 bool TextBox::hasBeenClicked(){
     bool r = clicked;
     if(clicked) clicked = false;
@@ -296,5 +238,4 @@ bool TextBox::hasBeenClicked(){
 void TextBox::setSize(float x, float y){ setSize(sf::Vector2f(x,y)); }
 void TextBox::setSize(sf::Vector2f size){
     sprite.setScale(size.x/sprite.getLocalBounds().width, size.y/sprite.getLocalBounds().height);
-    setText(getText());
 }
