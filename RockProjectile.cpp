@@ -8,6 +8,7 @@ RockProjectile::RockProjectile(Map* map, sf::Vector2f pos, directions dir) : Wea
     _damage = 0.5;
     _speed = sf::Vector2f(30,30);
     _angle = 0;
+	_transform = sf::Transform::Identity;
 }
 
 RockProjectile::~RockProjectile() {}

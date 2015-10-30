@@ -43,6 +43,7 @@ void ScenePlayable::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
     _player->setMap(&_map);
     _life->setMaxHP(_player->getMaxHp());
     clearMap();
+	_status = status::running;
     if (sceneIniCoord == _sceneIniCoord) return;
     _sceneIniCoord = sceneIniCoord;
     _map.init(_sceneIniCoord);
@@ -478,12 +479,15 @@ void ScenePlayable::clearMap() {
     for(Weapon* weapon : _allyWeapons) {
         delete weapon;
     }
+	_allyWeapons.clear();
     for(Weapon* weapon : _enemyWeapons) {
         delete weapon;
     }
+	_enemyWeapons.clear();
     for(Weapon* weapon : _forAllWeapons) {
         delete weapon;
     }
+	_forAllWeapons.clear();
 }
 
 void ScenePlayable::updateHUD() {
