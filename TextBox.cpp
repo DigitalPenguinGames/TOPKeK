@@ -53,7 +53,7 @@ void TextBox::setText(float charSize){
     sf::FloatRect totalSpace;
     totalSpace = sprite.getGlobalBounds();
 
-    sf::Vector2f spaces( totalSpace.width/16, totalSpace.height/8);
+    sf::Vector2f spaces( totalSpace.width/10, totalSpace.height/8);
 
     sf::IntRect box(totalSpace.left+spaces.x, totalSpace.top+spaces.y,
                     totalSpace.width-spaces.x, totalSpace.height-spaces.y);
@@ -122,7 +122,7 @@ void TextBox::draw(sf::RenderTarget& w){
 
     sf::FloatRect totalSpace;
     totalSpace = sprite.getGlobalBounds();
-    sf::Vector2f spaces( totalSpace.width/16, totalSpace.height/8);
+    sf::Vector2f spaces( totalSpace.width/10, totalSpace.height/8);
     float yPos = totalSpace.top;
 
     for(int i = 0; i < int(boxTexts.size()); ++i){
