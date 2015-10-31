@@ -32,7 +32,7 @@ TextBox::TextBox(std::string myText, std::string texturePath, std::string fontPa
 
     totalText = myText;
 
-    text.setString("Penguins");
+    text.setString("OnCreationText");
 
     clicked = false;
     is_clicked = false;
@@ -48,15 +48,11 @@ TextBox::TextBox(std::string myText, std::string texturePath, std::string fontPa
     
 }
 
-void TextBox::setTextBestFit(std::string s = "Click", float charSize = 100){
-
-    totalText = s;
-    lecturePointer = 0;
-    textFinished = false;
-    text.setCharacterSize(charSize);
-
+void TextBox::setText(float charSize){
+        std::cout << "setText" << std::endl;
     sf::FloatRect totalSpace;
     totalSpace = sprite.getGlobalBounds();
+    std::cout << "-> " << totalSpace.width << " , " << totalSpace.height << std::endl;
 
     sf::Vector2f spaces( totalSpace.width/16, totalSpace.height/8);
 
@@ -69,28 +65,41 @@ void TextBox::setTextBestFit(std::string s = "Click", float charSize = 100){
     aux.setCharacterSize(charSize);
     aux.setFont(Resources::pauseMenuFont);
     boxTexts = std::vector<std::string>();
+    std::cout << "-----------------" << std::endl;
     while(! textFinished &&  writted.y+charSize < box.top+box.height){
 
-        float maxYsize = 0;
+        float maxYsize = 1;
         boxTexts.push_back("");
-        while(! textFinished && lecturePointer < totalText.size() && writted.x+charSize < box.left+box.width){
+        int row = writted.y-box.top/maxYsize;
 
-            int row = writted.y-box.top;
+        while(! textFinished && writted.x+charSize < box.left+box.width){
+
             boxTexts[row] += (totalText[lecturePointer]);
 
             aux.setString(totalText[lecturePointer]);
-                std::cout << aux.getString().toAnsiString() << aux.getGlobalBounds().width << " , " << aux.getGlobalBounds().height << std::endl;
+                std::cout << aux.getString().toAnsiString() << " " << aux.getGlobalBounds().width << " , " << aux.getGlobalBounds().height << std::endl;
             ++lecturePointer;
             if(lecturePointer > totalText.size()) textFinished = true;
             writted.x += aux.getGlobalBounds().width;
             if(aux.getGlobalBounds().height > maxYsize) maxYsize = aux.getGlobalBounds().height;
         }
 
-        aux.setString(boxTexts[writted.y-box.top]);
-        //std::cout << aux.getGlobalBounds().width << " , " << aux.getGlobalBounds().height << std::endl;
         writted.y += maxYsize;
 
+        std::cout <<"first text "<< boxTexts[0] << std::endl;
     }
+    std::cout << "´´´´´´´´´´´´´´´´´´´´´" << std::endl;
+            std::cout <<"first text "<< boxTexts[0] << std::endl;
+}
+
+void TextBox::setTextBestFit(std::string s = "Click", float charSize = 100){
+
+    totalText = s;
+    lecturePointer = 0;
+    textFinished = false;
+    text.setCharacterSize(charSize);
+
+    setText(charSize);
 
 
 }
@@ -237,5 +246,6 @@ bool TextBox::hasBeenClicked(){
 
 void TextBox::setSize(float x, float y){ setSize(sf::Vector2f(x,y)); }
 void TextBox::setSize(sf::Vector2f size){
+    std::cout << "setSize" << std::endl;
     sprite.setScale(size.x/sprite.getLocalBounds().width, size.y/sprite.getLocalBounds().height);
 }

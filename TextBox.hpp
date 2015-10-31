@@ -100,8 +100,9 @@ private:
     float time_since_last_click;
     std::vector < std::string > boxTexts;
     
-    
     std::string getFractionText(std::string text, int ini, int end);
+
+    void setText(float charSize);
     
     
 };
