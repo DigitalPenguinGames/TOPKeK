@@ -86,10 +86,10 @@ void TextBox::setText(float charSize){
 
         writted.y += maxYsize;
 
-        std::cout <<"first text "<< boxTexts[0] << std::endl;
+        //std::cout <<"first text "<< boxTexts[0] << std::endl;
     }
     std::cout << "´´´´´´´´´´´´´´´´´´´´´" << std::endl;
-            std::cout <<"first text "<< boxTexts[0] << std::endl;
+            //std::cout <<"first text "<< boxTexts[0] << std::endl;
 }
 
 void TextBox::setTextBestFit(std::string s = "Click", float charSize = 100){
