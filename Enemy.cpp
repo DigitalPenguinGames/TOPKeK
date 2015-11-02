@@ -72,7 +72,7 @@ void Enemy::getHit(float much, sf::Vector2f) {
     _dead = _hp <= 0;
     std::cout << "it hurts " << _hp << std::endl;
     
-        drop();
+    if (_dead) drop();
 }
 
 void Enemy::drop() {

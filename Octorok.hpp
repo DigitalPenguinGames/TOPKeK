@@ -12,9 +12,12 @@ public:
 
     void update(float deltaTime);
     sf::Vector2f getBotPosition();
+    void resetMove();
 
+    void drop();
 private:
     float _time;
+    bool _blocked;
 };
 
 #endif

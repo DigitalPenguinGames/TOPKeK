@@ -70,7 +70,7 @@ bool colisionCircleRectangle(Circle c, Rectangle r) {
 }
 */
 
-directions pointsToDirection(sf::Vector2f pos1, sf::Vector2f pos2, float rotation) {
+directions pointsToDirection8(sf::Vector2f pos1, sf::Vector2f pos2, float rotation) {
     float angle = getAngle(pos1,pos2);
     angle -= rotation;
 
@@ -87,6 +87,15 @@ directions pointsToDirection(sf::Vector2f pos1, sf::Vector2f pos2, float rotatio
     else if (angle > 360-157.5 && angle < 360-112.5) return directions::topLeft;
 
     else return directions::left;
+}
+
+directions pointsToDirection4(sf::Vector2f pos1, sf::Vector2f pos2) {
+    float angle = getAngle(pos1,pos2);
+    while (angle < 0) angle += 360;
+    if (angle <= 45 || angle >= 360-45)          return directions::right;
+    else if (angle < 135 && angle > 45)          return directions::down;
+    else if (angle > 360-135 && angle < 360-45)  return directions::up;
+    else                                         return directions::left;
 }
 
 sf::Vector2f getRelativeCenter(sf::Vector2f origen, sf::IntRect boundOr, sf::IntRect boundDest) {
