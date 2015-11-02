@@ -60,5 +60,6 @@ void Octorok::drop() {
     else droping = false;
     if (droping) _scene->addObject(new Object(dropType, 
         sf::Vector2f(_sprite.getPosition().x+_bounds.left+_bounds.width/2, 
-                     _sprite.getPosition().y+_bounds.top+_bounds.height/2)));
+                     _sprite.getPosition().y+_bounds.top+_bounds.height/2),
+        _scene));
 }

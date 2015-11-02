@@ -1,6 +1,8 @@
+#include "Player.hpp"
+
 #include "Enemy.hpp"
 #include "Weapon.hpp"
-#include "Player.hpp"
+#include "Object.hpp"
 #include "FairyShoot.hpp"
 #include "DungeonDoor.hpp"
 #include "RockProjectile.hpp"
@@ -270,8 +272,40 @@ void Player::intersectsWith(Collisionable* c) {
             door->openWithKey(); // Easiest than making this at DungeonDoor... don't blame me...
         }
         if (!door->isOpened()) resetMove();
+        return;
+    }
+    Object* object = dynamic_cast<Object*>(c);
+    if (object != nullptr) {
+        objectType oType = object->getType();
+        switch (oType) {
+            case objectType::fullHeal:
+                _hp = (_hp + 0.5 <= _maxHp ? _hp + 0.5 : _hp);
+                // Without break. Trying to add 0.5 two times instead of 1 one time
+            case objectType::halfHeal:
+                _hp = (_hp + 0.5 <= _maxHp ? _hp + 0.5 : _hp);
+                break;
+            case objectType::life:
+                _maxHp += 1;
+                break;
+            case objectType::rupee:
+                ++_rupias;
+                break;
+            case objectType::rupee5:
+                _rupias += 5;
+                break;
+            case objectType::bomb:
+                ++_bombs;
+                break;
+            case objectType::key:
+                ++_keys;
+                break;
+            default:
+                break; 
+        }
+        return;
     }
 }
+
 
 void Player::setLight(Light* light) {
     _lightSprite.setLight(light);

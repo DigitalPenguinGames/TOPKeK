@@ -493,6 +493,7 @@ void ScenePlayable::clearMap() {
 
 void ScenePlayable::updateHUD() {
     float total = _player->getHp()+_fairy->getHp();
+    _life->setMaxHP(_player->getMaxHp());
     _life->setActualHP(total);
     //if( total < 0) kill both
 }

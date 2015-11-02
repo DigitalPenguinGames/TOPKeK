@@ -5,9 +5,10 @@
 #include "Resources.hpp"
 #include "Collisionable.hpp"
 
+class Scene;
 class Object : public Collisionable {
 public:
-    Object(objectType oType, sf::Vector2f centerPosition);
+    Object(objectType oType, sf::Vector2f centerPosition, Scene* scene);
     ~Object();
 
     void update(float deltaTime);
@@ -19,6 +20,7 @@ public:
     void intersectsWith(Collisionable* c);
 
 private:
+    Scene* _scene;
     objectType _type;
     float _timer;
     bool _dead;

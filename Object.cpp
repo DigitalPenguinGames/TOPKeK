@@ -1,7 +1,8 @@
 #include "Object.hpp"
 #include "Player.hpp"
+#include "Scene.hpp"
 
-Object::Object(objectType oType, sf::Vector2f centerPosition) : Collisionable(centerPosition), _type(oType) {
+Object::Object(objectType oType, sf::Vector2f centerPosition, Scene* scene) : Collisionable(centerPosition), _scene(scene), _type(oType) {
     _dead = false;
     _sprite.setTexture(Resources::linkSet);
     _sprite.setTextureRect(Resources::descriptions[objectsDescription][oType][0]);
