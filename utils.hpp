@@ -3,13 +3,15 @@
 
 #define FRAMERATE 60
 
-#define SCENEPATH "Resources/Scenes/"
 #define SCENEEXTENSION ".scene"
 #define SCENEEXTENSIONSIZE 6
+
+#define DATAPATH "Resources/Data/"
+#define TEXTPATH "Resources/Texts/"
+#define SCENEPATH "Resources/Scenes/"
+#define SHADERPATH "Resources/Shaders/"
 #define TEXTURETPATH "Resources/Textures/"
 #define TEXTUREDESCRIPTIONEXTENSION ".description"
-#define SHADERPATH "Resources/Shaders/"
-#define DATAPATH "Resources/Data/"
 
 #define TILESIZE 16
 #define TILEOFFSET 1
@@ -36,13 +38,13 @@
 
 #include <map>
 #include <list>
+#include <queue> // priority queue
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <cfloat>
 #include <climits>
-#include <queue> // priority queue
 #include <functional> // priority queue stuff
 
 #include "DataManager.hpp"
@@ -177,7 +179,7 @@ enum objectType {
 };
 
 // Directions
-enum directions {
+enum directions { //u were afraid i could change it to make it beautiful dindn't u ? xd
     down    , // This have
     left    , // to be
     up      , // in this

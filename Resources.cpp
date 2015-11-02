@@ -94,7 +94,7 @@ SpriteSheetDescription Resources::loadDescription(std::string fileName) {
     // leer el fichero
     std::ifstream file(filePath);
     if (!file.is_open()) {
-        std::cout << "Error trying to open " << filePath << std::endl;
+        std::cout << "Error opening file on resources loadDescription " << filePath << std::endl;
         exit(EXIT_FAILURE);
     }
     std::vector<std::pair<int, std::string> > v;
@@ -127,7 +127,7 @@ SpriteSheetDescription Resources::loadDescription(std::string fileName) {
         else {
             descriptorPosition = positions[key];
         }
-        std::cout << "insertando la key " << key << " en la posicion " << descriptorPosition << std::endl;
+        //std::cout << "insertando la key " << key << " en la posicion " << descriptorPosition << std::endl;
 
         if (i+4 >= int(v.size()) || 
             !isInt(v[i+1].second) || 

@@ -50,7 +50,8 @@ SOURCES += main.cpp \
     StatsBar.cpp \
     FairyShoot.cpp \
     TextBoxManager.cpp \
-    InputManager.cpp
+    InputManager.cpp \
+    Speaker.cpp
 
 HEADERS += utils.hpp \
 		Resources.cpp \
@@ -95,4 +96,5 @@ HEADERS += utils.hpp \
     StatsBar.hpp \
     FairyShoot.hpp \
     TextBoxManager.hpp \
-    InputManager.hpp
+    InputManager.hpp \
+    Speaker.hpp

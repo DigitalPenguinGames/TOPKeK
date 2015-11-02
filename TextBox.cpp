@@ -172,7 +172,7 @@ void TextBox::handleEvent(sf::Event e){
     if(e.type == sf::Event::MouseButtonReleased){
         if (e.mouseButton.button == sf::Mouse::Left) {
             is_clicked = false;
-//             if(clickEffect && sprite.getTexture() != &texture) sprite.setTexture(texture);
+
         }
     }
     if(e.type == sf::Event::KeyPressed) {
