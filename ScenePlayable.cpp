@@ -23,7 +23,7 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
     resB->onClick = [this](const sf::Event&, Button&){ _status = status::running; };
     TextButton* exitB;
     exitB = new TextButton("    Menu", Resources::pauseMenuFont);
-    exitB->onClick = [this](const sf::Event&, Button&){ changeScene(new SceneChanger(sf::Vector2f(0,0), "menu", sf::Vector2f(0,0)));  };
+    exitB->onClick = [this](const sf::Event&, Button&){changeScene(new SceneChanger(sf::Vector2f(0,0), "menu", sf::Vector2f(0,0)));  };
     _menuLayout->add(exitB);
     _menuLayout->add(resB);
     _menu.setLayout(_menuLayout);
@@ -66,7 +66,6 @@ Player* ScenePlayable::getPlayer() {
 }
 
 void ScenePlayable::setPlayer(Player* p) {
-    if (_player != nullptr) delete _player;
     _player = p;
 }
 
