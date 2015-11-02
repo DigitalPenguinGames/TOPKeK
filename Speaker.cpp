@@ -1,9 +1,9 @@
 #include "Speaker.hpp"
 #include "TextBoxManager.hpp"
 
-Speaker::Speaker(){//: Prop{
+Speaker::Speaker(int gid, sf::Vector2f pos, std::string textKey) : Prop(gid,pos){
     _speaking = false;
-    _text = "default";
+    _text = textKey;
     //llegir l'string en el descriptor (¿?)
 }
 

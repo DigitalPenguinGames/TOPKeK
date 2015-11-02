@@ -1,12 +1,13 @@
 #ifndef __MAP_HPP__
 #define __MAP_HPP__
 
-#include "utils.hpp"
-#include "Tile.hpp"
-#include "SceneChanger.hpp"
-#include "Background.hpp"
 #include "Prop.hpp"
+#include "Tile.hpp"
+#include "utils.hpp"
+#include "Speaker.hpp"
+#include "Background.hpp"
 #include "DungeonDoor.hpp"
+#include "SceneChanger.hpp"
 
 class ScenePlayable;
 class Map {
@@ -16,6 +17,7 @@ public:
     ~Map();
     void init(sf::Vector2f sceneIniCoord);
     void draw(sf::RenderTarget* w);
+    void drawForeground(sf::RenderTarget* w);
     Tile* getPtrTile(sf::Vector2i pos);
     std::pair<bool,SceneChanger*> playerInsideExit(sf::Vector2f pos); // Change to Vector2f
     sf::Vector2i getSize();

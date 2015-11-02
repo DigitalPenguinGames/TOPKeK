@@ -13,6 +13,9 @@ Player::Player(){
     _action = linkActions::move;
     _description = Resources::descriptions[linkSpritesDescriptions];
 
+    _keys = 0;
+    _bombs = 0;
+    _rupias = 0;
     _elapsedAnimation = 0;
     _currentAnimation = 0;
 
@@ -289,5 +292,31 @@ void Player::setSpeaking(bool speaking, std::string name){
     if(speaking) TextBoxManager::setSize(50,25);
     if(speaking) TextBoxManager::setText(name, 8);
 }
+
+int Player::rupias() const {
+    return _rupias;
+}
+
+void Player::setRupias(int rupias) {
+    _rupias = rupias;
+}
+int Player::bombs() const {
+    return _bombs;
+}
+
+void Player::setBombs(int bombs){
+    _bombs = bombs;
+}
+
+int Player::keys() const{
+    return _keys;
+}
+
+void Player::setKeys(int keys){
+    _keys = keys;
+}
+
+
+
 
 

@@ -65,7 +65,7 @@ void StatsBar::updateShape(){
 }
 
 void StatsBar::setMaxHP(int value){
-    if( _maxHP == value) return;
+    if(_maxHP == value) return;
     _maxHP = value;
     updatePics();
 }

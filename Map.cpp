@@ -117,6 +117,16 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene) {
                 _sceneChangers.push_back(sC);
             }
         }
+        else if ("Texts" == objectGroup) {
+            int numberOfProps;
+            des >> numberOfProps;
+            for (int i = 0; i < numberOfProps; ++i) {
+                float x,y,gid;
+                std::string textKey;
+                des >> gid >> x >> y >> textKey;
+                _scene->addProp( new Speaker(gid,sf::Vector2f(x,y), textKey) );
+            }
+        }
         else {
             // I crai evritime
             std::cout << "Broken as fuck :/ We dont have a object group that is called (\"" << objectGroup << "\")" << std::endl;
@@ -153,10 +163,23 @@ void Map::init(sf::Vector2f sceneIniCoord) {
             break;
         }
         case sceneTypes::lightedDungeon:
-        case sceneTypes::dungeon:
+        case sceneTypes::dungeon: {
             _background = new Background(_mapIniCoord);
             _collisionBackground = Resources::dungeonCols.copyToImage();
-            break;
+            int aux = rand()%2;
+            if (aux < 2) {
+                switch (aux) {
+                case 0:
+                    _foreground.setTexture(Resources::dungeonForeground0);
+                    break;
+                case 1:
+                    _foreground.setTexture(Resources::dungeonForeground1);
+                    break;
+                default:
+                    break;
+                }
+            }
+            break;}
         default:
             break;
     }
@@ -177,6 +200,17 @@ void Map::draw(sf::RenderTarget* w) {
     }
 
     //std::cout << "Drawing map from " << _mapIniCoord.x << " " << int(_map[0].size()) << " " << int(_map.size()) << std::endl;
+}
+
+void Map::drawForeground(sf::RenderTarget *w) {
+    switch (_mapType) {
+        case sceneTypes::lightedDungeon:
+        case sceneTypes::dungeon:
+            w->draw(_foreground);
+            break;
+        default:
+            break;
+    }
 }
 
 std::pair<bool,SceneChanger*> Map::playerInsideExit(sf::Vector2f pos) {

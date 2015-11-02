@@ -36,6 +36,10 @@ public:
     static sf::Texture tileSetCols;
     static sf::Texture shinnyHalfHeart;
     static sf::Texture shinnyEmptyHeart;
+    static sf::Texture dungeonDecoration0;
+    static sf::Texture dungeonDecoration1;
+    static sf::Texture dungeonForeground0;
+    static sf::Texture dungeonForeground1;
     static sf::Texture dungeonDoorsVertical;
     static sf::Texture dungeonDoorsHorizontal;
 

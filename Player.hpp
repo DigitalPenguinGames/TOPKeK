@@ -47,6 +47,15 @@ public:
     void setSpeaking(bool speaking);
     void setSpeaking(bool speaking, std::string name);
 
+
+    int keys() const;
+    int bombs() const;
+    int rupias() const;
+    void setKeys(int keys);
+    void setBombs(int bombs);
+    void setRupias(int rupias);
+
+
 private:
     Map* _map;
     directions _dir;
@@ -60,6 +69,9 @@ private:
     float _elapsedAttack;
     float _elapsedAnimation;
 
+    int _keys;
+    int _bombs;
+    int _rupias;
     int _currentAnimation;
 
     bool _dead;

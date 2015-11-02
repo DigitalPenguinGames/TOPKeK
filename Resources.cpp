@@ -25,6 +25,10 @@ sf::Texture            Resources::textureTest;
 sf::Texture            Resources::shinnyHeart;
 sf::Texture            Resources::shinnyHalfHeart;
 sf::Texture            Resources::shinnyEmptyHeart;
+sf::Texture            Resources::dungeonDecoration0;
+sf::Texture            Resources::dungeonDecoration1;
+sf::Texture            Resources::dungeonForeground0;
+sf::Texture            Resources::dungeonForeground1;
 sf::Texture            Resources::dungeonDoorsVertical;
 sf::Texture            Resources::dungeonDoorsHorizontal;
 
@@ -64,6 +68,10 @@ void Resources::load() {
     shinnyEmptyHeart.loadFromFile(TEXTURETPATH+std::string("shinnyEmptyHeart.png"));
     dungeonDoorsVertical.loadFromFile(TEXTURETPATH+std::string("dungeonDoorsVer.png"));
     dungeonDoorsHorizontal.loadFromFile(TEXTURETPATH+std::string("dungeonDoorsHor.png"));
+    dungeonDecoration0.loadFromFile(TEXTURETPATH+std::string("DungeonExtras/dec0.png"));
+    dungeonDecoration1.loadFromFile(TEXTURETPATH+std::string("DungeonExtras/dec1.png"));
+    dungeonForeground0.loadFromFile(TEXTURETPATH+std::string("DungeonExtras/for0.png"));
+    dungeonForeground1.loadFromFile(TEXTURETPATH+std::string("DungeonExtras/for1.png"));
 
     descriptions = std::vector<SpriteSheetDescription>(spriteDescriptionsQtt);
     descriptions[linkSpritesDescriptions] = loadDescription("linkSheet");

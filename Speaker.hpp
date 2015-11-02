@@ -1,11 +1,13 @@
 #ifndef SPEAKER_HPP
 #define SPEAKER_HPP
 #include "Prop.hpp"
+#include "utils.hpp"
+#include "Resources.hpp"
 
-class Speaker {//: public Prop{
+class Speaker : public Prop{
 
 public:
-    Speaker();
+    Speaker(int gid, sf::Vector2f pos, std::string textKey);
 
     bool getSpeaking() const;
     std::string text() const;

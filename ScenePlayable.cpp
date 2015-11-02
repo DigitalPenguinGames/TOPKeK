@@ -474,6 +474,7 @@ void ScenePlayable::render(sf::RenderTarget* target) {
     for (auto it = _props.begin(); it != _props.end(); ++it) collisionables.push_back(*it);
     for (auto it = _objects.begin(); it != _objects.end(); ++it) collisionables.push_back(*it);
     renderSorted(target, collisionables);
+    _map.drawForeground(target);
 }
 
 void ScenePlayable::clearMap() {

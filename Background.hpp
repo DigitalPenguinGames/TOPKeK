@@ -13,7 +13,9 @@ public:
 
 private:
     //sf::Sprite collision;
-    sf::Sprite sprite;
+    sf::Sprite _sprite;
+    sf::Sprite _decoration;
+    bool _dec;
 
 };
 
