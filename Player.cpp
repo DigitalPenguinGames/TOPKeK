@@ -13,7 +13,7 @@ Player::Player(){
     _action = linkActions::move;
     _description = Resources::descriptions[linkSpritesDescriptions];
 
-    _keys = 0;
+    _keys = 1;
     _bombs = 0;
     _rupias = 0;
     _elapsedAnimation = 0;
@@ -265,6 +265,10 @@ void Player::intersectsWith(Collisionable* c) {
 
     DungeonDoor* door = dynamic_cast<DungeonDoor*>(c);
     if (door != nullptr) {
+        if (door->needKey() && _keys > 0) {
+            --_keys;
+            door->openWithKey(); // Easiest than making this at DungeonDoor... don't blame me...
+        }
         if (!door->isOpened()) resetMove();
     }
 }
