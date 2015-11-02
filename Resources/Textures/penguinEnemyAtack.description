@@ -1,0 +1,4 @@
+moveDown   0 45 15 6
+moveLeft   0 15 15 6
+moveUp     0 30 15 6
+moveRight  0 0  15 6

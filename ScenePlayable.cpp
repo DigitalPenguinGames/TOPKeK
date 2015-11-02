@@ -13,6 +13,8 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
     _life->setSize(sf::Vector2f(250, 50.0));
     _life->setPosition(0,0);
 
+    _rupias = new StatsBar(10, Resources::heart,Resources::halfHeart,Resources::emptyHeart);
+    _rupias->setSize(sf::Vector2f(100, 25.0));
 
     //setting the menu
     _menuLayout = new VLayout;
@@ -28,7 +30,13 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
     _menuLayout->add(resB);
     _menu.setLayout(_menuLayout);
 
-    _hud.setLayout(_life);
+
+    _guiLayout = new VLayout;
+    _guiLayout->setSpace(200);
+    _guiLayout->add(_life);
+    _guiLayout->add(_rupias);
+
+    _hud.setLayout(_guiLayout);
     _hud.setPosition(0,0);
 
 
@@ -51,6 +59,7 @@ void ScenePlayable::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
     initView(sf::Vector2i(WINDOWRATIOX,WINDOWRATIOY));
     // Temporal shiet
     _enemies.push_back(new Octorok(this, &_map, sf::Vector2f(70+sceneIniCoord.x,70+sceneIniCoord.y)));
+    _enemies.push_back(new EnemyPenguin(this, &_map, sf::Vector2f(75+sceneIniCoord.x,75+sceneIniCoord.y)));
 }
 
 sf::Vector2f ScenePlayable::getSceneCoord() {

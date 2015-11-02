@@ -34,6 +34,9 @@ public:
     static sf::Texture shinnyHeart;
     static sf::Texture overEnemies;
     static sf::Texture tileSetCols;
+    static sf::Texture penguinEnemy;
+    static sf::Texture bulletPenguin;
+    static sf::Texture penguinEnemyAttack;
     static sf::Texture shinnyHalfHeart;
     static sf::Texture shinnyEmptyHeart;
     static sf::Texture dungeonDecoration0;

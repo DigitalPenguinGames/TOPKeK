@@ -51,7 +51,8 @@ SOURCES += main.cpp \
     FairyShoot.cpp \
     TextBoxManager.cpp \
     InputManager.cpp \
-    Speaker.cpp
+    Speaker.cpp \
+    EnemyPenguin.cpp
 
 HEADERS += utils.hpp \
 		Resources.cpp \
@@ -97,4 +98,5 @@ HEADERS += utils.hpp \
     FairyShoot.hpp \
     TextBoxManager.hpp \
     InputManager.hpp \
-    Speaker.hpp
+    Speaker.hpp \
+    EnemyPenguin.hpp

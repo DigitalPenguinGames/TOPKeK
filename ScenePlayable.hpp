@@ -2,12 +2,13 @@
 #define __SCENEPLAYABLE_HPP__
 
 #include "Map.hpp"
+#include "Prop.hpp"
 #include "utils.hpp"
 #include "Fairy.hpp"
 #include "Scene.hpp"
 #include "Enemy.hpp"
 #include "Octorok.hpp"
-#include "Prop.hpp"
+#include "EnemyPenguin.hpp"
 #include "Player.hpp"
 #include "Weapon.hpp"
 #include "Object.hpp"
@@ -70,6 +71,8 @@ protected:
     VLayout* _selectedLayout;
     Frame _hud;
     StatsBar* _life;
+    StatsBar* _rupias;
+    VLayout* _guiLayout;
 
     void clearMap();
 

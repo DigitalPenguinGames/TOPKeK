@@ -109,6 +109,9 @@ enum spriteSheetsDescriptions {
     dungeonDoorsHor,
     dungeonDoorsVer,
     objectsDescription,
+    penguinEnemyDescription,
+    penguinEnemyDescriptionPrep,
+    penguinEnemyDescriptionAttack,
     spriteDescriptionsQtt
 };
 
