@@ -1,0 +1,12 @@
+moveDown   0   45 9 15
+moveDown   9   45 9 15
+moveDown   18  45 9 15
+moveLeft   0   15 9 15
+moveLeft   9   15 9 15
+moveLeft   18  15 9 15
+moveUp     0   30 9 15
+moveUp     9   30 9 15
+moveUp     18  30 9 15
+moveRight  0   0  9 15
+moveRight  9   0  9 15
+moveRight  18  0  9 15
