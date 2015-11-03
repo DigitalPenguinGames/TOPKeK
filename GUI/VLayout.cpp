@@ -1,6 +1,7 @@
+#include <iostream>
 #include "VLayout.hpp"
 
-VLayout::VLayout(Widget *parent): Layout(parent) {}
+VLayout::VLayout(Widget *parent): Layout(parent) { _centered = true;}
 
 VLayout::~VLayout() {
     for(Widget* widget : _widgets) {
@@ -47,13 +48,23 @@ void VLayout::processEvents(const sf::Vector2f& parent_pos) {
     for(Widget* widget : _widgets)
     widget->processEvents(parent_pos);
 }
+bool VLayout::centered() const
+{
+    return _centered;
+}
+
+void VLayout::setCentered(bool centered)
+{
+    _centered = centered;
+}
+
 
 void VLayout::updateShape() {
 
     float max_x = (_parent?_parent->getSize().x:0);
     for(Widget* widget : _widgets) {
-        sf::Vector2f size = widget->getSize();
-        float widget_x = size.x;
+        sf::Vector2f mysize = widget->getSize();
+        float widget_x = mysize.x;
         if(widget_x > max_x)
         max_x = widget_x;
     }
@@ -61,9 +72,10 @@ void VLayout::updateShape() {
     if(_parent)
     pos_y = (_parent->getSize().y - getSize().y)/2.f;
     for(Widget* widget : _widgets) {
-        sf::Vector2f size = widget->getSize();
-        widget->setPosition((max_x-size.x)/2.0,pos_y);
-        pos_y += size.y + _space;
+        sf::Vector2f mysize = widget->getSize();
+        if(_centered) widget->setPosition((max_x-mysize.x)/2.0,pos_y);
+        else widget->setPosition(0,pos_y);
+        pos_y += mysize.y + _space;
     }
     Widget::updateShape();
 

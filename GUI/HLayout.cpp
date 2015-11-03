@@ -1,3 +1,4 @@
+#include <iostream>
 #include "HLayout.hpp"
 
 HLayout::HLayout(Widget *parent): Layout(parent) {}
@@ -20,6 +21,7 @@ Widget* HLayout::at(unsigned int index)const {
 }
 
 sf::Vector2f HLayout::getSize()const {
+
     float max_y = 0;
     float x = 0;
     for(Widget* widget : _widgets) {
@@ -27,6 +29,7 @@ sf::Vector2f HLayout::getSize()const {
         if(size.y > max_y) max_y = size.y;
         x += _space + size.x;
     }
+
     return sf::Vector2f(x+_space, max_y+_space*2);
 }
 
@@ -69,6 +72,7 @@ void HLayout::updateShape() {
 }
 
 void HLayout::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    states.transform.translate(_position);
     for(Widget* widget : _widgets) {
         target.draw(*widget,states);
     }

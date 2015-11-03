@@ -74,6 +74,7 @@ protected:
     Frame _hud;
     StatsBar* _life;
     StatsBar* _rupias;
+    ImgButton* _space;
     VLayout* _guiLayout;
 
     void clearMap();
