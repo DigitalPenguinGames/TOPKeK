@@ -218,6 +218,8 @@ directions pointsToDirection8(sf::Vector2f pos1, sf::Vector2f pos2, float rotati
 
 directions pointsToDirection4(sf::Vector2f pos1, sf::Vector2f pos2);
 
+float directionsToAngle(directions dir);
+
 sf::Vector2f getRelativeCenter(sf::Vector2f origen, sf::IntRect boundOr, sf::IntRect boundDest);
 
 bool counterDirection(directions d1, directions d2);
@@ -225,5 +227,7 @@ bool counterDirection(directions d1, directions d2);
 int getHorizontal(directions dir);
 
 int getVertical(directions dir);
+
+sf::Vector2f getRandBounce(float speed, directions dir);
 
 #endif

@@ -14,7 +14,7 @@ Object::Object(objectType oType, sf::Vector2f centerPosition, Scene* scene) : Co
             break;
         case life:
             _bounds = sf::IntRect(0,0,13,13);
-            _timer = 9999999;
+            _timer = INT_MAX;
             break;
         case rupee:
         case rupee5:
@@ -24,10 +24,12 @@ Object::Object(objectType oType, sf::Vector2f centerPosition, Scene* scene) : Co
             break;
         case bomb:
             _bounds = sf::IntRect(0,0,8,14);
+            _timer = 20;
             break;
         case triforce:
         case triblue:
             _bounds = sf::IntRect(0,0,10,10);
+            _timer = INT_MAX;
             break;
         default:
             std::cout << "Wrong objectType at position " << centerPosition.x << " " << centerPosition.y << std::endl;

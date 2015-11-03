@@ -81,15 +81,15 @@ def main():
 					if (mapType == "dungeon" or mapType == "dungeonLight"):
 						output += str(gid) + " "
 			elif (shit.get('name') == 'Texts'):
-                output += "Texts "
-                numberOfProps = len(shit.findall('object'))
-                output += str(numberOfProps) + " "
-                for prop in shit.findall('object'):
-                    gid = prop.get('gid')
-                    x = prop.get('x')
-                    y = prop.get('y')
-                    textkey = obj.find("properties").find('property').get('textkey')
-                    output += gid + " " + x + " " + y + " " + textkey + " "
+				output += "Texts "
+				numberOfProps = len(shit.findall('object'))
+				output += str(numberOfProps) + " "
+				for prop in shit.findall('object'):
+					gid = prop.get('gid')
+					x = prop.get('x')
+					y = prop.get('y')
+					textkey = obj.find("properties").find('property').get('textkey')
+					output += gid + " " + x + " " + y + " " + textkey + " "
 
 		output += "finish "
 
