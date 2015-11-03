@@ -98,6 +98,22 @@ directions pointsToDirection4(sf::Vector2f pos1, sf::Vector2f pos2) {
     else                                         return directions::left;
 }
 
+float directionsToAngle(directions dir) {
+    switch (dir) {
+        case directions::right:
+            return 0;
+        case directions::up:
+            return 90;
+        case directions::left:
+            return 180;
+        case directions::down:
+            return 270;
+        default:
+            std::cout << "CAREFULL!!! Not Implemented to that direction." << std::endl;
+            return -1;
+    }
+}
+
 sf::Vector2f getRelativeCenter(sf::Vector2f origen, sf::IntRect boundOr, sf::IntRect boundDest) {
     sf::Vector2f final;
 
@@ -127,4 +143,11 @@ int getHorizontal(directions dir) {
 }
 int getVertical(directions dir) {
     return (dir == directions::up   ? -1 : (dir == directions::down  ? 1 : 0));
+}
+
+sf::Vector2f getRandBounce(float speed, directions dir) {
+    float angle = directionsToAngle(dir);
+    angle += (std::rand()%90 + 135);
+    angle = (int)angle%360;
+    return sf::Vector2f(std::cos(angle*TO_RADIANS)*speed, std::sin(angle*TO_RADIANS)*speed);
 }

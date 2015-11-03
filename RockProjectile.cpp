@@ -1,4 +1,5 @@
 #include "RockProjectile.hpp"
+#include "Player.hpp"
 
 RockProjectile::RockProjectile(Map* map, sf::Vector2f pos, directions dir) : Weapon(map, pos, dir) {
     _sprite.setTexture(Resources::overEnemies);
@@ -9,18 +10,23 @@ RockProjectile::RockProjectile(Map* map, sf::Vector2f pos, directions dir) : Wea
     _speed = sf::Vector2f(30,30);
     _angle = 0;
 	_transform = sf::Transform::Identity;
+    _timerToDead = -1;
 }
 
 RockProjectile::~RockProjectile() {}
 
 void RockProjectile::update(float deltaTime) {
     Weapon::update(deltaTime);
-    //_transform = _sprite.getTransform();
+
     _transform = sf::Transform::Identity;
     _angle += 90*deltaTime;
+    sf::IntRect bounds = RockProjectile::bounds();
     _transform.rotate(_angle, 
-        _sprite.getPosition().x +_bounds.left+_bounds.width/2,
-        _sprite.getPosition().y +_bounds.top+_bounds.height/2);
+        _sprite.getPosition().x +bounds.left+bounds.width/2,
+        _sprite.getPosition().y +bounds.top+bounds.height/2);
+
+    if (_timerToDead > 0 && _timerToDead < deltaTime) _dead = true;
+    _timerToDead -= deltaTime;
 }
 
 
@@ -30,6 +36,21 @@ void RockProjectile::draw(sf::RenderTarget* target) {
 
 void RockProjectile::hit() {
     _dead = true;
+}
+
+void RockProjectile::intersectsWith(Collisionable* c) {
+    Player* player = dynamic_cast<Player*>(c);
+    if (player != nullptr) {
+        if (!counterDirection(getDirection(),player->getDirection()) || player->isAttacking()) hit();
+        else {
+            _speed = getRandBounce(_speed.x,_dir);
+            _dir = directions::none;
+            _timerToDead = 0.5;
+            _bounds = sf::IntRect(0,0,0,0);
+        }
+        return;
+    }
+    Weapon::intersectsWith(c);
 }
 
 sf::IntRect RockProjectile::bounds() {

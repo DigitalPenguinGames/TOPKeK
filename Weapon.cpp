@@ -1,6 +1,7 @@
 #include "Weapon.hpp"
 #include "Prop.hpp"
 #include "Player.hpp"
+#include "Fairy.hpp"
 
 Weapon::Weapon(Map* map, sf::Vector2f pos, directions dir) : 
     Collisionable(pos),
@@ -15,8 +16,8 @@ Weapon::~Weapon() {}
 void Weapon::update(float deltaTime) {
     sf::Vector2f movement, initial;
     initial = _sprite.getPosition();
-    movement.x = (_dir == directions::left ? -_speed.x : (_dir == directions::right ? _speed.x : 0));
-    movement.y = (_dir == directions::up ? -_speed.y : (_dir == directions::down ? _speed.y : 0));
+    movement.x = (_dir == directions::left ? -_speed.x : (_dir == directions::right ? _speed.x : (_dir == directions::none ? _speed.x : 0)));
+    movement.y = (_dir == directions::up ? -_speed.y : (_dir == directions::down ? _speed.y : (_dir == directions::none ? _speed.y : 0)));
     sf::Vector2f maxMovement = _map->getMaxMovement(initial,movement*deltaTime,_bounds);
     if (movement*deltaTime != maxMovement) hit();
     cmove(maxMovement);
@@ -46,6 +47,11 @@ void Weapon::intersectsWith(Collisionable* c) {
     }
     Player* player = dynamic_cast<Player*>(c);
     if (player != nullptr) {
+        hit();
+        return;
+    }
+    Fairy* fairy = dynamic_cast<Fairy*>(c);
+    if (fairy != nullptr) {
         hit();
         return;
     }

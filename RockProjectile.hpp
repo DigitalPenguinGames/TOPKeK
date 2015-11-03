@@ -14,10 +14,13 @@ public:
 
     void hit();
 
+    void intersectsWith(Collisionable* c);
+
     static sf::IntRect bounds();
 private:
     sf::Transform _transform;
     float _angle;
+    float _timerToDead;
 };
 
 #endif
