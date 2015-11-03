@@ -3,6 +3,7 @@
 #include "Weapon.hpp"
 #include "Object.hpp"
 #include "ScenePlayable.hpp"
+#include "DungeonDoor.hpp"
 
 Enemy::Enemy(ScenePlayable* scene, Map* map, sf::Vector2f pos) : _scene(scene), _map(map) {
     _speed = sf::Vector2f(0,0);
@@ -107,6 +108,11 @@ void Enemy::intersectsWith(Collisionable* c) {
     Prop* prop = dynamic_cast<Prop*>(c);
     if (prop != nullptr) {
         resetMove();
+        return;
+    }
+    DungeonDoor* door = dynamic_cast<DungeonDoor*>(c);
+    if (door != nullptr) {
+        if (!door->isOpened()) resetMove();
         return;
     }
 }

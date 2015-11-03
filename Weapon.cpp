@@ -55,4 +55,9 @@ void Weapon::intersectsWith(Collisionable* c) {
         hit();
         return;
     }
+    DungeonDoor* door = dynamic_cast<DungeonDoor*>(c);
+    if (door != nullptr) {
+        if (!door->isOpened()) hit();
+        return;
+    }
 }
