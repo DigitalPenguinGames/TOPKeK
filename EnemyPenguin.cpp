@@ -32,7 +32,7 @@ void EnemyPenguin::setPrep(){
 void EnemyPenguin::setAttack(){
     _moving = 1;
     _sliding = true;
-    _sprite.move(0,8);
+//    _sprite.move(0,4);
     _preparing = false;
     _currentAnimation = 0;
     _sprite.setTexture(Resources::bulletPenguin);
@@ -42,7 +42,7 @@ void EnemyPenguin::setAttack(){
 void EnemyPenguin::setWalk(){
     _preparing = false;
     _sliding = false;
-    _sprite.move(0,-4);
+  //  _sprite.move(0,-4);
     _elapsedWalking = 0.2;
     _currentAnimation = 0;
     _sprite.setTexture(Resources::penguinEnemy);
