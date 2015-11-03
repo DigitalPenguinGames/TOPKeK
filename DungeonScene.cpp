@@ -31,6 +31,7 @@ void DungeonScene::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
 	_botDoor.setIniCoord(_sceneIniCoord);
 	_leftDoor.setIniCoord(_sceneIniCoord);
 	_rightDoor.setIniCoord(_sceneIniCoord);
+
 }
 
 void DungeonScene::update(float deltaTime) {

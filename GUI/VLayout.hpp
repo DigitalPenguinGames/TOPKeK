@@ -22,6 +22,9 @@ public:
     int getNWidgets();
 
 
+    bool centered() const;
+    void setCentered(bool centered);
+
 protected:
 
     virtual bool processEvent(const sf::Event& event,
@@ -31,7 +34,7 @@ protected:
 
 
 private:
-
+    bool _centered;
     std::vector<Widget*> _widgets;
     virtual void updateShape() override;
     virtual void draw(sf::RenderTarget& target,

@@ -56,9 +56,9 @@ void StatsBar::updateShape(){
       // pos_x = (_parent->getSize().x - getSize().x)/2.f;
 
     for(Widget* widget : _widgets) {
-        sf::Vector2f size = widget->getSize();
+        sf::Vector2f auxsize = widget->getSize();
         widget->setPosition(pos_x,0);
-        pos_x += size.x + _space;
+        pos_x += auxsize.x + _space;
     }
 
     Widget::updateShape();
@@ -75,8 +75,19 @@ void StatsBar::setActualHP(float value){
     _actualHP = value;
     updatePics();
 }
-sf::Vector2f StatsBar::getSize() const{
+
+/*sf::Vector2f StatsBar::getSize(){
     return size;
+}*/
+sf::Vector2f StatsBar::getSize() const {
+    float max_y = 0;
+    float x = 0;
+    for(Widget* widget : _widgets) {
+        sf::Vector2f size = widget->getSize();
+        if(size.y > max_y) max_y = size.y;
+        x += _space + size.x;
+    }
+    return sf::Vector2f(x+_space, max_y+_space*2);
 }
 
 void StatsBar::setSize(const sf::Vector2f &value){

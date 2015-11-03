@@ -38,7 +38,7 @@ void EnemyPenguin::setAttack(){
     _preparing = false;
     _currentAnimation = 0;
     if(_dir == directions::up || _dir == directions::down )_bounds = sf::IntRect(4,0,9,7);
-    else _bounds = sf::IntRect(2,0,11,6);
+    else _bounds = sf::IntRect(2,0,11,5);
     _sprite.setTexture(Resources::bulletPenguin);
     _description = Resources::descriptions[penguinEnemyDescriptionAttack];
 }

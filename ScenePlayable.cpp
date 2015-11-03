@@ -15,6 +15,11 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
 
     _rupias = new StatsBar(10, Resources::heart,Resources::halfHeart,Resources::emptyHeart);
     _rupias->setSize(sf::Vector2f(100, 25.0));
+    _rupias->setPosition(0,0);
+
+    _space = new ImgButton(Resources::emptyHeart,Resources::emptyHeart);
+    _space->setSize(sf::Vector2f(0, w->getView().getSize().y-110.0));
+    _space->setPosition(200,0);
 
     //setting the menu
     _menuLayout = new VLayout;
@@ -32,8 +37,11 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
 
 
     _guiLayout = new VLayout;
-    _guiLayout->setSpace(200);
+    _guiLayout->setCentered(false);
+    _guiLayout->setPosition(0,0);
+    _guiLayout->setSpace(10);
     _guiLayout->add(_life);
+    _guiLayout->add(_space);
     _guiLayout->add(_rupias);
 
     _hud.setLayout(_guiLayout);
