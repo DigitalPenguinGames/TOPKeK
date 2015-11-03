@@ -14,8 +14,8 @@ public:
 
 private:
     float _time;
+    bool _sliding;
     bool _preparing;
-    bool _attacking;
 
     void setPrep();
     void setWalk();

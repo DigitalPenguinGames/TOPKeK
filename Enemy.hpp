@@ -33,21 +33,21 @@ protected:
 
     float _hp;
     bool _dead;
-    float _hitedTimer;
     float _damage;
+    float _hitedTimer;
 
     directions _dir;
     linkActions _action;
     SpriteSheetDescription _description;
 
-    int _currentAnimation;
-    float _elapsedAnimation;
+    float _elapsedAttack;
     float _elapsedWalking; // Time between frames of walking
+    float _elapsedAnimation;
+
+    int _currentAnimation;
 
     bool _moving;
-
     bool _attacking;
-    float _elapsedAttack;
 
 };
 
