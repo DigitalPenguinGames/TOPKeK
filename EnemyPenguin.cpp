@@ -10,12 +10,14 @@ EnemyPenguin::EnemyPenguin(ScenePlayable* scene, Map* map, sf::Vector2f pos) : E
     _speed = sf::Vector2f(15,15);
 
     _walkBounds = sf::IntRect(2,2,12,12);
-    _bounds = _walkBounds;
+    _bounds = sf::IntRect(2,8,5,7);
 
     _time = 0;
     _damage = 0.5;
-    _preparing = false;
+    _antPos = sf::Vector2f(0,0);
     _sliding = false;
+    _isMoving = false;
+    _preparing = false;
     _sprite.setTexture(Resources::penguinEnemy);
     _sprite.setTextureRect(_description[_action*4+_dir][_currentAnimation%_description[_action*4+_dir].size()]);
 
@@ -32,9 +34,11 @@ void EnemyPenguin::setPrep(){
 void EnemyPenguin::setAttack(){
     _moving = 1;
     _sliding = true;
-//    _sprite.move(0,4);
+    _sprite.move(0,7);
     _preparing = false;
     _currentAnimation = 0;
+    if(_dir == directions::up || _dir == directions::down )_bounds = sf::IntRect(4,0,9,7);
+    else _bounds = sf::IntRect(2,0,11,6);
     _sprite.setTexture(Resources::bulletPenguin);
     _description = Resources::descriptions[penguinEnemyDescriptionAttack];
 }
@@ -42,9 +46,10 @@ void EnemyPenguin::setAttack(){
 void EnemyPenguin::setWalk(){
     _preparing = false;
     _sliding = false;
-  //  _sprite.move(0,-4);
+    _sprite.move(0,-7);
     _elapsedWalking = 0.2;
     _currentAnimation = 0;
+    _bounds = sf::IntRect(2,8,5,7);
     _sprite.setTexture(Resources::penguinEnemy);
     _description = Resources::descriptions[penguinEnemyDescription];
 }
@@ -73,18 +78,24 @@ void EnemyPenguin::update(float deltaTime) {
         }
     }
 
+    if(_antPos == getPosition() && _isMoving){
+        _dir = directions(std::rand()%4);
+    }
+    _antPos = getPosition();
+
     if(!_preparing && ! _sliding) {
         _speed = sf::Vector2f(15,15);
         _moving = (std::rand()%2 == 0);
     }
     if(_sliding) {
         _speed = sf::Vector2f(30,30);
-        _moving = (std::rand()%2 == 0);
         _moving = 1;
     }
+    _isMoving = _moving;
     if(_preparing) {
         _speed = sf::Vector2f(0,0);
         _moving = (std::rand()%2 == 0);
+        _isMoving = false;
     }
     Enemy::update(deltaTime);
 }

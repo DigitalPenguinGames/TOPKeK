@@ -15,7 +15,9 @@ public:
 private:
     float _time;
     bool _sliding;
+    bool _isMoving;
     bool _preparing;
+    sf::Vector2f _antPos;
 
     void setPrep();
     void setWalk();
