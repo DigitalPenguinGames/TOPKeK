@@ -26,7 +26,7 @@ void LightSprite::update( sf::Vector2f pos, int dir, int action,int currentAnima
 
 void LightSprite::draw(sf::RenderTarget* target) {
     directions dir = directions::none;
-    if (_light != nullptr) dir = pointsToDirection(_pos, _light->getPosition(), _rotation);
+    if (_light != nullptr) dir = pointsToDirection8(_pos, _light->getPosition(), _rotation);
     _sprites[dir].setTextureRect(_description[_action*4+_dir][_currentAnimation%_description[_action*4+_dir].size()]);
     _sprites[dir].setPosition(_pos);
     _sprites[dir].setRotation(_rotation);
@@ -35,7 +35,7 @@ void LightSprite::draw(sf::RenderTarget* target) {
 
 void LightSprite::draw(sf::RenderTarget* target, sf::Shader* shader) {
     directions dir = directions::none;
-    if (_light != nullptr) dir = pointsToDirection(_pos, _light->getPosition(), _rotation);
+    if (_light != nullptr) dir = pointsToDirection8(_pos, _light->getPosition(), _rotation);
     _sprites[dir].setTextureRect(_description[_action*4+_dir][_currentAnimation%_description[_action*4+_dir].size()]);
     _sprites[dir].setPosition(_pos);
     _sprites[dir].setRotation(_rotation);

@@ -166,6 +166,7 @@ void Map::init(sf::Vector2f sceneIniCoord) {
         case sceneTypes::dungeon: {
             _background = new Background(_mapIniCoord);
             _collisionBackground = Resources::dungeonCols.copyToImage();
+            _foreground.setPosition(sceneIniCoord);
             int aux = rand()%2;
             if (aux < 2) {
                 switch (aux) {

@@ -240,7 +240,12 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             }
             return;
         }
-    }   
+        if (sceneName == "menu") {
+            ScenePlayable* lastScene = dynamic_cast<ScenePlayable*>(_lastScene);
+            if (lastScene != nullptr) delete lastScene->getPlayer();
+        }
+
+    }
     _currentScene->init();    
 }
 
