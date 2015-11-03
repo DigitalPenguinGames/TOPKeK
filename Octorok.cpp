@@ -9,7 +9,7 @@ Octorok::Octorok(ScenePlayable* scene, Map* map, sf::Vector2f pos) : Enemy(scene
     _action = linkActions::move;
 
     _elapsedWalking = 0.5;
-    _speed = sf::Vector2f(15,15);
+    _speed = sf::Vector2f(7,7);
 
     _walkBounds = sf::IntRect(2,2,12,12);
     _bounds = _walkBounds;
@@ -29,13 +29,9 @@ void Octorok::update(float deltaTime) {
         directions dirAux = directions(pointsToDirection4(getPosition(),_scene->getPlayer()->getPosition()));
         if (dirAux == _dir && _blocked) dirAux = directions(rand()%4);
         _dir = dirAux;
-        SoundManager::playSound("shootBigBall");
-        sf::Vector2f offset;
-        offset.x = getHorizontal(_dir) * (getBounds().left+getBounds().width /2);
-        offset.y = getVertical  (_dir) * (getBounds().top +getBounds().height/2);
-        _scene->addEnemyWeapon(new RockProjectile(_map, getRelativeCenter(_sprite.getPosition(), getBounds(), RockProjectile::bounds()) + offset, _dir));
     }
-    _moving = (std::rand()%2 == 0);
+    if (std::rand()%(FRAMERATE*3) == 0) shot();
+    _moving = true;
     Enemy::update(deltaTime);
     _blocked = false;
 }
@@ -47,6 +43,14 @@ sf::Vector2f Octorok::getBotPosition() {
 void Octorok::resetMove() {
     _blocked = true;
     Collisionable::resetMove();
+}
+
+void Octorok::shot() {
+    SoundManager::playSound("shootBigBall");
+    sf::Vector2f offset;
+    offset.x = getHorizontal(_dir) * (getBounds().left+getBounds().width /2);
+    offset.y = getVertical  (_dir) * (getBounds().top +getBounds().height/2);
+    _scene->addEnemyWeapon(new RockProjectile(_map, getRelativeCenter(_sprite.getPosition(), getBounds(), RockProjectile::bounds()) + offset, _dir));
 }
 
 void Octorok::drop() {

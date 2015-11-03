@@ -7,7 +7,7 @@ RockProjectile::RockProjectile(Map* map, sf::Vector2f pos, directions dir) : Wea
     _sprite.setTextureRect(_description[0][0]);
     _bounds = RockProjectile::bounds();
     _damage = 0.5;
-    _speed = sf::Vector2f(30,30);
+    _speed = sf::Vector2f(40,40);
     _angle = 0;
 	_transform = sf::Transform::Identity;
     _timerToDead = -1;

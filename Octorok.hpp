@@ -14,6 +14,8 @@ public:
     sf::Vector2f getBotPosition();
     void resetMove();
 
+    void shot();
+
     void drop();
 private:
     float _time;
