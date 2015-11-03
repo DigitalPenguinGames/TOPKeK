@@ -132,7 +132,12 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene) {
             std::cout << "Broken as fuck :/ We dont have a object group that is called (\"" << objectGroup << "\")" << std::endl;
             exit(EXIT_FAILURE);
         }
-    }  
+    } 
+
+    std::vector<std::pair<enemyType,sf::Vector2f> > enemies;
+    enemies.push_back(std::make_pair(enemyType::octorok, sf::Vector2f(70,70)));
+    enemies.push_back(std::make_pair(enemyType::penguin, sf::Vector2f(90,70)));
+    _scene->setEnemies(enemies);
 }
 
 Map::~Map() {
@@ -164,6 +169,7 @@ void Map::init(sf::Vector2f sceneIniCoord) {
         }
         case sceneTypes::lightedDungeon:
         case sceneTypes::dungeon: {
+            if (_background != nullptr) delete _background;
             _background = new Background(_mapIniCoord);
             _collisionBackground = Resources::dungeonCols.copyToImage();
             _foreground.setPosition(sceneIniCoord);
@@ -183,8 +189,7 @@ void Map::init(sf::Vector2f sceneIniCoord) {
             break;}
         default:
             break;
-    }
-    
+    }    
 }
 
 void Map::draw(sf::RenderTarget* w) {

@@ -49,17 +49,15 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
 ScenePlayable::~ScenePlayable(){}
 
 void ScenePlayable::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
+    clearMap();
     _player->setMap(&_map);
     _life->setMaxHP(_player->getMaxHp());
-    clearMap();
+    initEnemies(sceneIniCoord);
 	_status = status::running;
     if (sceneIniCoord == _sceneIniCoord) return;
     _sceneIniCoord = sceneIniCoord;
     _map.init(_sceneIniCoord);
     initView(sf::Vector2i(WINDOWRATIOX,WINDOWRATIOY));
-    // Temporal shiet
-    _enemies.push_back(new Octorok(this, &_map, sf::Vector2f(70+sceneIniCoord.x,70+sceneIniCoord.y)));
-    _enemies.push_back(new EnemyPenguin(this, &_map, sf::Vector2f(75+sceneIniCoord.x,75+sceneIniCoord.y)));
 }
 
 sf::Vector2f ScenePlayable::getSceneCoord() {
@@ -240,6 +238,10 @@ void ScenePlayable::processInput() {
             break;
     }
 
+}
+
+void ScenePlayable::setEnemies(std::vector<std::pair<enemyType, sf::Vector2f> > enemies) {
+    _enemiesIni = enemies;
 }
 
 void ScenePlayable::addEnemy(Enemy* enemy) {
@@ -486,6 +488,10 @@ void ScenePlayable::render(sf::RenderTarget* target) {
 }
 
 void ScenePlayable::clearMap() {
+    for (Enemy* enemy : _enemies) {
+        delete enemy;
+    }
+    _enemies.clear();
     for(Weapon* weapon : _allyWeapons) {
         delete weapon;
     }
@@ -498,6 +504,22 @@ void ScenePlayable::clearMap() {
         delete weapon;
     }
 	_forAllWeapons.clear();
+}
+
+void ScenePlayable::initEnemies(sf::Vector2f pos) {
+    for (auto pair : _enemiesIni) {
+        switch (pair.first) {
+            case enemyType::octorok:
+                addEnemy(new Octorok(this, &_map, pair.second+pos));
+                break;
+            case enemyType::penguin:
+                addEnemy(new EnemyPenguin(this, &_map, pair.second+pos));
+                break;
+            default:
+                std::cout << "WARNING! Trying to initialice some enemy with a wrong type at scene " << _sceneName << std::endl;
+                break;
+        }
+    }
 }
 
 void ScenePlayable::updateHUD() {

@@ -181,6 +181,12 @@ enum objectType {
     objectsQtty
 };
 
+enum enemyType {
+  octorok,
+  penguin,
+  enemyTypeQtty
+};
+
 // Directions
 enum directions { //u were afraid i could change it to make it beautiful dindn't u ? xd
     down    , // This have

@@ -43,6 +43,7 @@ public:
     void update(float deltaTime);
     void render(sf::RenderTarget* target);
 
+    void setEnemies(std::vector<std::pair<enemyType, sf::Vector2f> > enemies);
     void addEnemy(Enemy* enemy);
     void addAllyWeapon(Weapon* weapon);
     void addEnemyWeapon(Weapon* weapon);
@@ -51,6 +52,7 @@ public:
     void addObject(Object* object);
 
 protected:
+    std::vector<std::pair<enemyType,sf::Vector2f> > _enemiesIni;
     std::list<Enemy*> _enemies;
     std::list<Weapon*> _allyWeapons;
     std::list<Weapon*> _enemyWeapons;
@@ -75,6 +77,7 @@ protected:
     VLayout* _guiLayout;
 
     void clearMap();
+    void initEnemies(sf::Vector2f pos);
 
     void updateHUD();
 
