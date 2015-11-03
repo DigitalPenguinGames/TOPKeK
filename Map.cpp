@@ -3,7 +3,7 @@
 
 Map::Map() {}
 
-Map::Map(ScenePlayable* scene, std::string description) : _scene(scene) {
+Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _background(nullptr) {
     _mapIniCoord = sf::Vector2f(FLT_MAX,FLT_MAX);
     std::istringstream des(description);
     int width, height;
