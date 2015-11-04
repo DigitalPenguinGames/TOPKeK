@@ -69,11 +69,20 @@ protected:
     int _buttonSelected;
     VLayout* _menuLayout;
     VLayout* _selectedLayout;
+
     Frame _hud;
-    StatsBar* _life;
-    StatsBar* _rupias;
-    ImgButton* _space;
+
     VLayout* _guiLayout;
+        StatsBar* _life;
+
+        ImgButton* _space;
+
+        HLayout* _items;
+            Label* _qttyRupias;
+            ImgButton* _rupia;
+            Label* _qttyKeys;
+            ImgButton* _key;
+
 
     void clearMap();
 

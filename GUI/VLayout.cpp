@@ -71,6 +71,7 @@ void VLayout::updateShape() {
     float pos_y = _space;
     if(_parent)
     pos_y = (_parent->getSize().y - getSize().y)/2.f;
+    if(!_centered) pos_y = _space;
     for(Widget* widget : _widgets) {
         sf::Vector2f mysize = widget->getSize();
         if(_centered) widget->setPosition((max_x-mysize.x)/2.0,pos_y);
