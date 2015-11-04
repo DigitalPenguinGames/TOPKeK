@@ -12,7 +12,9 @@ public:
     static sf::Shader sLighting;
     static sf::Shader fairyShootShader;
 
+    static sf::Texture key;
     static sf::Texture heart;
+    static sf::Texture rupia;
     static sf::Texture dungeon;
     static sf::Texture talkBox;
     static sf::Texture tileSet;

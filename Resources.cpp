@@ -1,6 +1,8 @@
 #include "Resources.hpp"
 
 // sf::Texture        Resources::....
+sf::Texture            Resources::key;
+sf::Texture            Resources::rupia;
 sf::Texture            Resources::heart;
 sf::Texture            Resources::tileSet;
 sf::Texture            Resources::talkBox;
@@ -45,6 +47,8 @@ std::vector<SpriteSheetDescription> Resources::descriptions;
 
 void Resources::load() {
     //...loadFromFile();
+    key.loadFromFile                    (TEXTURETPATH+std::string("key.png"));
+    rupia.loadFromFile                  (TEXTURETPATH+std::string("Rupia.png"));
     talkBox.loadFromFile                (TEXTURETPATH+std::string("talkBox.png"));
     tileSet.loadFromFile                (TEXTURETPATH+std::string("OverworldTiles.png"));
     fairyShoot.loadFromFile             (TEXTURETPATH+std::string("fairyShoot.png"));

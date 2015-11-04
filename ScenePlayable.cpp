@@ -8,19 +8,6 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
     _hud(*w)
 {
     _sceneIniCoord = sf::Vector2f(FLT_MAX,FLT_MAX);
-
-    _life = new StatsBar(10, Resources::heart,Resources::halfHeart,Resources::emptyHeart);
-    _life->setSize(sf::Vector2f(250, 50.0));
-    _life->setPosition(0,0);
-
-    _rupias = new StatsBar(10, Resources::heart,Resources::halfHeart,Resources::emptyHeart);
-    _rupias->setSize(sf::Vector2f(100, 25.0));
-    _rupias->setPosition(0,0);
-
-    _space = new ImgButton(Resources::emptyHeart,Resources::emptyHeart);
-    _space->setSize(sf::Vector2f(0, w->getView().getSize().y-110.0));
-    _space->setPosition(200,0);
-
     //setting the menu
     _menuLayout = new VLayout;
     _menuLayout->setSpace(25);
@@ -40,9 +27,32 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
     _guiLayout->setCentered(false);
     _guiLayout->setPosition(0,0);
     _guiLayout->setSpace(10);
+
+    _life = new StatsBar(10, Resources::heart,Resources::halfHeart,Resources::emptyHeart);
+    _life->setSize(sf::Vector2f(250, 50.0));
+    _life->setPosition(0,0);
+
+    _space = new ImgButton(Resources::emptyHeart,Resources::emptyHeart);
+    _space->setSize(sf::Vector2f(0, 330));
+    _space->setPosition(200,0);
+    //ok there is no space widget, get over it!
+
+    _items = new HLayout(_guiLayout);
+    _qttyKeys = new Label("0", Resources::pauseMenuFont, _items);
+    _qttyRupias = new Label("0", Resources::pauseMenuFont, _items);
+    _key = new ImgButton(Resources::key, Resources::key, _items);
+    _key->setSize(50,50);
+    _rupia = new ImgButton(Resources::rupia, Resources::rupia, _items);
+    _rupia->setSize(50,50);
+    _items->setSpace(20);
+    _items->add(_qttyRupias);
+    _items->add(_rupia);
+    _items->add(_qttyKeys);
+    _items->add(_key);
+
     _guiLayout->add(_life);
     _guiLayout->add(_space);
-    _guiLayout->add(_rupias);
+    _guiLayout->add(_items);
 
     _hud.setLayout(_guiLayout);
     _hud.setPosition(0,0);
@@ -535,4 +545,7 @@ void ScenePlayable::updateHUD() {
     _life->setMaxHP(_player->getMaxHp());
     _life->setActualHP(total);
     //if( total < 0) kill both
+
+    _qttyKeys->setText(std::to_string(_player->keys()));
+    _qttyRupias->setText(std::to_string(_player->rupias()));
 }
