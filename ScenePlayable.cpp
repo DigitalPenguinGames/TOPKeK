@@ -40,9 +40,9 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
     _items = new HLayout(_guiLayout);
     _qttyKeys = new Label("0", Resources::pauseMenuFont, _items);
     _qttyRupias = new Label("0", Resources::pauseMenuFont, _items);
-    _key = new ImgButton(Resources::heart, Resources::heart, _items);
+    _key = new ImgButton(Resources::key, Resources::key, _items);
     _key->setSize(50,50);
-    _rupia = new ImgButton(Resources::heart, Resources::heart, _items);
+    _rupia = new ImgButton(Resources::rupia, Resources::rupia, _items);
     _rupia->setSize(50,50);
     _items->setSpace(20);
     _items->add(_qttyRupias);
@@ -522,8 +522,8 @@ void ScenePlayable::updateHUD() {
     float total = _player->getHp()+_fairy->getHp();
     _life->setMaxHP(_player->getMaxHp());
     _life->setActualHP(total);
-
-    _qttyKeys->setText(std::to_string(int(_player->getHp())));
-    _qttyRupias->setText(std::to_string(int(_player->getHp())));
     //if( total < 0) kill both
+
+    _qttyKeys->setText(std::to_string(_player->keys()));
+    _qttyRupias->setText(std::to_string(_player->rupias()));
 }
