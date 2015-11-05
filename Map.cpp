@@ -7,6 +7,12 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
     _mapIniCoord = sf::Vector2f(FLT_MAX,FLT_MAX);
     std::istringstream des(description);
     int width, height;
+    const int mapInitialGid = 1;                                     // GID HARDCODEDS
+    const int propOverWorldInitialGid = mapInitialGid + 144;         // 144 Diferent mapTiles
+    const int dungeonDoorsInitialGid = propOverWorldInitialGid + 12; // 12 different props
+    const int enemyInitialGid = dungeonDoorsInitialGid + 12;         // 12 different doors
+                                                                     // 100 different enemies
+    std::vector<std::pair<enemyType,sf::Vector2f> > enemies;
     des >> _mapType;
     switch (_mapType) {
         case sceneTypes::outside: // outside
@@ -35,7 +41,7 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
             for (int i = 0; i < numberOfProps; ++i) {
                 float x,y,gid;
                 des >> gid >> x >> y;
-                _scene->addProp( new Prop(gid,sf::Vector2f(x,y)) );
+                _scene->addProp( new Prop(gid,sf::Vector2f(x,y)) ); // GID HARDCODED
             }
         }
         else if ("Exits" == objectGroup) {
@@ -74,9 +80,10 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
                         break;}
                     case sceneTypes::lightedDungeon:
                     case sceneTypes::dungeon: {
-                        int gid;
+
+                        float gid;
                         des >> gid;
-                        gid -= 157; // The first horizontal door is the 157;
+                        gid -= dungeonDoorsInitialGid; // The first horizontal door is the 157; // GID HARDCODED
                         
 
                         if (gid < 6) y -= 20-16; // The map is shifting all the objects 16 to the top
@@ -106,8 +113,8 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
                         }
                         sC.setBounds(sf::FloatRect(x+localOffset.x,y+localOffset.y,TILESIZE,TILESIZE));
                         sC.setDirection(dir);
-                        DungeonDoor door(gid+157,sf::Vector2f(x,y));
-                        _dungeonDoors.push_back(std::make_pair(new DungeonDoor(gid+157,sf::Vector2f(x,y)), dir));
+                        // DungeonDoor door(gid+157,sf::Vector2f(x,y));
+                        _dungeonDoors.push_back(std::make_pair(new DungeonDoor(gid+dungeonDoorsInitialGid,sf::Vector2f(x,y)), dir)); // GID HARDCODED
                         break;}
                     default:
                         std::cout << "Exit in a unspecified type os scene WOT" << std::endl;
@@ -127,6 +134,16 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
                 _scene->addProp( new Speaker(gid,sf::Vector2f(x,y), textKey) );
             }
         }
+        else if ("Enemies" == objectGroup) {
+            int numberOfEnemies;
+            des >> numberOfEnemies;
+            for (int i = 0; i < numberOfEnemies; ++i) {
+                float x,y,gid;
+                std::string textKey;
+                des >> gid >> x >> y;
+                enemies.push_back(std::make_pair(enemyType(gid-enemyInitialGid), sf::Vector2f(x,y))); 
+            }
+        }
         else {
             // I crai evritime
             std::cout << "Broken as fuck :/ We dont have a object group that is called (\"" << objectGroup << "\")" << std::endl;
@@ -134,9 +151,9 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
         }
     } 
 
-    std::vector<std::pair<enemyType,sf::Vector2f> > enemies;
-    enemies.push_back(std::make_pair(enemyType::octorok, sf::Vector2f(70,70)));
-    enemies.push_back(std::make_pair(enemyType::penguin, sf::Vector2f(90,70)));
+    
+    // enemies.push_back(std::make_pair(enemyType::octorok, sf::Vector2f(70,70)));
+    // enemies.push_back(std::make_pair(enemyType::penguin, sf::Vector2f(90,70)));
     _scene->setEnemies(enemies);
 }
 

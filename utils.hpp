@@ -183,6 +183,7 @@ enum objectType {
 
 enum enemyType {
   octorok,
+  ortorokBlue,
   penguin,
   enemyTypeQtty
 };

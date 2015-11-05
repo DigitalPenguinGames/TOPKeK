@@ -91,6 +91,16 @@ def main():
 					textkey = obj.find("properties").find('property').get('textkey')
 					output += gid + " " + x + " " + y + " " + textkey + " "
 
+			elif (shit.get('name') == 'Enemies'):
+				output += "Enemies "
+				numberOfEnemies = len(shit.findall('object'))
+				output += str(numberOfEnemies) + " "
+				for prop in shit.findall('object'):
+					gid = prop.get('gid')
+					x = prop.get('x')
+					y = prop.get('y')
+					output += gid + " " + x + " " + y  + " "
+
 		output += "finish "
 
 		name = c
