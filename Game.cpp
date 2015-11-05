@@ -176,9 +176,9 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             // All of this is not needed with the second RenderTexture because his sceneIniCoord will be (0,0)
 
             currentScene->setPlayer(lastScene->getPlayer());
-            _currentScene->init();
-            
             currentScene->getPlayer()->setPosition(sf::Vector2f(sC->_nextScenePos.x*TILESIZE, sC->_nextScenePos.y*TILESIZE));
+            
+            _currentScene->init();
             currentScene->render(&rt2);
 
             ppos = _window.mapCoordsToPixel(currentScene->getPlayer()->getPositionTransition(),*currentScene->getPtrView());
