@@ -26,7 +26,7 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
     _guiLayout = new VLayout;
     _guiLayout->setCentered(false);
     _guiLayout->setPosition(0,0);
-    _guiLayout->setSpace(10);
+    _guiLayout->setSpace(1);
 
     _life = new StatsBar(10, Resources::heart,Resources::halfHeart,Resources::emptyHeart);
     _life->setSize(sf::Vector2f(250, 50.0));
