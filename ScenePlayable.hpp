@@ -92,7 +92,7 @@ protected:
     void updateHUD();
 
     void renderSorted(sf::RenderTarget* target, std::vector<Collisionable*>& cols);
-    void centerView();
+    void centerView(bool hard);
 
 private:
     void display();

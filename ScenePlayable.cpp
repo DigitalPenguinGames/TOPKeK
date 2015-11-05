@@ -71,11 +71,15 @@ void ScenePlayable::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
     _player->setMap(&_map);
     _life->setMaxHP(_player->getMaxHp());
     initEnemies(sceneIniCoord);
-	_status = status::running;
-    if (sceneIniCoord == _sceneIniCoord) return;
+    _status = status::running;
+    if (sceneIniCoord == _sceneIniCoord) {
+        centerView(true);
+        return;
+    }
     _sceneIniCoord = sceneIniCoord;
     _map.init(_sceneIniCoord);
     initView(sf::Vector2i(WINDOWRATIOX,WINDOWRATIOY));
+    centerView(true);
 }
 
 sf::Vector2f ScenePlayable::getSceneCoord() {
@@ -114,7 +118,7 @@ void ScenePlayable::renderSorted(sf::RenderTarget* target, std::vector<Collision
     }
 }
 
-void ScenePlayable::centerView() {
+void ScenePlayable::centerView(bool hard) {
     sf::Vector2f finalPos;
     sf::Vector2f viewSize = _view.getSize();
     sf::Vector2f mapSize = sf::Vector2f(getMapSize().x * TILESIZE, getMapSize().y * TILESIZE);
@@ -130,14 +134,16 @@ void ScenePlayable::centerView() {
     if (mapSize.y < viewSize.y) finalPos.y = mapSize.y/2 + _sceneIniCoord.y;
     else finalPos.y = std::max(viewSize.y/2 + _sceneIniCoord.y, std::min(playerPos.y, _sceneIniCoord.y + mapSize.y - viewSize.y/2));
 
-    sf::Vector2f movement = (finalPos - _view.getCenter())*(1.0f/FRAMERATE);
+    sf::Vector2f movement;
+    if (hard) movement = finalPos - _view.getCenter();
+    else movement = (finalPos - _view.getCenter())*(1.0f/FRAMERATE);
     _view.setCenter(_view.getCenter()+movement);
 
 }
 
 
 void ScenePlayable::display() {
-    centerView();
+    centerView(false);
     _window->clear();
     bool drawMenu = false;
     switch(_status){
@@ -173,7 +179,11 @@ void ScenePlayable::processInput() {
                 TextBoxManager::processEvent(event);
                 _menu.processEvent(event);
                 if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
-                if(event.type == sf::Event::MouseMoved) {
+                else if (event.type == sf::Event::Resized) {
+                    initView(sf::Vector2i(WINDOWRATIOX,WINDOWRATIOY));
+                    centerView(true);
+                }
+                else if (event.type == sf::Event::MouseMoved) {
                     _window->setMouseCursorVisible(true);
                     if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
                     _buttonSelected = -1;
@@ -226,7 +236,17 @@ void ScenePlayable::processInput() {
             while (_window->pollEvent(event)) {
                 TextBoxManager::processEvent(event);
                 if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
-                if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E){
+                else if (event.type == sf::Event::Resized) {
+                    initView(sf::Vector2i(WINDOWRATIOX,WINDOWRATIOY));
+                    centerView(true);
+                }
+                else if (event.type == sf::Event::LostFocus) {
+                    _elapsedPress = 0;
+                    _status = status::onMenu;
+                    _selectedLayout = _menuLayout;
+                    _buttonSelected = 0;
+                }
+                else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E){
                     if(!_player->speaking()) _player->setSpeaking(true);
                     else _player->setSpeaking(false);
                 }
