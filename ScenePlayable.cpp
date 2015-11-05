@@ -179,11 +179,11 @@ void ScenePlayable::processInput() {
                 TextBoxManager::processEvent(event);
                 _menu.processEvent(event);
                 if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
-                if (event.type == sf::Event::Resized) {
+                else if (event.type == sf::Event::Resized) {
                     initView(sf::Vector2i(WINDOWRATIOX,WINDOWRATIOY));
                     centerView(true);
                 }
-                if (event.type == sf::Event::MouseMoved) {
+                else if (event.type == sf::Event::MouseMoved) {
                     _window->setMouseCursorVisible(true);
                     if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
                     _buttonSelected = -1;
@@ -236,11 +236,17 @@ void ScenePlayable::processInput() {
             while (_window->pollEvent(event)) {
                 TextBoxManager::processEvent(event);
                 if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
-                if (event.type == sf::Event::Resized) {
+                else if (event.type == sf::Event::Resized) {
                     initView(sf::Vector2i(WINDOWRATIOX,WINDOWRATIOY));
                     centerView(true);
                 }
-                if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E){
+                else if (event.type == sf::Event::LostFocus) {
+                    _elapsedPress = 0;
+                    _status = status::onMenu;
+                    _selectedLayout = _menuLayout;
+                    _buttonSelected = 0;
+                }
+                else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E){
                     if(!_player->speaking()) _player->setSpeaking(true);
                     else _player->setSpeaking(false);
                 }
