@@ -104,8 +104,12 @@ void Scene::initView(sf::Vector2i windowSize) {
     max.x = 1.f - min.x*2;
     max.y = 1.f - min.y*2;
 
+    sf::Vector2f center = _view.getCenter();
+
     _view.reset(sf::FloatRect(0,0,windowSize.x,windowSize.y));
     _view.setViewport(sf::FloatRect(min.x,min.y,max.x,max.y));
+
+    _view.setCenter(center);
 }
 
 void Scene::changeScene(SceneChanger *sC) {
