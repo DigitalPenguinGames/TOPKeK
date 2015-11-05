@@ -24,6 +24,7 @@ protected:
     sf::RenderWindow* _window;
     sf::View _view;
     std::string _sceneName;
+    bool _focus;
 
     virtual void processInput();
     virtual void update(float deltaTime);
@@ -37,6 +38,7 @@ private:
     bool _killed;
     sceneTypes _sceneType;
     SceneChanger* _nextSceneChanger;
+    void withoutFocus();
 
 };
 

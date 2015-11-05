@@ -183,6 +183,7 @@ void ScenePlayable::processInput() {
                     initView(sf::Vector2i(WINDOWRATIOX,WINDOWRATIOY));
                     centerView(true);
                 }
+                else if (event.type == sf::Event::LostFocus) _focus = false;
                 else if (event.type == sf::Event::MouseMoved) {
                     _window->setMouseCursorVisible(true);
                     if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
@@ -241,6 +242,7 @@ void ScenePlayable::processInput() {
                     centerView(true);
                 }
                 else if (event.type == sf::Event::LostFocus) {
+                    _focus = false;
                     _elapsedPress = 0;
                     _status = status::onMenu;
                     _selectedLayout = _menuLayout;

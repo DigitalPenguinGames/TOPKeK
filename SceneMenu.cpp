@@ -52,11 +52,12 @@ void SceneMenu::processInput() {
     while (_window->pollEvent(event)) {
         _menu.processEvent(event);
         if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
-        if(event.type == sf::Event::MouseMoved) {
+        else if (event.type == sf::Event::MouseMoved) {
             _window->setMouseCursorVisible(true);
             if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
             _buttonSelected = -1;
         }
+        else if (event.type == sf::Event::LostFocus) _focus = false;
     }
     InputManager::update();
 

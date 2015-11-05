@@ -5,8 +5,10 @@ Scene::Scene(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string name) :
     _game(g), 
     _window(w),
     _sceneName(name), 
+    _focus(true),
     _killed(false),
-    _sceneType(sT) {
+    _sceneType(sT)
+     {
 }
 
 Scene::~Scene(){}
@@ -22,7 +24,8 @@ void Scene::run() {
     sf::Time timePerFrame = sf::seconds(1.f/FRAMERATE);
 
     while (_window->isOpen()) {
-        processInput();
+        if (_focus) processInput();
+        else withoutFocus();
         timeSinceLastUpdate = clock.restart();
         while (timeSinceLastUpdate > timePerFrame) {
             timeSinceLastUpdate -= timePerFrame;
@@ -115,4 +118,15 @@ void Scene::initView(sf::Vector2i windowSize) {
 void Scene::changeScene(SceneChanger *sC) {
     _killed = true;
     _nextSceneChanger = sC;
+}
+
+void Scene::withoutFocus() {
+    sf::Event event;
+    while (_window->pollEvent(event)) {
+        if (event.type != sf::Event::GainedFocus) continue;
+        else {
+            _focus = true;
+            break;
+        }
+    }
 }
