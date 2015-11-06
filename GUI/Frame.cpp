@@ -1,6 +1,6 @@
 #include "Frame.hpp"
 
-Frame::Frame(sf::RenderWindow& window) : Container(nullptr), _window(window) {}
+Frame::Frame(sf::RenderWindow& window, const sf::View& view) : Container(nullptr), _window(window), _view(view) {}
 
 Frame::~Frame() {}
 
@@ -20,8 +20,8 @@ bool Frame::processEvent(const sf::Event& event) {
 
 
 sf::Vector2f Frame::getSize()const {
-    sf::Vector2u size = _window.getSize();
-    return sf::Vector2f(size.x,size.y);
+    // sf::Vector2u size = sf::Vector2u(_view.getSize());
+    return _view.getSize();
 }
 
 bool Frame::processEvent(const sf::Event& event,const sf::Vector2f& parent_pos) {

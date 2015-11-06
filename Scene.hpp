@@ -30,7 +30,7 @@ protected:
     virtual void update(float deltaTime);
     void render();
     virtual void render(sf::RenderTarget* target);
-    void initView(sf::Vector2i windowSize);
+    void initView(sf::View* view, sf::Vector2i windowSize);
     virtual void changeScene(SceneChanger *sC);
 
     virtual void display();

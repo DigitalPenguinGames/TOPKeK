@@ -24,6 +24,9 @@
 #define DUNGEONSIZEX 256
 #define DUNGEONSIZEY 176
 
+#define UIRATIOX 1366
+#define UIRATIOY 768
+
 #ifdef _WIN32
 #define NOMINMAX
 #define M_PI 3.14159
