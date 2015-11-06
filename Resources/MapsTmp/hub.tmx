@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="104">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="105">
  <tileset firstgid="1" name="OverWorld" tilewidth="16" tileheight="16" spacing="1" margin="1">
   <image source="../Textures/OverworldTiles.png" width="307" height="137"/>
   <terraintypes>
@@ -148,13 +148,6 @@
     <property name="y" value="5"/>
    </properties>
   </object>
-  <object id="24" name="rigthExit" gid="23" x="304" y="96" width="16" height="16">
-   <properties>
-    <property name="scene" value="ini3"/>
-    <property name="x" value="0"/>
-    <property name="y" value="6"/>
-   </properties>
-  </object>
   <object id="25" name="topExit" gid="23" x="112" y="16" width="16" height="16">
    <properties>
     <property name="scene" value="ini4"/>
@@ -177,5 +170,6 @@
   <object id="101" gid="169" x="68.6667" y="266"/>
   <object id="102" gid="171" x="194.667" y="50.6667"/>
   <object id="103" gid="171" x="163.333" y="265.333"/>
+  <object id="104" gid="171" x="456" y="266"/>
  </objectgroup>
 </map>

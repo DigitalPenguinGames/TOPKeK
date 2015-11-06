@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="11" tilewidth="16" tileheight="16" nextobjectid="40">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="11" tilewidth="16" tileheight="16" nextobjectid="49">
  <tileset firstgid="1" name="OverWorld" tilewidth="16" tileheight="16" spacing="1" margin="1">
   <image source="../Textures/OverworldTiles.png" width="307" height="137"/>
  </tileset>
@@ -11,6 +11,9 @@
  </tileset>
  <tileset firstgid="163" name="dungeonDoorsVer" tilewidth="20" tileheight="32">
   <image source="../Textures/dungeonDoorsVer.png" width="40" height="96"/>
+ </tileset>
+ <tileset firstgid="169" name="Enemies" tilewidth="16" tileheight="16" spacing="1" margin="1">
+  <image source="../Textures/EnemiesToMap.png" width="171" height="171"/>
  </tileset>
  <imagelayer name="Image Layer 1">
   <image source="../Textures/dungeon.png"/>
@@ -34,33 +37,24 @@
 </data>
  </layer>
  <objectgroup name="Exits" opacity="0.97">
-  <object id="33" name="bot" gid="158" x="112" y="164" width="32" height="20">
-   <properties>
-    <property name="scene" value="hub"/>
-    <property name="x" value="4"/>
-    <property name="y" value="2"/>
-   </properties>
-  </object>
-  <object id="35" name="top" gid="157" x="112" y="32" width="32" height="20">
-   <properties>
-    <property name="scene" value="inside1"/>
-    <property name="x" value="7.5"/>
-    <property name="y" value="10"/>
-   </properties>
-  </object>
   <object id="37" name="right" gid="163" x="224" y="104" width="20" height="32">
    <properties>
-    <property name="scene" value="inside1"/>
+    <property name="scene" value="pasadizoDer"/>
     <property name="x" value="0"/>
     <property name="y" value="5"/>
    </properties>
   </object>
-  <object id="39" name="left" gid="164" x="12" y="104" width="20" height="32">
+  <object id="40" name="bot" gid="162" x="112" y="164" width="32" height="20">
    <properties>
-    <property name="scene" value="inside1"/>
-    <property name="x" value="15"/>
-    <property name="y" value="5"/>
+    <property name="scene" value="test"/>
+    <property name="x" value="7"/>
+    <property name="y" value="21"/>
    </properties>
   </object>
+ </objectgroup>
+ <objectgroup name="Enemies">
+  <object id="46" gid="171" x="48" y="128" width="16" height="16"/>
+  <object id="47" gid="171" x="192" y="128" width="16" height="16"/>
+  <object id="48" gid="171" x="123.333" y="87.3333" width="16" height="16"/>
  </objectgroup>
 </map>

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="11" tilewidth="16" tileheight="16" nextobjectid="49">
- <tileset firstgid="1" name="OverWorld" tilewidth="16" tileheight="16" spacing="1" margin="1" tilecount="144">
+ <tileset firstgid="1" name="OverWorld" tilewidth="16" tileheight="16" spacing="1" margin="1">
   <image source="../Textures/OverworldTiles.png" width="307" height="137"/>
  </tileset>
- <tileset firstgid="145" name="OverworldObjects" tilewidth="48" tileheight="32" spacing="1" margin="1" tilecount="12">
+ <tileset firstgid="145" name="OverworldObjects" tilewidth="48" tileheight="32" spacing="1" margin="1">
   <image source="../Textures/OverworldObjects.png" width="148" height="133"/>
  </tileset>
- <tileset firstgid="157" name="dungeonDoorsHor" tilewidth="32" tileheight="20" tilecount="6">
+ <tileset firstgid="157" name="dungeonDoorsHor" tilewidth="32" tileheight="20">
   <image source="../Textures/dungeonDoorsHor.png" width="64" height="60"/>
  </tileset>
- <tileset firstgid="163" name="dungeonDoorsVer" tilewidth="20" tileheight="32" tilecount="6">
+ <tileset firstgid="163" name="dungeonDoorsVer" tilewidth="20" tileheight="32">
   <image source="../Textures/dungeonDoorsVer.png" width="40" height="96"/>
  </tileset>
- <tileset firstgid="169" name="Enemies" tilewidth="16" tileheight="16" spacing="1" margin="1" tilecount="100">
+ <tileset firstgid="169" name="Enemies" tilewidth="16" tileheight="16" spacing="1" margin="1">
   <image source="../Textures/EnemiesToMap.png" width="171" height="171"/>
  </tileset>
  <imagelayer name="Image Layer 1">

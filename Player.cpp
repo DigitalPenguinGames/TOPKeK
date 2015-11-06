@@ -9,7 +9,7 @@
 
 Player::Player(){
 
-    _sprite.setPosition(70,70); // Hardcoded
+    _sprite.setPosition(120,70); // Hardcoded
     
     _dir = directions::down;
     _action = linkActions::move;
