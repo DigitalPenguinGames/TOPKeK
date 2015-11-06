@@ -4,9 +4,8 @@ Frame::Frame(sf::RenderWindow& window, const sf::View& view) : Container(nullptr
 
 Frame::~Frame() {}
 
-Frame & Frame::operator=(const Frame & original) {
-	*this = original;
-	return *this;
+Frame& Frame::operator=(Frame&& original) {
+	return original;
 }
 
 void Frame::draw() {
