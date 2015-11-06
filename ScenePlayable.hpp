@@ -65,6 +65,7 @@ protected:
     Fairy* _fairy;
     Player* _player;
 
+    sf::View _viewUI;
     status::gameStatus _status;
     Frame _menu;
     float _elapsedPress;
@@ -96,7 +97,9 @@ protected:
 
 private:
     void display();
-    void processInput();
+	void processInput();
+	void initMenu();
+	void resizing();
 
 };
 

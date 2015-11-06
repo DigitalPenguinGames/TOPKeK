@@ -1,12 +1,12 @@
 #include "SceneMenu.hpp"
 #include "Game.hpp"
 
-SceneMenu::SceneMenu(Game* g, sf::RenderWindow* w) : Scene(g,w,sceneTypes::menu, "menu"),_menu(*w) {
+SceneMenu::SceneMenu(Game* g, sf::RenderWindow* w) : Scene(g,w,sceneTypes::menu, "menu"),_menu(*w,w->getDefaultView()) {
     _game = g;
     
 
     sf::Vector2u targetResolution(640,360);
-    initView(sf::Vector2i(targetResolution));
+    initView(&_view, sf::Vector2i(targetResolution));
     sf::Vector2u displayResolution(_view.getSize());
 
     _menuLayout = new VLayout;

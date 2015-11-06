@@ -19,8 +19,9 @@ public:
 
     using FuncType = std::function<void(const sf::Event& event,Button& self)>;
 
-    Frame(sf::RenderWindow& window);
+    Frame(sf::RenderWindow& window, const sf::View& view);
     virtual ~Frame();
+	Frame& operator= (const Frame& original);
     void processEvents();
 
     bool processEvent(const sf::Event& event);
@@ -30,6 +31,7 @@ public:
 private:
 
     sf::RenderWindow& _window;
+    const sf::View& _view;
 
     virtual bool processEvent(const sf::Event& event,
                               const sf::Vector2f& parent_pos)override;
