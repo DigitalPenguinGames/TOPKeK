@@ -582,6 +582,8 @@ void ScenePlayable::initEnemies(sf::Vector2f pos) {
 
 void ScenePlayable::updateHUD() {
     float total = _player->getHp()+_fairy->getHp();
+    _player->setHp(total);
+    _fairy->setHp(0);
     _life->setMaxHP(_player->getMaxHp());
     _life->setActualHP(total);
     //if( total < 0) kill both

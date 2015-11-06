@@ -5,7 +5,7 @@
 Octorok::Octorok(ScenePlayable* scene, Map* map, sf::Vector2f pos) : Enemy(scene, map,pos) {
     _sprite.setTexture(Resources::overEnemies);
     _description = Resources::descriptions[octorokDescriptions];
-    _dir = directions::down;
+    _dir = directions(std::rand()%4);
     _action = linkActions::move;
 
     _elapsedWalking = 0.5;

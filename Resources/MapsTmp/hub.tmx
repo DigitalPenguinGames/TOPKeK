@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="98">
- <tileset firstgid="1" name="OverWorld" tilewidth="16" tileheight="16" spacing="1" margin="1" tilecount="144">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="104">
+ <tileset firstgid="1" name="OverWorld" tilewidth="16" tileheight="16" spacing="1" margin="1">
   <image source="../Textures/OverworldTiles.png" width="307" height="137"/>
   <terraintypes>
    <terrain name="Green Walls" tile="61"/>
@@ -29,8 +29,17 @@
   <tile id="134" terrain="1,1,2,1"/>
   <tile id="135" terrain="1,1,1,2"/>
  </tileset>
- <tileset firstgid="145" name="OverworldObjects" tilewidth="48" tileheight="32" spacing="1" margin="1" tilecount="12">
+ <tileset firstgid="145" name="OverworldObjects" tilewidth="48" tileheight="32" spacing="1" margin="1">
   <image source="../Textures/OverworldObjects.png" width="148" height="133"/>
+ </tileset>
+ <tileset firstgid="157" name="dungeonDoorsHor" tilewidth="32" tileheight="20">
+  <image source="../Textures/dungeonDoorsHor.png" width="64" height="60"/>
+ </tileset>
+ <tileset firstgid="163" name="dungeonDoorsVer" tilewidth="20" tileheight="32">
+  <image source="../Textures/dungeonDoorsVer.png" width="40" height="96"/>
+ </tileset>
+ <tileset firstgid="169" name="Enemies" tilewidth="16" tileheight="16" spacing="1" margin="1">
+  <image source="../Textures/EnemiesToMap.png" width="171" height="171"/>
  </tileset>
  <layer name="Tile Layer 1" width="20" height="20">
   <properties>
@@ -160,5 +169,13 @@
     <property name="y" value="10"/>
    </properties>
   </object>
+ </objectgroup>
+ <objectgroup name="Enemies">
+  <object id="98" gid="169" x="257.333" y="39.3333"/>
+  <object id="99" gid="169" x="150.667" y="79.3333"/>
+  <object id="100" gid="169" x="243.333" y="280"/>
+  <object id="101" gid="169" x="68.6667" y="266"/>
+  <object id="102" gid="171" x="194.667" y="50.6667"/>
+  <object id="103" gid="171" x="163.333" y="265.333"/>
  </objectgroup>
 </map>

@@ -3,7 +3,7 @@
 EnemyPenguin::EnemyPenguin(ScenePlayable* scene, Map* map, sf::Vector2f pos) : Enemy(scene, map,pos) {
 
     _description = Resources::descriptions[penguinEnemyDescription];
-    _dir = directions::down;
+    _dir = directions(std::rand()%4);
     _action = linkActions::move;
 
     _elapsedWalking = 0.2;

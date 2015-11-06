@@ -67,8 +67,8 @@ void Enemy::setMap(Map* map) {
 
 void Enemy::getHit(float much, sf::Vector2f) {
     if (_hitedTimer > 0) return;
-    Resources::cInvert.setParameter("Time", 1.5);
-    _hitedTimer = 1.5; // One second of invulneravility;
+    Resources::cInvert.setParameter("Time", 1);
+    _hitedTimer = 1; // One second of invulneravility;
     _hp -= much;
     _dead = _hp <= 0;
     std::cout << "it hurts " << _hp << std::endl;

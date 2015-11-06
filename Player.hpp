@@ -33,6 +33,7 @@ public:
     bool isAlive();
     sf::Vector2f getBotPosition();
     float getHp();
+    void setHp(float hp);
     float getMaxHp();
 
     void getHit(float much, sf::Vector2f from);

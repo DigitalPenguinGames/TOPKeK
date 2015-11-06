@@ -109,6 +109,10 @@ sf::Vector2f Player::getBotPosition() {
 float Player::getHp() {
     return _hp;
 }
+
+void Player::setHp(float hp) {
+    _hp = hp;
+}
     
 float Player::getMaxHp() {
     return _maxHp;
@@ -194,7 +198,7 @@ sf::IntRect Player::getGlobalWalkBounds() {
 
 
 float Player::getSwordDamage() {
-    return 2; //SWORDDAMAGE sword.getDamage()
+    return 4; //SWORDDAMAGE sword.getDamage()
 }
 
 bool Player::isAttacking() {
