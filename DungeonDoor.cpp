@@ -75,7 +75,8 @@ void DungeonDoor::setIniCoord(sf::Vector2f coord) {
 }
 
 bool DungeonDoor::isOpened() {
-    return (_gid >= 157 and (_gid-157)%6 < 2) || _gid != 0;
+	if (_gid == 0) return false;
+    return (_gid-157)%6 < 2;
 }
 
 bool DungeonDoor::needKey() {

@@ -4,7 +4,7 @@ Background::Background(sf::Vector2f pos) {
     _sprite.setTexture(Resources::dungeon);
     _sprite.setPosition(pos);
     _decoration.setPosition(pos);
-    int aux = rand()%2;
+    int aux = rand()%5;
     if (aux < 2) {
         _dec = true;
         switch (aux) {
