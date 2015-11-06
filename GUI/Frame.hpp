@@ -21,6 +21,7 @@ public:
 
     Frame(sf::RenderWindow& window, const sf::View& view);
     virtual ~Frame();
+	Frame& operator= (const Frame& original);
     void processEvents();
 
     bool processEvent(const sf::Event& event);

@@ -107,12 +107,34 @@ void Scene::initView(sf::View* view, sf::Vector2i windowSize) {
     max.x = 1.f - min.x*2;
     max.y = 1.f - min.y*2;
 
-    // sf::Vector2f center = view->getCenter();
-
     view->reset(sf::FloatRect(0,0,windowSize.x,windowSize.y));
     view->setViewport(sf::FloatRect(min.x,min.y,max.x,max.y));
+}
 
-    // view->setCenter(center);
+void Scene::initViewExpanded(sf::View* view, sf::Vector2i windowSize) { // when the ratio is broken, the view gets broken
+	int windowX = _window->getSize().x, windowY = _window->getSize().y;
+
+	float xr = windowX / float(windowSize.x);
+	float yr = windowY / float(windowSize.y);
+
+	float aux;
+	if (xr < yr) aux = 1 / yr;
+	else aux = 1 / xr;
+
+	xr *= aux;
+	yr *= aux;
+	sf::Vector2f min;
+
+	min.x = (1.f - yr) / 2.f;
+	min.y = (1.f - xr) / 2.f;
+
+	view->reset(sf::FloatRect(0, 0, windowSize.x*(1 + 2 * min.x), windowSize.y*(1 + 2 * min.y)));
+	view->setViewport(sf::FloatRect(0,0,1,1));
+
+	//std::cout << windowSize.x*(1 + 2 * min.x) << " " << windowSize.y*(1 + 2 * min.y) << std::endl;
+}
+
+void Scene::resizing() {
 }
 
 void Scene::changeScene(SceneChanger *sC) {
@@ -123,7 +145,8 @@ void Scene::changeScene(SceneChanger *sC) {
 void Scene::withoutFocus() {
     sf::Event event;
     while (_window->pollEvent(event)) {
-        if (event.type != sf::Event::GainedFocus) continue;
+		if (event.type == sf::Event::Resized) resizing();
+        else if (event.type != sf::Event::GainedFocus) continue;
         else {
             _focus = true;
             break;

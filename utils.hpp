@@ -24,7 +24,7 @@
 #define DUNGEONSIZEX 256
 #define DUNGEONSIZEY 176
 
-#define UIRATIOX 1366
+#define UIRATIOX 1117
 #define UIRATIOY 768
 
 #ifdef _WIN32

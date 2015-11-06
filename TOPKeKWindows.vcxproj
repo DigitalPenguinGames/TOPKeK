@@ -131,6 +131,7 @@
     <ClCompile Include="DungeonScene.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyPenguin.cpp" />
     <ClCompile Include="Fairy.cpp" />
     <ClCompile Include="FairyShoot.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="ScenePlayable.cpp" />
     <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="Speaker.cpp" />
     <ClCompile Include="StatsBar.cpp" />
     <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="TextBoxManager.cpp" />
@@ -179,6 +181,7 @@
     <ClInclude Include="DungeonScene.hpp" />
     <ClInclude Include="Effect.hpp" />
     <ClInclude Include="Enemy.hpp" />
+    <ClInclude Include="EnemyPenguin.hpp" />
     <ClInclude Include="Fairy.hpp" />
     <ClInclude Include="FairyShoot.hpp" />
     <ClInclude Include="Game.hpp" />
@@ -210,6 +213,7 @@
     <ClInclude Include="SceneMenu.hpp" />
     <ClInclude Include="ScenePlayable.hpp" />
     <ClInclude Include="SoundManager.hpp" />
+    <ClInclude Include="Speaker.hpp" />
     <ClInclude Include="StatsBar.hpp" />
     <ClInclude Include="TextBox.hpp" />
     <ClInclude Include="TextBoxManager.hpp" />

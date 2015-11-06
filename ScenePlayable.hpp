@@ -97,7 +97,9 @@ protected:
 
 private:
     void display();
-    void processInput();
+	void processInput();
+	void initMenu();
+	void resizing();
 
 };
 

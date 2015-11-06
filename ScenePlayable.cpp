@@ -72,15 +72,11 @@ void ScenePlayable::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
     _life->setMaxHP(_player->getMaxHp());
     initEnemies(sceneIniCoord);
     _status = status::running;
-    if (sceneIniCoord == _sceneIniCoord) {
-        centerView(true);
-        return;
-    }
+	resizing();
+	if (sceneIniCoord == _sceneIniCoord) return;
     _sceneIniCoord = sceneIniCoord;
     _map.init(_sceneIniCoord);
-    initView(&_view,sf::Vector2i(WINDOWRATIOX,WINDOWRATIOY));
-    initView(&_viewUI,sf::Vector2i(UIRATIOX,UIRATIOY));
-    centerView(true);
+	resizing();
 }
 
 sf::Vector2f ScenePlayable::getSceneCoord() {
@@ -139,6 +135,7 @@ void ScenePlayable::centerView(bool hard) {
     if (hard) {
         movement = finalPos - _view.getCenter();
         _viewUI.setCenter(_viewUI.getSize().x/2, _viewUI.getSize().y/2);
+		initMenu();
     }
     else movement = (finalPos - _view.getCenter())*(1.0f/FRAMERATE);
     _view.setCenter(_view.getCenter()+movement);
@@ -186,9 +183,7 @@ void ScenePlayable::processInput() {
                 _menu.processEvent(event);
                 if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
                 else if (event.type == sf::Event::Resized) {
-                    initView(&_view, sf::Vector2i(WINDOWRATIOX,WINDOWRATIOY));
-                    initView(&_viewUI,sf::Vector2i(UIRATIOX,UIRATIOY));
-                    centerView(true);
+					resizing();
                 }
                 else if (event.type == sf::Event::LostFocus) _focus = false;
                 else if (event.type == sf::Event::MouseMoved) {
@@ -245,9 +240,7 @@ void ScenePlayable::processInput() {
                 TextBoxManager::processEvent(event);
                 if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
                 else if (event.type == sf::Event::Resized) {
-                    initView(&_view, sf::Vector2i(WINDOWRATIOX,WINDOWRATIOY));
-                    initView(&_viewUI,sf::Vector2i(UIRATIOX,UIRATIOY));
-                    centerView(true);
+					resizing();
                 }
                 else if (event.type == sf::Event::LostFocus) {
                     _focus = false;
@@ -286,6 +279,23 @@ void ScenePlayable::processInput() {
             break;
     }
 
+}
+
+void ScenePlayable::initMenu() {
+	_menu = Frame(*_window, _viewUI);
+	_hud = Frame(*_window, _viewUI);
+
+	_menu.setLayout(_menuLayout);
+	_hud.setLayout(_guiLayout);
+	_hud.setPosition(0, 0);
+
+	_space->setSize(sf::Vector2f(0, _viewUI.getSize().y*0.7 - _items->getSize().y - _life->getSize().y));
+}
+
+void ScenePlayable::resizing() {
+	initView(&_view, sf::Vector2i(WINDOWRATIOX, WINDOWRATIOY));
+	initView(&_viewUI, sf::Vector2i(UIRATIOX, UIRATIOY));
+	centerView(true);
 }
 
 void ScenePlayable::setEnemies(std::vector<std::pair<enemyType, sf::Vector2f> > enemies) {

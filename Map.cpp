@@ -138,7 +138,8 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
             int numberOfEnemies;
             des >> numberOfEnemies;
             for (int i = 0; i < numberOfEnemies; ++i) {
-                float x,y,gid;
+                float x,y;
+				int gid;
                 std::string textKey;
                 des >> gid >> x >> y;
                 enemies.push_back(std::make_pair(enemyType(gid-enemyInitialGid), sf::Vector2f(x,y))); 

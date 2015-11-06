@@ -150,6 +150,12 @@
     <ClCompile Include="GUI\Widget.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyPenguin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Speaker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.hpp">
@@ -285,6 +291,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GUI\Widget.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyPenguin.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Speaker.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
