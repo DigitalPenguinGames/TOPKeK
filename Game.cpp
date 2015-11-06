@@ -314,10 +314,11 @@ void Game::initInput() {
     InputManager::bind(InputAction::action, sf::Keyboard::Space);
     InputManager::bind(InputAction::action, 0, 0);  // Xbox A
     InputManager::bind(InputAction::p1movementX, 0, sf::Joystick::Axis::X);
-    InputManager::bind(InputAction::p2movementX, 0, sf::Joystick::Axis::U);
+    InputManager::bind(InputAction::p2movementX, 1, sf::Joystick::Axis::X);
     InputManager::bind(InputAction::p1movementY, 0, sf::Joystick::Axis::Y);
-    InputManager::bind(InputAction::p2movementY, 0, sf::Joystick::Axis::V);
+    InputManager::bind(InputAction::p2movementY, 1, sf::Joystick::Axis::Y);
     InputManager::bind(InputAction::fairyAction, sf::Mouse::Left);
-    InputManager::bind(InputAction::fairyAction, 0, 5); // Xbox RB
+    // InputManager::bind(InputAction::fairyAction, 0, 5); // Xbox RB
+    InputManager::bind(InputAction::fairyAction, 1, 0);
     InputManager::bind(InputAction::pause, 0, 7); // Xbox start
 }

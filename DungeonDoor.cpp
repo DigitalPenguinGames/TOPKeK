@@ -11,9 +11,8 @@ DungeonDoor::DungeonDoor(int gid, sf::Vector2f pos) : Collisionable(pos) { // If
     	_sprite.setTexture(Resources::dungeonDoorsVertical);
     	_description = Resources::descriptions[dungeonDoorsVer];
     }
-    updateSprite();
-
-}
+    updateSprite()
+;}
 	
 DungeonDoor::~DungeonDoor() {}
 
@@ -54,6 +53,7 @@ sf::Vector2f DungeonDoor::getBotPosition() {
 void DungeonDoor::updateSprite() {
 	if (_gid == 0) {
 		_bounds = sf::IntRect(0,0,TILESIZE,TILESIZE);
+		std::cout << "penis " << _sprite.getPosition().x << " " << _sprite.getPosition().x << std::endl;
 		return;
 	}
 
@@ -75,7 +75,7 @@ void DungeonDoor::setIniCoord(sf::Vector2f coord) {
 }
 
 bool DungeonDoor::isOpened() {
-    return (_gid-157)%6 < 2;
+    return (_gid >= 157 and (_gid-157)%6 < 2) || _gid != 0;
 }
 
 bool DungeonDoor::needKey() {
