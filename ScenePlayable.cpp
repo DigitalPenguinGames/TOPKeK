@@ -487,41 +487,56 @@ void ScenePlayable::update(float deltaTime) {
 
     // Are all the shits alive?
     {
-        for (auto it = _enemies.begin(); it != _enemies.end(); ++it) {
-            if (!(*it)->isAlive()) {
-                delete (*it);
-                it = _enemies.erase(it);
-                --it;
-            }
-        }
-        for (auto it = _enemyWeapons.begin(); it != _enemyWeapons.end(); ++it) {
-            if (!(*it)->isAlive()) {
-                delete (*it);
-                it = _enemyWeapons.erase(it);
-                --it;
-            }
-        }
-        for (auto it = _allyWeapons.begin(); it != _allyWeapons.end(); ++it) {
-            if (!(*it)->isAlive()) {
-                delete (*it);
-                it = _allyWeapons.erase(it);
-                --it;
-            }
-        }
-        for (auto it = _forAllWeapons.begin(); it != _forAllWeapons.end(); ++it) {
-            if (!(*it)->isAlive()) {
-                delete (*it);
-                it = _forAllWeapons.erase(it);
-                --it;
-            }
-        }
-        for (auto it = _objects.begin(); it != _objects.end(); ++it) {
-            if (!(*it)->isAlive()) {
-                delete (*it);
-                it = _objects.erase(it);
-                --it;
-            }
-        }
+		{
+			auto it = _enemies.begin();
+			while (it != _enemies.end()) {
+				if (!(*it)->isAlive()) {
+					delete (*it);
+					it = _enemies.erase(it);
+				}
+				else ++it;
+			}
+		}
+		{
+			auto it = _enemyWeapons.begin();
+			while (it != _enemyWeapons.end()) {
+				if (!(*it)->isAlive()) {
+					delete (*it);
+					it = _enemyWeapons.erase(it);
+				}
+				else ++it;
+			}
+		}
+		{
+			auto it = _allyWeapons.begin();
+			while (it != _allyWeapons.end()) {
+				if (!(*it)->isAlive()) {
+					delete (*it);
+					it = _allyWeapons.erase(it);
+				}
+				else ++it;
+			}
+		}
+		{
+			auto it = _forAllWeapons.begin();
+			while (it != _forAllWeapons.end()) {
+				if (!(*it)->isAlive()) {
+					delete (*it);
+					it = _forAllWeapons.erase(it);
+				}
+				else ++it;
+			}
+		} 
+		{
+			auto it = _objects.begin();
+			while (it != _objects.end()) {
+				if (!(*it)->isAlive()) {
+					delete (*it);
+					it = _objects.erase(it);
+				}
+				else ++it;
+			}
+		}
         // Objects (rupies, shit)
     }
 
