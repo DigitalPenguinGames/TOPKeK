@@ -533,7 +533,7 @@ void ScenePlayable::render(sf::RenderTarget* target) {
     _map.draw(target);
     // Drawing the dinamic things
     std::vector<Collisionable*> collisionables;
-    collisionables.push_back(_player.get());
+    collisionables.push_back(_player);
     collisionables.push_back(_fairy);
     for (auto it = _enemies.begin(); it != _enemies.end(); ++it) collisionables.push_back(*it);
     for (auto it = _enemyWeapons.begin(); it != _enemyWeapons.end(); ++it) collisionables.push_back(*it);
