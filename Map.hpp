@@ -30,7 +30,7 @@ private:
     ScenePlayable* _scene;
     std::vector<std::vector<int> > _premap;
     std::vector<std::vector<Tile> > _map; // If sceneType == outside
-    Background* _background;               // If sceneType == dungeon
+    std::unique_ptr<Background> _background;               // If sceneType == dungeon
     std::vector<SceneChanger> _sceneChangers;
     sf::Vector2f _mapIniCoord;
     int _mapType;

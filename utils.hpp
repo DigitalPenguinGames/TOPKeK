@@ -41,6 +41,7 @@
 
 #include <map>
 #include <list>
+#include <memory>
 #include <queue> // priority queue
 #include <string>
 #include <iostream>
