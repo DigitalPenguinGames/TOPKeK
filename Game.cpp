@@ -179,6 +179,9 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             currentScene->getPlayer()->setPosition(sf::Vector2f(sC->_nextScenePos.x*TILESIZE, sC->_nextScenePos.y*TILESIZE));
             
             _currentScene->init();
+            auxView = *currentScene->getPtrView();
+            auxView.setViewport(sf::FloatRect(0,0,1,1)); // Change the viewport to avoid cuttin the scene
+            rt2.setView(auxView); // I need the view to draw in the renderTexture correctly
             currentScene->render(&rt2);
 
             ppos = _window.mapCoordsToPixel(currentScene->getPlayer()->getPositionTransition(),*currentScene->getPtrView());
@@ -209,7 +212,10 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             //std::cout << playerPos.x << " " << playerPos.y << std::endl;
 
             sf::View view = *lastScene->getPtrView();
-            view.setCenter(view.getCenter()-lastScene->getSceneCoord());
+            // view.setCenter(view.getCenter()-lastScene->getSceneCoord());
+            view.setCenter(128,88);
+
+            std::cout << view.getCenter().x << " " << view.getCenter().y << std::endl;
 
             bool changed = false;
 
@@ -230,7 +236,7 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                         Resources::DtO.setParameter("pos",playerPos2);
                     }
                      Resources::DtO.setParameter("time",count-(timer/2.f));
-                    _window.setView(*currentScene->getPtrView());
+                    _window.setView(view);
                     _window.draw(sprite2,&Resources::DtO);
                 }
 

@@ -27,7 +27,12 @@ SceneMenu::SceneMenu(Game* g, sf::RenderWindow* w) : Scene(g,w,sceneTypes::menu,
     TextButton* resB2;
     resB2 = new TextButton("     Options", Resources::pauseMenuFont);
     resB2->onClick = [this](const sf::Event&, Button&) { 
-        
+        sf::Vector2f playerPos = DataManager::getVector2f("playerPos",sf::Vector2f(100,100));
+        std::string nextScene = DataManager::getString("playerScene","test");
+        ScenePlayable* aux = dynamic_cast<ScenePlayable*>( (*_game->_scenes.find(nextScene)).second );
+        aux->setPlayer(new Player());
+        aux->getPlayer()->setPosition(playerPos);
+        changeScene(new SceneChanger(sf::Vector2f(0,0), nextScene, playerPos)); 
     };
 
     TextButton* exitB;
