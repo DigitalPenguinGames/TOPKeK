@@ -13,7 +13,7 @@ float intensity(in vec4 color)
 void main()
 {
     vec2 pix = gl_FragCoord.st;
-    float distance = sqrt(pow(posLight.x - pix.x,2.0)+pow(posLight.y-pix.y,2.0));
+    float distance = sqrt((posLight.x - pix.x)*(posLight.x - pix.x)+(posLight.y-pix.y)*(posLight.y-pix.y));
     float delta = max(1.0-((distance - minn) / (maxx - minn)),0.1);
     
     // sobel broken

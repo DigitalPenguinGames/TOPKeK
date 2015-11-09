@@ -276,6 +276,7 @@ void ScenePlayable::processInput() {
             }
             // for (int i = 0; i < 32; ++i) if (sf::Joystick::isButtonPressed(0,i)) std::cout << i << std::endl;
 
+			if (InputManager::action(InputAction::reset)) clearMap();
             break;
     }
 
