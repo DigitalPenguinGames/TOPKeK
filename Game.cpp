@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "SceneCutScene.hpp"
 
 Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Close | sf::Style::Resize) {
     _window.setFramerateLimit(FRAMERATE);
@@ -16,6 +17,8 @@ Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Clos
 //    SoundManager::setLoop(true, "menuMusic");
     SoundManager::setLoop(true, "overWorld");
     initInput();
+
+
 }
 
 Game::~Game() {
@@ -30,7 +33,7 @@ void Game::start() {
     // aux->setPlayer(new Player());
     // changeScene(new SceneChanger(sf::Vector2f(0,0),"hub",sf::Vector2f(0,0)));
     
-    changeScene(new SceneChanger(sf::Vector2f(0,0),"menu",sf::Vector2f(0,0)));
+    changeScene(new SceneChanger(sf::Vector2f(0,0),"cutScene",sf::Vector2f(0,0)));
 
     while (_currentScene != nullptr) {
         _currentScene->run();
@@ -272,6 +275,11 @@ void Game::loadScenes() {
       exit(EXIT_FAILURE);
     }
     _scenes.insert(std::make_pair("menu",new SceneMenu(this, &_window)));
+    _scenes.insert(std::make_pair("cutScene",new SceneCutScene(this, &_window,
+                                                               Resources::AnimationIntro,
+                                                               Resources::AnimationIntroTimers,
+                                                               Resources::AnimationIntroActions)));
+
 }
 
 void Game::loadScene(std::string sceneName) {

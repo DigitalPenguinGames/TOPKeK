@@ -49,6 +49,11 @@ public:
     static sf::Texture dungeonDoorsHorizontal;
 
     static sf::Font pauseMenuFont;
+
+    static std::vector<sf::Texture> AnimationIntro;
+    static std::vector<float> AnimationIntroTimers;
+    static std::vector<animationActions> AnimationIntroActions;
+
     static std::vector<SpriteSheetDescription> descriptions;
 private:
     static SpriteSheetDescription loadDescription(std::string fileName);

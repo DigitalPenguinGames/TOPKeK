@@ -41,7 +41,12 @@ sf::Shader             Resources::DtO;
 sf::Shader             Resources::cInvert;
 sf::Shader             Resources::sLighting;
 sf::Shader             Resources::fairyShootShader;
+
 sf::Font               Resources::pauseMenuFont;
+
+std::vector<sf::Texture> Resources::AnimationIntro;
+std::vector<float> Resources::AnimationIntroTimers;
+std::vector<animationActions> Resources::AnimationIntroActions;
 
 std::vector<SpriteSheetDescription> Resources::descriptions;
 
@@ -105,6 +110,19 @@ void Resources::load() {
     if (!fairyShootShader.loadFromFile  (SHADERPATH+std::string("fairyShoot.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
 
     if (!pauseMenuFont.loadFromFile("Resources/Fonts/font.otf")) exit(EXIT_FAILURE);
+
+    AnimationIntro.push_back(Resources::linkSet);
+    AnimationIntroTimers.push_back(10);
+    AnimationIntroActions.push_back(scrollDown);
+    AnimationIntro.push_back(Resources::linkSetB);
+    AnimationIntroTimers.push_back(5);
+    AnimationIntroActions.push_back(action_none);
+    AnimationIntro.push_back(Resources::linkSetBL);
+    AnimationIntroTimers.push_back(5);
+    AnimationIntroActions.push_back(action_none);
+    AnimationIntro.push_back(Resources::linkSetL);
+    AnimationIntroTimers.push_back(5);
+    AnimationIntroActions.push_back(action_none);
 
 }
 
