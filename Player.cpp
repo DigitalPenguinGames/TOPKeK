@@ -45,6 +45,8 @@ Player::Player(){
     _maxHp = DataManager::getFloat("linkMaxHp",4.0f);
     _dead = false;
     _hitedTimer = 0;
+
+    _collisionMask = collisionMapMask::ground | collisionMapMask::passage;
 }
 
 Player::~Player(){}
@@ -72,7 +74,7 @@ void Player::update(float deltaTime) {
         initial = _sprite.getPosition();
         movement.x = getHorizontal(_dir) * speed.x;
         movement.y = getVertical(_dir) * speed.y; 
-        cmove(_map->getMaxMovement(initial,movement*deltaTime,_walkBounds));
+        cmove(_map->getMaxMovement(initial,movement*deltaTime,_walkBounds,_collisionMask, true));
         _moving = false;
     }
     _lightSprite.update(_sprite.getPosition(),_dir,_action,_currentAnimation);

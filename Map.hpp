@@ -22,7 +22,7 @@ public:
     std::pair<bool,SceneChanger*> playerInsideExit(sf::Vector2f pos); // Change to Vector2f
     sf::Vector2i getSize();
     sf::Vector2f getSceneCoord();
-    sf::Vector2f getMaxMovement(sf::Vector2f ini, sf::Vector2f movement, sf::IntRect rect);
+    sf::Vector2f getMaxMovement(sf::Vector2f ini, sf::Vector2f movement, sf::IntRect rect, int8_t collisionMask, bool letGoOutside);
 
     std::list<std::pair<DungeonDoor*,directions> > getDungeonDoors();
 

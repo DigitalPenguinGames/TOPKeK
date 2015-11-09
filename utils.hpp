@@ -208,6 +208,16 @@ enum directions { //u were afraid i could change it to make it beautiful dindn't
     directionsQtty
 };
 
+enum collisionMapMask {
+  water = 1, // blue
+  passage = 2, // green
+  rock = 4, // red
+  ground = 0, // ground (it have to be white :( I cry everytime)
+  wall = 7, // walls
+
+  collisionMapMaskQtty = -1
+};
+
 bool isInt(std::string s);
 
 int myStoi(std::string s);

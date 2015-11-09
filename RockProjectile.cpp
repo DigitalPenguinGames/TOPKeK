@@ -11,6 +11,7 @@ RockProjectile::RockProjectile(Map* map, sf::Vector2f pos, directions dir) : Wea
     _angle = 0;
 	_transform = sf::Transform::Identity;
     _timerToDead = -1;
+     _collisionMask = collisionMapMask::water | collisionMapMask::ground | collisionMapMask::passage;
 }
 
 RockProjectile::~RockProjectile() {}
