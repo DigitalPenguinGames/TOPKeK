@@ -124,16 +124,19 @@ void Resources::load() {
 
     if (!pauseMenuFont.loadFromFile("Resources/Fonts/font.otf")) exit(EXIT_FAILURE);
 
-    AnimationIntro.push_back(Resources::linkSet);
+    AnimationIntro.push_back(Resources::initialAnimation1);
     AnimationIntroTimers.push_back(10);
     AnimationIntroActions.push_back(scrollDown);
-    AnimationIntro.push_back(Resources::linkSetB);
+    AnimationIntro.push_back(Resources::initialAnimation2);
     AnimationIntroTimers.push_back(5);
     AnimationIntroActions.push_back(action_none);
-    AnimationIntro.push_back(Resources::linkSetBL);
+    AnimationIntro.push_back(Resources::initialAnimation3);
     AnimationIntroTimers.push_back(5);
     AnimationIntroActions.push_back(action_none);
-    AnimationIntro.push_back(Resources::linkSetL);
+    AnimationIntro.push_back(Resources::initialAnimation4);
+    AnimationIntroTimers.push_back(5);
+    AnimationIntroActions.push_back(action_none);
+    AnimationIntro.push_back(Resources::initialAnimation5);
     AnimationIntroTimers.push_back(5);
     AnimationIntroActions.push_back(action_none);
 

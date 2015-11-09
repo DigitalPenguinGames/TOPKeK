@@ -26,9 +26,11 @@ void SceneCutScene::update(float deltaTime) {
     _elapsed += deltaTime;
 
     if(_animationActions[_index] == animationActions::scrollDown){
-        if(_view.getCenter().y < _window->getSize().y - _view.getSize().y/2 )
+        if(_view.getCenter().y + _view.getSize().y/2 < _sprite.getGlobalBounds().height )
             _view.move(0,_animationParam[_index]*deltaTime);
     }
+    _view.setSize(70,50);
+    _view.setCenter(_sprite.getPosition().x+_sprite.getGlobalBounds().width/2, _view.getCenter().y);
 
 }
 
@@ -40,7 +42,8 @@ void SceneCutScene::processInput(){
     InputManager::update();
     if(_elapsed > 0.5 && InputManager::action(InputAction::action)){
         initView(&_view, sf::Vector2i(WINDOWRATIOX, WINDOWRATIOY));
-        _sprite.setTexture(_animation[_index]);
+        _sprite.setTexture(_animation[_index],true);
+        _view.setCenter(_sprite.getPosition().x+_sprite.getGlobalBounds().width/2, _sprite.getPosition().y+_sprite.getGlobalBounds().height/2);
         ++_index;
         if(_index >= _animation.size()) {
            --_index;
