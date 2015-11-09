@@ -42,7 +42,9 @@ void SceneCutScene::processInput(){
         initView(&_view, sf::Vector2i(WINDOWRATIOX, WINDOWRATIOY));
         _sprite.setTexture(_animation[_index]);
         ++_index;
-        if(_index >= _animation.size()) --_index;
+        if(_index >= _animation.size()) {
+           --_index;
+        }
         _elapsed = 0;
     }
 }

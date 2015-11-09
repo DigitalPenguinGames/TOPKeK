@@ -48,6 +48,12 @@ public:
     static sf::Texture dungeonDoorsVertical;
     static sf::Texture dungeonDoorsHorizontal;
 
+    static sf::Texture initialAnimation1;
+    static sf::Texture initialAnimation2;
+    static sf::Texture initialAnimation3;
+    static sf::Texture initialAnimation4;
+    static sf::Texture initialAnimation5;
+
     static sf::Font pauseMenuFont;
 
     static std::vector<sf::Texture> AnimationIntro;

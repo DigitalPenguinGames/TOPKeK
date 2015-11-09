@@ -37,6 +37,12 @@ sf::Texture            Resources::dungeonForeground1;
 sf::Texture            Resources::dungeonDoorsVertical;
 sf::Texture            Resources::dungeonDoorsHorizontal;
 
+sf::Texture            Resources::initialAnimation1;
+sf::Texture            Resources::initialAnimation2;
+sf::Texture            Resources::initialAnimation3;
+sf::Texture            Resources::initialAnimation4;
+sf::Texture            Resources::initialAnimation5;
+
 sf::Shader             Resources::DtO;
 sf::Shader             Resources::cInvert;
 sf::Shader             Resources::sLighting;
@@ -87,6 +93,13 @@ void Resources::load() {
     penguinEnemy.loadFromFile           (TEXTURETPATH+std::string("penguinEnemy.png"));
     bulletPenguin.loadFromFile          (TEXTURETPATH+std::string("bulletPenguin.png"));
     penguinEnemyAttack.loadFromFile     (TEXTURETPATH+std::string("penguinEnemyAttack.png"));
+
+    initialAnimation1.loadFromFile     (TEXTURETPATH+std::string("Animations/initial/anim1.png"));
+    initialAnimation2.loadFromFile     (TEXTURETPATH+std::string("Animations/initial/anim2.png"));
+    initialAnimation3.loadFromFile     (TEXTURETPATH+std::string("Animations/initial/anim3.png"));
+    initialAnimation4.loadFromFile     (TEXTURETPATH+std::string("Animations/initial/anim4.png"));
+    initialAnimation5.loadFromFile     (TEXTURETPATH+std::string("Animations/initial/anim5.png"));
+
 
     descriptions = std::vector<SpriteSheetDescription>(spriteDescriptionsQtt);
 
