@@ -149,5 +149,5 @@ sf::Vector2f getRandBounce(float speed, directions dir) {
     float angle = directionsToAngle(dir);
     angle += (std::rand()%90 + 135);
     angle = (int)angle%360;
-    return sf::Vector2f(std::cos(angle*TO_RADIANS)*speed, std::sin(angle*TO_RADIANS)*speed);
+    return sf::Vector2f(std::cos(angle*TO_RADIANS)*speed, -std::sin(angle*TO_RADIANS)*speed); // (cos angle, -sin angle) because the 0 of the Y is on the top corner
 }
