@@ -69,7 +69,6 @@ void Scene::processInput() {
 
 void Scene::update(float deltaTime) {
     (void)deltaTime;
-
 }
 
 void Scene::render() {

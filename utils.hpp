@@ -99,7 +99,8 @@ enum sceneTypes {
     menu = -1,
     outside = 0,
     dungeon = 1,
-    lightedDungeon = 2
+    lightedDungeon = 2,
+    cutScene = 3
 };
 
 // SpriteSheets
@@ -120,6 +121,16 @@ enum spriteSheetsDescriptions {
     spriteDescriptionsQtt
 };
 
+enum animationActions {
+    action_none,
+    scrollUp,
+    scrollDown,
+    scrollLeft,
+    scrollRight,
+    rotateClockwhise,
+    rotateCounterClockwhise,
+    qttyAnimationActions
+};
 // Animations
 enum linkActions {
     move            ,

@@ -52,7 +52,8 @@ SOURCES += main.cpp \
     TextBoxManager.cpp \
     InputManager.cpp \
     Speaker.cpp \
-    EnemyPenguin.cpp
+    EnemyPenguin.cpp \
+    SceneCutScene.cpp
 
 HEADERS += utils.hpp \
 		Resources.cpp \
@@ -99,4 +100,5 @@ HEADERS += utils.hpp \
     TextBoxManager.hpp \
     InputManager.hpp \
     Speaker.hpp \
-    EnemyPenguin.hpp
+    EnemyPenguin.hpp \
+    SceneCutScene.hpp
