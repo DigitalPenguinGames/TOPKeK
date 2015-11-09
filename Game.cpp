@@ -213,7 +213,7 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 
             sf::View view = *lastScene->getPtrView();
             // view.setCenter(view.getCenter()-lastScene->getSceneCoord());
-            view.setCenter(WINDOWRATIOX/2.0f,WINDOWRATIOY/2.0f);
+            view.setCenter(view.getSize().x/2.0f,view.getSize().y/2.0f);
 
             std::cout << view.getCenter().x << " " << view.getCenter().y << std::endl;
 
@@ -234,6 +234,8 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                         changed = true;
                         Resources::DtO.setParameter("expand", true);
                         Resources::DtO.setParameter("pos",playerPos2);
+                        view = *currentScene->getPtrView();
+                        view.setCenter(view.getSize().x/2.0f,view.getSize().y/2.0f);
                     }
                      Resources::DtO.setParameter("time",count-(timer/2.f));
                     _window.setView(view);
