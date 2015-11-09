@@ -201,7 +201,7 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 
             Resources::DtO.setParameter("texture", sf::Shader::CurrentTexture);
             Resources::DtO.setParameter("maxTime",timer/2);
-            Resources::DtO.setParameter("max", (_window.getSize().x+_window.getSize().y)*0.55);
+            Resources::DtO.setParameter("maxx", (_window.getSize().x+_window.getSize().y)*0.55);
             Resources::DtO.setParameter("expand", false);
 
             
@@ -213,7 +213,7 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 
             sf::View view = *lastScene->getPtrView();
             // view.setCenter(view.getCenter()-lastScene->getSceneCoord());
-            view.setCenter(128,88);
+            view.setCenter(WINDOWRATIOX/2.0f,WINDOWRATIOY/2.0f);
 
             std::cout << view.getCenter().x << " " << view.getCenter().y << std::endl;
 
@@ -327,4 +327,6 @@ void Game::initInput() {
     // InputManager::bind(InputAction::fairyAction, 0, 5); // Xbox RB
     InputManager::bind(InputAction::fairyAction, 1, 0);
     InputManager::bind(InputAction::pause, 0, 7); // Xbox start
+
+	InputManager::bind(InputAction::reset, sf::Keyboard::F5);
 }

@@ -89,6 +89,7 @@ namespace InputAction {
       action        ,
       fairyAction   , 
       pause         ,
+	  reset			,
       inputQtt
   };
 }
