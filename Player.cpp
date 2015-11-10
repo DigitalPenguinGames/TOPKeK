@@ -294,6 +294,7 @@ void Player::intersectsWith(Collisionable* c) {
                 break;
             case objectType::life:
                 _maxHp += 1;
+                _hp += 1;
                 break;
             case objectType::rupee:
                 ++_rupias;

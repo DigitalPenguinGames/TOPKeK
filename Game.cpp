@@ -44,7 +44,7 @@ void Game::start() {
 }
 
 
-void Game::changeScene(SceneChanger* sC) { // This will be called by any scene when something trigers to change to anothe scene
+void Game::changeScene(SceneChanger* sC) { // This will be called by any scene when something trigers to change to anotheR scene
     std::string sceneName = sC->_nextScene;
     sf::Vector2f sceneIniCoord(0,0);
     if (_currentScene != nullptr) {

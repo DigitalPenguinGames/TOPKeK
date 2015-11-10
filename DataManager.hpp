@@ -10,6 +10,7 @@ class DataManager {
 public:
     static void load();
     static void save();
+    static void reset();
 
     static bool getBool(std::string key, bool defaultValue = false);
     static float getFloat(std::string key, float defaultValue = 0.0f);

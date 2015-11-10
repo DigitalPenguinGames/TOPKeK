@@ -202,18 +202,12 @@ void ScenePlayable::processInput() {
             if (InputManager::action(InputAction::menuDown)) {
                 _elapsedPress = 0;
                 _window->setMouseCursorVisible(false);
-
-                if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
-                _buttonSelected = (((_buttonSelected+1)%_selectedLayout->getNWidgets()+_selectedLayout->getNWidgets())%_selectedLayout->getNWidgets());
-                static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseEntered();
+                changeButton(+1);
             }
             if (InputManager::action(InputAction::menuUp)) {
                 _elapsedPress = 0;
                 _window->setMouseCursorVisible(false);
-
-                if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
-                _buttonSelected = (((_buttonSelected-1)%_selectedLayout->getNWidgets()+_selectedLayout->getNWidgets())%_selectedLayout->getNWidgets());
-                static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseEntered();
+                changeButton(-1);
             }
             if (InputManager::action(InputAction::menuEnter)) {
                 if (_buttonSelected == -1) _buttonSelected = 0;
@@ -223,16 +217,8 @@ void ScenePlayable::processInput() {
             if (std::abs(axis) > 0.5) {
                 _elapsedPress = 0;
                 _window->setMouseCursorVisible(false);
-                if (axis < 0) {
-                    if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
-                    _buttonSelected = (((_buttonSelected-1)%_selectedLayout->getNWidgets()+_selectedLayout->getNWidgets())%_selectedLayout->getNWidgets());
-                    static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseEntered();
-                }
-                else {
-                    if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
-                    _buttonSelected = (((_buttonSelected+1)%_selectedLayout->getNWidgets()+_selectedLayout->getNWidgets())%_selectedLayout->getNWidgets());
-                    static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseEntered();
-                }
+                if (axis < 0) changeButton(-1);
+                else changeButton(+1);
             }
             break;}
         case status::running:
@@ -280,6 +266,12 @@ void ScenePlayable::processInput() {
             break;
     }
 
+}
+
+void ScenePlayable::changeButton(int offset) {
+    if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
+    _buttonSelected = (((_buttonSelected+offset)%_selectedLayout->getNWidgets()+_selectedLayout->getNWidgets())%_selectedLayout->getNWidgets());
+    static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseEntered();
 }
 
 void ScenePlayable::initMenu() {

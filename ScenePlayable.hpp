@@ -98,6 +98,7 @@ protected:
 private:
     void display();
 	void processInput();
+    void changeButton(int offset);
 	void initMenu();
 	void resizing();
 
