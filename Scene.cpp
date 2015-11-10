@@ -134,6 +134,8 @@ void Scene::initViewExpanded(sf::View* view, sf::Vector2i windowSize) { // when 
 }
 
 void Scene::resizing() {
+    sf::Vector2i size(_view.getSize());
+    initView(&_view,size);
 }
 
 void Scene::changeScene(SceneChanger *sC) {

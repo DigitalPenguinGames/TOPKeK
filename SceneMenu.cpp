@@ -4,10 +4,8 @@
 SceneMenu::SceneMenu(Game* g, sf::RenderWindow* w) : Scene(g,w,sceneTypes::menu, "menu"),_menu(*w,w->getDefaultView()) {
     _game = g;
     
-
     sf::Vector2u targetResolution(640,360);
     initView(&_view, sf::Vector2i(targetResolution));
-    sf::Vector2u displayResolution(_view.getSize());
 
     _buttonSelected = -1;
 }
@@ -31,6 +29,7 @@ void SceneMenu::processInput() {
             resetMenuPosition();
         }
         else if (event.type == sf::Event::LostFocus) _focus = false;
+        else if (event.type == sf::Event::Resized) resizing();
     }
     InputManager::update();
 
