@@ -176,15 +176,14 @@ void TextBox::handleEvent(sf::Event e){
         }
     }
     if(e.type == sf::Event::KeyPressed) {
-        if(e.key.code == sf::Keyboard::F) {
+        if(e.key.code == sf::Keyboard::Space) {
             clicked = true;
             is_clicked = true;
         }
     }
     if(e.type == sf::Event::KeyReleased) {
-        if(e.key.code == sf::Keyboard::F && !textFinished) {
+        if(e.key.code == sf::Keyboard::Space && !textFinished) {
             is_clicked = false;
-            
             setText(getCharacterSize());
         }
     }

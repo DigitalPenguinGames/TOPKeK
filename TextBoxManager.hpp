@@ -21,6 +21,7 @@ public:
     static void drawText(sf::RenderTarget *window);
     static void drawText(sf::RenderTarget *window, float posX, float posY);
     //static void drawText(sf::RenderWindow window, std::string name, float posX, float posY, float sizeX, float sizeY);
+    static bool getTextFinished();
 
 private:
 

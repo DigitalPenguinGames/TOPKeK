@@ -18,7 +18,7 @@ SceneCutScene::SceneCutScene(Game *g, sf::RenderWindow *w ,
     TextBoxManager::setSize(50,10);
     TextBoxManager::setText(_animationText[_index],4);
 
-    initView(&_view, sf::Vector2i(WINDOWRATIOX, WINDOWRATIOY));
+    initView(&_view, sf::Vector2i(70,50));
 }
 
 SceneCutScene::~SceneCutScene(){
@@ -32,16 +32,17 @@ void SceneCutScene::init(sf::Vector2f){
 void SceneCutScene::update(float deltaTime) {
     _elapsed += deltaTime;
 
-    if(_elapsed > 0.5 && InputManager::action(InputAction::action)){
+    if(_elapsed > 0.5 && InputManager::action(InputAction::action)
+                                              && (_animationText[_index] == "none"
+                                                || (_animationText[_index] != "none" && TextBoxManager::getTextFinished()) ) ){
         ++_index;
-        initView(&_view, sf::Vector2i(WINDOWRATIOX, WINDOWRATIOY));
+        if(_index >= _animation.size()) {
+           --_index;
+           changeScene(new SceneChanger(sf::Vector2f(0,0),"menu",sf::Vector2f(0,0)));
+        }
         _sprite.setTexture(_animation[_index],true);
         _view.setCenter(_sprite.getPosition().x+_sprite.getGlobalBounds().width/2, _sprite.getPosition().y+_sprite.getGlobalBounds().height/2);
         TextBoxManager::setText(_animationText[_index],5);
-        if(_index >= _animation.size()) {
-           --_index;
-            //_game->changeScene(new SceneChanger(sf::Vector2f(0,0),"menu",sf::Vector2f(0,0)));
-        }
         _elapsed = 0;
     }
 
@@ -50,7 +51,7 @@ void SceneCutScene::update(float deltaTime) {
         if(_view.getCenter().y + _view.getSize().y/2 < _sprite.getGlobalBounds().height )
             _view.move(0,_animationParam[_index]*deltaTime);
     }
-    _view.setSize(70,50);
+//    _view.setSize(70,50);
     _view.setCenter(_sprite.getPosition().x+_sprite.getGlobalBounds().width/2, _view.getCenter().y);
 
 }
@@ -69,10 +70,10 @@ void SceneCutScene::processInput(){
 void SceneCutScene::render(sf::RenderTarget*) {
     _window->setView(_view);
     _window->draw(_sprite);
-    TextBoxManager::drawText(_window,0,0);
+    if(_animationText[_index] != "none")TextBoxManager::drawText(_window,0,0);
 
 }
 
 void SceneCutScene::resizing() {
-    initView(&_view, sf::Vector2i(WINDOWRATIOX, WINDOWRATIOY));
+    initView(&_view, sf::Vector2i(70,50));
 }

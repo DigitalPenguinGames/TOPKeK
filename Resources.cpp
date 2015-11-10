@@ -127,24 +127,24 @@ void Resources::load() {
 
     AnimationIntro.push_back(Resources::initialAnimation1);
     AnimationIntroActions.push_back(scrollDown);
-    AnimationIntroTimers.push_back(10);
+    AnimationIntroTimers.push_back(20);
     AnimationTexts.push_back("none");
     AnimationIntro.push_back(Resources::initialAnimation2);
     AnimationIntroTimers.push_back(5);
     AnimationIntroActions.push_back(action_none);
-    AnimationTexts.push_back("penguins");
+    AnimationTexts.push_back("anim2");
     AnimationIntro.push_back(Resources::initialAnimation3);
     AnimationIntroTimers.push_back(5);
     AnimationIntroActions.push_back(action_none);
-    AnimationTexts.push_back("default");
+    AnimationTexts.push_back("anim3");
     AnimationIntro.push_back(Resources::initialAnimation4);
     AnimationIntroTimers.push_back(5);
     AnimationIntroActions.push_back(action_none);
-    AnimationTexts.push_back("penguins");
+    AnimationTexts.push_back("anim4");
     AnimationIntro.push_back(Resources::initialAnimation5);
     AnimationIntroTimers.push_back(5);
     AnimationIntroActions.push_back(action_none);
-    AnimationTexts.push_back("default");
+    AnimationTexts.push_back("anim5");
 
 }
 
