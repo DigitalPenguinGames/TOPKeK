@@ -8,6 +8,7 @@ SceneMenu::SceneMenu(Game* g, sf::RenderWindow* w) : Scene(g,w,sceneTypes::menu,
     initView(&_view, sf::Vector2i(targetResolution));
 
     _buttonSelected = -1;
+    _menuLayout = nullptr;
 }
 
 SceneMenu::~SceneMenu() {
