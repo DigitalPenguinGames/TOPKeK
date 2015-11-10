@@ -9,40 +9,6 @@ SceneMenu::SceneMenu(Game* g, sf::RenderWindow* w) : Scene(g,w,sceneTypes::menu,
     initView(&_view, sf::Vector2i(targetResolution));
     sf::Vector2u displayResolution(_view.getSize());
 
-    _menuLayout = new VLayout;
-    _selectedLayout = _menuLayout;
-    _menuLayout->setSpace(5);
-
-    TextButton* resB;
-    resB = new TextButton("     Play", Resources::pauseMenuFont);
-    resB->onClick = [this](const sf::Event&, Button&){
-        sf::Vector2f playerPos = DataManager::getVector2f("playerPos",sf::Vector2f(50,50));
-        std::string nextScene = DataManager::getString("playerScene","hub");
-        ScenePlayable* aux = dynamic_cast<ScenePlayable*>( (*_game->_scenes.find(nextScene)).second );
-        aux->setPlayer(new Player());
-        aux->getPlayer()->setPosition(playerPos);
-        changeScene(new SceneChanger(sf::Vector2f(0,0), nextScene, playerPos)); 
-    };
-
-    TextButton* resB2;
-    resB2 = new TextButton("     Options", Resources::pauseMenuFont);
-    resB2->onClick = [this](const sf::Event&, Button&) { 
-        sf::Vector2f playerPos = DataManager::getVector2f("playerPos",sf::Vector2f(100,100));
-        std::string nextScene = DataManager::getString("playerScene","test");
-        ScenePlayable* aux = dynamic_cast<ScenePlayable*>( (*_game->_scenes.find(nextScene)).second );
-        aux->setPlayer(new Player());
-        aux->getPlayer()->setPosition(playerPos);
-        changeScene(new SceneChanger(sf::Vector2f(0,0), nextScene, playerPos)); 
-    };
-
-    TextButton* exitB;
-    exitB = new TextButton("     Exit", Resources::pauseMenuFont);
-    exitB->onClick = [this](const sf::Event&, Button&){ exit(0); };
-    _menuLayout->add(resB);
-    _menuLayout->add(resB2);
-    _menuLayout->add(exitB);
-    _menu.setLayout(_menuLayout);
-
     _buttonSelected = -1;
 }
 
@@ -52,6 +18,7 @@ SceneMenu::~SceneMenu() {
 void SceneMenu::init(sf::Vector2f ) {
     _elapsed = 0;
     resetMenuPosition();
+    initButtons();
 }
 
 void SceneMenu::processInput() {
@@ -122,4 +89,56 @@ void SceneMenu::resetMenuPosition() {
     _buttonSelected = -1;
 
     _selectedLayout = _menuLayout;
+}
+
+void SceneMenu::initButtons() {
+    delete _menuLayout;
+    _menuLayout = new VLayout;
+    _selectedLayout = _menuLayout;
+    _menuLayout->setSpace(5);
+
+    if (DataManager::getBool("game", false)) {
+        TextButton* resB;
+        resB = new TextButton("     Continue", Resources::pauseMenuFont);
+        resB->onClick = [this](const sf::Event&, Button&) {
+            sf::Vector2f playerPos = DataManager::getVector2f("playerPos");
+            std::string nextScene = DataManager::getString("playerScene");
+            ScenePlayable* aux = dynamic_cast<ScenePlayable*>( (*_game->_scenes.find(nextScene)).second );
+            aux->setPlayer(new Player());
+            aux->getPlayer()->setPosition(playerPos);
+            changeScene(new SceneChanger(sf::Vector2f(0,0), nextScene, playerPos)); 
+        };
+        _menuLayout->add(resB);
+    }
+
+    TextButton* resB;
+    resB = new TextButton("     New Game", Resources::pauseMenuFont); // New game
+    resB->onClick = [this](const sf::Event&, Button&) {
+        sf::Vector2f playerPos = sf::Vector2f(50,50); 
+        std::string nextScene = "hub";
+        ScenePlayable* aux = dynamic_cast<ScenePlayable*>( (*_game->_scenes.find(nextScene)).second );
+        aux->setPlayer(new Player());
+        aux->getPlayer()->setPosition(playerPos);
+        changeScene(new SceneChanger(sf::Vector2f(0,0), nextScene, playerPos)); 
+        DataManager::setBool("game", true);
+    };
+
+    TextButton* resB2;
+    resB2 = new TextButton("     Options", Resources::pauseMenuFont);
+    resB2->onClick = [this](const sf::Event&, Button&) { 
+        sf::Vector2f playerPos = DataManager::getVector2f("playerPos",sf::Vector2f(100,100));
+        std::string nextScene = DataManager::getString("playerScene","test");
+        ScenePlayable* aux = dynamic_cast<ScenePlayable*>( (*_game->_scenes.find(nextScene)).second );
+        aux->setPlayer(new Player());
+        aux->getPlayer()->setPosition(playerPos);
+        changeScene(new SceneChanger(sf::Vector2f(0,0), nextScene, playerPos)); 
+    };
+
+    TextButton* exitB;
+    exitB = new TextButton("     Exit", Resources::pauseMenuFont);
+    exitB->onClick = [this](const sf::Event&, Button&){ exit(0); };
+    _menuLayout->add(resB);
+    _menuLayout->add(resB2);
+    _menuLayout->add(exitB);
+    _menu.setLayout(_menuLayout);
 }

@@ -31,6 +31,7 @@ public:
     void render(sf::RenderTarget* target);
 
     void resetMenuPosition();
+    void initButtons();
 
 private:
 
