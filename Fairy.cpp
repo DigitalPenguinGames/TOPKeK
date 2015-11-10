@@ -81,7 +81,7 @@ void Fairy::getHit(float qtty, sf::Vector2f){
     if(_hittedTime < 1) return;
     _hittedTime = 0;
     _hp -= qtty;
-    std::cout << "it hurts " << _hp << std::endl;
+    //std::cout << "it hurts " << _hp << std::endl;
 }
 
 void Fairy::intersectsWith(Collisionable* c) {
