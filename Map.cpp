@@ -114,7 +114,7 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
                         sC.setBounds(sf::FloatRect(x+localOffset.x,y+localOffset.y,TILESIZE,TILESIZE));
                         sC.setDirection(dir);
                         // DungeonDoor door(gid+157,sf::Vector2f(x,y));
-                        _dungeonDoors.push_back(std::make_pair(new DungeonDoor(gid+dungeonDoorsInitialGid,sf::Vector2f(x,y)), dir)); // GID HARDCODED
+                        _dungeonDoors.push_back(std::make_pair(new DungeonDoor(gid+dungeonDoorsInitialGid,sf::Vector2f(x,y),dir), dir)); 
                         break;}
                     default:
                         std::cout << "Exit in a unspecified type os scene WOT" << std::endl;
@@ -266,7 +266,7 @@ sf::Vector2f Map::getSceneCoord() {
     return _mapIniCoord;
 }
 
-sf::Vector2f Map::getMaxMovement(sf::Vector2f ini, sf::Vector2f movement, sf::IntRect rect) {
+sf::Vector2f Map::getMaxMovement(sf::Vector2f ini, sf::Vector2f movement, sf::IntRect rect, int8_t collisionMask, bool letGoOutside) {
     bool hit = false;
     sf::Vector2f final = ini + movement - _mapIniCoord;
 
@@ -277,12 +277,15 @@ sf::Vector2f Map::getMaxMovement(sf::Vector2f ini, sf::Vector2f movement, sf::In
 
     float width = std::min(left + rect.width,size.x);
     float height = std::min(top + rect.height,size.y);
+
+    if (!letGoOutside && (final.x + rect.left < 0.0 ||final.y + rect.top < 0.0 || left + rect.width > size.x || top + rect.height > size.y)) return sf::Vector2f(0,0);
     
 
     for (int i = left; i < width ; ++i) {
         for(int j = top; j < height; ++j) {
             sf::Color color = _collisionBackground.getPixel(i,j);
-            if (color != sf::Color::White) {
+            int8_t colorByte = (color.r/255 << 2) | (color.g/255 << 1) | color.b/255;
+            if ((~colorByte & 7) != collisionMapMask::ground && ((colorByte & collisionMask) & 7) == 0) {
                 hit = true;
                 return sf::Vector2f(0,0);
             }

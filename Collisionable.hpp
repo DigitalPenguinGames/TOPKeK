@@ -30,6 +30,7 @@ class Collisionable {
      sf::Vector2f _pastPosition;
      sf::Vector2f _speed;
      sf::IntRect _bounds; // IntRect(offset.x, offset.y, width, height)
+     int8_t _collisionMask;
  }; 
 
 

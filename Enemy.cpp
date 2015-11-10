@@ -20,6 +20,7 @@ Enemy::Enemy(ScenePlayable* scene, Map* map, sf::Vector2f pos) : _scene(scene), 
     _attacking = false;
 
     _sprite.setPosition(pos);
+    _collisionMask = collisionMapMask::ground;
 }
 
 Enemy::~Enemy() {}
@@ -48,7 +49,7 @@ void Enemy::update(float deltaTime) {
         initial = _sprite.getPosition();
         movement.x = (_dir == directions::left ? -_speed.x : (_dir == directions::right ? _speed.x : 0));
         movement.y = (_dir == directions::up ? -_speed.y : (_dir == directions::down ? _speed.y : 0));
-        cmove(_map->getMaxMovement(initial,movement*deltaTime,_walkBounds));
+        cmove(_map->getMaxMovement(initial,movement*deltaTime,_walkBounds, _collisionMask, false));
         _moving = false;
     }
 }

@@ -153,7 +153,9 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                 _currentScene->getPtrView()->setCenter(lastViewCenter+offset); // Put the center of the camera in his position (like move(speed*(timer-count)))
 
                 //_currentScene->_view = *view;
-                
+                player->save();
+                DataManager::setString("playerScene",sceneName);
+                DataManager::save();
                 return;
             }
         }
@@ -250,12 +252,17 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                 _window.display();
 
             }
+            currentScene->getPlayer()->save();
+            DataManager::setString("playerScene",sceneName);
+            DataManager::save();
             return;
         }
         if (sceneName == "menu") {
             ScenePlayable* lastScene = dynamic_cast<ScenePlayable*>(_lastScene);
             if (lastScene != nullptr) delete lastScene->getPlayer();
         }
+
+
 
     }
     _currentScene->init();    

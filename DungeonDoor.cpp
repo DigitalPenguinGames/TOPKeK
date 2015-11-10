@@ -1,7 +1,9 @@
 #include "DungeonDoor.hpp"
+#include "DungeonScene.hpp"
 
-DungeonDoor::DungeonDoor(int gid, sf::Vector2f pos) : Collisionable(pos) { // If gid == 0, its a invisible wall
-	_gid = gid;
+DungeonDoor::DungeonDoor(int gid, sf::Vector2f pos, directions orientation) : Collisionable(pos) { // If gid == 0, its a invisible wall
+   _orientation = orientation;
+    _gid = gid;
 	_posOriginal = pos;
 	if (_gid >= 157 && _gid <= 162) {
     	_sprite.setTexture(Resources::dungeonDoorsHorizontal);
@@ -15,6 +17,10 @@ DungeonDoor::DungeonDoor(int gid, sf::Vector2f pos) : Collisionable(pos) { // If
 ;}
 	
 DungeonDoor::~DungeonDoor() {}
+
+void DungeonDoor::setScene(DungeonScene* scene) {  
+    _scene = scene;
+}
 
 void DungeonDoor::draw(sf::RenderTarget* window) {
 	if (_gid < 157) return;
@@ -34,6 +40,7 @@ void DungeonDoor::openWithKey() {
 	if ((_gid-157)%6 >= 4) {
 		_gid -= 4;
 		updateSprite();
+        DataManager::setBool(_scene->getSceneName()+std::to_string(_orientation),true);
 	}
 }
 

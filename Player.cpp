@@ -15,9 +15,13 @@ Player::Player(){
     _action = linkActions::move;
     _description = Resources::descriptions[linkSpritesDescriptions];
 
-    _keys = 1;
-    _bombs = 0;
-    _rupias = 0;
+    _hp = DataManager::getFloat("playerHp", 4.0f);
+    _maxHp = DataManager::getFloat("playerMaxHp", 4.0f);
+    _rupias = DataManager::getFloat("nRupies", 0);
+    _keys = DataManager::getFloat("nKeys", 0);
+    _bombs = DataManager::getFloat("nBombs", 0);
+
+
     _elapsedAnimation = 0;
     _currentAnimation = 0;
 
@@ -41,10 +45,10 @@ Player::Player(){
 
     _lightSprite = LightSprite(_description, textures);
 
-    _hp = DataManager::getFloat("linkHp",4.0f);
-    _maxHp = DataManager::getFloat("linkMaxHp",4.0f);
     _dead = false;
     _hitedTimer = 0;
+
+    _collisionMask = collisionMapMask::ground | collisionMapMask::passage;
 }
 
 Player::~Player(){}
@@ -72,7 +76,7 @@ void Player::update(float deltaTime) {
         initial = _sprite.getPosition();
         movement.x = getHorizontal(_dir) * speed.x;
         movement.y = getVertical(_dir) * speed.y; 
-        cmove(_map->getMaxMovement(initial,movement*deltaTime,_walkBounds));
+        cmove(_map->getMaxMovement(initial,movement*deltaTime,_walkBounds,_collisionMask, true));
         _moving = false;
     }
     _lightSprite.update(_sprite.getPosition(),_dir,_action,_currentAnimation);
@@ -359,6 +363,13 @@ void Player::setKeys(int keys){
 }
 
 
-
+void Player::save() {
+    DataManager::setVector2f("playerPos", getPosition()-_map->getSceneCoord());
+    DataManager::setFloat("playerHp", _hp);
+    DataManager::setFloat("playerMaxHp", _maxHp);
+    DataManager::setFloat("nRupies", _rupias);
+    DataManager::setFloat("nKeys", _keys);
+    DataManager::setFloat("nBombs", _bombs);
+}
 
 
