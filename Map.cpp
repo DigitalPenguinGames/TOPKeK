@@ -152,7 +152,10 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
                 float x,y;
                 int gid;
                 des >> gid >> x >> y;
-                _scene->addObject(new Object(objectType(gid - dropsInitialGid), sf::Vector2f(x,y-16),_scene) );
+                if (DataManager::getBool(_scene->getSceneName()+std::to_string('-')+std::to_string(x)+std::to_string(',')+std::to_string(y-16), true)) {
+                    DataManager::setBool(_scene->getSceneName()+std::to_string('-')+std::to_string(x)+std::to_string(',')+std::to_string(y-16), true);
+                    _scene->addObject(new Object(objectType(gid - dropsInitialGid), sf::Vector2f(x,y-16),_scene) );
+                }
             }
         }
         else {
