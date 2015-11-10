@@ -1,6 +1,6 @@
 #include "Collisionable.hpp"
 
-Collisionable::Collisionable(sf::Vector2f position) : _pastPosition(position) {
+Collisionable::Collisionable(sf::Vector2f position) : _pastPosition(position), _posOriginal(position) {
     _sprite.setPosition(position);
     // _pastPosition = position;
 }
@@ -57,4 +57,8 @@ bool Collisionable::hasMoved() {
 
 void Collisionable::intersectsWith(Collisionable*) {
     // if (hasMoved()) resetMove();
+}
+
+void Collisionable::setIniCoord(sf::Vector2f coord) {
+    _sprite.setPosition(_posOriginal+coord);
 }

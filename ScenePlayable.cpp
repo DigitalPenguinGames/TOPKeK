@@ -73,9 +73,11 @@ void ScenePlayable::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
     initEnemies(sceneIniCoord);
     _status = status::running;
 	resizing();
+    setIniCoordToCollisionables(sceneIniCoord);
 	if (sceneIniCoord == _sceneIniCoord) return;
     _sceneIniCoord = sceneIniCoord;
     _map.init(_sceneIniCoord);
+    setIniCoordToCollisionables(sceneIniCoord);
 	resizing();
 }
 
@@ -574,6 +576,11 @@ void ScenePlayable::initEnemies(sf::Vector2f pos) {
                 break;
         }
     }
+}
+
+void ScenePlayable::setIniCoordToCollisionables(sf::Vector2f iniPos) {
+    for(Collisionable* col : _props) col->setIniCoord(iniPos);
+    for(Object* obj : _objects) obj->setIniCoord(iniPos);
 }
 
 void ScenePlayable::updateHUD() {

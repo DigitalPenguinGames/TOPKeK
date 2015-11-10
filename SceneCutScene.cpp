@@ -36,7 +36,7 @@ void SceneCutScene::update(float deltaTime) {
                                               && (_animationText[_index] == "none"
                                                 || (_animationText[_index] != "none" && TextBoxManager::getTextFinished()) ) ){
         ++_index;
-        if(_index >= _animation.size()) {
+        if(_index >= int(_animation.size())) {
            --_index;
             DataManager::reset();
             sf::Vector2f playerPos = sf::Vector2f(50,50); 

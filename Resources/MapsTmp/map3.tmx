@@ -80,7 +80,7 @@
   </object>
   <object id="237" name="Exit 4" gid="9" x="240" y="160" width="16" height="16">
    <properties>
-    <property name="scene" value="map2"/>
+    <property name="scene" value="map4"/>
     <property name="x" value="0"/>
     <property name="y" value="6"/>
    </properties>

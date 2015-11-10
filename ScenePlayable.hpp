@@ -90,6 +90,7 @@ protected:
 
     void clearMap();
     void initEnemies(sf::Vector2f pos);
+    void setIniCoordToCollisionables(sf::Vector2f iniPos);
 
     void updateHUD();
 

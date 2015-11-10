@@ -72,8 +72,8 @@
   <object id="246" name="Exit 5" gid="9" x="464" y="112" width="16" height="16">
    <properties>
     <property name="scene" value="map5"/>
-    <property name="x" value="9"/>
-    <property name="y" value="0"/>
+    <property name="x" value="0"/>
+    <property name="y" value="6"/>
    </properties>
   </object>
  </objectgroup>

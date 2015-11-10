@@ -16,7 +16,6 @@ public:
 	void openWithKey();
 	void close();
 	sf::Vector2f getBotPosition();
-	void setIniCoord(sf::Vector2f coord);
 	bool isOpened();
 	bool needKey();
 private:
@@ -24,7 +23,6 @@ private:
     SpriteSheetDescription _description;
     directions _orientation;
 	int _gid;
-	sf::Vector2f _posOriginal;
 	void updateSprite();
 };
 

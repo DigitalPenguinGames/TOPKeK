@@ -152,7 +152,7 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
                 float x,y;
                 int gid;
                 des >> gid >> x >> y;
-                _scene->addObject(new Object(objectType(gid - dropsInitialGid), sf::Vector2f(x,y),_scene) );
+                _scene->addObject(new Object(objectType(gid - dropsInitialGid), sf::Vector2f(x,y-16),_scene) );
             }
         }
         else {

@@ -25,12 +25,15 @@ class Collisionable {
 
      virtual void intersectsWith(Collisionable* c);
 
+     void setIniCoord(sf::Vector2f coord);
+
  protected:
      sf::Sprite _sprite;
      sf::Vector2f _pastPosition;
      sf::Vector2f _speed;
      sf::IntRect _bounds; // IntRect(offset.x, offset.y, width, height)
      int8_t _collisionMask;
+     sf::Vector2f _posOriginal;
  }; 
 
 
