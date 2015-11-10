@@ -98,6 +98,8 @@ protected:
     void centerView(bool hard);
 
 private:
+
+    float _fairyShootTimer;
     void display();
 	void processInput();
     void changeButton(int offset);
