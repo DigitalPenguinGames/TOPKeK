@@ -56,6 +56,7 @@ public:
 
     static sf::Font pauseMenuFont;
 
+    static std::vector<std::string> AnimationTexts;
     static std::vector<sf::Texture> AnimationIntro;
     static std::vector<float> AnimationIntroTimers;
     static std::vector<animationActions> AnimationIntroActions;

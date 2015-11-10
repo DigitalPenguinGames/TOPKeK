@@ -23,7 +23,8 @@ class SceneCutScene: public Scene  {
 
 public:
     SceneCutScene(Game* g, sf::RenderWindow* w,
-                  std::vector<sf::Texture>& anim, std::vector<float>& animParam, std::vector<animationActions>& actions);
+                  std::vector<sf::Texture>& anim, std::vector<float>& animParam,
+                  std::vector<animationActions>& actions, std::vector<std::string> animText);
 
     ~SceneCutScene();
 
@@ -51,6 +52,7 @@ private:
     std::vector<sf::Texture>  _animation;
     std::vector<float>   _animationParam;
     std::vector<animationActions> _animationActions;
+    std::vector<std::string> _animationText;
 
 
 };

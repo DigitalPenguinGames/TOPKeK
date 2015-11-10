@@ -50,6 +50,7 @@ sf::Shader             Resources::fairyShootShader;
 
 sf::Font               Resources::pauseMenuFont;
 
+std::vector<std::string> Resources::AnimationTexts;
 std::vector<sf::Texture> Resources::AnimationIntro;
 std::vector<float> Resources::AnimationIntroTimers;
 std::vector<animationActions> Resources::AnimationIntroActions;
@@ -125,20 +126,25 @@ void Resources::load() {
     if (!pauseMenuFont.loadFromFile("Resources/Fonts/font.otf")) exit(EXIT_FAILURE);
 
     AnimationIntro.push_back(Resources::initialAnimation1);
-    AnimationIntroTimers.push_back(10);
     AnimationIntroActions.push_back(scrollDown);
+    AnimationIntroTimers.push_back(10);
+    AnimationTexts.push_back("none");
     AnimationIntro.push_back(Resources::initialAnimation2);
     AnimationIntroTimers.push_back(5);
     AnimationIntroActions.push_back(action_none);
+    AnimationTexts.push_back("penguins");
     AnimationIntro.push_back(Resources::initialAnimation3);
     AnimationIntroTimers.push_back(5);
     AnimationIntroActions.push_back(action_none);
+    AnimationTexts.push_back("default");
     AnimationIntro.push_back(Resources::initialAnimation4);
     AnimationIntroTimers.push_back(5);
     AnimationIntroActions.push_back(action_none);
+    AnimationTexts.push_back("penguins");
     AnimationIntro.push_back(Resources::initialAnimation5);
     AnimationIntroTimers.push_back(5);
     AnimationIntroActions.push_back(action_none);
+    AnimationTexts.push_back("default");
 
 }
 
