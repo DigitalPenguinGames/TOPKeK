@@ -103,21 +103,14 @@ void SceneMenu::initButtons() {
     TextButton* resB;
     resB = new TextButton("     New Game", Resources::pauseMenuFont); // New game
     resB->onClick = [this](const sf::Event&, Button&) {
-        DataManager::reset();
-        sf::Vector2f playerPos = sf::Vector2f(50,50); 
-        std::string nextScene = "hub";
-        ScenePlayable* aux = dynamic_cast<ScenePlayable*>( (*_game->_scenes.find(nextScene)).second );
-        aux->setPlayer(new Player());
-        aux->getPlayer()->setPosition(playerPos);
-        changeScene(new SceneChanger(sf::Vector2f(0,0), nextScene, playerPos)); 
-        DataManager::setBool("game", true);
+        changeScene(new SceneChanger(sf::Vector2f(0,0), "cutScene", sf::Vector2f(0,0))); 
     };
 
     TextButton* resB2;
     resB2 = new TextButton("     Options", Resources::pauseMenuFont);
     resB2->onClick = [this](const sf::Event&, Button&) { 
-        sf::Vector2f playerPos = DataManager::getVector2f("playerPos",sf::Vector2f(100,100));
-        std::string nextScene = DataManager::getString("playerScene","test");
+        sf::Vector2f playerPos = sf::Vector2f(100,100);
+        std::string nextScene = "test";
         ScenePlayable* aux = dynamic_cast<ScenePlayable*>( (*_game->_scenes.find(nextScene)).second );
         aux->setPlayer(new Player());
         aux->getPlayer()->setPosition(playerPos);

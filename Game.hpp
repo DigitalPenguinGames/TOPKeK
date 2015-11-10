@@ -12,6 +12,7 @@
 
 class Game {
 friend class SceneMenu;
+friend class SceneCutScene;
 public:
     Game();
     ~Game();
