@@ -61,7 +61,7 @@ void SceneCutScene::processInput(){
     sf::Event event;
     while(_window->pollEvent(event)){
         if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
-        TextBoxManager::processEvent(event);
+        if(_elapsed > _animationParam[_index]) TextBoxManager::processEvent(event);
     }
     InputManager::update();
 

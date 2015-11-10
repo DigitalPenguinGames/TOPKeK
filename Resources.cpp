@@ -130,19 +130,19 @@ void Resources::load() {
     AnimationIntroTimers.push_back(20);
     AnimationTexts.push_back("none");
     AnimationIntro.push_back(Resources::initialAnimation2);
-    AnimationIntroTimers.push_back(5);
+    AnimationIntroTimers.push_back(1);
     AnimationIntroActions.push_back(action_none);
     AnimationTexts.push_back("anim2");
     AnimationIntro.push_back(Resources::initialAnimation3);
-    AnimationIntroTimers.push_back(5);
+    AnimationIntroTimers.push_back(1);
     AnimationIntroActions.push_back(action_none);
     AnimationTexts.push_back("anim3");
     AnimationIntro.push_back(Resources::initialAnimation4);
-    AnimationIntroTimers.push_back(5);
+    AnimationIntroTimers.push_back(1);
     AnimationIntroActions.push_back(action_none);
     AnimationTexts.push_back("anim4");
     AnimationIntro.push_back(Resources::initialAnimation5);
-    AnimationIntroTimers.push_back(5);
+    AnimationIntroTimers.push_back(1);
     AnimationIntroActions.push_back(action_none);
     AnimationTexts.push_back("anim5");
 
