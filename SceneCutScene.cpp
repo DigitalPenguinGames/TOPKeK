@@ -16,7 +16,7 @@ SceneCutScene::SceneCutScene(Game *g, sf::RenderWindow *w ,
     _sprite.setTexture(_animation[_index]);
 
     TextBoxManager::setSize(50,10);
-    TextBoxManager::setText(_animationText[_index],4);
+    TextBoxManager::setText(_animationText[_index],3);
 
     initView(&_view, sf::Vector2i(70,50));
 }
@@ -42,7 +42,7 @@ void SceneCutScene::update(float deltaTime) {
         }
         _sprite.setTexture(_animation[_index],true);
         _view.setCenter(_sprite.getPosition().x+_sprite.getGlobalBounds().width/2, _sprite.getPosition().y+_sprite.getGlobalBounds().height/2);
-        TextBoxManager::setText(_animationText[_index],5);
+        TextBoxManager::setText(_animationText[_index],3);
         _elapsed = 0;
     }
 
