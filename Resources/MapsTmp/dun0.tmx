@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="11" tilewidth="16" tileheight="16" nextobjectid="80">
+ <tileset firstgid="1" name="OverWorld" tilewidth="16" tileheight="16" spacing="1" margin="1" tilecount="144">
+  <image source="../Textures/OverworldTiles.png" width="307" height="137"/>
+ </tileset>
+ <tileset firstgid="145" name="OverworldObjects" tilewidth="48" tileheight="32" spacing="1" margin="1" tilecount="12">
+  <image source="../Textures/OverworldObjects.png" width="148" height="133"/>
+ </tileset>
+ <tileset firstgid="157" name="dungeonDoorsHor" tilewidth="32" tileheight="20" tilecount="6">
+  <image source="../Textures/dungeonDoorsHor.png" width="64" height="60"/>
+ </tileset>
+ <tileset firstgid="163" name="dungeonDoorsVer" tilewidth="20" tileheight="32" tilecount="6">
+  <image source="../Textures/dungeonDoorsVer.png" width="40" height="96"/>
+ </tileset>
+ <tileset firstgid="169" name="Enemies" tilewidth="16" tileheight="16" spacing="1" margin="1" tilecount="100">
+  <image source="../Textures/EnemiesToMap.png" width="171" height="171"/>
+ </tileset>
+ <imagelayer name="Image Layer 1">
+  <image source="../Textures/dungeon.png"/>
+ </imagelayer>
+ <layer name="Tile Layer 1" width="16" height="11">
+  <properties>
+   <property name="type" value="dungeon"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="Exits" opacity="0.97">
+  <object id="52" name="bit" gid="158" x="112.667" y="164" width="32" height="20">
+   <properties>
+    <property name="scene" value="map5"/>
+    <property name="x" value="9"/>
+    <property name="y" value="2"/>
+   </properties>
+  </object>
+  <object id="53" name="top" gid="157" x="112" y="32" width="32" height="20">
+   <properties>
+    <property name="scene" value="dun1"/>
+    <property name="x" value="3"/>
+    <property name="y" value="2"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Enemies"/>
+ <objectgroup name="Drops">
+  <object id="70" gid="179" x="194.5" y="96.5" width="16" height="16"/>
+  <object id="71" gid="179" x="196" y="64.75" width="16" height="16"/>
+  <object id="72" gid="179" x="52.5" y="64.25" width="16" height="16"/>
+  <object id="73" gid="179" x="52.25" y="114.5" width="16" height="16"/>
+  <object id="74" gid="179" x="57.75" y="144.25" width="16" height="16"/>
+  <object id="75" gid="179" x="201.75" y="141" width="16" height="16"/>
+  <object id="76" gid="182" x="198.75" y="114.75" width="16" height="16"/>
+  <object id="77" gid="182" x="200.5" y="76.5" width="16" height="16"/>
+  <object id="78" gid="182" x="48.5" y="80.75" width="16" height="16"/>
+  <object id="79" gid="182" x="41.75" y="128" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup name="Objects">
+  <object id="55" gid="156" x="160" y="64" width="48" height="32"/>
+  <object id="56" gid="156" x="160" y="80" width="48" height="32"/>
+  <object id="57" gid="156" x="160" y="96" width="48" height="32"/>
+  <object id="58" gid="156" x="160" y="96" width="48" height="32"/>
+  <object id="59" gid="156" x="160" y="112" width="48" height="32"/>
+  <object id="60" gid="156" x="160" y="128" width="48" height="32"/>
+  <object id="61" gid="156" x="160" y="144" width="48" height="32"/>
+  <object id="62" gid="156" x="160" y="160" width="48" height="32"/>
+  <object id="63" gid="156" x="80" y="160" width="48" height="32"/>
+  <object id="64" gid="156" x="80" y="144" width="48" height="32"/>
+  <object id="65" gid="156" x="80" y="128" width="48" height="32"/>
+  <object id="66" gid="156" x="80" y="112" width="48" height="32"/>
+  <object id="67" gid="156" x="80" y="96" width="48" height="32"/>
+  <object id="68" gid="156" x="80" y="80" width="48" height="32"/>
+  <object id="69" gid="156" x="80" y="64" width="48" height="32"/>
+ </objectgroup>
+</map>

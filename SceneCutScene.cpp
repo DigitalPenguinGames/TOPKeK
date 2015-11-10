@@ -40,7 +40,7 @@ void SceneCutScene::update(float deltaTime) {
            --_index;
             DataManager::reset();
             sf::Vector2f playerPos = sf::Vector2f(50,50); 
-            std::string nextScene = "hub";
+            std::string nextScene = "map0";
             changeScene(new SceneChanger(sf::Vector2f(0,0),nextScene,playerPos));
             ScenePlayable* aux = dynamic_cast<ScenePlayable*>( (*_game->_scenes.find(nextScene)).second );
             aux->setPlayer(new Player());

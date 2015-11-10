@@ -11,7 +11,7 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
     const int propOverWorldInitialGid = mapInitialGid + 144;         // 144 Diferent mapTiles
     const int dungeonDoorsInitialGid = propOverWorldInitialGid + 12; // 12 different props
     const int enemyInitialGid = dungeonDoorsInitialGid + 12;         // 12 different doors
-                                                                     // 100 different enemies
+    const int dropsInitialGid = enemyInitialGid + 10;                // 10 different enemies
     std::vector<std::pair<enemyType,sf::Vector2f> > enemies;
     des >> _mapType;
     switch (_mapType) {
@@ -143,6 +143,16 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
                 std::string textKey;
                 des >> gid >> x >> y;
                 enemies.push_back(std::make_pair(enemyType(gid-enemyInitialGid), sf::Vector2f(x,y))); 
+            }
+        }
+        else if ("Drops" == objectGroup) {
+            int numberOfDrops;
+            des >> numberOfDrops;
+            for (int i = 0; i < numberOfDrops; ++i) {
+                float x,y;
+                int gid;
+                des >> gid >> x >> y;
+                _scene->addObject(new Object(objectType(gid - dropsInitialGid), sf::Vector2f(x,y),_scene) );
             }
         }
         else {

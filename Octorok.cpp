@@ -57,7 +57,7 @@ void Octorok::drop() {
     int r = std::rand()%10;
     objectType dropType;
     bool droping = true;
-    if (r == 0) dropType = objectType::bomb;
+    if (r == 0) dropType = objectType::rupee;
     else if (r <= 1) dropType = objectType::fullHeal;
     else if (r <= 3) dropType = objectType::rupee;
     else if (r <= 6) dropType = objectType::halfHeal;
