@@ -102,6 +102,7 @@ void SceneMenu::initButtons() {
     TextButton* resB;
     resB = new TextButton("     New Game", Resources::pauseMenuFont); // New game
     resB->onClick = [this](const sf::Event&, Button&) {
+        DataManager::reset();
         sf::Vector2f playerPos = sf::Vector2f(50,50); 
         std::string nextScene = "hub";
         ScenePlayable* aux = dynamic_cast<ScenePlayable*>( (*_game->_scenes.find(nextScene)).second );

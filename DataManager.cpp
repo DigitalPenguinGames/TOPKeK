@@ -79,6 +79,15 @@ void DataManager::save() {
     for (auto it = f2Map.begin(); it != f2Map.end(); ++it) file << it->first << " " << it->second.x << " " << it->second.y << std::endl;
 }
 
+void DataManager::reset() {
+    // TODO: First we must to save all the data that is not of the play (options, achivements, etc..) 
+    bMap.clear();
+    fMap.clear();
+    sMap.clear();
+    f2Map.clear();
+    save();
+}
+
 bool DataManager::getBool(std::string key, bool defaultValue) {
     auto it = bMap.find(key);
     if (it == bMap.end()) return defaultValue;
