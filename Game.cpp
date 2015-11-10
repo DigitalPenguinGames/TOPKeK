@@ -156,6 +156,8 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                 player->save();
                 DataManager::setString("playerScene",sceneName);
                 DataManager::save();
+                currentScene->getFairy()->Effect::setPosition(currentScene->getPlayer()->getPosition());
+                sf::Mouse::setPosition( _window.mapCoordsToPixel(currentScene->getPlayer()->getPosition(), *_currentScene->getPtrView()) ,_window);
                 return;
             }
         }
@@ -255,6 +257,8 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             currentScene->getPlayer()->save();
             DataManager::setString("playerScene",sceneName);
             DataManager::save();
+            currentScene->getFairy()->Effect::setPosition(currentScene->getPlayer()->getPosition());
+            sf::Mouse::setPosition( _window.mapCoordsToPixel(currentScene->getPlayer()->getPosition(), *_currentScene->getPtrView()) ,_window);
             return;
         }
         if (sceneName == "menu") {
