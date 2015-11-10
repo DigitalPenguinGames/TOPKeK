@@ -33,8 +33,8 @@ void Game::start() {
     // aux->setPlayer(new Player());
     // changeScene(new SceneChanger(sf::Vector2f(0,0),"hub",sf::Vector2f(0,0)));
     
-    changeScene(new SceneChanger(sf::Vector2f(0,0),"cutScene",sf::Vector2f(0,0)));
-    //changeScene(new SceneChanger(sf::Vector2f(0,0),"menu",sf::Vector2f(0,0)));
+    // changeScene(new SceneChanger(sf::Vector2f(0,0),"cutScene",sf::Vector2f(0,0)));
+    changeScene(new SceneChanger(sf::Vector2f(0,0),"menu",sf::Vector2f(0,0)));
 
     while (_currentScene != nullptr) {
         _currentScene->run();
@@ -156,6 +156,8 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                 player->save();
                 DataManager::setString("playerScene",sceneName);
                 DataManager::save();
+                currentScene->getFairy()->Effect::setPosition(currentScene->getPlayer()->getPosition());
+                sf::Mouse::setPosition( _window.mapCoordsToPixel(currentScene->getPlayer()->getPosition(), *_currentScene->getPtrView()) ,_window);
                 return;
             }
         }
@@ -255,6 +257,8 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             currentScene->getPlayer()->save();
             DataManager::setString("playerScene",sceneName);
             DataManager::save();
+            currentScene->getFairy()->Effect::setPosition(currentScene->getPlayer()->getPosition());
+            sf::Mouse::setPosition( _window.mapCoordsToPixel(currentScene->getPlayer()->getPosition(), *_currentScene->getPtrView()) ,_window);
             return;
         }
         if (sceneName == "menu") {

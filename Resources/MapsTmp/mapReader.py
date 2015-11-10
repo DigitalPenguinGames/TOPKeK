@@ -100,6 +100,15 @@ def main():
 					x = prop.get('x')
 					y = prop.get('y')
 					output += gid + " " + x + " " + y  + " "
+			elif (shit.get('name') == 'Drops'):
+				output += "Drops "
+				numberOfDrops = len(shit.findall('object'))
+				output += str(numberOfDrops) + " "
+				for prop in shit.findall('object'):
+					gid = prop.get('gid')
+					x = prop.get('x')
+					y = prop.get('y')
+					output += gid + " " + x + " " + y  + " "
 
 		output += "finish "
 

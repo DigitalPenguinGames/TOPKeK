@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="33" tilewidth="16" tileheight="16" nextobjectid="209">
- <tileset firstgid="1" name="OverWorld" tilewidth="16" tileheight="16" spacing="1" margin="1">
+ <tileset firstgid="1" name="OverWorld" tilewidth="16" tileheight="16" spacing="1" margin="1" tilecount="144">
   <image source="../Textures/OverworldTiles.png" width="307" height="137"/>
   <terraintypes>
    <terrain name="Green Walls" tile="61"/>
@@ -29,16 +29,16 @@
   <tile id="134" terrain="1,1,2,1"/>
   <tile id="135" terrain="1,1,1,2"/>
  </tileset>
- <tileset firstgid="145" name="OverworldObjects" tilewidth="48" tileheight="32" spacing="1" margin="1">
+ <tileset firstgid="145" name="OverworldObjects" tilewidth="48" tileheight="32" spacing="1" margin="1" tilecount="12">
   <image source="../Textures/OverworldObjects.png" width="148" height="133"/>
  </tileset>
- <tileset firstgid="157" name="dungeonDoorsHor" tilewidth="32" tileheight="20">
+ <tileset firstgid="157" name="dungeonDoorsHor" tilewidth="32" tileheight="20" tilecount="6">
   <image source="../Textures/dungeonDoorsHor.png" width="64" height="60"/>
  </tileset>
- <tileset firstgid="163" name="dungeonDoorsVer" tilewidth="20" tileheight="32">
+ <tileset firstgid="163" name="dungeonDoorsVer" tilewidth="20" tileheight="32" tilecount="6">
   <image source="../Textures/dungeonDoorsVer.png" width="40" height="96"/>
  </tileset>
- <tileset firstgid="169" name="Enemies" tilewidth="16" tileheight="16" spacing="1" margin="1">
+ <tileset firstgid="169" name="Enemies" tilewidth="16" tileheight="16" spacing="1" margin="1" tilecount="100">
   <image source="../Textures/EnemiesToMap.png" width="171" height="171"/>
  </tileset>
  <layer name="Tile Layer 1" width="40" height="33">
@@ -82,15 +82,15 @@
 </data>
  </layer>
  <objectgroup name="Objects">
-  <object id="107" gid="152" x="48" y="400"/>
-  <object id="108" gid="152" x="80" y="400"/>
-  <object id="109" gid="152" x="112" y="400"/>
-  <object id="110" gid="152" x="144" y="400"/>
-  <object id="111" gid="152" x="176" y="400"/>
-  <object id="112" gid="152" x="208" y="400"/>
-  <object id="113" gid="152" x="48" y="416"/>
-  <object id="114" gid="152" x="48" y="464"/>
-  <object id="115" gid="152" x="112" y="448"/>
+  <object id="107" gid="152" x="48" y="400" width="48" height="32"/>
+  <object id="108" gid="152" x="80" y="400" width="48" height="32"/>
+  <object id="109" gid="152" x="112" y="400" width="48" height="32"/>
+  <object id="110" gid="152" x="144" y="400" width="48" height="32"/>
+  <object id="111" gid="152" x="176" y="400" width="48" height="32"/>
+  <object id="112" gid="152" x="208" y="400" width="48" height="32"/>
+  <object id="113" gid="152" x="48" y="416" width="48" height="32"/>
+  <object id="114" gid="152" x="48" y="464" width="48" height="32"/>
+  <object id="115" gid="152" x="112" y="448" width="48" height="32"/>
  </objectgroup>
  <objectgroup name="Exits" opacity="0.46">
   <object id="19" name="cave" gid="9" x="112" y="336" width="16" height="16">
@@ -116,24 +116,25 @@
   </object>
  </objectgroup>
  <objectgroup name="Enemies">
-  <object id="188" gid="169" x="82" y="431"/>
-  <object id="189" gid="169" x="181" y="427"/>
-  <object id="190" gid="169" x="191" y="365"/>
-  <object id="191" gid="169" x="58" y="362"/>
-  <object id="192" gid="169" x="391" y="357"/>
-  <object id="193" gid="169" x="422" y="357"/>
-  <object id="194" gid="169" x="429" y="313"/>
-  <object id="195" gid="169" x="429" y="272"/>
-  <object id="196" gid="169" x="354" y="218"/>
-  <object id="197" gid="169" x="334" y="166"/>
-  <object id="198" gid="169" x="396" y="175"/>
-  <object id="199" gid="169" x="456" y="198"/>
-  <object id="200" gid="169" x="529" y="175"/>
-  <object id="201" gid="169" x="502" y="132"/>
-  <object id="202" gid="169" x="411" y="131"/>
-  <object id="203" gid="169" x="342" y="118"/>
-  <object id="204" gid="169" x="364" y="80"/>
-  <object id="205" gid="169" x="446" y="80"/>
-  <object id="206" gid="169" x="498" y="80"/>
+  <object id="188" gid="169" x="82" y="431" width="16" height="16"/>
+  <object id="189" gid="169" x="181" y="427" width="16" height="16"/>
+  <object id="190" gid="169" x="191" y="365" width="16" height="16"/>
+  <object id="191" gid="169" x="58" y="362" width="16" height="16"/>
+  <object id="192" gid="169" x="391" y="357" width="16" height="16"/>
+  <object id="193" gid="169" x="422" y="357" width="16" height="16"/>
+  <object id="194" gid="169" x="429" y="313" width="16" height="16"/>
+  <object id="195" gid="169" x="429" y="272" width="16" height="16"/>
+  <object id="196" gid="169" x="354" y="218" width="16" height="16"/>
+  <object id="197" gid="169" x="334" y="166" width="16" height="16"/>
+  <object id="198" gid="169" x="396" y="175" width="16" height="16"/>
+  <object id="199" gid="169" x="456" y="198" width="16" height="16"/>
+  <object id="200" gid="169" x="529" y="175" width="16" height="16"/>
+  <object id="201" gid="169" x="502" y="132" width="16" height="16"/>
+  <object id="202" gid="169" x="411" y="131" width="16" height="16"/>
+  <object id="203" gid="169" x="342" y="118" width="16" height="16"/>
+  <object id="204" gid="169" x="364" y="80" width="16" height="16"/>
+  <object id="205" gid="169" x="446" y="80" width="16" height="16"/>
+  <object id="206" gid="169" x="498" y="80" width="16" height="16"/>
  </objectgroup>
+ <objectgroup name="Drops"/>
 </map>

@@ -35,6 +35,7 @@ public:
 
     Player* getPlayer();
     void setPlayer(Player* p);
+    Fairy* getFairy();
 
     sf::Vector2i getMapSize(); // in number of tiles
     sf::Vector2f getSceneCoord();

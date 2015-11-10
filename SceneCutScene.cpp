@@ -38,7 +38,14 @@ void SceneCutScene::update(float deltaTime) {
         ++_index;
         if(_index >= _animation.size()) {
            --_index;
-           changeScene(new SceneChanger(sf::Vector2f(0,0),"menu",sf::Vector2f(0,0)));
+            DataManager::reset();
+            sf::Vector2f playerPos = sf::Vector2f(50,50); 
+            std::string nextScene = "map0";
+            changeScene(new SceneChanger(sf::Vector2f(0,0),nextScene,playerPos));
+            ScenePlayable* aux = dynamic_cast<ScenePlayable*>( (*_game->_scenes.find(nextScene)).second );
+            aux->setPlayer(new Player());
+            aux->getPlayer()->setPosition(playerPos);
+            DataManager::setBool("game", true);
         }
         _sprite.setTexture(_animation[_index],true);
         _view.setCenter(_sprite.getPosition().x+_sprite.getGlobalBounds().width/2, _sprite.getPosition().y+_sprite.getGlobalBounds().height/2);

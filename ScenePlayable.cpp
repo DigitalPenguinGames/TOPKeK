@@ -97,6 +97,9 @@ void ScenePlayable::setPlayer(Player* p) {
     _player = p;
 }
 
+Fairy* ScenePlayable::getFairy() {
+    return _fairy;
+}
 
 struct CollisionPositionCompare : public std::binary_function<Collisionable*, Collisionable*, bool>
 {

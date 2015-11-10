@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="12" tilewidth="16" tileheight="16" nextobjectid="247">
+ <tileset firstgid="1" name="OverWorld" tilewidth="16" tileheight="16" spacing="1" margin="1" tilecount="144">
+  <image source="../Textures/OverworldTiles.png" width="307" height="137"/>
+  <terraintypes>
+   <terrain name="Green Walls" tile="61"/>
+   <terrain name="Ground" tile="8"/>
+   <terrain name="Water" tile="97"/>
+  </terraintypes>
+  <tile id="8" terrain="1,1,1,1"/>
+  <tile id="42" terrain="1,0,0,0"/>
+  <tile id="43" terrain="0,0,0,0"/>
+  <tile id="44" terrain="0,1,0,0"/>
+  <tile id="55" terrain=",0,,"/>
+  <tile id="60" terrain="0,0,1,0"/>
+  <tile id="61" terrain="0,0,0,0"/>
+  <tile id="62" terrain="0,0,0,1"/>
+  <tile id="78" terrain="1,1,1,2"/>
+  <tile id="79" terrain="1,1,2,2"/>
+  <tile id="80" terrain="1,1,2,1"/>
+  <tile id="96" terrain="1,2,1,2"/>
+  <tile id="97" terrain="2,2,2,2"/>
+  <tile id="98" terrain="2,1,2,1"/>
+  <tile id="114" terrain="1,2,1,1"/>
+  <tile id="115" terrain="2,2,1,1"/>
+  <tile id="116" terrain="2,1,1,1"/>
+  <tile id="132" terrain="2,1,1,1"/>
+  <tile id="133" terrain="1,2,1,1"/>
+  <tile id="134" terrain="1,1,2,1"/>
+  <tile id="135" terrain="1,1,1,2"/>
+ </tileset>
+ <tileset firstgid="145" name="OverworldObjects" tilewidth="48" tileheight="32" spacing="1" margin="1" tilecount="12">
+  <image source="../Textures/OverworldObjects.png" width="148" height="133"/>
+ </tileset>
+ <tileset firstgid="157" name="dungeonDoorsHor" tilewidth="32" tileheight="20" tilecount="6">
+  <image source="../Textures/dungeonDoorsHor.png" width="64" height="60"/>
+ </tileset>
+ <tileset firstgid="163" name="dungeonDoorsVer" tilewidth="20" tileheight="32" tilecount="6">
+  <image source="../Textures/dungeonDoorsVer.png" width="40" height="96"/>
+ </tileset>
+ <tileset firstgid="169" name="Enemies" tilewidth="16" tileheight="16" spacing="1" margin="1" tilecount="100">
+  <image source="../Textures/EnemiesToMap.png" width="171" height="171"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="30" height="12">
+  <properties>
+   <property name="type" value="outside"/>
+  </properties>
+  <data encoding="csv">
+62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,137,137,62,62,62,62,62,
+62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,97,99,62,63,61,62,62,
+62,62,62,62,62,62,62,62,62,62,63,3,3,3,3,3,3,3,3,3,3,3,3,132,132,3,3,43,62,62,
+62,62,63,3,3,3,3,3,3,3,3,3,3,79,80,80,80,80,80,80,80,80,80,98,99,3,3,62,62,62,
+62,63,3,3,3,3,3,3,3,3,3,3,3,97,98,116,116,116,116,116,116,116,116,116,117,3,3,62,62,62,
+3,3,3,3,3,3,3,3,3,3,3,3,3,97,99,3,3,3,3,3,3,3,3,3,3,3,43,62,62,62,
+3,3,3,3,3,3,3,3,3,3,3,3,3,97,99,3,3,3,3,3,3,3,3,3,43,45,62,62,62,62,
+44,44,44,44,44,44,44,44,44,44,44,44,44,97,99,44,45,3,3,3,3,3,3,43,62,62,62,62,62,62,
+62,62,62,62,62,62,62,62,62,62,62,62,62,97,99,62,62,45,9,9,9,9,9,62,62,62,62,62,62,62,
+62,62,62,62,62,62,62,62,62,62,62,62,62,97,99,62,62,62,45,9,9,9,9,62,62,62,62,62,62,62,
+62,62,62,62,62,62,62,62,62,62,62,62,62,97,99,62,62,62,62,45,9,9,9,62,62,62,62,62,62,62,
+62,62,62,62,62,62,62,62,62,62,62,62,62,97,99,62,62,62,62,62,45,9,9,62,62,62,62,62,62,62
+</data>
+ </layer>
+ <objectgroup name="Objects">
+  <object id="217" gid="151" x="96" y="128" width="48" height="32"/>
+  <object id="218" gid="151" x="64" y="128" width="48" height="32"/>
+  <object id="219" gid="151" x="80" y="128" width="48" height="32"/>
+  <object id="220" gid="151" x="112" y="128" width="48" height="32"/>
+  <object id="221" gid="151" x="128" y="128" width="48" height="32"/>
+  <object id="222" gid="151" x="144" y="128" width="48" height="32"/>
+  <object id="223" gid="151" x="160" y="128" width="48" height="32"/>
+  <object id="224" gid="151" x="176" y="128" width="48" height="32"/>
+  <object id="225" gid="151" x="192" y="128" width="48" height="32"/>
+  <object id="231" gid="151" x="48" y="128" width="48" height="32"/>
+  <object id="232" gid="151" x="32" y="128" width="48" height="32"/>
+  <object id="233" gid="151" x="16" y="128" width="48" height="32"/>
+  <object id="234" gid="151" x="0" y="128" width="48" height="32"/>
+  <object id="239" gid="151" x="192" y="112" width="48" height="32"/>
+  <object id="240" gid="151" x="192.5" y="120" width="48" height="32"/>
+  <object id="241" gid="151" x="192.5" y="105.5" width="48" height="32"/>
+  <object id="242" gid="151" x="96" y="96" width="48" height="32"/>
+ </objectgroup>
+ <objectgroup name="Exits" opacity="0.46">
+  <object id="208" name="Exit 1" gid="9" x="0" y="96" width="16" height="16">
+   <properties>
+    <property name="scene" value="map1"/>
+    <property name="x" value="15"/>
+    <property name="y" value="8"/>
+   </properties>
+  </object>
+  <object id="237" name="Exit 1" gid="9" x="0" y="112" width="16" height="16">
+   <properties>
+    <property name="scene" value="map1"/>
+    <property name="x" value="15"/>
+    <property name="y" value="9"/>
+   </properties>
+  </object>
+  <object id="245" name="Exit 3" gid="9" x="336" y="192" width="16" height="16">
+   <properties>
+    <property name="scene" value="map3"/>
+    <property name="x" value="8"/>
+    <property name="y" value="0"/>
+   </properties>
+  </object>
+  <object id="246" name="Exit 3" gid="9" x="352" y="192" width="16" height="16">
+   <properties>
+    <property name="scene" value="map3"/>
+    <property name="x" value="9"/>
+    <property name="y" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Enemies">
+  <object id="238" gid="169" x="292.5" y="112" width="16" height="16"/>
+  <object id="244" gid="169" x="112" y="64" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup name="Drops"/>
+</map>
