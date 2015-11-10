@@ -43,6 +43,7 @@ SceneMenu::SceneMenu(Game* g, sf::RenderWindow* w) : Scene(g,w,sceneTypes::menu,
     _menuLayout->add(exitB);
     _menu.setLayout(_menuLayout);
 
+    _buttonSelected = -1;
 }
 
 SceneMenu::~SceneMenu() {
@@ -50,7 +51,7 @@ SceneMenu::~SceneMenu() {
 
 void SceneMenu::init(sf::Vector2f ) {
     _elapsed = 0;
-    _buttonSelected = -1;
+    resetMenuPosition();
 }
 
 void SceneMenu::processInput() {
@@ -60,8 +61,7 @@ void SceneMenu::processInput() {
         if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
         else if (event.type == sf::Event::MouseMoved) {
             _window->setMouseCursorVisible(true);
-            if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
-            _buttonSelected = -1;
+            resetMenuPosition();
         }
         else if (event.type == sf::Event::LostFocus) _focus = false;
     }
@@ -113,4 +113,13 @@ void SceneMenu::update(float deltaTime) {
 void SceneMenu::render(sf::RenderTarget*) {
     _window->setView(_window->getDefaultView());
     _menu.draw();
+}
+
+
+
+void SceneMenu::resetMenuPosition() {
+    if (_buttonSelected >= 0) static_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
+    _buttonSelected = -1;
+
+    _selectedLayout = _menuLayout;
 }

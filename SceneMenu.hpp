@@ -30,6 +30,8 @@ public:
     void processInput();
     void render(sf::RenderTarget* target);
 
+    void resetMenuPosition();
+
 private:
 
     float _elapsed;
