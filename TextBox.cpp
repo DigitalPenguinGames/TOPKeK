@@ -99,7 +99,7 @@ void TextBox::setText(float charSize){
 
     }
 
-    if(boxTexts.size() > 0) std::cout <<"first text "<< boxTexts[0] << std::endl;
+    //if(boxTexts.size() > 0) std::cout <<"first text "<< boxTexts[0] << std::endl;
 }
 
 void TextBox::setTextBestFit(std::string s = "Click", float charSize = 100){
