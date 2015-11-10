@@ -32,6 +32,7 @@ public:
 
     void resetMenuPosition();
     void initButtons();
+    void changeButton(int offset);
 
 private:
 
