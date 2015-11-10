@@ -62,6 +62,8 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
     _elapsedPress = 0;
     _fairy = new Fairy();
     _player = nullptr;
+
+    _fairyShootTimer = 0;
 }
 
 ScenePlayable::~ScenePlayable(){}
@@ -241,6 +243,14 @@ void ScenePlayable::processInput() {
                 }
 
             }
+
+            if (InputManager::action(InputAction::fairyAction) && _fairyShootTimer > 0.5) {
+                sf::Vector2f begin = getRelativeCenter(_fairy->getPosition(), _fairy->getBounds(), FairyShoot::bounds());
+                sf::Vector2f end = getRelativeCenter(_player->getPosition(), _player->getBounds(), FairyShoot::bounds());
+                _allyWeapons.push_back(new FairyShoot(&_map, begin, end, directions::up));
+                _fairyShootTimer = 0;
+            }
+
             if (InputManager::action(InputAction::pause) && _elapsedPress > 0.3 ) {
                 _elapsedPress = 0;
                 _status = status::onMenu;
@@ -254,12 +264,6 @@ void ScenePlayable::processInput() {
             else if (InputManager::action(InputAction::down)  || InputManager::action(InputAction::p1movementY) >  0.5) _player->move(directions::down);
             else if (InputManager::action(InputAction::right) || InputManager::action(InputAction::p1movementX) >  0.5) _player->move(directions::right);
             else if (InputManager::action(InputAction::left)  || InputManager::action(InputAction::p1movementX) < -0.5) _player->move(directions::left);
-
-            if (InputManager::action(InputAction::fairyAction)) {
-                sf::Vector2f begin = getRelativeCenter(_fairy->getPosition(), _fairy->getBounds(), FairyShoot::bounds());
-                sf::Vector2f end = getRelativeCenter(_player->getPosition(), _player->getBounds(), FairyShoot::bounds());
-                _allyWeapons.push_back(new FairyShoot(&_map, begin, end, directions::up));
-            }
             // for (int i = 0; i < 32; ++i) if (sf::Joystick::isButtonPressed(0,i)) std::cout << i << std::endl;
 
 			if (InputManager::action(InputAction::reset)) clearMap();
@@ -320,6 +324,7 @@ void ScenePlayable::addObject(Object* object) {
 }
 
 void ScenePlayable::update(float deltaTime) {
+    _fairyShootTimer += deltaTime;
     _elapsedPress += deltaTime;
     if (_status == status::onMenu) {
         
