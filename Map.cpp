@@ -114,7 +114,7 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
                         sC.setBounds(sf::FloatRect(x+localOffset.x,y+localOffset.y,TILESIZE,TILESIZE));
                         sC.setDirection(dir);
                         // DungeonDoor door(gid+157,sf::Vector2f(x,y));
-                        _dungeonDoors.push_back(std::make_pair(new DungeonDoor(gid+dungeonDoorsInitialGid,sf::Vector2f(x,y)), dir)); // GID HARDCODED
+                        _dungeonDoors.push_back(std::make_pair(new DungeonDoor(gid+dungeonDoorsInitialGid,sf::Vector2f(x,y),dir), dir)); 
                         break;}
                     default:
                         std::cout << "Exit in a unspecified type os scene WOT" << std::endl;

@@ -56,6 +56,8 @@ public:
     void setBombs(int bombs);
     void setRupias(int rupias);
 
+    void save();
+
 
 private:
     Map* _map;
@@ -64,16 +66,16 @@ private:
     LightSprite _lightSprite;
     SpriteSheetDescription _description;
 
-    float _hp;
-    float _maxHp;
     float _hitedTimer;
     float _elapsedAttack;
+    int _currentAnimation;
     float _elapsedAnimation;
 
+    float _hp;
+    float _maxHp;
     int _keys;
     int _bombs;
     int _rupias;
-    int _currentAnimation;
 
     bool _dead;
     bool _moving;

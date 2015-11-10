@@ -34,22 +34,23 @@ void DataManager::load() {
             continue;
         }
         --numberOfelements;
+        std::cout << v[i].second << std::endl;
         switch(dataType){
             case 0:
                 bMap.insert(std::make_pair(v[i].second,myStob(v[i+1].second)));
-                i += 2;
+                i += 1;
                 break;
             case 1:
                 fMap.insert(std::make_pair(v[i].second,std::stof(v[i+1].second)));
-                i += 2;
+                i += 1;
                 break;
             case 2:
                 sMap.insert(std::make_pair(v[i].second,v[i+1].second));
-                i += 2;
+                i += 1;
                 break;
             case 3:
                 f2Map.insert(std::make_pair(v[i].second,sf::Vector2f(std::stof(v[i+1].second),std::stof(v[i+2].second))));
-                i += 3;
+                i += 2;
                 break;
             default:
                 exit(EXIT_FAILURE);

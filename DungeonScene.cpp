@@ -3,10 +3,10 @@
 
 DungeonScene::DungeonScene(Game* g, sf::RenderWindow* w, sceneTypes sT, std::string name, std::string description) :
     ScenePlayable(g,w,sT,name,description),
-    _topDoor(0,sf::Vector2f(120,16)),
-    _botDoor(0,sf::Vector2f(120,144)),
-    _leftDoor(0,sf::Vector2f(16,80)),
-    _rightDoor(0,sf::Vector2f(224,80))
+    _topDoor(0,sf::Vector2f(120,16),directions::up),
+    _botDoor(0,sf::Vector2f(120,144),directions::down),
+    _leftDoor(0,sf::Vector2f(16,80),directions::left),
+    _rightDoor(0,sf::Vector2f(224,80),directions::right)
 {
     _sceneIniCoord = sf::Vector2f(FLT_MAX,FLT_MAX);
 }
@@ -31,7 +31,14 @@ void DungeonScene::init(sf::Vector2f sceneIniCoord = sf::Vector2f(0,0)) {
 	_botDoor.setIniCoord(_sceneIniCoord);
 	_leftDoor.setIniCoord(_sceneIniCoord);
 	_rightDoor.setIniCoord(_sceneIniCoord);
-
+    _topDoor.setScene(this);
+    _botDoor.setScene(this);
+    _leftDoor.setScene(this);
+    _rightDoor.setScene(this);
+    if (DataManager::getBool(_sceneName+std::to_string(directions::up   ), false)) _topDoor.openWithKey();
+    if (DataManager::getBool(_sceneName+std::to_string(directions::down ), false)) _botDoor.openWithKey();
+    if (DataManager::getBool(_sceneName+std::to_string(directions::left ), false)) _leftDoor.openWithKey();
+    if (DataManager::getBool(_sceneName+std::to_string(directions::right), false)) _rightDoor.openWithKey();
 }
 
 void DungeonScene::update(float deltaTime) {
