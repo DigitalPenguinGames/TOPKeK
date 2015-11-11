@@ -131,7 +131,7 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
                 float x,y,gid;
                 std::string textKey;
                 des >> gid >> x >> y >> textKey;
-                _scene->addProp( new Speaker(gid,sf::Vector2f(x,y), textKey) );
+                _scene->addProp( new Speaker(gid,sf::Vector2f(x,y-16), textKey) );
             }
         }
         else if ("Enemies" == objectGroup) {
@@ -142,7 +142,7 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
 				int gid;
                 std::string textKey;
                 des >> gid >> x >> y;
-                enemies.push_back(std::make_pair(enemyType(gid-enemyInitialGid), sf::Vector2f(x,y))); 
+                enemies.push_back(std::make_pair(enemyType(gid-enemyInitialGid), sf::Vector2f(x,y-16))); 
             }
         }
         else if ("Drops" == objectGroup) {
@@ -152,7 +152,10 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
                 float x,y;
                 int gid;
                 des >> gid >> x >> y;
-                _scene->addObject(new Object(objectType(gid - dropsInitialGid), sf::Vector2f(x,y),_scene) );
+                if (DataManager::getBool(_scene->getSceneName()+std::to_string('-')+std::to_string(x)+std::to_string(',')+std::to_string(y-16), true)) {
+                    DataManager::setBool(_scene->getSceneName()+std::to_string('-')+std::to_string(x)+std::to_string(',')+std::to_string(y-16), true);
+                    _scene->addObject(new Object(objectType(gid - dropsInitialGid), sf::Vector2f(x,y-16),_scene) );
+                }
             }
         }
         else {

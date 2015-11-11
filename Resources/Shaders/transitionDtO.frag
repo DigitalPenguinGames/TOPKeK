@@ -19,6 +19,9 @@ void main()
     float posDelta = (distancee/maxx);
     //if (posDelta > 1.0) gl_FragColor = vec4(delta,delta,delta,1);
 
-    if (delta < posDelta) gl_FragColor = vec4(posDelta,posDelta,posDelta,1);
+    float color = (60.0f/256.0f)-posDelta*(60.0f/256.0f);
+    float color2 = (77.0f/256.0f)-posDelta*(77.0f/256.0f);
+
+    if (delta < posDelta) gl_FragColor = vec4(color,color2,color,1);
     else gl_FragColor = texture2D(texture, gl_TexCoord[0].xy) * gl_Color;
 }

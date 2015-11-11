@@ -76,11 +76,6 @@ void DungeonDoor::updateSprite() {
     else _bounds = sf::IntRect(0,0,0,0);
 }
 
-
-void DungeonDoor::setIniCoord(sf::Vector2f coord) {
-	_sprite.setPosition(_posOriginal+coord);
-}
-
 bool DungeonDoor::isOpened() {
 	if (_gid == 0) return false;
     return (_gid-157)%6 < 2;
