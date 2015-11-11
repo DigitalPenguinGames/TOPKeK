@@ -128,6 +128,8 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                 sf::Time deltaTime;
                 float count=0.f, timer = 1.5f;
                 // speed
+
+                speed = currentScene->getViewCenterInsideScene() - lastScene->getPtrView()->getCenter();
                 speed /= timer;
                 // zoom
                 //float maxzoom = 1.01, originalZoom = 1, speedZoom = (maxzoom - originalZoom)/(timer*2); // cambiar el speed
