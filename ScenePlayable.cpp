@@ -18,6 +18,7 @@ ScenePlayable::ScenePlayable(Game* g, sf::RenderWindow* w, sceneTypes sT, std::s
     TextButton* exitB;
     exitB = new TextButton("    Menu", Resources::pauseMenuFont);
     exitB->onClick = [this](const sf::Event&, Button&){changeScene(new SceneChanger(sf::Vector2f(0,0), "menu", sf::Vector2f(0,0)));  };
+
     _menuLayout->add(exitB);
     _menuLayout->add(resB);
     _menu.setLayout(_menuLayout);
@@ -162,6 +163,7 @@ void ScenePlayable::display() {
             Scene::render();
             _window->setView(_viewUI);
             _window->draw(_hud);
+            _window->setView(_window->getDefaultView());
             if(drawMenu){
                 _window->setMouseCursorVisible(true);
                 _window->draw(_menu);
@@ -169,7 +171,6 @@ void ScenePlayable::display() {
                 _window->setMouseCursorVisible(false);
             }
 
-            _window->setView(_window->getDefaultView());
             break;
 
 
@@ -187,6 +188,7 @@ void ScenePlayable::processInput() {
         case status::onMenu:{
             while (_window->pollEvent(event)) {
                 TextBoxManager::processEvent(event);
+                //_menu.processEvent(event);
                 _menu.processEvent(event);
                 if (event.type == sf::Event::Closed) {_window->close(); exit(0);}
                 else if (event.type == sf::Event::Resized) {
