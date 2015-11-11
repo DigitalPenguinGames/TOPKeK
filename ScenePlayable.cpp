@@ -527,6 +527,12 @@ void ScenePlayable::update(float deltaTime) {
     }
 
     updateHUD();
+
+    float total = _player->getHp()+_fairy->getHp();
+    if(total <= 0){
+        std::string nextScene = "gameOver";
+        changeScene(new SceneChanger(sf::Vector2f(0,0),nextScene,_player->getPosition()));
+    }
 }
 
 

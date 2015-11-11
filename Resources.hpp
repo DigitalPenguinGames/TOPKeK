@@ -54,12 +54,19 @@ public:
     static sf::Texture initialAnimation4;
     static sf::Texture initialAnimation5;
 
+    static sf::Texture gameOver;
+
     static sf::Font pauseMenuFont;
 
     static std::vector<std::string> AnimationTexts;
     static std::vector<sf::Texture> AnimationIntro;
     static std::vector<float> AnimationIntroTimers;
     static std::vector<animationActions> AnimationIntroActions;
+
+    static std::vector<std::string> AnimationDeathTexts;
+    static std::vector<sf::Texture> AnimationDeath;
+    static std::vector<float> AnimationDeathTimers;
+    static std::vector<animationActions> AnimationDeathActions;
 
     static std::vector<SpriteSheetDescription> descriptions;
 private:

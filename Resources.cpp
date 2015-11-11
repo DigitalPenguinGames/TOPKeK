@@ -8,6 +8,7 @@ sf::Texture            Resources::tileSet;
 sf::Texture            Resources::talkBox;
 sf::Texture            Resources::dungeon;
 sf::Texture            Resources::linkSet;
+sf::Texture            Resources::gameOver;
 sf::Texture            Resources::linkSetT;
 sf::Texture            Resources::linkSetB;
 sf::Texture            Resources::linkSetL;
@@ -50,10 +51,15 @@ sf::Shader             Resources::fairyShootShader;
 
 sf::Font               Resources::pauseMenuFont;
 
-std::vector<std::string> Resources::AnimationTexts;
-std::vector<sf::Texture> Resources::AnimationIntro;
-std::vector<float> Resources::AnimationIntroTimers;
-std::vector<animationActions> Resources::AnimationIntroActions;
+std::vector<sf::Texture>        Resources::AnimationDeath;
+std::vector<float>              Resources::AnimationDeathTimers;
+std::vector<std::string>        Resources::AnimationDeathTexts;
+std::vector<animationActions>   Resources::AnimationDeathActions;
+
+std::vector<std::string>        Resources::AnimationTexts;
+std::vector<sf::Texture>        Resources::AnimationIntro;
+std::vector<float>              Resources::AnimationIntroTimers;
+std::vector<animationActions>   Resources::AnimationIntroActions;
 
 std::vector<SpriteSheetDescription> Resources::descriptions;
 
@@ -94,12 +100,12 @@ void Resources::load() {
     penguinEnemy.loadFromFile           (TEXTURETPATH+std::string("penguinEnemy.png"));
     bulletPenguin.loadFromFile          (TEXTURETPATH+std::string("bulletPenguin.png"));
     penguinEnemyAttack.loadFromFile     (TEXTURETPATH+std::string("penguinEnemyAttack.png"));
-
-    initialAnimation1.loadFromFile     (TEXTURETPATH+std::string("Animations/initial/anim1.png"));
-    initialAnimation2.loadFromFile     (TEXTURETPATH+std::string("Animations/initial/anim2.png"));
-    initialAnimation3.loadFromFile     (TEXTURETPATH+std::string("Animations/initial/anim3.png"));
-    initialAnimation4.loadFromFile     (TEXTURETPATH+std::string("Animations/initial/anim4.png"));
-    initialAnimation5.loadFromFile     (TEXTURETPATH+std::string("Animations/initial/anim5.png"));
+    gameOver.loadFromFile               (TEXTURETPATH+std::string("Animations/gameOver/gameOver.png"));
+    initialAnimation1.loadFromFile      (TEXTURETPATH+std::string("Animations/initial/anim1.png"));
+    initialAnimation2.loadFromFile      (TEXTURETPATH+std::string("Animations/initial/anim2.png"));
+    initialAnimation3.loadFromFile      (TEXTURETPATH+std::string("Animations/initial/anim3.png"));
+    initialAnimation4.loadFromFile      (TEXTURETPATH+std::string("Animations/initial/anim4.png"));
+    initialAnimation5.loadFromFile      (TEXTURETPATH+std::string("Animations/initial/anim5.png"));
 
 
     descriptions = std::vector<SpriteSheetDescription>(spriteDescriptionsQtt);
@@ -145,6 +151,11 @@ void Resources::load() {
     AnimationIntroTimers.push_back(1);
     AnimationIntroActions.push_back(action_none);
     AnimationTexts.push_back("anim5");
+
+    AnimationDeath.push_back(Resources::gameOver);
+    AnimationDeathTimers.push_back(1);
+    AnimationDeathActions.push_back(action_none);
+    AnimationDeathTexts.push_back("none");
 
 }
 

@@ -294,6 +294,11 @@ void Game::loadScenes() {
                                                                Resources::AnimationIntroTimers,
                                                                Resources::AnimationIntroActions,
                                                                Resources::AnimationTexts )));
+    _scenes.insert(std::make_pair("gameOver",new SceneCutScene(this, &_window,
+                                                               Resources::AnimationDeath,
+                                                               Resources::AnimationDeathTimers,
+                                                               Resources::AnimationDeathActions,
+                                                               Resources::AnimationDeathTexts )));
 
 }
 
