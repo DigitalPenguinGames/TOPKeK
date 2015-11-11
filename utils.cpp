@@ -151,3 +151,9 @@ sf::Vector2f getRandBounce(float speed, directions dir) {
     angle = (int)angle%360;
     return sf::Vector2f(std::cos(angle*TO_RADIANS)*speed, -std::sin(angle*TO_RADIANS)*speed); // (cos angle, -sin angle) because the 0 of the Y is on the top corner
 }
+
+int getSign(float n) {
+    if (n>0) return 1;
+    else if (n<0) return -1;
+    else return 0;
+}

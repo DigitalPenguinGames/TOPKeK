@@ -263,4 +263,6 @@ int getVertical(directions dir);
 
 sf::Vector2f getRandBounce(float speed, directions dir);
 
+int getSign(float n);
+
 #endif

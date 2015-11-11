@@ -73,6 +73,8 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 
 
                 sf::Vector2f offset;
+                sf::Vector2f speed;
+                sf::View v = *lastScene->getPtrView();
                 directions dir = sC->getChangeDirection();
                 if (_currentScene->getType() != sceneTypes::outside) {
                     sC->_nextScenePos = sC->_pos; // IM CHANGING THE ORIGINAL. THIS IS NOT A COPY. ATTENTION!!
@@ -81,18 +83,26 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                     case directions::left:
                         offset.y = TILESIZE * (sC->_pos.y-sC->_nextScenePos.y);
                         offset.x = -currentScene->getMapSize().x*TILESIZE;
+                        speed.y = TILESIZE * (sC->_pos.y-sC->_nextScenePos.y);
+                        speed.x = -std::min(currentScene->getMapSize().x*TILESIZE, int(v.getSize().x));
                         break;
                     case directions::right:
                         offset.y = TILESIZE * (sC->_pos.y-sC->_nextScenePos.y);
                         offset.x = lastScene->getMapSize().x*TILESIZE;
+                        speed.y = TILESIZE * (sC->_pos.y-sC->_nextScenePos.y);
+                        speed.x = std::min(lastScene->getMapSize().x*TILESIZE, int(v.getSize().x));
                         break;
                     case directions::up:
                         offset.x = TILESIZE * (sC->_pos.x-sC->_nextScenePos.x);
                         offset.y = -currentScene->getMapSize().y*TILESIZE;
+                        speed.y = -std::min(currentScene->getMapSize().y*TILESIZE, int(v.getSize().y));
+                        speed.x = TILESIZE * (sC->_pos.x-sC->_nextScenePos.x);
                         break;
                     case directions::down:
                         offset.x = TILESIZE * (sC->_pos.x-sC->_nextScenePos.x);
                         offset.y = lastScene->getMapSize().y*TILESIZE;
+                        speed.y = std::min(lastScene->getMapSize().y*TILESIZE, int(v.getSize().y));
+                        speed.x = TILESIZE * (sC->_pos.x-sC->_nextScenePos.x);
                         break;
                     default:
 
@@ -118,7 +128,7 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                 sf::Time deltaTime;
                 float count=0.f, timer = 1.5f;
                 // speed
-                sf::Vector2f speed(offset.x/timer,offset.y/timer);
+                speed /= timer;
                 // zoom
                 //float maxzoom = 1.01, originalZoom = 1, speedZoom = (maxzoom - originalZoom)/(timer*2); // cambiar el speed
 
@@ -150,7 +160,7 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 
                 }
                 
-                _currentScene->getPtrView()->setCenter(lastViewCenter+offset); // Put the center of the camera in his position (like move(speed*(timer-count)))
+                _currentScene->getPtrView()->setCenter(lastViewCenter+speed*timer); // Put the center of the camera in his position (like move(speed*(timer-count)))
 
                 //_currentScene->_view = *view;
                 player->save();
