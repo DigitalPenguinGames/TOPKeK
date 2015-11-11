@@ -18,7 +18,7 @@ void Frame::processEvents() {
 }
 
 bool Frame::processEvent(const sf::Event& event) {
-    sf::Vector2f parent_pos(0,0);
+    sf::Vector2f parent_pos = getPosition();
     return processEvent(event,parent_pos);
 }
 
