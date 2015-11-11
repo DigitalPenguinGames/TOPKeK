@@ -39,6 +39,7 @@ public:
 
     sf::Vector2i getMapSize(); // in number of tiles
     sf::Vector2f getSceneCoord();
+    sf::Vector2f getViewCenterInsideScene();
 
     void init(sf::Vector2f sceneIniCoord);
     void update(float deltaTime);
