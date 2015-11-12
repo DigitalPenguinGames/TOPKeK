@@ -1,5 +1,6 @@
 import glob
 import xml.etree.ElementTree as ET
+import os
 
 regex = "*.tmx"
 
@@ -115,7 +116,7 @@ def main():
 		name = c
 		extension = "scene"
 		filename = name[:-4] + '.' + extension
-		f = open("../Scenes/"+filename,'w+')
+		f = open(os.path.dirname(os.path.realpath(__file__)) + "/../Scenes/"+filename,'w+')
 		f.write(output)
 
 

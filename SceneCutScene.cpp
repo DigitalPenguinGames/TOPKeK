@@ -12,15 +12,14 @@ SceneCutScene::SceneCutScene(Game *g, sf::RenderWindow *w ,
     _animationParam = animParam;
     _animationActions = actions;
 
-    init(sf::Vector2f(0,0));
-
+    _elapsed = 0;
 }
 
 SceneCutScene::~SceneCutScene(){
 
 }
 
-void SceneCutScene::init(sf::Vector2f aux){
+void SceneCutScene::init(sf::Vector2f){
     _index = 0;
 
     TextBoxManager::setSize(50,10);
@@ -28,6 +27,7 @@ void SceneCutScene::init(sf::Vector2f aux){
     TextBoxManager::setText(_animationText[_index],3);
     TextBoxManager::setTexture(0);
     initView(&_view, sf::Vector2i(70,50));
+    _view.setCenter(_sprite.getPosition().x+_sprite.getGlobalBounds().width/2, _view.getCenter().y);
 }
 
 void SceneCutScene::update(float deltaTime) {
@@ -76,7 +76,6 @@ void SceneCutScene::processInput(){
 }
 
 void SceneCutScene::render(sf::RenderTarget* target) {
-    target->setView(_view);
     target->draw(_sprite);
     if(_animationText[_index] != "none") TextBoxManager::drawText(target,0,0);
 
