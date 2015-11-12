@@ -77,7 +77,7 @@ void SceneMenu::update(float deltaTime) {
 }
 
 void SceneMenu::render(sf::RenderTarget*) {
-    _window->setView(_window->getDefaultView());
+    _window->setView(_view);
     if (_selectedLayout == _menuLayout) _menu.draw();
     else if(_selectedLayout == _optionsLayout) _options.draw();
 }
