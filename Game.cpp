@@ -1,7 +1,7 @@
 #include "Game.hpp"
 #include "SceneCutScene.hpp"
 
-Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Close | sf::Style::Resize) {
+Game::Game() : _window(sf::VideoMode::getFullscreenModes()[0],"TOPKeK", sf::Style::Close | sf::Style::Fullscreen) {
     _window.setFramerateLimit(FRAMERATE);
     _window.setMouseCursorVisible(false);
     DataManager::load();
