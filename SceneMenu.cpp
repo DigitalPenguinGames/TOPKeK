@@ -3,11 +3,11 @@
 
 SceneMenu::SceneMenu(Game* g, sf::RenderWindow* w) : 
     Scene(g,w,sceneTypes::menu, "menu"),
-    _menu(*w,w->getDefaultView()),
-    _options(*w,w->getDefaultView()) {
+    _menu(*w,_view),
+    _options(*w,_view) {
     _game = g;
     
-    sf::Vector2u targetResolution(640,360);
+    sf::Vector2u targetResolution(1920,1080);
     initView(&_view, sf::Vector2i(targetResolution));
 
     _buttonSelected = -1;
@@ -26,6 +26,7 @@ void SceneMenu::init(sf::Vector2f ) {
 }
 
 void SceneMenu::processInput() {
+    _window->setView(_view);
     sf::Event event;
     while (_window->pollEvent(event)) {
         if (_selectedLayout == _menuLayout) _menu.processEvent(event);
@@ -67,6 +68,8 @@ void SceneMenu::processInput() {
         
     }
 
+    _window->setView(_window->getDefaultView());
+
 }
 
 void SceneMenu::update(float deltaTime) {
@@ -74,7 +77,7 @@ void SceneMenu::update(float deltaTime) {
 }
 
 void SceneMenu::render(sf::RenderTarget*) {
-    _window->setView(_window->getDefaultView());
+    _window->setView(_view);
     if (_selectedLayout == _menuLayout) _menu.draw();
     else if(_selectedLayout == _optionsLayout) _options.draw();
 }
@@ -163,13 +166,25 @@ void SceneMenu::initButtons() {
 
     TextButton* musicMute;
     musicMute = new TextButton("    Mute", Resources::pauseMenuFont);
-    musicMute->onClick = [this](const sf::Event&, Button&) {/*SoundManager::setMusicVolumen(0);*/};
+    musicMute->onClick = [this](const sf::Event&, Button&) {
+        SoundManager::setGlobalMusicVolumen(0);
+        DataManager::setFloat("MusicVolumen",0.0f);
+        DataManager::save();
+    };
     TextButton* music50;
     music50 = new TextButton("     50%", Resources::pauseMenuFont);
-    music50->onClick = [this](const sf::Event&, Button&) {/*SoundManager::setMusicVolumen(50);*/};
+    music50->onClick = [this](const sf::Event&, Button&) {
+        SoundManager::setGlobalMusicVolumen(50);
+        DataManager::setFloat("MusicVolumen",50.0f);
+        DataManager::save();
+    };
     TextButton* music100;
     music100 = new TextButton("    100%", Resources::pauseMenuFont);
-    music100->onClick = [this](const sf::Event&, Button&) {/*SoundManager::setMusicVolumen(100);*/};
+    music100->onClick = [this](const sf::Event&, Button&) {
+        SoundManager::setGlobalMusicVolumen(100);
+        DataManager::setFloat("MusicVolumen",100.0f);
+        DataManager::save();
+    };
     // musicLayout->add(musicMute);
     // musicLayout->add(music50);
     // musicLayout->add(music100);
@@ -177,17 +192,23 @@ void SceneMenu::initButtons() {
     TextButton* soundMute;
     soundMute = new TextButton("    Mute", Resources::pauseMenuFont);
     soundMute->onClick = [this](const sf::Event&, Button&) {
-        /*SoundManager::setSoundVolumen(0);*/
+        SoundManager::setGlobalSoundVolumen(0);
+        DataManager::setFloat("SoundVolumen",0.0f);
+        DataManager::save();
     };
     TextButton* sound50;
     sound50 = new TextButton("     50", Resources::pauseMenuFont);
     sound50->onClick = [this](const sf::Event&, Button&) {
-        /*SoundManager::setSoundVolumen(50);*/
+        SoundManager::setGlobalSoundVolumen(50);
+        DataManager::setFloat("SoundVolumen",50.0f);
+        DataManager::save();
     };
     TextButton* sound100;
     sound100 = new TextButton("   100", Resources::pauseMenuFont);
     sound100->onClick = [this](const sf::Event&, Button&) {
-        /*SoundManager::setSoundVolumen(100);*/
+        SoundManager::setGlobalSoundVolumen(100);
+        DataManager::setFloat("SoundVolumen",100.0f);
+        DataManager::save();
     };
     // soundLayout->add(soundMute);
     // soundLayout->add(sound50);

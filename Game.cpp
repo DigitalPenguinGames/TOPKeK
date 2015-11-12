@@ -1,7 +1,8 @@
 #include "Game.hpp"
 #include "SceneCutScene.hpp"
 
-Game::Game() : _window(sf::VideoMode(1000,800),"TOPKeK", sf::Style::Close | sf::Style::Resize) {
+
+Game::Game() : _window(sf::VideoMode::getFullscreenModes()[0],"TOPKeK", sf::Style::Close | sf::Style::Fullscreen) {
     _window.setFramerateLimit(FRAMERATE);
     _window.setMouseCursorVisible(false);
     DataManager::load();
@@ -10,12 +11,12 @@ Game::Game() : _window(sf::VideoMode(1000,800),"TOPKeK", sf::Style::Close | sf::
     _lastScene = nullptr;
     SoundManager::load();
     TextBoxManager::load();
-    if (DataManager::getFloat("MasterVolumen",1.0f) == 1.0f) {
-         SoundManager::playMusic("menuMusic");
-       // SoundManager::playMusic("overWorld");
-    }
-    SoundManager::setLoop(true, "menuMusic");
-    //SoundManager::setLoop(true, "overWorld");
+    SoundManager::setGlobalSoundVolumen(DataManager::getFloat("SoundVolumen",100.0f));
+    SoundManager::setGlobalMusicVolumen(DataManager::getFloat("MusicVolumen",100.0f));
+    // SoundManager::playMusic("menuMusic");
+    SoundManager::playMusic("overWorld");
+//    SoundManager::setLoop(true, "menuMusic");
+    SoundManager::setLoop(true, "overWorld");
     initInput();
 
 

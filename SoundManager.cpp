@@ -98,3 +98,12 @@ void SoundManager::setPosition(float x, float y, float z, std::string name){
     mit = musicMap.find(name);
     if (mit != musicMap.end()) (mit->second).setPosition(x,y,z);
 }
+
+
+void SoundManager::setGlobalSoundVolumen(float volume) {
+    for (auto it = soundMap.begin(); it != soundMap.end(); ++it) (it->second).setVolume(volume);
+}
+
+void SoundManager::setGlobalMusicVolumen(float volume) {
+    for (auto it = musicMap.begin(); it != musicMap.end(); ++it) (it->second).setVolume(volume);
+}

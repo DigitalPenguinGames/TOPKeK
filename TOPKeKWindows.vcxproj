@@ -161,6 +161,7 @@
     <ClCompile Include="RockProjectile.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneChanger.cpp" />
+    <ClCompile Include="SceneCutScene.cpp" />
     <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="ScenePlayable.cpp" />
     <ClCompile Include="SoundManager.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="RockProjectile.hpp" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="SceneChanger.hpp" />
+    <ClInclude Include="SceneCutScene.hpp" />
     <ClInclude Include="SceneMenu.hpp" />
     <ClInclude Include="ScenePlayable.hpp" />
     <ClInclude Include="SoundManager.hpp" />

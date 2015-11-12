@@ -20,6 +20,8 @@ public:
     static void setPitch(float pitch, std::string name);
     static void setVolume(float volume, std::string name);
     static void setPosition(float x, float y, float z, std::string name);
+    static void setGlobalSoundVolumen(float volume);
+    static void setGlobalMusicVolumen(float volume);
 
 private:
 
