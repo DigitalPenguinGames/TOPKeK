@@ -28,13 +28,13 @@ public:
 
     ~SceneCutScene();
 
-    void init(sf::Vector2f );
+    void init(sf::Vector2f notUsed = sf::Vector2f(0,0));
 
     void update(float deltaTime);
 
     void processInput();
 
-    void render(sf::RenderTarget *);
+    void render(sf::RenderTarget* target);
 
     void resizing();
 private:

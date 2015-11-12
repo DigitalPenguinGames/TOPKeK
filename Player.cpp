@@ -324,6 +324,11 @@ void Player::setLight(Light* light) {
 void Player::setMap(Map* map) {
     _map = map;
 }
+
+void Player::setDirection(directions dir) {
+    _dir = dir;
+}
+
 bool Player::speaking() const{
     return _speaking;
 }

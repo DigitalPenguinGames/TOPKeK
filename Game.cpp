@@ -179,11 +179,8 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             ScenePlayable* lastScene = dynamic_cast<ScenePlayable*>(_lastScene);
             ScenePlayable* currentScene = dynamic_cast<ScenePlayable*>(_currentScene);
 
-
-
             sf::RenderTexture rt1,rt2;
             rt1.create(WINDOWRATIOX,WINDOWRATIOY);
-            rt1.clear(sf::Color::White);
             rt2.create(WINDOWRATIOX,WINDOWRATIOY);
 
             sf::Vector2i ppos = _window.mapCoordsToPixel(lastScene->getPlayer()->getPositionTransition(),*lastScene->getPtrView());
@@ -235,7 +232,7 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             // view.setCenter(view.getCenter()-lastScene->getSceneCoord());
             view.setCenter(view.getSize().x/2.0f,view.getSize().y/2.0f);
 
-            std::cout << view.getCenter().x << " " << view.getCenter().y << std::endl;
+            //std::cout << view.getCenter().x << " " << view.getCenter().y << std::endl;
 
             bool changed = false;
 
@@ -273,9 +270,102 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             sf::Mouse::setPosition( _window.mapCoordsToPixel(currentScene->getPlayer()->getPosition(), *_currentScene->getPtrView()) ,_window);
             return;
         }
-        if (sceneName == "menu") {
+        else if (sceneName == "menu") {
             ScenePlayable* lastScene = dynamic_cast<ScenePlayable*>(_lastScene);
             if (lastScene != nullptr) delete lastScene->getPlayer();
+        }
+        else if ((_lastScene->getType() == sceneTypes::outside || _lastScene->getType() == sceneTypes::dungeon) && _currentScene->getType() == sceneTypes::cutScene) {
+
+            ScenePlayable* lastScene = dynamic_cast<ScenePlayable*>(_lastScene);
+            SceneCutScene* currentScene = dynamic_cast<SceneCutScene*>(_currentScene);
+
+            currentScene->init();
+
+            sf::Clock clock;
+            sf::Time deltaTime;
+            float count=0.f, timer = 2.f;
+
+            int nSpins = 4;
+            float timePerTurn = timer/(nSpins*4.0f);
+
+            sf::View view = *lastScene->getPtrView();
+            view.setCenter(view.getSize().x/2.0f,view.getSize().y/2.0f);
+
+            while (count < timer) {
+                deltaTime = clock.restart();
+                count += deltaTime.asSeconds();
+                lastScene->getPlayer()->setDirection(directions(int(count/timePerTurn)%4));
+                lastScene->getPlayer()->update(10);
+                _window.clear();
+                _window.setView(view);
+                _lastScene->render();
+                _window.display();
+            }
+
+            count = 0, timer = 0.5f;
+            while (count < timer) {
+                deltaTime = clock.restart();
+                count += deltaTime.asSeconds();
+            }
+
+            sf::Vector2f lastSizeOfView = _lastScene->getPtrView()->getSize();
+            sf::Vector2f currentSizeOfView = _currentScene->getPtrView()->getSize();
+
+            sf::RenderTexture rt1,rt2;
+            rt1.create(lastSizeOfView.x,lastSizeOfView.y);
+            rt2.create(currentSizeOfView.x,currentSizeOfView.y);
+
+            sf::View auxView = *lastScene->getPtrView();
+            auxView.setViewport(sf::FloatRect(0,0,1,1)); // Change the viewport to avoid cuttin the scene
+            rt1.setView(auxView); // I need the view to draw in the renderTexture correctly
+            lastScene->render(&rt1);
+
+            auxView = *currentScene->getPtrView();
+            auxView.setViewport(sf::FloatRect(0,0,1,1)); // Change the viewport to avoid cuttin the scene
+            rt2.setView(auxView); // I need the view to draw in the renderTexture correctly
+            currentScene->render(&rt2);
+
+            rt1.display();
+            rt2.display();
+
+            sf::Sprite sprite1(rt1.getTexture()), sprite2(rt2.getTexture());
+
+
+            Resources::sDying.setParameter("maxTime",timer/2);
+            Resources::sDying.setParameter("expand", false);
+
+            clock.restart();
+            bool changed = false;
+            count=0.f, timer = 2.f;
+            while (count < timer) {
+                deltaTime = clock.restart();
+                count += deltaTime.asSeconds();
+
+                Resources::sDying.setParameter("time",count);
+                _window.clear();
+                if (count < timer/2.f) {
+                    _window.setView(view);
+                    _window.draw(sprite1,&Resources::sDying);
+                }
+                else {
+                    if (!changed) {
+                        changed = true;
+                        Resources::sDying.setParameter("expand", true);
+                        view = *currentScene->getPtrView();
+                        view.setCenter(view.getSize().x/2.0f,view.getSize().y/2.0f);
+                    }
+                     Resources::sDying.setParameter("time",count-(timer/2.f));
+                    _window.setView(view);
+                    _window.draw(sprite2,&Resources::sDying);
+                }
+
+                _window.setView(_window.getDefaultView());
+                _window.display();
+
+            }
+
+            return;
+
         }
 
 

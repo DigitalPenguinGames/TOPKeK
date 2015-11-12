@@ -43,6 +43,7 @@ public:
 
     void setLight(Light* light);
     void setMap(Map* map);
+    void setDirection(directions dir);
 
     bool speaking() const;
     void setSpeaking(bool speaking);

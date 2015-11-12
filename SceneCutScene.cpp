@@ -74,10 +74,10 @@ void SceneCutScene::processInput(){
 
 }
 
-void SceneCutScene::render(sf::RenderTarget*) {
-    _window->setView(_view);
-    _window->draw(_sprite);
-    if(_animationText[_index] != "none")TextBoxManager::drawText(_window,0,0);
+void SceneCutScene::render(sf::RenderTarget* target) {
+    target->setView(_view);
+    target->draw(_sprite);
+    if(_animationText[_index] != "none") TextBoxManager::drawText(target,0,0);
 
 }
 

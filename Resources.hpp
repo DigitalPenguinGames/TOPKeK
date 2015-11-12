@@ -7,7 +7,8 @@ class Resources {
 public:
     static void load();
     //static sf::Texture ...
-    static sf::Shader  DtO;
+    static sf::Shader DtO;
+    static sf::Shader sDying;
     static sf::Shader cInvert;
     static sf::Shader sLighting;
     static sf::Shader fairyShootShader;
