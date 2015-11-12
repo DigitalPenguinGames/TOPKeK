@@ -17,7 +17,7 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
     switch (_mapType) {
         case sceneTypes::outside: // outside
             des >> width >> height;
-            std::cout << _mapType << " " << width << " " << height << std::endl;
+            //std::cout << _mapType << " " << width << " " << height << std::endl;
             _premap = std::vector < std::vector < int > >(width,std::vector<int>(height));
             for (int j = 0; j < int(_premap[0].size()); ++j) {
                 for (int i = 0; i < int(_premap.size()); ++i) {
@@ -88,7 +88,7 @@ Map::Map(ScenePlayable* scene, std::string description) : _scene(scene), _backgr
 
                         if (gid < 6) y -= 20-16; // The map is shifting all the objects 16 to the top
                         else if (gid < 12) y -= 16;
-                        std::cout << "gid " << gid <<" x " << x <<" y " << y << " nS " << nextScene << " x " << nextSceneX << " y " << nextSceneY << std::endl;
+                        //std::cout << "gid " << gid <<" x " << x <<" y " << y << " nS " << nextScene << " x " << nextSceneX << " y " << nextSceneY << std::endl;
                         sf::Vector2f localOffset(0,0);
                         directions dir = none;
                         if (y == 12 && gid < 12) {
@@ -234,8 +234,6 @@ void Map::draw(sf::RenderTarget* w) {
             _background->draw(w);
             break;
     }
-
-    //std::cout << "Drawing map from " << _mapIniCoord.x << " " << int(_map[0].size()) << " " << int(_map.size()) << std::endl;
 }
 
 void Map::drawForeground(sf::RenderTarget *w) {
@@ -251,7 +249,6 @@ void Map::drawForeground(sf::RenderTarget *w) {
 
 std::pair<bool,SceneChanger*> Map::playerInsideExit(sf::Vector2f pos) {
     for (int i = 0; i < int(_sceneChangers.size());++i) {
-        //std::cout << _sceneChangers[i]._bound.left << std::endl;
         if (_sceneChangers[i].getRect(_mapIniCoord).contains(pos)) {
             return std::pair<bool,SceneChanger*>(true,&_sceneChangers[i]);
         }

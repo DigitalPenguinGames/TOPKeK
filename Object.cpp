@@ -66,7 +66,6 @@ void Object::intersectsWith(Collisionable* c) {
         x = _posOriginal.x;
         y = _posOriginal.y;
         if (DataManager::getBool(_scene->getSceneName()+std::to_string('-')+std::to_string(x)+std::to_string(',')+std::to_string(y), false)) {
-            std::cout << "this was a drop on the mapDescription" << std::endl;
             DataManager::setBool(_scene->getSceneName()+std::to_string('-')+std::to_string(x)+std::to_string(',')+std::to_string(y), false);
         }
     }

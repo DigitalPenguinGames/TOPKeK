@@ -34,7 +34,7 @@ void DataManager::load() {
             continue;
         }
         --numberOfelements;
-        std::cout << v[i].second << std::endl;
+        // std::cout << v[i].second << std::endl;
         switch(dataType){
             case 0:
                 bMap.insert(std::make_pair(v[i].second,myStob(v[i+1].second)));

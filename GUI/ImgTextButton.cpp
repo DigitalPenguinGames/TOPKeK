@@ -64,9 +64,7 @@ void ImgTextButton::updateShape(){
 
 
 void ImgTextButton::draw(sf::RenderTarget &target, sf::RenderStates states) const {
-    //std::cout << _position.x << ", " << _position.y << std::endl;
     states.transform.translate(_position);
-    //target.draw(_shape, states);
     target.draw(_sprite, states);
     target.draw(_label,states);
 }

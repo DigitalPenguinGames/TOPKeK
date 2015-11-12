@@ -128,7 +128,6 @@ void Player::getHit(float much, sf::Vector2f) {
     _hitedTimer = 1.5; // One second of invulneravility;
     _hp -= much;
     _dead = _hp <= 0;
-    std::cout << "it hurts " << _hp << std::endl;
 }
 
 void Player::move(directions dir) {
