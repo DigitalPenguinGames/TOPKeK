@@ -39,7 +39,7 @@
  <objectgroup name="Exits" width="0" height="0" opacity="0.97">
   <object name="bit" gid="158" x="112" y="164" width="32" height="20">
    <properties>
-    <property name="scene" value="dun0"/>
+    <property name="scene" value="dun15"/>
     <property name="x" value="9"/>
     <property name="y" value="10"/>
    </properties>
