@@ -34,7 +34,8 @@ private:
     const sf::View& _view;
 
     virtual bool processEvent(const sf::Event& event,
-                              const sf::Vector2f& parent_pos)override;
+                              const sf::Vector2f& parent_pos,
+                              const sf::RenderTarget& target)override;
 
     virtual void processEvents(const sf::Vector2f& parent_pos)override;
 

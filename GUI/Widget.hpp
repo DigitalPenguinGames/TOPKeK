@@ -22,7 +22,8 @@ class Widget : public sf::Drawable {
         Widget* _parent;
 
         virtual bool processEvent(const sf::Event& event,
-                                  const sf::Vector2f& parent_pos);
+                                  const sf::Vector2f& parent_pos,
+                                  const sf::RenderTarget& target);
         virtual void processEvents(const sf::Vector2f& parent_pos);
         virtual void updateShape();
 

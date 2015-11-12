@@ -15,7 +15,8 @@ void Widget::setPosition(float x, float y){
 const sf::Vector2f& Widget::getPosition() const{ return _position; }
 
 bool Widget::processEvent(const sf::Event&,
-                          const sf::Vector2f&) {
+                          const sf::Vector2f&,
+                          const sf::RenderTarget&) {
     return false;
 }
 

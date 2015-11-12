@@ -19,7 +19,7 @@ void Frame::processEvents() {
 
 bool Frame::processEvent(const sf::Event& event) {
     sf::Vector2f parent_pos = getPosition();
-    return processEvent(event,parent_pos);
+    return processEvent(event,parent_pos,_window);
 }
 
 
@@ -28,11 +28,11 @@ sf::Vector2f Frame::getSize()const {
     return _view.getSize();
 }
 
-bool Frame::processEvent(const sf::Event& event,const sf::Vector2f& parent_pos) {
+bool Frame::processEvent(const sf::Event& event,const sf::Vector2f& parent_pos, const sf::RenderTarget& target) {
 
     bool res = false;
     if(not res)
-        res = Container::processEvent(event,parent_pos);
+        res = Container::processEvent(event,parent_pos, target);
     return res;
 }
 
@@ -42,5 +42,5 @@ void Frame::processEvents(const sf::Vector2f& parent_pos) {
 
     sf::Event event;
     while(_window.pollEvent(event))
-        Container::processEvent(event,parent_pos);
+        Container::processEvent(event,parent_pos,_window);
 }

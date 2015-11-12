@@ -35,10 +35,11 @@ void Container::draw(sf::RenderTarget& target,
 }
 
 bool Container::processEvent(const sf::Event& event,const
-                             sf::Vector2f& parent_pos) {
+                             sf::Vector2f& parent_pos,
+                             const sf::RenderTarget& target) {
     bool res = false;
     if(not res and _layout)
-        res = _layout->processEvent(event,parent_pos);
+        res = _layout->processEvent(event,parent_pos, target);
     return res;
 }
 
