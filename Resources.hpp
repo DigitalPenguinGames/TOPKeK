@@ -32,6 +32,7 @@ public:
     static sf::Texture propsOver;
     static sf::Texture fairyShoot;
     static sf::Texture emptyHeart;
+    static sf::Texture linkTalkBox;
     static sf::Texture dungeonCols;
     static sf::Texture textureTest;
     static sf::Texture shinnyHeart;

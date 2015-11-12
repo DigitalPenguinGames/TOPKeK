@@ -6,27 +6,28 @@ SceneCutScene::SceneCutScene(Game *g, sf::RenderWindow *w ,
                              std::vector<sf::Texture>& anim, std::vector<float>& animParam, std::vector<animationActions>& actions, std::vector<std::string> animText)
                             : Scene(g,w,sceneTypes::cutScene, "cutScene"),_menu(*w,w->getDefaultView()){
     _game = g;
-    _index = 0;
     _window = w;
     _animation = anim;
     _animationText = animText;
     _animationParam = animParam;
     _animationActions = actions;
 
-    _sprite.setTexture(_animation[_index]);
+    init(sf::Vector2f(0,0));
 
-    TextBoxManager::setSize(50,10);
-    TextBoxManager::setText(_animationText[_index],3);
-
-    initView(&_view, sf::Vector2i(70,50));
 }
 
 SceneCutScene::~SceneCutScene(){
 
 }
 
-void SceneCutScene::init(sf::Vector2f){
+void SceneCutScene::init(sf::Vector2f aux){
+    _index = 0;
 
+    TextBoxManager::setSize(50,10);
+    _sprite.setTexture(_animation[_index]);
+    TextBoxManager::setText(_animationText[_index],3);
+    TextBoxManager::setTexture(0);
+    initView(&_view, sf::Vector2i(70,50));
 }
 
 void SceneCutScene::update(float deltaTime) {

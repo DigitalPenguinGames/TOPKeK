@@ -337,6 +337,8 @@ void Player::setSpeaking(bool speaking){
     _speaking = speaking;
     if(speaking) TextBoxManager::setSize(50,25);
     if(speaking) TextBoxManager::setText("default", 8);
+    if(speaking) TextBoxManager::setTexture(1);
+
 }
 
 void Player::setSpeaking(bool speaking, std::string name){

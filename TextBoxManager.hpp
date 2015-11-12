@@ -13,6 +13,7 @@ public:
     //TextBoxManager();
     static void load();
     static sf::Vector2f getSize();
+    static void setTexture(int value);
     static void setText(std::string name);
     static void processEvent(sf::Event event);
     static void loadTexts(std::string fileName);

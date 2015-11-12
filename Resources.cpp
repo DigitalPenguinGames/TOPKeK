@@ -21,6 +21,7 @@ sf::Texture            Resources::propsOver;
 sf::Texture            Resources::halfHeart;
 sf::Texture            Resources::emptyHeart;
 sf::Texture            Resources::fairyShoot;
+sf::Texture            Resources::linkTalkBox;
 sf::Texture            Resources::tileSetCols;
 sf::Texture            Resources::dungeonCols;
 sf::Texture            Resources::overEnemies;
@@ -69,6 +70,7 @@ void Resources::load() {
     key.loadFromFile                    (TEXTURETPATH+std::string("key.png"));
     rupia.loadFromFile                  (TEXTURETPATH+std::string("Rupia.png"));
     talkBox.loadFromFile                (TEXTURETPATH+std::string("talkBox.png"));
+    linkTalkBox.loadFromFile            (TEXTURETPATH+std::string("linkTalkBox.png"));
     tileSet.loadFromFile                (TEXTURETPATH+std::string("OverworldTiles.png"));
     fairyShoot.loadFromFile             (TEXTURETPATH+std::string("fairyShoot.png"));
     tileSetCols.loadFromFile            (TEXTURETPATH+std::string("OverworldTilesColision.png"));

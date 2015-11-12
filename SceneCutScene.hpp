@@ -28,7 +28,7 @@ public:
 
     ~SceneCutScene();
 
-    void init(sf::Vector2f notUsed = sf::Vector2f(0,0));
+    void init(sf::Vector2f aux = sf::Vector2f(0,0));
 
     void update(float deltaTime);
 
