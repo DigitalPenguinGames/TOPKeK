@@ -133,7 +133,7 @@ void Resources::load() {
     if (!sDying.loadFromFile           (SHADERPATH+std::string("dying.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
     if (!fairyShootShader.loadFromFile  (SHADERPATH+std::string("fairyShoot.frag"), sf::Shader::Fragment)) exit(EXIT_FAILURE);
 
-    if (!pauseMenuFont.loadFromFile("Resources/Fonts/font.otf")) exit(EXIT_FAILURE);
+    if (!pauseMenuFont.loadFromFile("Resources/Fonts/font.ttf")) exit(EXIT_FAILURE);
 
     AnimationIntro.push_back(Resources::initialAnimation1);
     AnimationIntroActions.push_back(scrollDown);

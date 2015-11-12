@@ -48,14 +48,15 @@ void TextButton::updateShape(){
     sf::Vector2f label_size = _label.getSize();
     unsigned int char_size = _label.getCharacterSize();
     _shape.setSize(sf::Vector2f(char_size*2+label_size.x, char_size*2+label_size.y));
-    _label.setPosition(char_size,char_size);
+//    _label.setPosition(char_size,char_size);
+    _label.setPosition(0.0,0.0);
     Widget::updateShape();
 }
 
 void TextButton::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     states.transform.translate(_position);
     target.draw(_shape, states);
-    states.transform.translate(sf::Vector2f(0, getSize().y/4));
+    states.transform.translate(sf::Vector2f( _shape.getGlobalBounds().width/2 - _label.getSize().x/2, _label.getSize().y));
     target.draw(_label,states);
 }
 
