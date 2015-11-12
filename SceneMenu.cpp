@@ -208,8 +208,9 @@ void SceneMenu::initButtons() {
 }
 
 void SceneMenu::changeButton(int offset) {
-    if (_buttonSelected >= 0 && dynamic_cast<TextButton*>(_selectedLayout->at(_buttonSelected)) == nullptr) return;
-    if (_buttonSelected >= 0) dynamic_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
+    if (_buttonSelected >= 0 && dynamic_cast<TextButton*>(_selectedLayout->at(_buttonSelected)) != nullptr) dynamic_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseLeft();
     _buttonSelected = (((_buttonSelected+offset)%_selectedLayout->getNWidgets()+_selectedLayout->getNWidgets())%_selectedLayout->getNWidgets());
-    dynamic_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseEntered();
+    if (dynamic_cast<TextButton*>(_selectedLayout->at(_buttonSelected)) != nullptr) dynamic_cast<TextButton*>(_selectedLayout->at(_buttonSelected))->onMouseEntered();
+    
+  
 }
