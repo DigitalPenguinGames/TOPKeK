@@ -24,7 +24,7 @@ public:
     ~SceneMenu();
 
 
-    void init(sf::Vector2f );
+    void init(sf::Vector2f p = sf::Vector2f(0,0));
 
     void update(float deltaTime);
     void processInput();
@@ -42,9 +42,15 @@ private:
 
     int _buttonSelected;
 
+    VLayout* _selectedLayout;
+
     Frame _menu;
     VLayout* _menuLayout;
-    VLayout* _selectedLayout;
+
+    Frame _options;
+    VLayout* _optionsLayout;
+
+
 };
 
 

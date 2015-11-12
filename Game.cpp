@@ -57,12 +57,12 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
         exit(EXIT_FAILURE);
     }
     
-    std::cout << "Changing to scene " << sceneName << std::endl;
+    // std::cout << "Changing to scene " << sceneName << std::endl;
 
     // Animations
     _currentScene = (*it).second;
     if (_lastScene != nullptr) {
-        std::cout << _lastScene->getType() << " " << _currentScene->getType() << std::endl;
+        //std::cout << _lastScene->getType() << " " << _currentScene->getType() << std::endl;
         if (_lastScene->getType() == _currentScene->getType()) {
             if (_currentScene->getType() == sceneTypes::outside || _currentScene->getType() == sceneTypes::dungeon) {
                 if (sC == nullptr) {std::cout << "ERROR: Changing between two outisde scenes without SceneChanger"<< std::endl;exit(EXIT_FAILURE);}
@@ -109,11 +109,9 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                         break;
                 }
 
-                std::cout << "OFSEEEEEEEEEEEEEEEEET " << offset.x << " " << offset.y << std::endl;
+                //std::cout << "OFSEEEEEEEEEEEEEEEEET " << offset.x << " " << offset.y << std::endl;
                 sceneIniCoord = lastScene->getSceneCoord()+offset;
 
-                //std::cout << "offset: " << offset.x << " " << offset.y << " sceneIniCoord " << sceneIniCoord.x << " " << sceneIniCoord.y << std::endl;
-                // std::cout << lastScene->getSceneCoord().x << " " << lastScene->getSceneCoord().y << std::endl;
 
                 currentScene->setPlayer(lastScene->getPlayer());
                 _currentScene->init(sceneIniCoord);
@@ -122,7 +120,6 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                 // Transition animation:
                 sf::View view = *lastScene->getPtrView();
                 sf::Vector2f lastViewCenter = view.getCenter();
-                //std::cout << view->getCenter().x << " " << view->getCenter().y << std::endl;
 
                 sf::Clock clock;
                 sf::Time deltaTime;
@@ -131,10 +128,6 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 
                 speed = currentScene->getViewCenterInsideScene() - lastScene->getPtrView()->getCenter();
                 speed /= timer;
-                // zoom
-                //float maxzoom = 1.01, originalZoom = 1, speedZoom = (maxzoom - originalZoom)/(timer*2); // cambiar el speed
-
-                //std::cout << "speed: " << speed.x << " " << speed.y << std::endl;
 
                 Player* player = currentScene->getPlayer();
 
@@ -149,9 +142,6 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                         player->move(dir);
                         player->update(deltaTime.asSeconds());
                     }
-
-                    // if (count < timer/2.f) view->zoom(1-speedZoom);
-                    // else view->zoom(1.f/(1-speedZoom));
 
                     _window.setView(view);
                     _window.clear();
@@ -226,15 +216,12 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             
             Resources::DtO.setParameter("pos",playerPos1);
 
-             
 
-            //std::cout << playerPos.x << " " << playerPos.y << std::endl;
 
             sf::View view = *lastScene->getPtrView();
             // view.setCenter(view.getCenter()-lastScene->getSceneCoord());
             view.setCenter(view.getSize().x/2.0f,view.getSize().y/2.0f);
 
-            //std::cout << view.getCenter().x << " " << view.getCenter().y << std::endl;
 
             bool changed = false;
 
@@ -418,7 +405,7 @@ void Game::loadScene(std::string sceneName) {
     description >> sceneType;
     Scene* aux;
 
-    std::cout << sceneName.substr(0,sceneName.length()-sizeof(SCENEEXTENSION)+1) << " " << sceneType <<  std::endl;
+    //std::cout << sceneName.substr(0,sceneName.length()-sizeof(SCENEEXTENSION)+1) << " " << sceneType <<  std::endl;
 
     switch(myStoi(sceneType)) {
         case sceneTypes::outside:
@@ -461,4 +448,5 @@ void Game::initInput() {
     InputManager::bind(InputAction::pause, 0, 7); // Xbox start
 
 	InputManager::bind(InputAction::reset, sf::Keyboard::F5);
+    InputManager::bind(InputAction::reset, 0, 6);
 }

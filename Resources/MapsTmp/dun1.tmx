@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="16" height="11" tilewidth="16" tileheight="16">
- <tileset firstgid="1" name="OverWorld" tilewidth="16" tileheight="16" spacing="1" margin="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="11" tilewidth="16" tileheight="16" nextobjectid="7">
+ <tileset firstgid="1" name="OverWorld" tilewidth="16" tileheight="16" spacing="1" margin="1" tilecount="144">
   <image source="../Textures/OverworldTiles.png" width="307" height="137"/>
  </tileset>
- <tileset firstgid="145" name="OverworldObjects" tilewidth="48" tileheight="32" spacing="1" margin="1">
+ <tileset firstgid="145" name="OverworldObjects" tilewidth="48" tileheight="32" spacing="1" margin="1" tilecount="12">
   <image source="../Textures/OverworldObjects.png" width="148" height="133"/>
  </tileset>
- <tileset firstgid="157" name="dungeonDoorsHor" tilewidth="32" tileheight="20">
+ <tileset firstgid="157" name="dungeonDoorsHor" tilewidth="32" tileheight="20" tilecount="6">
   <image source="../Textures/dungeonDoorsHor.png" width="64" height="60"/>
  </tileset>
- <tileset firstgid="163" name="dungeonDoorsVer" tilewidth="20" tileheight="32">
+ <tileset firstgid="163" name="dungeonDoorsVer" tilewidth="20" tileheight="32" tilecount="6">
   <image source="../Textures/dungeonDoorsVer.png" width="40" height="96"/>
  </tileset>
- <tileset firstgid="169" name="Enemies" tilewidth="16" tileheight="16" spacing="1" margin="1">
+ <tileset firstgid="169" name="Enemies" tilewidth="16" tileheight="16" spacing="1" margin="1" tilecount="100">
   <image source="../Textures/EnemiesToMap.png" width="171" height="171"/>
  </tileset>
- <imagelayer name="Image Layer 1" width="0" height="0">
+ <imagelayer name="Image Layer 1">
   <image source="../Textures/dungeon.png"/>
  </imagelayer>
  <layer name="Tile Layer 1" width="16" height="11">
@@ -36,39 +36,39 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="Exits" width="0" height="0" opacity="0.97">
-  <object name="bit" gid="158" x="112" y="164" width="32" height="20">
+ <objectgroup name="Exits" opacity="0.97">
+  <object id="1" name="dun0" gid="158" x="112" y="164" width="32" height="20">
    <properties>
     <property name="scene" value="dun0"/>
     <property name="x" value="9"/>
     <property name="y" value="10"/>
    </properties>
   </object>
-  <object name="top" gid="157" x="112" y="32" width="32" height="20">
-   <properties>
-    <property name="scene" value="dun6"/>
-    <property name="x" value="8"/>
-    <property name="y" value="2"/>
-   </properties>
-  </object>
-  <object name="right" gid="163" x="224" y="104">
+  <object id="3" name="dun4" gid="163" x="224" y="104" width="20" height="32">
    <properties>
     <property name="scene" value="dun4"/>
     <property name="x" value="2"/>
     <property name="y" value="6"/>
    </properties>
   </object>
-  <object name="left" gid="164" x="12" y="104">
+  <object id="4" name="dun2" gid="164" x="12" y="104" width="20" height="32">
    <properties>
     <property name="scene" value="dun2"/>
     <property name="x" value="15"/>
     <property name="y" value="6"/>
    </properties>
   </object>
+  <object id="6" name="dun6" gid="161" x="112" y="32" width="32" height="20">
+   <properties>
+    <property name="scene" value="dun6"/>
+    <property name="x" value="8"/>
+    <property name="y" value="2"/>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup name="Enemies" width="0" height="0">
-  <object name="penguin0" gid="171" x="163" y="96"/>
+ <objectgroup name="Enemies">
+  <object id="5" name="penguin0" gid="171" x="163" y="96" width="16" height="16"/>
  </objectgroup>
- <objectgroup name="Drops" width="0" height="0"/>
- <objectgroup name="Objects" width="0" height="0"/>
+ <objectgroup name="Drops"/>
+ <objectgroup name="Objects"/>
 </map>

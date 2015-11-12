@@ -60,7 +60,6 @@ sf::Vector2f DungeonDoor::getBotPosition() {
 void DungeonDoor::updateSprite() {
 	if (_gid == 0) {
 		_bounds = sf::IntRect(0,0,TILESIZE,TILESIZE);
-		std::cout << "penis " << _sprite.getPosition().x << " " << _sprite.getPosition().x << std::endl;
 		return;
 	}
 
