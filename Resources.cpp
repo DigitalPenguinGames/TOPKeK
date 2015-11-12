@@ -1,9 +1,13 @@
 #include "Resources.hpp"
 
 // sf::Texture        Resources::....
+
 sf::Texture            Resources::key;
 sf::Texture            Resources::rupia;
 sf::Texture            Resources::heart;
+sf::Texture            Resources::digPen;
+sf::Texture            Resources::portada;
+sf::Texture            Resources::credits;
 sf::Texture            Resources::tileSet;
 sf::Texture            Resources::talkBox;
 sf::Texture            Resources::dungeon;
@@ -63,6 +67,11 @@ std::vector<sf::Texture>        Resources::AnimationIntro;
 std::vector<float>              Resources::AnimationIntroTimers;
 std::vector<animationActions>   Resources::AnimationIntroActions;
 
+std::vector<sf::Texture>        Resources:: AnimationInit;
+std::vector<std::string>        Resources:: AnimationTextsInit;
+std::vector<float>              Resources:: AnimationTimersInit;
+std::vector<animationActions>   Resources:: AnimationActionsInit;
+
 std::vector<SpriteSheetDescription> Resources::descriptions;
 
 void Resources::load() {
@@ -70,6 +79,9 @@ void Resources::load() {
     key.loadFromFile                    (TEXTURETPATH+std::string("key.png"));
     rupia.loadFromFile                  (TEXTURETPATH+std::string("Rupia.png"));
     talkBox.loadFromFile                (TEXTURETPATH+std::string("talkBox.png"));
+    digPen.loadFromFile                 (TEXTURETPATH+std::string("digPen.png"));
+    portada.loadFromFile                (TEXTURETPATH+std::string("portada.png"));
+    credits.loadFromFile                (TEXTURETPATH+std::string("credits.png"));
     linkTalkBox.loadFromFile            (TEXTURETPATH+std::string("linkTalkBox.png"));
     tileSet.loadFromFile                (TEXTURETPATH+std::string("OverworldTiles.png"));
     fairyShoot.loadFromFile             (TEXTURETPATH+std::string("fairyShoot.png"));
@@ -160,6 +172,19 @@ void Resources::load() {
     AnimationDeathTimers.push_back(1);
     AnimationDeathActions.push_back(action_none);
     AnimationDeathTexts.push_back("none");
+
+    AnimationInit.push_back(Resources::portada);
+    AnimationTimersInit.push_back(3);
+    AnimationActionsInit.push_back(action_skip);
+    AnimationTextsInit.push_back("none");
+    AnimationInit.push_back(Resources::digPen);
+    AnimationTimersInit.push_back(3);
+    AnimationActionsInit.push_back(action_skip);
+    AnimationTextsInit.push_back("none");
+    AnimationInit.push_back(Resources::credits);
+    AnimationTimersInit.push_back(3);
+    AnimationActionsInit.push_back(action_skip);
+    AnimationTextsInit.push_back("none");
 
 }
 

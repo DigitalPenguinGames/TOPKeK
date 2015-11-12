@@ -13,9 +13,13 @@ public:
     static sf::Shader sLighting;
     static sf::Shader fairyShootShader;
 
+
     static sf::Texture key;
     static sf::Texture heart;
     static sf::Texture rupia;
+    static sf::Texture digPen;
+    static sf::Texture portada;
+    static sf::Texture credits;
     static sf::Texture dungeon;
     static sf::Texture talkBox;
     static sf::Texture tileSet;
@@ -69,6 +73,11 @@ public:
     static std::vector<sf::Texture> AnimationDeath;
     static std::vector<float> AnimationDeathTimers;
     static std::vector<animationActions> AnimationDeathActions;
+
+    static std::vector<std::string> AnimationTextsInit;
+    static std::vector<sf::Texture> AnimationInit;
+    static std::vector<float> AnimationTimersInit;
+    static std::vector<animationActions> AnimationActionsInit;
 
     static std::vector<SpriteSheetDescription> descriptions;
 private:

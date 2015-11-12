@@ -1,7 +1,7 @@
 #include "Game.hpp"
 #include "SceneCutScene.hpp"
 
-Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Close | sf::Style::Resize) {
+Game::Game() : _window(sf::VideoMode(1000,800),"TOPKeK", sf::Style::Close | sf::Style::Resize) {
     _window.setFramerateLimit(FRAMERATE);
     _window.setMouseCursorVisible(false);
     DataManager::load();
@@ -11,10 +11,10 @@ Game::Game() : _window(sf::VideoMode::getDesktopMode(),"TOPKeK", sf::Style::Clos
     SoundManager::load();
     TextBoxManager::load();
     if (DataManager::getFloat("MasterVolumen",1.0f) == 1.0f) {
-        // SoundManager::playMusic("menuMusic");
+         SoundManager::playMusic("menuMusic");
        // SoundManager::playMusic("overWorld");
     }
-//    SoundManager::setLoop(true, "menuMusic");
+    SoundManager::setLoop(true, "menuMusic");
     //SoundManager::setLoop(true, "overWorld");
     initInput();
 
@@ -34,7 +34,7 @@ void Game::start() {
     // changeScene(new SceneChanger(sf::Vector2f(0,0),"hub",sf::Vector2f(0,0)));
     
     // changeScene(new SceneChanger(sf::Vector2f(0,0),"cutScene",sf::Vector2f(0,0)));
-    changeScene(new SceneChanger(sf::Vector2f(0,0),"menu",sf::Vector2f(0,0)));
+    changeScene(new SceneChanger(sf::Vector2f(0,0),"intro",sf::Vector2f(0,0)));
 
     while (_currentScene != nullptr) {
         _currentScene->run();
@@ -390,6 +390,11 @@ void Game::loadScenes() {
                                                                Resources::AnimationDeathTimers,
                                                                Resources::AnimationDeathActions,
                                                                Resources::AnimationDeathTexts )));
+    _scenes.insert(std::make_pair("intro", new SceneCutScene(this, &_window,
+                                                             Resources::AnimationInit,
+                                                             Resources::AnimationTimersInit,
+                                                             Resources::AnimationActionsInit,
+                                                             Resources::AnimationTextsInit)));
 
 }
 

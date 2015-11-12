@@ -123,6 +123,7 @@ enum spriteSheetsDescriptions {
 
 enum animationActions {
     action_none,
+    action_skip,
     scrollUp,
     scrollDown,
     scrollLeft,

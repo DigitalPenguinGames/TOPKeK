@@ -33,20 +33,47 @@ void SceneCutScene::init(sf::Vector2f){
 void SceneCutScene::update(float deltaTime) {
     _elapsed += deltaTime;
 
+    if(_animationActions[_index] == action_skip & _elapsed > _animationParam[_index]){
+        ++_index;
+        if(_index >= int(_animation.size())) {
+           --_index;
+            DataManager::reset();
+            sf::Vector2f playerPos = sf::Vector2f(50,50);
+            std::string nextScene = "menu";
+
+            changeScene(new SceneChanger(sf::Vector2f(0,0),nextScene,playerPos));
+            //ScenePlayable* aux = dynamic_cast<ScenePlayable*>( (*_game->_scenes.find(nextScene)).second );
+            //aux->setPlayer(new Player());
+            //aux->getPlayer()->setPosition(playerPos);
+            DataManager::setBool("game", true);
+        }
+        _elapsed = 0;
+    }
     if(_elapsed > 0.5 && InputManager::action(InputAction::action)
                                               && (_animationText[_index] == "none"
                                                 || (_animationText[_index] != "none" && TextBoxManager::getTextFinished()) ) ){
         ++_index;
         if(_index >= int(_animation.size())) {
            --_index;
-            DataManager::reset();
-            sf::Vector2f playerPos = sf::Vector2f(50,50); 
-            std::string nextScene = "map0";
-            changeScene(new SceneChanger(sf::Vector2f(0,0),nextScene,playerPos));
-            ScenePlayable* aux = dynamic_cast<ScenePlayable*>( (*_game->_scenes.find(nextScene)).second );
-            aux->setPlayer(new Player());
-            aux->getPlayer()->setPosition(playerPos);
-            DataManager::setBool("game", true);
+            if(_animationActions[_index] == action_skip){
+                DataManager::reset();
+                sf::Vector2f playerPos = sf::Vector2f(50,50);
+                std::string nextScene = "menu";
+
+                changeScene(new SceneChanger(sf::Vector2f(0,0),nextScene,playerPos));
+
+            }
+            else {
+
+                DataManager::reset();
+                sf::Vector2f playerPos = sf::Vector2f(50,50);
+                std::string nextScene = "map0";
+                changeScene(new SceneChanger(sf::Vector2f(0,0),nextScene,playerPos));
+                ScenePlayable* aux = dynamic_cast<ScenePlayable*>( (*_game->_scenes.find(nextScene)).second );
+                aux->setPlayer(new Player());
+                aux->getPlayer()->setPosition(playerPos);
+                DataManager::setBool("game", true);
+            }
         }
         _sprite.setTexture(_animation[_index],true);
         _view.setCenter(_sprite.getPosition().x+_sprite.getGlobalBounds().width/2, _sprite.getPosition().y+_sprite.getGlobalBounds().height/2);
