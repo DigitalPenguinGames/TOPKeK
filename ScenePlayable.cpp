@@ -168,13 +168,13 @@ void ScenePlayable::display() {
             Scene::render();
             _window->setView(_viewUI);
             _window->draw(_hud);
-            _window->setView(_window->getDefaultView());
             if(drawMenu){
                 _window->setMouseCursorVisible(true);
                 _window->draw(_menu);
             }else {
                 _window->setMouseCursorVisible(false);
             }
+            _window->setView(_window->getDefaultView());
 
             break;
 
@@ -186,6 +186,7 @@ void ScenePlayable::display() {
 }
 
 void ScenePlayable::processInput() {
+    _window->setView(_viewUI);
     InputManager::update();
     sf::Event event;
 
@@ -281,7 +282,7 @@ void ScenePlayable::processInput() {
 			if (InputManager::action(InputAction::reset)) clearMap();
             break;
     }
-
+    _window->setView(_window->getDefaultView());
 }
 
 void ScenePlayable::changeButton(int offset) {

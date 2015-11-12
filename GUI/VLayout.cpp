@@ -36,9 +36,10 @@ int VLayout::getNWidgets() {
 }
 
 bool VLayout::processEvent(const sf::Event& event,
-                           const sf::Vector2f& parent_pos) {
+                           const sf::Vector2f& parent_pos,
+                           const sf::RenderTarget& target) {
     for(Widget* widget : _widgets) {
-        if(widget->processEvent(event,parent_pos))
+        if(widget->processEvent(event,parent_pos,target))
             return true;
     }
     return false ;

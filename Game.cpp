@@ -189,7 +189,9 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             sf::View auxView = *lastScene->getPtrView();
             auxView.setViewport(sf::FloatRect(0,0,1,1)); // Change the viewport to avoid cuttin the scene
             rt1.setView(auxView); // I need the view to draw in the renderTexture correctly
+            rt1.clear();
             lastScene->render(&rt1);
+            rt1.display();
             // All of this is not needed with the second RenderTexture because his sceneIniCoord will be (0,0)
 
             currentScene->setPlayer(lastScene->getPlayer());
@@ -199,15 +201,15 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             auxView = *currentScene->getPtrView();
             auxView.setViewport(sf::FloatRect(0,0,1,1)); // Change the viewport to avoid cuttin the scene
             rt2.setView(auxView); // I need the view to draw in the renderTexture correctly
+            rt2.clear();
             currentScene->render(&rt2);
+            rt2.display();
 
             ppos = _window.mapCoordsToPixel(currentScene->getPlayer()->getPositionTransition(),*currentScene->getPtrView());
             sf::Vector2f playerPos2(ppos.x,_window.getSize().y - ppos.y); // Fragment Y = 0 is on bottom
 
-            rt1.display();
             
 
-            rt2.display();
 
             sf::Sprite sprite1(rt1.getTexture()), sprite2(rt2.getTexture());
 
@@ -240,10 +242,10 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                 deltaTime = clock.restart();
                 count += deltaTime.asSeconds();
 
-                Resources::DtO.setParameter("time",count);
                 _window.clear();
+                _window.setView(view);
                 if (count < timer/2.f) {
-                    _window.setView(view);
+                    Resources::DtO.setParameter("time",count);
                     _window.draw(sprite1,&Resources::DtO);
                 }
                 else {
@@ -255,7 +257,6 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                         view.setCenter(view.getSize().x/2.0f,view.getSize().y/2.0f);
                     }
                      Resources::DtO.setParameter("time",count-(timer/2.f));
-                    _window.setView(view);
                     _window.draw(sprite2,&Resources::DtO);
                 }
 
@@ -297,7 +298,7 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                 lastScene->getPlayer()->setDirection(directions(int(count/timePerTurn)%4));
                 lastScene->getPlayer()->update(10);
                 _window.clear();
-                _window.setView(view);
+                _window.setView(*_lastScene->getPtrView());
                 _lastScene->render();
                 _window.display();
             }
@@ -318,15 +319,17 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
             sf::View auxView = *lastScene->getPtrView();
             auxView.setViewport(sf::FloatRect(0,0,1,1)); // Change the viewport to avoid cuttin the scene
             rt1.setView(auxView); // I need the view to draw in the renderTexture correctly
+            rt1.clear();
             lastScene->render(&rt1);
+            rt1.display();
 
             auxView = *currentScene->getPtrView();
             auxView.setViewport(sf::FloatRect(0,0,1,1)); // Change the viewport to avoid cuttin the scene
             rt2.setView(auxView); // I need the view to draw in the renderTexture correctly
+            rt2.clear();
             currentScene->render(&rt2);
-
-            rt1.display();
             rt2.display();
+
 
             sf::Sprite sprite1(rt1.getTexture()), sprite2(rt2.getTexture());
 
@@ -336,15 +339,15 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
 
             clock.restart();
             bool changed = false;
-            count=0.f, timer = 2.f;
+            count=0.f, timer = 1.f;
             while (count < timer) {
                 deltaTime = clock.restart();
                 count += deltaTime.asSeconds();
 
-                Resources::sDying.setParameter("time",count);
                 _window.clear();
+                _window.setView(view);
                 if (count < timer/2.f) {
-                    _window.setView(view);
+                    Resources::sDying.setParameter("time",count);
                     _window.draw(sprite1,&Resources::sDying);
                 }
                 else {
@@ -355,7 +358,6 @@ void Game::changeScene(SceneChanger* sC) { // This will be called by any scene w
                         view.setCenter(view.getSize().x/2.0f,view.getSize().y/2.0f);
                     }
                      Resources::sDying.setParameter("time",count-(timer/2.f));
-                    _window.setView(view);
                     _window.draw(sprite2,&Resources::sDying);
                 }
 
