@@ -20,7 +20,7 @@
  </imagelayer>
  <layer name="Tile Layer 1" width="16" height="11">
   <properties>
-   <property name="type" value="dungeon"/>
+   <property name="type" value="dungeonLight"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -39,19 +39,41 @@
  <objectgroup name="Exits" width="0" height="0" opacity="0.97">
   <object name="bit" gid="158" x="112" y="164" width="32" height="20">
    <properties>
-    <property name="scene" value="dun0"/>
-    <property name="x" value="3"/>
-    <property name="y" value="2"/>
+    <property name="scene" value="dun12"/>
+    <property name="x" value="9"/>
+    <property name="y" value="10"/>
    </properties>
   </object>
   <object name="top" gid="157" x="112" y="32" width="32" height="20">
    <properties>
-    <property name="scene" value="map1"/>
-    <property name="x" value="3"/>
+    <property name="scene" value="dun14"/>
+    <property name="x" value="8"/>
     <property name="y" value="2"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="Enemies" width="0" height="0"/>
  <objectgroup name="Drops" width="0" height="0"/>
+ <objectgroup name="Objects" width="0" height="0">
+  <object gid="156" x="112" y="135"/>
+  <object gid="156" x="112" y="151"/>
+  <object gid="156" x="129" y="151"/>
+  <object gid="156" x="128" y="135"/>
+  <object gid="156" x="112" y="118"/>
+  <object gid="156" x="129" y="119"/>
+  <object gid="156" x="97" y="119"/>
+  <object gid="156" x="80" y="104"/>
+  <object gid="156" x="81" y="88"/>
+  <object gid="156" x="97" y="72"/>
+  <object gid="156" x="144" y="119"/>
+  <object gid="156" x="161" y="103"/>
+  <object gid="156" x="160" y="87"/>
+  <object gid="156" x="145" y="71"/>
+  <object gid="156" x="112" y="87"/>
+  <object gid="156" x="112" y="102"/>
+  <object gid="156" x="129" y="103"/>
+  <object gid="156" x="129" y="87"/>
+  <object gid="156" x="112" y="71"/>
+  <object gid="156" x="128" y="70"/>
+ </objectgroup>
 </map>

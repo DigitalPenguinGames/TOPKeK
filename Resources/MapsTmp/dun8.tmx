@@ -37,21 +37,42 @@
 </data>
  </layer>
  <objectgroup name="Exits" width="0" height="0" opacity="0.97">
-  <object name="bit" gid="158" x="112" y="164" width="32" height="20">
+  <object name="left" gid="164" x="12" y="104">
    <properties>
-    <property name="scene" value="dun0"/>
-    <property name="x" value="3"/>
-    <property name="y" value="2"/>
+    <property name="scene" value="dun7"/>
+    <property name="x" value="15"/>
+    <property name="y" value="6"/>
    </properties>
   </object>
-  <object name="top" gid="157" x="112" y="32" width="32" height="20">
+  <object name="top" gid="157" x="113" y="32">
    <properties>
-    <property name="scene" value="map1"/>
-    <property name="x" value="3"/>
+    <property name="scene" value="d17"/>
+    <property name="x" value="8"/>
     <property name="y" value="2"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="Enemies" width="0" height="0"/>
- <objectgroup name="Drops" width="0" height="0"/>
+ <objectgroup name="Drops" width="0" height="0">
+  <object gid="179" x="69" y="98"/>
+  <object gid="179" x="85" y="116"/>
+  <object gid="179" x="100" y="133"/>
+  <object gid="179" x="116" y="115"/>
+  <object gid="179" x="131" y="99"/>
+  <object gid="179" x="116" y="84"/>
+  <object gid="179" x="85" y="83"/>
+  <object gid="179" x="100" y="100"/>
+  <object gid="179" x="84" y="99"/>
+  <object gid="179" x="99" y="116"/>
+  <object gid="179" x="117" y="100"/>
+  <object gid="182" x="162" y="79"/>
+  <object gid="182" x="162" y="99"/>
+  <object gid="182" x="162" y="119"/>
+  <object gid="182" x="173" y="119"/>
+  <object gid="182" x="184" y="119"/>
+  <object gid="182" x="196" y="119"/>
+  <object gid="182" x="195" y="98"/>
+  <object gid="182" x="196" y="79"/>
+ </objectgroup>
+ <objectgroup name="Objects" width="0" height="0"/>
 </map>

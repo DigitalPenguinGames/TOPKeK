@@ -46,14 +46,14 @@
   </object>
   <object name="top" gid="157" x="112" y="32" width="32" height="20">
    <properties>
-    <property name="scene" value="dun2"/>
+    <property name="scene" value="dun6"/>
     <property name="x" value="8"/>
     <property name="y" value="2"/>
    </properties>
   </object>
   <object name="right" gid="163" x="224" y="104">
    <properties>
-    <property name="scene" value="dun3"/>
+    <property name="scene" value="dun4"/>
     <property name="x" value="2"/>
     <property name="y" value="6"/>
    </properties>
