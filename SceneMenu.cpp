@@ -3,11 +3,11 @@
 
 SceneMenu::SceneMenu(Game* g, sf::RenderWindow* w) : 
     Scene(g,w,sceneTypes::menu, "menu"),
-    _menu(*w,w->getDefaultView()),
-    _options(*w,w->getDefaultView()) {
+    _menu(*w,_view),
+    _options(*w,_view) {
     _game = g;
     
-    sf::Vector2u targetResolution(640,360);
+    sf::Vector2u targetResolution(1920,1080);
     initView(&_view, sf::Vector2i(targetResolution));
 
     _buttonSelected = -1;
@@ -26,6 +26,7 @@ void SceneMenu::init(sf::Vector2f ) {
 }
 
 void SceneMenu::processInput() {
+    _window->setView(_view);
     sf::Event event;
     while (_window->pollEvent(event)) {
         if (_selectedLayout == _menuLayout) _menu.processEvent(event);
@@ -66,6 +67,8 @@ void SceneMenu::processInput() {
         else changeButton(+1);
         
     }
+
+    _window->setView(_window->getDefaultView());
 
 }
 
