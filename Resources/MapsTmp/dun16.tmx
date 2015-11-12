@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="16" height="11" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="OverWorld" tilewidth="16" tileheight="16" spacing="1" margin="1">
+  <image source="../Textures/OverworldTiles.png" width="307" height="137"/>
+ </tileset>
+ <tileset firstgid="145" name="OverworldObjects" tilewidth="48" tileheight="32" spacing="1" margin="1">
+  <image source="../Textures/OverworldObjects.png" width="148" height="133"/>
+ </tileset>
+ <tileset firstgid="157" name="dungeonDoorsHor" tilewidth="32" tileheight="20">
+  <image source="../Textures/dungeonDoorsHor.png" width="64" height="60"/>
+ </tileset>
+ <tileset firstgid="163" name="dungeonDoorsVer" tilewidth="20" tileheight="32">
+  <image source="../Textures/dungeonDoorsVer.png" width="40" height="96"/>
+ </tileset>
+ <tileset firstgid="169" name="Enemies" tilewidth="16" tileheight="16" spacing="1" margin="1">
+  <image source="../Textures/EnemiesToMap.png" width="171" height="171"/>
+ </tileset>
+ <imagelayer name="Image Layer 1" width="0" height="0">
+  <image source="../Textures/dungeon.png"/>
+ </imagelayer>
+ <layer name="Tile Layer 1" width="16" height="11">
+  <properties>
+   <property name="type" value="dungeon"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="Exits" width="0" height="0" opacity="0.97">
+  <object name="bit" gid="158" x="112" y="164" width="32" height="20">
+   <properties>
+    <property name="scene" value="dun0"/>
+    <property name="x" value="9"/>
+    <property name="y" value="10"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Enemies" width="0" height="0"/>
+ <objectgroup name="Drops" width="0" height="0">
+  <object gid="186" x="117" y="49"/>
+  <object gid="186" x="113" y="58"/>
+  <object gid="186" x="123" y="58"/>
+  <object gid="182" x="45" y="75"/>
+  <object gid="182" x="44" y="80"/>
+  <object gid="182" x="44" y="87"/>
+  <object gid="182" x="43" y="92"/>
+  <object gid="182" x="42" y="99"/>
+  <object gid="182" x="31" y="63"/>
+  <object gid="182" x="35" y="65"/>
+  <object gid="182" x="38" y="66"/>
+  <object gid="182" x="41" y="67"/>
+  <object gid="182" x="43" y="67"/>
+  <object gid="182" x="45" y="67"/>
+  <object gid="182" x="48" y="67"/>
+  <object gid="182" x="50" y="68"/>
+  <object gid="182" x="53" y="69"/>
+  <object gid="182" x="55" y="69"/>
+  <object gid="182" x="58" y="70"/>
+  <object gid="182" x="60" y="70"/>
+  <object gid="182" x="69" y="100"/>
+  <object gid="182" x="71" y="90"/>
+  <object gid="182" x="72" y="82"/>
+  <object gid="182" x="72" y="79"/>
+  <object gid="182" x="73" y="73"/>
+  <object gid="182" x="73" y="87"/>
+  <object gid="182" x="77" y="87"/>
+  <object gid="182" x="85" y="87"/>
+  <object gid="182" x="85" y="85"/>
+  <object gid="182" x="85" y="79"/>
+  <object gid="182" x="86" y="77"/>
+  <object gid="182" x="87" y="75"/>
+  <object gid="182" x="85" y="93"/>
+  <object gid="182" x="85" y="97"/>
+  <object gid="182" x="85" y="101"/>
+  <object gid="182" x="77" y="86"/>
+  <object gid="182" x="80" y="87"/>
+  <object gid="182" x="82" y="88"/>
+  <object gid="182" x="99" y="71"/>
+  <object gid="182" x="98" y="78"/>
+  <object gid="182" x="98" y="83"/>
+  <object gid="182" x="98" y="86"/>
+  <object gid="182" x="98" y="92"/>
+  <object gid="182" x="97" y="97"/>
+  <object gid="182" x="99" y="99"/>
+  <object gid="182" x="102" y="100"/>
+  <object gid="182" x="105" y="99"/>
+  <object gid="182" x="107" y="99"/>
+  <object gid="182" x="109" y="99"/>
+  <object gid="182" x="99" y="80"/>
+  <object gid="182" x="103" y="82"/>
+  <object gid="182" x="105" y="82"/>
+  <object gid="182" x="100" y="66"/>
+  <object gid="182" x="104" y="68"/>
+  <object gid="182" x="106" y="68"/>
+  <object gid="182" x="108" y="69"/>
+  <object gid="182" x="135" y="68"/>
+  <object gid="182" x="136" y="80"/>
+  <object gid="182" x="136" y="83"/>
+  <object gid="182" x="136" y="88"/>
+  <object gid="182" x="136" y="92"/>
+  <object gid="182" x="136" y="95"/>
+  <object gid="182" x="137" y="100"/>
+  <object gid="182" x="141" y="102"/>
+  <object gid="182" x="146" y="102"/>
+  <object gid="182" x="151" y="102"/>
+  <object gid="182" x="154" y="102"/>
+  <object gid="182" x="136" y="80"/>
+  <object gid="182" x="141" y="82"/>
+  <object gid="182" x="144" y="82"/>
+  <object gid="182" x="146" y="82"/>
+  <object gid="182" x="135" y="64"/>
+  <object gid="182" x="145" y="64"/>
+  <object gid="182" x="148" y="64"/>
+  <object gid="182" x="152" y="64"/>
+  <object gid="182" x="155" y="64"/>
+  <object gid="182" x="137" y="63"/>
+  <object gid="182" x="141" y="63"/>
+  <object gid="182" x="164" y="103"/>
+  <object gid="182" x="165" y="94"/>
+  <object gid="182" x="167" y="88"/>
+  <object gid="182" x="168" y="84"/>
+  <object gid="182" x="168" y="79"/>
+  <object gid="182" x="169" y="77"/>
+  <object gid="182" x="169" y="75"/>
+  <object gid="182" x="172" y="81"/>
+  <object gid="182" x="174" y="84"/>
+  <object gid="182" x="175" y="88"/>
+  <object gid="182" x="175" y="91"/>
+  <object gid="182" x="176" y="92"/>
+  <object gid="182" x="178" y="93"/>
+  <object gid="182" x="179" y="95"/>
+  <object gid="182" x="180" y="98"/>
+  <object gid="182" x="181" y="99"/>
+  <object gid="182" x="182" y="100"/>
+  <object gid="182" x="183" y="93"/>
+  <object gid="182" x="183" y="90"/>
+  <object gid="182" x="183" y="87"/>
+  <object gid="182" x="184" y="83"/>
+  <object gid="182" x="184" y="80"/>
+  <object gid="182" x="184" y="78"/>
+  <object gid="182" x="184" y="75"/>
+  <object gid="182" x="185" y="72"/>
+  <object gid="182" x="195" y="102"/>
+  <object gid="182" x="198" y="95"/>
+  <object gid="182" x="201" y="91"/>
+  <object gid="182" x="201" y="88"/>
+  <object gid="182" x="202" y="84"/>
+  <object gid="182" x="203" y="81"/>
+  <object gid="182" x="204" y="76"/>
+  <object gid="182" x="205" y="72"/>
+  <object gid="182" x="205" y="69"/>
+  <object gid="182" x="204" y="66"/>
+  <object gid="182" x="204" y="65"/>
+  <object gid="182" x="210" y="67"/>
+  <object gid="182" x="213" y="70"/>
+  <object gid="182" x="216" y="72"/>
+  <object gid="182" x="219" y="77"/>
+  <object gid="182" x="220" y="81"/>
+  <object gid="182" x="220" y="92"/>
+  <object gid="182" x="218" y="94"/>
+  <object gid="182" x="216" y="96"/>
+  <object gid="182" x="214" y="99"/>
+  <object gid="182" x="211" y="102"/>
+  <object gid="182" x="204" y="105"/>
+  <object gid="182" x="202" y="105"/>
+  <object gid="182" x="199" y="105"/>
+  <object gid="182" x="205" y="103"/>
+ </objectgroup>
+ <objectgroup name="Objects" width="0" height="0">
+  <object gid="148" x="104" y="33"/>
+ </objectgroup>
+</map>

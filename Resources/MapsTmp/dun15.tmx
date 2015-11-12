@@ -20,7 +20,7 @@
  </imagelayer>
  <layer name="Tile Layer 1" width="16" height="11">
   <properties>
-   <property name="type" value="dungeon"/>
+   <property name="type" value="dungeonLight"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -39,19 +39,62 @@
  <objectgroup name="Exits" width="0" height="0" opacity="0.97">
   <object name="bit" gid="158" x="112" y="164" width="32" height="20">
    <properties>
-    <property name="scene" value="dun0"/>
-    <property name="x" value="3"/>
-    <property name="y" value="2"/>
+    <property name="scene" value="dun14"/>
+    <property name="x" value="9"/>
+    <property name="y" value="10"/>
    </properties>
   </object>
   <object name="top" gid="157" x="112" y="32" width="32" height="20">
    <properties>
-    <property name="scene" value="map1"/>
-    <property name="x" value="3"/>
+    <property name="scene" value="dun16"/>
+    <property name="x" value="8"/>
     <property name="y" value="2"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="Enemies" width="0" height="0"/>
  <objectgroup name="Drops" width="0" height="0"/>
+ <objectgroup name="Objects" width="0" height="0">
+  <object gid="156" x="128" y="143"/>
+  <object gid="156" x="112" y="144"/>
+  <object gid="156" x="97" y="143"/>
+  <object gid="156" x="82" y="144"/>
+  <object gid="156" x="66" y="144"/>
+  <object gid="156" x="130" y="112"/>
+  <object gid="156" x="144" y="112"/>
+  <object gid="156" x="158" y="112"/>
+  <object gid="156" x="172" y="112"/>
+  <object gid="156" x="186" y="111"/>
+  <object gid="156" x="198" y="112"/>
+  <object gid="156" x="208" y="112"/>
+  <object gid="156" x="161" y="143"/>
+  <object gid="156" x="175" y="143"/>
+  <object gid="156" x="188" y="143"/>
+  <object gid="156" x="202" y="143"/>
+  <object gid="156" x="208" y="143"/>
+  <object gid="156" x="96" y="111"/>
+  <object gid="156" x="81" y="111"/>
+  <object gid="156" x="66" y="112"/>
+  <object gid="156" x="54" y="112"/>
+  <object gid="156" x="41" y="112"/>
+  <object gid="156" x="31" y="112"/>
+  <object gid="156" x="97" y="80"/>
+  <object gid="156" x="108" y="80"/>
+  <object gid="156" x="116" y="81"/>
+  <object gid="156" x="125" y="80"/>
+  <object gid="156" x="134" y="81"/>
+  <object gid="156" x="147" y="81"/>
+  <object gid="156" x="159" y="81"/>
+  <object gid="156" x="171" y="80"/>
+  <object gid="156" x="81" y="80"/>
+  <object gid="156" x="68" y="80"/>
+  <object gid="182" x="37" y="139"/>
+  <object gid="182" x="212" y="77"/>
+  <object gid="182" x="212" y="47"/>
+  <object gid="182" x="66" y="46"/>
+  <object gid="182" x="211" y="144"/>
+  <object gid="182" x="212" y="111"/>
+  <object gid="182" x="36" y="112"/>
+  <object gid="182" x="212" y="62"/>
+ </objectgroup>
 </map>

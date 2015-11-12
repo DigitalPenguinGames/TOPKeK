@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="16" height="11" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="OverWorld" tilewidth="16" tileheight="16" spacing="1" margin="1">
+  <image source="../Textures/OverworldTiles.png" width="307" height="137"/>
+ </tileset>
+ <tileset firstgid="145" name="OverworldObjects" tilewidth="48" tileheight="32" spacing="1" margin="1">
+  <image source="../Textures/OverworldObjects.png" width="148" height="133"/>
+ </tileset>
+ <tileset firstgid="157" name="dungeonDoorsHor" tilewidth="32" tileheight="20">
+  <image source="../Textures/dungeonDoorsHor.png" width="64" height="60"/>
+ </tileset>
+ <tileset firstgid="163" name="dungeonDoorsVer" tilewidth="20" tileheight="32">
+  <image source="../Textures/dungeonDoorsVer.png" width="40" height="96"/>
+ </tileset>
+ <tileset firstgid="169" name="Enemies" tilewidth="16" tileheight="16" spacing="1" margin="1">
+  <image source="../Textures/EnemiesToMap.png" width="171" height="171"/>
+ </tileset>
+ <imagelayer name="Image Layer 1" width="0" height="0">
+  <image source="../Textures/dungeon.png"/>
+ </imagelayer>
+ <layer name="Tile Layer 1" width="16" height="11">
+  <properties>
+   <property name="type" value="dungeon"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="Exits" width="0" height="0" opacity="0.97">
+  <object name="left" gid="164" x="12" y="104">
+   <properties>
+    <property name="scene" value="dun4"/>
+    <property name="x" value="15"/>
+    <property name="y" value="6"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Enemies" width="0" height="0"/>
+ <objectgroup name="Drops" width="0" height="0">
+  <object gid="183" x="55" y="98"/>
+  <object gid="183" x="59" y="93"/>
+  <object gid="183" x="63" y="89"/>
+  <object gid="183" x="67" y="86"/>
+  <object gid="183" x="71" y="83"/>
+  <object gid="183" x="76" y="79"/>
+  <object gid="183" x="76" y="88"/>
+  <object gid="183" x="76" y="98"/>
+  <object gid="183" x="59" y="98"/>
+  <object gid="183" x="62" y="98"/>
+  <object gid="183" x="65" y="98"/>
+  <object gid="183" x="69" y="98"/>
+  <object gid="183" x="72" y="98"/>
+  <object gid="182" x="79" y="70"/>
+  <object gid="182" x="85" y="64"/>
+  <object gid="182" x="87" y="62"/>
+  <object gid="182" x="89" y="60"/>
+  <object gid="182" x="94" y="58"/>
+  <object gid="182" x="98" y="57"/>
+  <object gid="182" x="103" y="59"/>
+  <object gid="182" x="108" y="61"/>
+  <object gid="182" x="110" y="63"/>
+  <object gid="182" x="113" y="70"/>
+  <object gid="182" x="114" y="75"/>
+  <object gid="182" x="113" y="80"/>
+  <object gid="182" x="111" y="86"/>
+  <object gid="182" x="111" y="97"/>
+  <object gid="182" x="107" y="105"/>
+  <object gid="182" x="106" y="106"/>
+  <object gid="182" x="99" y="116"/>
+  <object gid="182" x="80" y="109"/>
+  <object gid="182" x="87" y="115"/>
+  <object gid="182" x="94" y="117"/>
+  <object gid="182" x="95" y="123"/>
+  <object gid="182" x="96" y="131"/>
+  <object gid="182" x="96" y="141"/>
+  <object gid="182" x="94" y="143"/>
+  <object gid="182" x="104" y="121"/>
+  <object gid="182" x="101" y="126"/>
+  <object gid="182" x="101" y="138"/>
+  <object gid="182" x="103" y="147"/>
+  <object gid="182" x="110" y="147"/>
+  <object gid="182" x="107" y="133"/>
+  <object gid="182" x="115" y="134"/>
+  <object gid="182" x="110" y="121"/>
+  <object gid="182" x="108" y="116"/>
+  <object gid="182" x="83" y="82"/>
+  <object gid="182" x="84" y="97"/>
+  <object gid="182" x="84" y="97"/>
+  <object gid="182" x="89" y="100"/>
+  <object gid="182" x="95" y="105"/>
+  <object gid="182" x="97" y="101"/>
+  <object gid="182" x="103" y="91"/>
+  <object gid="182" x="103" y="97"/>
+  <object gid="182" x="87" y="87"/>
+  <object gid="182" x="93" y="89"/>
+  <object gid="182" x="91" y="83"/>
+  <object gid="182" x="85" y="74"/>
+  <object gid="182" x="91" y="71"/>
+  <object gid="182" x="95" y="69"/>
+  <object gid="182" x="105" y="72"/>
+  <object gid="182" x="103" y="84"/>
+  <object gid="182" x="95" y="84"/>
+  <object gid="182" x="97" y="73"/>
+  <object gid="182" x="72" y="117"/>
+  <object gid="182" x="70" y="126"/>
+  <object gid="182" x="69" y="136"/>
+  <object gid="182" x="67" y="148"/>
+  <object gid="182" x="111" y="118"/>
+  <object gid="182" x="114" y="125"/>
+  <object gid="182" x="114" y="127"/>
+  <object gid="182" x="118" y="129"/>
+  <object gid="182" x="123" y="132"/>
+  <object gid="182" x="126" y="140"/>
+  <object gid="182" x="120" y="137"/>
+  <object gid="185" x="180" y="89"/>
+  <object gid="182" x="97" y="146"/>
+  <object gid="182" x="73" y="113"/>
+  <object gid="182" x="67" y="118"/>
+  <object gid="182" x="64" y="122"/>
+  <object gid="182" x="65" y="127"/>
+  <object gid="182" x="59" y="127"/>
+  <object gid="181" x="127" y="51"/>
+ </objectgroup>
+ <objectgroup name="Objects" width="0" height="0"/>
+</map>

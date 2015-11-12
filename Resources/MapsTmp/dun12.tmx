@@ -39,19 +39,29 @@
  <objectgroup name="Exits" width="0" height="0" opacity="0.97">
   <object name="bit" gid="158" x="112" y="164" width="32" height="20">
    <properties>
-    <property name="scene" value="dun0"/>
-    <property name="x" value="3"/>
-    <property name="y" value="2"/>
+    <property name="scene" value="dun9"/>
+    <property name="x" value="9"/>
+    <property name="y" value="10"/>
    </properties>
   </object>
   <object name="top" gid="157" x="112" y="32" width="32" height="20">
    <properties>
-    <property name="scene" value="map1"/>
-    <property name="x" value="3"/>
+    <property name="scene" value="dun13"/>
+    <property name="x" value="8"/>
     <property name="y" value="2"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="Enemies" width="0" height="0"/>
  <objectgroup name="Drops" width="0" height="0"/>
+ <objectgroup name="Objects" width="0" height="0">
+  <object gid="156" x="145" y="159"/>
+  <object gid="156" x="161" y="127"/>
+  <object gid="156" x="177" y="95"/>
+  <object gid="156" x="192" y="63"/>
+  <object gid="156" x="96" y="159"/>
+  <object gid="156" x="80" y="128"/>
+  <object gid="156" x="64" y="96"/>
+  <object gid="156" x="48" y="63"/>
+ </objectgroup>
 </map>

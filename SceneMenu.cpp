@@ -94,7 +94,7 @@ void SceneMenu::initButtons() {
 
     if (DataManager::getBool("game", false)) {
         TextButton* resB;
-        resB = new TextButton("     Continue", Resources::pauseMenuFont);
+        resB = new TextButton("Continue", Resources::pauseMenuFont);
         resB->onClick = [this](const sf::Event&, Button&) {
             sf::Vector2f playerPos = DataManager::getVector2f("playerPos");
             std::string nextScene = DataManager::getString("playerScene");
@@ -107,20 +107,20 @@ void SceneMenu::initButtons() {
     }
 
     TextButton* resB;
-    resB = new TextButton("     New Game", Resources::pauseMenuFont); // New game
+    resB = new TextButton("New Game", Resources::pauseMenuFont); // New game
     resB->onClick = [this](const sf::Event&, Button&) {
         changeScene(new SceneChanger(sf::Vector2f(0,0), "cutScene", sf::Vector2f(0,0))); 
     };
 
     TextButton* resB2;
-    resB2 = new TextButton("     Options", Resources::pauseMenuFont);
+    resB2 = new TextButton("Options", Resources::pauseMenuFont);
     resB2->onClick = [this](const sf::Event&, Button&) { 
          _selectedLayout = _optionsLayout;
          _buttonSelected = 1;
     };
 
     TextButton* exitB;
-    exitB = new TextButton("     Exit", Resources::pauseMenuFont);
+    exitB = new TextButton("Exit", Resources::pauseMenuFont);
     exitB->onClick = [this](const sf::Event&, Button&){ exit(0); };
     _menuLayout->add(resB);
     _menuLayout->add(resB2);
