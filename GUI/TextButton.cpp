@@ -55,6 +55,7 @@ void TextButton::updateShape(){
 void TextButton::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     states.transform.translate(_position);
     target.draw(_shape, states);
+    states.transform.translate(sf::Vector2f(0, getSize().y/4));
     target.draw(_label,states);
 }
 
