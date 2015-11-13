@@ -13,6 +13,8 @@ SceneMenu::SceneMenu(Game* g, sf::RenderWindow* w) :
     _buttonSelected = -1;
     _menuLayout = nullptr;
     _optionsLayout = nullptr;
+
+	initButtons();
 }
 
 SceneMenu::~SceneMenu() {
@@ -20,8 +22,8 @@ SceneMenu::~SceneMenu() {
 
 void SceneMenu::init(sf::Vector2f ) {
     _elapsed = 0;
-    _selectedLayout = _menuLayout;
     resetMenuPosition();
+	_selectedLayout = _menuLayout;
     initButtons();
 }
 

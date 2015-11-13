@@ -77,6 +77,7 @@ void DataManager::save() {
 
     file << vec2fSize << std::endl;
     for (auto it = f2Map.begin(); it != f2Map.end(); ++it) file << it->first << " " << it->second.x << " " << it->second.y << std::endl;
+	file.close();
 }
 
 void DataManager::reset() {
